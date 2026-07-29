@@ -7,6 +7,7 @@ import { agentInvocationFields, agentInvocationOperations } from './actions/agen
 import { alertsFields, alertsOperations } from './actions/alerts/Alerts.resource';
 import { apiClientsFields, apiClientsOperations } from './actions/apiClients/ApiClients.resource';
 import { apiIntegrationsFields, apiIntegrationsOperations } from './actions/apiIntegrations/ApiIntegrations.resource';
+import { aspmFields, aspmOperations } from './actions/aspm/Aspm.resource';
 import { casesFields, casesOperations } from './actions/cases/Cases.resource';
 import { router } from './actions/router';
 
@@ -61,6 +62,10 @@ export class CrowdStrikeFalcon implements INodeType {
 						value: 'apiIntegrations',
 					},
 					{
+						name: 'ASPM',
+						value: 'aspm',
+					},
+					{
 						name: 'Case',
 						value: 'cases',
 					},
@@ -79,6 +84,8 @@ export class CrowdStrikeFalcon implements INodeType {
 			...apiClientsFields,
 			...apiIntegrationsOperations,
 			...apiIntegrationsFields,
+			...aspmOperations,
+			...aspmFields,
 			...casesOperations,
 			...casesFields,
 		],

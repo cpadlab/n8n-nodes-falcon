@@ -70,6 +70,60 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 * **Execute Command Proxy**: Execute a command and proxy the response directly.
 * **Get Combined Plugin Configs**: Queries for config resources and returns details.
 
+### ASPM
+* **Create Executor Node**: Create a new relay node.
+* **Create Integration**: Create a new integration.
+* **Create Integration Task**: Create new integration task.
+* **Delete Executor Node**: Delete a relay node.
+* **Delete Group ID 09**: Delete group by ID.
+* **Delete Integration**: Delete an existing integration by ID.
+* **Delete Integration Task**: Delete an existing integration task by ID.
+* **Delete Tags**: Remove existing tags.
+* **Execute Function Data**: Query language queries (MSA format).
+* **Execute Function Data Count**: Query language count queries (MSA format).
+* **Execute Function Data Query**: Query language queries.
+* **Execute Function Data Query Count**: Query language count queries.
+* **Execute Functions**: Query language services queries.
+* **Execute Functions Count**: Query language count queries for functions.
+* **Execute Functions Overtime**: Query language overtime queries.
+* **Execute Functions Query**: Query language services queries.
+* **Execute Functions Query Count**: Query language count queries.
+* **Execute Functions Query Overtime**: Query language overtime queries.
+* **Execute Query**: Execute a query matching query page syntax.
+* **Get Cloud Security Integration State**: Get Cloud Security integration state.
+* **Get Executor Nodes**: Get all the relay nodes.
+* **Get Executor Nodes Instances CSV**: Retrieve relay instances in CSV format.
+* **Get Executor Nodes Metadata**: Get metadata about all executor nodes.
+* **Get Group ID 09 V2**: Get group details.
+* **Get Groups Hierarchy V2**: Get group hierarchy.
+* **Get Groups List V2**: Get groups list.
+* **Get Integration Tasks**: Get all the integration tasks.
+* **Get Integration Tasks Admin**: Get integration tasks with admin scope.
+* **Get Integration Tasks Metadata**: Get metadata about all integration tasks.
+* **Get Integration Tasks V2**: Get all integration tasks V2.
+* **Get Integration Types**: Get all the integration types.
+* **Get Integrations**: Get list of all integrations.
+* **Get Integrations V2**: Get list of all integrations V2.
+* **Get Service Artifacts**: Get service artifacts.
+* **Get Service Violation Types**: Get different types of violation.
+* **Get Services Count**: Get total amount of existing services.
+* **Get Tags**: Get all tags.
+* **Get Users V2**: List users.
+* **Post Group ID 09 Update Default**: Update default group.
+* **Post Group ID 09 V2**: Update group.
+* **Post Group V2**: Create group.
+* **Run Integration Task**: Run an integration task by ID.
+* **Run Integration Task Admin**: Run an integration task by ID (admin scope).
+* **Run Integration Task V2**: Run an integration task by ID V2.
+* **ServiceNow Get Deployments**: Get ServiceNow deployments.
+* **ServiceNow Get Services**: Get ServiceNow services.
+* **Set Cloud Security Integration State**: Set Cloud Security integration state.
+* **Update Executor Node**: Update an existing relay node.
+* **Update Integration**: Update an existing integration by ID.
+* **Update Integration Task**: Update an existing integration task by ID.
+* **Upsert Business Applications**: Create or update business applications.
+* **Upsert Tags**: Create new or update existing tag.
+
 ### Case
 * **Get Cases Query**: Retrieves all Case IDs matching a query filter.
 * **Get Cases by IDs**: Retrieves full details for given Case IDs.
