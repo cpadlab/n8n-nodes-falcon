@@ -1,6 +1,6 @@
 import { FalconClient, FalconErrorExplain } from 'crowdstrike-falcon';
 import type { FalconClientOptions } from 'crowdstrike-falcon';
-import type { IExecuteFunctions, INodeType, INodeTypeDescription } from 'n8n-workflow';
+import type { IExecuteFunctions, INodeExecutionData, INodeType, INodeTypeDescription } from 'n8n-workflow';
 import { NodeConnectionTypes, NodeOperationError } from 'n8n-workflow';
 
 
@@ -78,6 +78,7 @@ async function handleFalconError(error: unknown): Promise<string> {
  * @implements {INodeType}
  */
 export class CrowdStrikeFalcon implements INodeType {
+
 	description: INodeTypeDescription = {
 		displayName: 'CrowdStrike Falcon',
 		name: 'crowdStrikeFalcon',
@@ -98,4 +99,41 @@ export class CrowdStrikeFalcon implements INodeType {
 		],
 		properties: [],
 	};
+    
+    
+    /**
+	 * Main execution entry point for the n8n node.
+	 *
+	 * Iterates over incoming execution items, initializes the CrowdStrike Falcon client,
+	 * invokes the requested API operations, and handles error propagation or fail-continuation.
+	 *
+	 * @this {IExecuteFunctions} The n8n execution context providing access to input data, node parameters, and credentials.
+	 * @returns {Promise<INodeExecutionData[][]>} A multi-dimensional array containing the processed output items for the node's output connections.
+	 *
+	 * @throws {NodeOperationError} Thrown if an API call fails and "Continue on Fail" is disabled on the node.
+	 */
+    async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
+
+        const items = this.getInputData();
+        const returnData: INodeExecutionData[] = [];
+        const falconClient = await getFalconClient(this);
+
+        for (let i = 0; i < items.length; i++) {
+            try {} catch (error) {
+                if (this.continueOnFail()) {
+                    returnData.push({
+                        json: { error: await handleFalconError(error) },
+                        pairedItem: { item: i },
+                    });
+                    continue;
+                }
+                const errorMessage = await handleFalconError(error);
+                throw new NodeOperationError(this.getNode(), errorMessage, { itemIndex: i });
+            }
+        }
+
+        return [returnData];
+
+    }
+
 }
