@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-crowdstrike-falcon",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "N8N community node for CrowdStrike Falcon API",
 	"license": "MIT",
 	"homepage": "https://github.com/cpadlab/n8n-falcon.git",
