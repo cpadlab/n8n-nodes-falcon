@@ -2,6 +2,7 @@ import type { IExecuteFunctions, INodeExecutionData, INodeType, INodeTypeDescrip
 import { NodeConnectionTypes, NodeOperationError } from 'n8n-workflow';
 import { getFalconClient, handleFalconError } from './GenericFunctions';
 import { accessScopesFields, accessScopesOperations } from './actions/accessScopes/AccessScopes.resource';
+import { admissionControlPoliciesFields, admissionControlPoliciesOperations } from './actions/admissionControlPolicies/AdmissionControlPolicies.resource';
 import { casesFields, casesOperations } from './actions/cases/Cases.resource';
 import { router } from './actions/router';
 
@@ -36,6 +37,10 @@ export class CrowdStrikeFalcon implements INodeType {
 						value: 'accessScopes',
 					},
 					{
+						name: 'Admission Control Policy',
+						value: 'admissionControlPolicies',
+					},
+					{
 						name: 'Case',
 						value: 'cases',
 					},
@@ -44,6 +49,8 @@ export class CrowdStrikeFalcon implements INodeType {
 			},
 			...accessScopesOperations,
 			...accessScopesFields,
+			...admissionControlPoliciesOperations,
+			...admissionControlPoliciesFields,
 			...casesOperations,
 			...casesFields,
 		],

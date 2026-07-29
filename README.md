@@ -24,6 +24,23 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 * **Query Access Scopes**: Query Access Scopes and return matching IDs.
 * **Get Access Scopes by IDs**: Retrieves full details for given Access Scope IDs.
 
+### Admission Control Policy
+* **Query Policies**: Search admission control policies.
+* **Get Policies by IDs**: Get admission control policies by IDs.
+* **Create Policy**: Create an admission control policy.
+* **Update Policy**: Update an admission control policy.
+* **Delete Policies**: Delete one or more admission control policies.
+* **Update Policy Precedence**: Update admission control policy precedence.
+* **Add Host Groups**: Add host groups to an admission control policy.
+* **Remove Host Groups**: Remove host groups from an admission control policy.
+* **Create Rule Groups**: Create rule groups in an admission control policy.
+* **Update Rule Group**: Update a rule group in an admission control policy.
+* **Delete Rule Groups**: Delete rule groups from an admission control policy.
+* **Set Rule Group Precedence**: Change precedence of rule groups within a policy.
+* **Replace Rule Group Selectors**: Replace labels/namespaces of a rule group.
+* **Add Rule Group Custom Rule**: Add custom Rego rules to a rule group.
+* **Remove Rule Group Custom Rule**: Delete custom Rego rules from all rule groups.
+
 ### Case
 * **Get Cases Query**: Retrieves all Case IDs matching a query filter.
 * **Get Cases by IDs**: Retrieves full details for given Case IDs.
