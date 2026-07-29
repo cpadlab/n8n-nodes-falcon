@@ -65,6 +65,11 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 * **Delete API Clients**: Delete existing API Clients based on IDs.
 * **Reset API Client Secret**: Reset existing API Client secret by IDs.
 
+### API Integrations
+* **Execute Command**: Execute a command.
+* **Execute Command Proxy**: Execute a command and proxy the response directly.
+* **Get Combined Plugin Configs**: Queries for config resources and returns details.
+
 ### Case
 * **Get Cases Query**: Retrieves all Case IDs matching a query filter.
 * **Get Cases by IDs**: Retrieves full details for given Case IDs.
