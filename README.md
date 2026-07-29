@@ -20,7 +20,20 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 
 ## Operations
 
-_List the operations supported by your node._
+### Access Scope
+* **Query Access Scopes**: Query Access Scopes and return matching IDs.
+* **Get Access Scopes by IDs**: Retrieves full details for given Access Scope IDs.
+
+### Case
+* **Get Cases Query**: Retrieves all Case IDs matching a query filter.
+* **Get Cases by IDs**: Retrieves full details for given Case IDs.
+* **Create Case**: Creates a new Case.
+* **Update Case**: Updates specified fields on a Case.
+* **Add Alert Evidence**: Adds alert evidence to a specified Case.
+* **Add Event Evidence**: Adds event evidence to a specified Case.
+* **Add Tags**: Adds tags to a specified Case.
+* **Remove Tags**: Removes specified tags from a Case.
+* **Merge Cases**: Merges a source case into a destination case.
 
 ## Credentials
 
@@ -44,5 +57,3 @@ _By the time users are looking for community nodes, they probably already know n
 ## Version history
 
 _This is another optional section. If your node has multiple versions, include a short description of available versions and what changed, as well as any compatibility impact._
-
-
