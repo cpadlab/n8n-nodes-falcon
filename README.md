@@ -1272,6 +1272,198 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 
 </details>
 
+```python
+items = [
+    "intelligenceIndicatorGraph", "ioaExclusions", "ioc", "iocs", "itAutomation",
+    "knowledgeBaseAuditEvents", "knowledgeBaseFiles", "knowledgeBases",
+    "kubernetesContainerCompliance", "kubernetesProtection", "maintenanceToken",
+    "malquery", "messageCenter", "mlExclusions", "mobileEnrollment", "mssp",
+    "networkScanGlobalConfigs", "networkScanNetworks", "networkScanScanRunReports",
+    "networkScanScanRuns", "networkScanScanners", "networkScanScans",
+    "networkScanTemplates", "networkScanZones", "ngsiem", "oauth2", "ods",
+    "preventionPolicies", "profileGroups", "quarantine", "quickScan",
+    "quickScanPro", "realTimeResponseAdmin", "realTimeResponse",
+    "realTimeResponseAudit", "recon", "releaseNotes", "releases",
+    "reportExecutions", "responsePolicies", "runtimeDetections",
+    "saasSecurity", "sampleUploads", "scanningOrchestrator",
+    "scheduledReports", "sensorDownload", "sensorUpdatePolicies",
+    "sensorUsageApi", "sensorVisibilityExclusions", "serverlessExports",
+    "serverlessVulnerabilities", "spotlightEvaluationLogic",
+    "spotlightSupportedEvaluation", "spotlightVulnerabilities",
+    "spotlightVulnerabilityMetadata", "stream", "tailoredIntelligence",
+    "threatgraph", "unidentifiedContainers", "userManagement",
+    "workflows", "zeroTrustAssessment"
+]
+
+import re
+
+def camel_to_title(name):
+    # insert space before capital letters
+    s1 = re.sub('(.)([A-Z][a-z]+)', r'\1 \2', name)
+    return re.sub('([a-z0-9])([A-Z])', r'\1 \2', s1).title()
+
+formatted = {item: camel_to_title(item) for item in items}
+for k, v in formatted.items():
+    print(f"- `{k}` -> {v}")
+
+
+```
+
+```text
+- `intelligenceIndicatorGraph` -> Intelligence Indicator Graph
+- `ioaExclusions` -> Ioa Exclusions
+- `ioc` -> Ioc
+- `iocs` -> Iocs
+- `itAutomation` -> It Automation
+- `knowledgeBaseAuditEvents` -> Knowledge Base Audit Events
+- `knowledgeBaseFiles` -> Knowledge Base Files
+- `knowledgeBases` -> Knowledge Bases
+- `kubernetesContainerCompliance` -> Kubernetes Container Compliance
+- `kubernetesProtection` -> Kubernetes Protection
+- `maintenanceToken` -> Maintenance Token
+- `malquery` -> Malquery
+- `messageCenter` -> Message Center
+- `mlExclusions` -> Ml Exclusions
+- `mobileEnrollment` -> Mobile Enrollment
+- `mssp` -> Mssp
+- `networkScanGlobalConfigs` -> Network Scan Global Configs
+- `networkScanNetworks` -> Network Scan Networks
+- `networkScanScanRunReports` -> Network Scan Scan Run Reports
+- `networkScanScanRuns` -> Network Scan Scan Runs
+- `networkScanScanners` -> Network Scan Scanners
+- `networkScanScans` -> Network Scan Scans
+- `networkScanTemplates` -> Network Scan Templates
+- `networkScanZones` -> Network Scan Zones
+- `ngsiem` -> Ngsiem
+- `oauth2` -> Oauth2
+- `ods` -> Ods
+- `preventionPolicies` -> Prevention Policies
+- `profileGroups` -> Profile Groups
+- `quarantine` -> Quarantine
+- `quickScan` -> Quick Scan
+- `quickScanPro` -> Quick Scan Pro
+- `realTimeResponseAdmin` -> Real Time Response Admin
+- `realTimeResponse` -> Real Time Response
+- `realTimeResponseAudit` -> Real Time Response Audit
+- `recon` -> Recon
+- `releaseNotes` -> Release Notes
+- `releases` -> Releases
+- `reportExecutions` -> Report Executions
+- `responsePolicies` -> Response Policies
+- `runtimeDetections` -> Runtime Detections
+- `saasSecurity` -> Saas Security
+- `sampleUploads` -> Sample Uploads
+- `scanningOrchestrator` -> Scanning Orchestrator
+- `scheduledReports` -> Scheduled Reports
+- `sensorDownload` -> Sensor Download
+- `sensorUpdatePolicies` -> Sensor Update Policies
+- `sensorUsageApi` -> Sensor Usage Api
+- `sensorVisibilityExclusions` -> Sensor Visibility Exclusions
+- `serverlessExports` -> Serverless Exports
+- `serverlessVulnerabilities` -> Serverless Vulnerabilities
+- `spotlightEvaluationLogic` -> Spotlight Evaluation Logic
+- `spotlightSupportedEvaluation` -> Spotlight Supported Evaluation
+- `spotlightVulnerabilities` -> Spotlight Vulnerabilities
+- `spotlightVulnerabilityMetadata` -> Spotlight Vulnerability Metadata
+- `stream` -> Stream
+- `tailoredIntelligence` -> Tailored Intelligence
+- `threatgraph` -> Threatgraph
+- `unidentifiedContainers` -> Unidentified Containers
+- `userManagement` -> User Management
+- `workflows` -> Workflows
+- `zeroTrustAssessment` -> Zero Trust Assessment
+
+
+```
+
+Here is the updated section for your `README.md` in English, with all the endpoints neatly categorized and formatted in clean Title Case (showing both the human-friendly name and the code identifier):
+
+---
+
+## 🚧 Pending Implementation
+
+The following features, modules, and endpoints are currently pending integration into the project:
+
+### 🔍 Intelligence & Threats (IOCs & Malquery)
+
+* **Intelligence Indicator Graph** (`intelligenceIndicatorGraph`)
+* **Ioa Exclusions** (`ioaExclusions`)
+* **Ioc** (`ioc`)
+* **Iocs** (`iocs`)
+* **Malquery** (`malquery`)
+* **Tailored Intelligence** (`tailoredIntelligence`)
+* **Threatgraph** (`threatgraph`)
+
+### 🛡️ Security, Prevention & Vulnerabilities (Spotlight)
+
+* **Prevention Policies** (`preventionPolicies`)
+* **Quarantine** (`quarantine`)
+* **Runtime Detections** (`runtimeDetections`)
+* **Saas Security** (`saasSecurity`)
+* **Serverless Exports** (`serverlessExports`)
+* **Serverless Vulnerabilities** (`serverlessVulnerabilities`)
+* **Spotlight Evaluation Logic** (`spotlightEvaluationLogic`)
+* **Spotlight Supported Evaluation** (`spotlightSupportedEvaluation`)
+* **Spotlight Vulnerabilities** (`spotlightVulnerabilities`)
+* **Spotlight Vulnerability Metadata** (`spotlightVulnerabilityMetadata`)
+* **Zero Trust Assessment** (`zeroTrustAssessment`)
+
+### ☁️ Infrastructure & Containers (Kubernetes & Network)
+
+* **Kubernetes Container Compliance** (`kubernetesContainerCompliance`)
+* **Kubernetes Protection** (`kubernetesProtection`)
+* **Network Scan Global Configs** (`networkScanGlobalConfigs`)
+* **Network Scan Networks** (`networkScanNetworks`)
+* **Network Scan Scan Run Reports** (`networkScanScanRunReports`)
+* **Network Scan Scan Runs** (`networkScanScanRuns`)
+* **Network Scan Scanners** (`networkScanScanners`)
+* **Network Scan Scans** (`networkScanScans`)
+* **Network Scan Templates** (`networkScanTemplates`)
+* **Network Scan Zones** (`networkScanZones`)
+* **Unidentified Containers** (`unidentifiedContainers`)
+
+### ⚙️ Automation, Alerts & Auditing
+
+* **It Automation** (`itAutomation`)
+* **Knowledge Base Audit Events** (`knowledgeBaseAuditEvents`)
+* **Knowledge Base Files** (`knowledgeBaseFiles`)
+* **Knowledge Bases** (`knowledgeBases`)
+* **Message Center** (`messageCenter`)
+* **Ngsiem** (`ngsiem`)
+* **Stream** (`stream`)
+* **Workflows** (`workflows`)
+
+### 📋 Device Management, Sensors & Policies
+
+* **Ml Exclusions** (`mlExclusions`)
+* **Mobile Enrollment** (`mobileEnrollment`)
+* **Sensor Download** (`sensorDownload`)
+* **Sensor Update Policies** (`sensorUpdatePolicies`)
+* **Sensor Usage Api** (`sensorUsageApi`)
+* **Sensor Visibility Exclusions** (`sensorVisibilityExclusions`)
+
+### 🛠️ Administration, Scans & Utilities
+
+* **Maintenance Token** (`maintenanceToken`)
+* **Mssp** (`mssp`)
+* **Oauth2** (`oauth2`)
+* **Ods** (`ods`)
+* **Profile Groups** (`profileGroups`)
+* **Quick Scan** (`quickScan`)
+* **Quick Scan Pro** (`quickScanPro`)
+* **Real Time Response** (`realTimeResponse`)
+* **Real Time Response Admin** (`realTimeResponseAdmin`)
+* **Real Time Response Audit** (`realTimeResponseAudit`)
+* **Recon** (`recon`)
+* **Release Notes** (`releaseNotes`)
+* **Releases** (`releases`)
+* **Report Executions** (`reportExecutions`)
+* **Response Policies** (`responsePolicies`)
+* **Sample Uploads** (`sampleUploads`)
+* **Scanning Orchestrator** (`scanningOrchestrator`)
+* **Scheduled Reports** (`scheduledReports`)
+* **User Management** (`userManagement`)
+
 ## Credentials
 
 To authenticate with CrowdStrike Falcon, you must create API client credentials in your CrowdStrike Falcon Console:
