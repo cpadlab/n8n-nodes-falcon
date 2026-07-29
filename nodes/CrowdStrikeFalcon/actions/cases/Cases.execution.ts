@@ -228,6 +228,7 @@ export async function executeCases(
 	index: number,
 	falconClient: FalconClient,
 ): Promise<any> {
+
 	const operation = this.getNodeParameter('operation', index) as string;
 
 	switch (operation) {
@@ -252,4 +253,5 @@ export async function executeCases(
 		default:
 			throw new Error(`Operation ${operation} is not supported for Cases.`);
 	}
+	
 }
