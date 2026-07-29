@@ -39,6 +39,40 @@ async function getFalconClient(context: IExecuteFunctions): Promise<FalconClient
 
 
 /**
+ * Helper utility to handle and format errors using CrowdStrike's `FalconErrorExplain`.
+ *
+ * @param error - The caught exception from the SDK call.
+ * @returns A user-friendly error message string.
+ */
+async function handleFalconError(error: unknown): Promise<string> {
+	try {
+        
+		if (error instanceof Response) {
+			return await FalconErrorExplain(error);
+		}
+
+		if (
+			typeof error === 'object' &&
+			error !== null &&
+			'response' in error &&
+			(error as { response: unknown }).response instanceof Response
+		) {
+			return await FalconErrorExplain((error as { response: Response }).response);
+		}
+
+		if (error instanceof Error) {
+			return error.message;
+		}
+
+		return 'An unknown CrowdStrike API error occurred';
+
+	} catch {
+		return (error as Error).message || 'An unknown CrowdStrike API error occurred';
+	}
+}
+
+
+/**
  * n8n Node for CrowdStrike Falcon platform integration.
  *
  * @implements {INodeType}
