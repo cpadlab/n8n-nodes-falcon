@@ -1,4 +1,4 @@
-# n8n-nodes-_node-name_
+# n8n-nodes-falcon
 
 This is an n8n community node. It lets you interact with the CrowdStrike Falcon platform in your n8n workflows.
 
