@@ -21,10 +21,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22.20.0'
-          cache: 'npm'
+
+      - name: Generate lockfile
+        run: npm install --package-lock-only
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Run lint
         run: npm run lint
