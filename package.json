@@ -31,18 +31,24 @@
 		"n8nNodesApiVersion": 1,
 		"strict": true,
 		"credentials": [
+			"dist/credentials/CrowdStrikeFalconApi.credentials.js"
 		],
 		"nodes": [
+			"dist/nodes/CrowdStrikeFalcon/CrowdStrikeFalcon.node.js"
 		]
 	},
 	"devDependencies": {
 		"@n8n/node-cli": "*",
 		"eslint": "9.39.4",
+		"n8n-workflow": "^2.16.0",
 		"prettier": "3.8.3",
 		"release-it": "20.2.0",
 		"typescript": "5.9.3"
 	},
 	"peerDependencies": {
 		"n8n-workflow": "*"
+	},
+	"dependencies": {
+		"crowdstrike-falcon": "^0.7.0"
 	}
 }
