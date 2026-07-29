@@ -8,7 +8,7 @@ export class CrowdStrikeFalcon implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'CrowdStrike Falcon',
 		name: 'crowdStrikeFalcon',
-		icon: 'file:crowdstrike.svg',
+		icon: 'file:falcon.svg',
 		group: ['transform'],
 		version: 1,
 		description: 'Interact with CrowdStrike Falcon API',
