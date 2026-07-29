@@ -5,6 +5,7 @@ import { accessScopesFields, accessScopesOperations } from './actions/accessScop
 import { admissionControlPoliciesFields, admissionControlPoliciesOperations } from './actions/admissionControlPolicies/AdmissionControlPolicies.resource';
 import { agentInvocationFields, agentInvocationOperations } from './actions/agentInvocation/AgentInvocation.resource';
 import { alertsFields, alertsOperations } from './actions/alerts/Alerts.resource';
+import { apiClientsFields, apiClientsOperations } from './actions/apiClients/ApiClients.resource';
 import { casesFields, casesOperations } from './actions/cases/Cases.resource';
 import { router } from './actions/router';
 
@@ -51,6 +52,10 @@ export class CrowdStrikeFalcon implements INodeType {
 						value: 'alerts',
 					},
 					{
+						name: 'API Clients',
+						value: 'apiClients',
+					},
+					{
 						name: 'Case',
 						value: 'cases',
 					},
@@ -65,6 +70,8 @@ export class CrowdStrikeFalcon implements INodeType {
 			...agentInvocationFields,
 			...alertsOperations,
 			...alertsFields,
+			...apiClientsOperations,
+			...apiClientsFields,
 			...casesOperations,
 			...casesFields,
 		],

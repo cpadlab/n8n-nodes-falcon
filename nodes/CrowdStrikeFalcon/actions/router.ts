@@ -4,6 +4,7 @@ import { executeAccessScopes } from './accessScopes/AccessScopes.execution';
 import { executeAdmissionControlPolicies } from './admissionControlPolicies/AdmissionControlPolicies.execution';
 import { executeAgentInvocation } from './agentInvocation/AgentInvocation.execution';
 import { executeAlerts } from './alerts/Alerts.execution';
+import { executeApiClients } from './apiClients/ApiClients.execution';
 import { executeCases } from './cases/Cases.execution';
 
 export async function router( this: IExecuteFunctions, index: number, falconClient: FalconClient ): Promise<any> {
@@ -19,6 +20,8 @@ export async function router( this: IExecuteFunctions, index: number, falconClie
 			return await executeAgentInvocation.call(this, index, falconClient);
 		case 'alerts':
 			return await executeAlerts.call(this, index, falconClient);
+		case 'apiClients':
+			return await executeApiClients.call(this, index, falconClient);
 		case 'cases':
 			return await executeCases.call(this, index, falconClient);
 		default:

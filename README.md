@@ -56,6 +56,15 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 * **Post Alert Aggregates (V1 - Deprecated)**: Retrieves aggregate values for Alerts (V1 deprecated).
 * **Get Alert Entities (V1 - Deprecated)**: Retrieves all Alerts given their IDs (V1 deprecated).
 
+### API Clients
+* **Get All API Client IDs**: Get all API client IDs for customer.
+* **Get API Clients by IDs**: Get API Clients based on API Client IDs provided.
+* **Get Accessible Scopes**: Get all available API scopes for customer.
+* **Create API Client**: Create a new API Client.
+* **Update API Client**: Update an existing API Client by ID.
+* **Delete API Clients**: Delete existing API Clients based on IDs.
+* **Reset API Client Secret**: Reset existing API Client secret by IDs.
+
 ### Case
 * **Get Cases Query**: Retrieves all Case IDs matching a query filter.
 * **Get Cases by IDs**: Retrieves full details for given Case IDs.
