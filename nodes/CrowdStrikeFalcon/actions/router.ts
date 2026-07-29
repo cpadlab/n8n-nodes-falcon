@@ -3,6 +3,7 @@ import type { IExecuteFunctions } from 'n8n-workflow';
 import { executeAccessScopes } from './accessScopes/AccessScopes.execution';
 import { executeAdmissionControlPolicies } from './admissionControlPolicies/AdmissionControlPolicies.execution';
 import { executeAgentInvocation } from './agentInvocation/AgentInvocation.execution';
+import { executeAlerts } from './alerts/Alerts.execution';
 import { executeCases } from './cases/Cases.execution';
 
 export async function router( this: IExecuteFunctions, index: number, falconClient: FalconClient ): Promise<any> {
@@ -16,6 +17,8 @@ export async function router( this: IExecuteFunctions, index: number, falconClie
 			return await executeAdmissionControlPolicies.call(this, index, falconClient);
 		case 'agentInvocation':
 			return await executeAgentInvocation.call(this, index, falconClient);
+		case 'alerts':
+			return await executeAlerts.call(this, index, falconClient);
 		case 'cases':
 			return await executeCases.call(this, index, falconClient);
 		default:

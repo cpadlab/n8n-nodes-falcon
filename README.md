@@ -45,6 +45,17 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 * **Get Agent Invocation**: Retrieves the list of messages resulting from a specified invocation.
 * **Invoke Published Agent**: Invoke a published agent by ID with specified input.
 
+### Alerts
+* **Query Alerts (V2)**: Retrieves all Alert IDs matching a given query.
+* **Get Alerts by Composite IDs (V2)**: Retrieves all Alerts given their composite IDs.
+* **Update Alerts (V3)**: Perform actions on Alerts identified by composite IDs.
+* **Get Combined Alerts Stream (V1)**: Retrieves all Alerts matching a FQL filter using pagination token.
+* **Get Alert Aggregates (V2)**: Retrieves aggregate values for Alerts across CIDs.
+* **Query Alerts (V1 - Deprecated)**: Retrieves all Alert IDs matching a given query (V1 deprecated).
+* **Patch Alert Entities (V2 - Deprecated)**: Perform actions on Alerts identified by composite IDs (V2 deprecated).
+* **Post Alert Aggregates (V1 - Deprecated)**: Retrieves aggregate values for Alerts (V1 deprecated).
+* **Get Alert Entities (V1 - Deprecated)**: Retrieves all Alerts given their IDs (V1 deprecated).
+
 ### Case
 * **Get Cases Query**: Retrieves all Case IDs matching a query filter.
 * **Get Cases by IDs**: Retrieves full details for given Case IDs.

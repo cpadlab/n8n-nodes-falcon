@@ -4,6 +4,7 @@ import { getFalconClient, handleFalconError } from './GenericFunctions';
 import { accessScopesFields, accessScopesOperations } from './actions/accessScopes/AccessScopes.resource';
 import { admissionControlPoliciesFields, admissionControlPoliciesOperations } from './actions/admissionControlPolicies/AdmissionControlPolicies.resource';
 import { agentInvocationFields, agentInvocationOperations } from './actions/agentInvocation/AgentInvocation.resource';
+import { alertsFields, alertsOperations } from './actions/alerts/Alerts.resource';
 import { casesFields, casesOperations } from './actions/cases/Cases.resource';
 import { router } from './actions/router';
 
@@ -46,6 +47,10 @@ export class CrowdStrikeFalcon implements INodeType {
 						value: 'agentInvocation',
 					},
 					{
+						name: 'Alerts',
+						value: 'alerts',
+					},
+					{
 						name: 'Case',
 						value: 'cases',
 					},
@@ -58,6 +63,8 @@ export class CrowdStrikeFalcon implements INodeType {
 			...admissionControlPoliciesFields,
 			...agentInvocationOperations,
 			...agentInvocationFields,
+			...alertsOperations,
+			...alertsFields,
 			...casesOperations,
 			...casesFields,
 		],
