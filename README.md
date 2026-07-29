@@ -41,6 +41,10 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 * **Add Rule Group Custom Rule**: Add custom Rego rules to a rule group.
 * **Remove Rule Group Custom Rule**: Delete custom Rego rules from all rule groups.
 
+### Agent Invocation
+* **Get Agent Invocation**: Retrieves the list of messages resulting from a specified invocation.
+* **Invoke Published Agent**: Invoke a published agent by ID with specified input.
+
 ### Case
 * **Get Cases Query**: Retrieves all Case IDs matching a query filter.
 * **Get Cases by IDs**: Retrieves full details for given Case IDs.
