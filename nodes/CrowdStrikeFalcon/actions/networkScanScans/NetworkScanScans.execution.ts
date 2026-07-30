@@ -22,21 +22,27 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles aggregateScansMixin0 */
+/**
+ * Handles the 'aggregateScansMixin0' operation.
+ */
 async function handleAggregateScansMixin0(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Returns scans aggregations. */
 	const xCSUSERUUID = getStringParam(c, i, 'xCSUSERUUID', '');
 	return await fc.networkScanScans.aggregateScansMixin0(parseJsonParam(c, i), xCSUSERUUID || undefined);
 }
 
-/** Handles createScans */
+/**
+ * Handles the 'createScans' operation.
+ */
 async function handleCreateScans(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create scans using provided specifications. */
 	const xCSUSERUUID = getStringParam(c, i, 'xCSUSERUUID', '');
 	return await fc.networkScanScans.createScans(parseJsonParam(c, i), xCSUSERUUID || undefined);
 }
 
-/** Handles deleteScans */
+/**
+ * Handles the 'deleteScans' operation.
+ */
 async function handleDeleteScans(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete scans by their IDs. */
 	const ids = parseArrayParam(c, i, 'ids');
@@ -44,7 +50,9 @@ async function handleDeleteScans(c: IExecuteFunctions, i: number, fc: FalconClie
 	return await fc.networkScanScans.deleteScans(ids, xCSUSERUUID || undefined);
 }
 
-/** Handles getScans */
+/**
+ * Handles the 'getScans' operation.
+ */
 async function handleGetScans(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get scans by their IDs. */
 	const ids = parseArrayParam(c, i, 'ids');
@@ -52,7 +60,9 @@ async function handleGetScans(c: IExecuteFunctions, i: number, fc: FalconClient)
 	return await fc.networkScanScans.getScans(ids, xCSUSERUUID || undefined);
 }
 
-/** Handles queryScansMixin0 */
+/**
+ * Handles the 'queryScansMixin0' operation.
+ */
 async function handleQueryScansMixin0(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get scans IDs by filter. */
 	const xCSUSERUUID = getStringParam(c, i, 'xCSUSERUUID', '');
@@ -63,7 +73,9 @@ async function handleQueryScansMixin0(c: IExecuteFunctions, i: number, fc: Falco
 	return await fc.networkScanScans.queryScansMixin0(xCSUSERUUID || undefined, offset || undefined, limit || undefined, sort || undefined, filter || undefined);
 }
 
-/** Handles updateScans */
+/**
+ * Handles the 'updateScans' operation.
+ */
 async function handleUpdateScans(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update scans using provided specifications. */
 	const xCSUSERUUID = getStringParam(c, i, 'xCSUSERUUID', '');
