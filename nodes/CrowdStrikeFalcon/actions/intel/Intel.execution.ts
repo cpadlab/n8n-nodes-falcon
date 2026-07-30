@@ -97,7 +97,7 @@ async function handleGetIntelRuleEntities(c: IExecuteFunctions, i: number, fc: F
 async function handleGetIntelRuleFile(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Download earlier rule sets. */
 	const idStr = getStringParam(c, i, 'id', '0');
-	const id = parseInt(idStr, 10) || 0;
+	const id = Number.parseInt(idStr, 10) || 0;
 	return await fc.intel.getIntelRuleFile(id);
 }
 
@@ -160,7 +160,7 @@ async function handlePostMitreAttacks(c: IExecuteFunctions, i: number, fc: Falco
 async function handleQueryIntelActorEntities(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get info about actors matching provided FQL filters. */
 	const offsetStr = getStringParam(c, i, 'offset', '');
-	const offset = offsetStr ? parseInt(offsetStr, 10) : undefined;
+	const offset = offsetStr ? Number.parseInt(offsetStr, 10) : undefined;
 	const limit = c.getNodeParameter('limit', i, 100) as number;
 	const sort = getStringParam(c, i, 'sort', '');
 	const filter = getStringParam(c, i, 'filter', '');
@@ -174,7 +174,7 @@ async function handleQueryIntelActorEntities(c: IExecuteFunctions, i: number, fc
 async function handleQueryIntelActorIds(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get actor IDs matching provided FQL filters. */
 	const offsetStr = getStringParam(c, i, 'offset', '');
-	const offset = offsetStr ? parseInt(offsetStr, 10) : undefined;
+	const offset = offsetStr ? Number.parseInt(offsetStr, 10) : undefined;
 	const limit = c.getNodeParameter('limit', i, 100) as number;
 	const sort = getStringParam(c, i, 'sort', '');
 	const filter = getStringParam(c, i, 'filter', '');
@@ -188,7 +188,7 @@ async function handleQueryIntelActorIds(c: IExecuteFunctions, i: number, fc: Fal
 async function handleQueryIntelIndicatorEntities(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get info about indicators matching FQL filters. */
 	const offsetStr = getStringParam(c, i, 'offset', '');
-	const offset = offsetStr ? parseInt(offsetStr, 10) : undefined;
+	const offset = offsetStr ? Number.parseInt(offsetStr, 10) : undefined;
 	const limit = c.getNodeParameter('limit', i, 100) as number;
 	const sort = getStringParam(c, i, 'sort', '');
 	const filter = getStringParam(c, i, 'filter', '');
@@ -202,7 +202,7 @@ async function handleQueryIntelIndicatorEntities(c: IExecuteFunctions, i: number
 async function handleQueryIntelIndicatorIds(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get indicator IDs matching FQL filters. */
 	const offsetStr = getStringParam(c, i, 'offset', '');
-	const offset = offsetStr ? parseInt(offsetStr, 10) : undefined;
+	const offset = offsetStr ? Number.parseInt(offsetStr, 10) : undefined;
 	const limit = c.getNodeParameter('limit', i, 100) as number;
 	const sort = getStringParam(c, i, 'sort', '');
 	const filter = getStringParam(c, i, 'filter', '');
@@ -216,7 +216,7 @@ async function handleQueryIntelIndicatorIds(c: IExecuteFunctions, i: number, fc:
 async function handleQueryIntelReportEntities(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get info about reports matching FQL filters. */
 	const offsetStr = getStringParam(c, i, 'offset', '');
-	const offset = offsetStr ? parseInt(offsetStr, 10) : undefined;
+	const offset = offsetStr ? Number.parseInt(offsetStr, 10) : undefined;
 	const limit = c.getNodeParameter('limit', i, 100) as number;
 	const sort = getStringParam(c, i, 'sort', '');
 	const filter = getStringParam(c, i, 'filter', '');
@@ -230,7 +230,7 @@ async function handleQueryIntelReportEntities(c: IExecuteFunctions, i: number, f
 async function handleQueryIntelReportIds(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get report IDs matching FQL filters. */
 	const offsetStr = getStringParam(c, i, 'offset', '');
-	const offset = offsetStr ? parseInt(offsetStr, 10) : undefined;
+	const offset = offsetStr ? Number.parseInt(offsetStr, 10) : undefined;
 	const limit = c.getNodeParameter('limit', i, 100) as number;
 	const sort = getStringParam(c, i, 'sort', '');
 	const filter = getStringParam(c, i, 'filter', '');
@@ -245,7 +245,7 @@ async function handleQueryIntelRuleIds(c: IExecuteFunctions, i: number, fc: Falc
 	/* Search for rule IDs matching provided filter criteria. */
 	const type = getStringParam(c, i, 'type', '');
 	const offsetStr = getStringParam(c, i, 'offset', '');
-	const offset = offsetStr ? parseInt(offsetStr, 10) : undefined;
+	const offset = offsetStr ? Number.parseInt(offsetStr, 10) : undefined;
 	const limit = c.getNodeParameter('limit', i, 100) as number;
 	const sort = getStringParam(c, i, 'sort', '');
 	const q = getStringParam(c, i, 'q', '');
@@ -258,7 +258,7 @@ async function handleQueryIntelRuleIds(c: IExecuteFunctions, i: number, fc: Falc
 async function handleQueryMalware(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get malware family names matching FQL filters. */
 	const offsetStr = getStringParam(c, i, 'offset', '');
-	const offset = offsetStr ? parseInt(offsetStr, 10) : undefined;
+	const offset = offsetStr ? Number.parseInt(offsetStr, 10) : undefined;
 	const limit = c.getNodeParameter('limit', i, 100) as number;
 	const sort = getStringParam(c, i, 'sort', '');
 	const filter = getStringParam(c, i, 'filter', '');
@@ -272,7 +272,7 @@ async function handleQueryMalware(c: IExecuteFunctions, i: number, fc: FalconCli
 async function handleQueryMalwareEntities(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get malware entities matching FQL filters. */
 	const offsetStr = getStringParam(c, i, 'offset', '');
-	const offset = offsetStr ? parseInt(offsetStr, 10) : undefined;
+	const offset = offsetStr ? Number.parseInt(offsetStr, 10) : undefined;
 	const limit = c.getNodeParameter('limit', i, 100) as number;
 	const sort = getStringParam(c, i, 'sort', '');
 	const filter = getStringParam(c, i, 'filter', '');

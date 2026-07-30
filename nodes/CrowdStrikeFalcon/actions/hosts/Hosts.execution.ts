@@ -122,7 +122,7 @@ async function handleQueryDeviceLoginHistoryV2(c: IExecuteFunctions, i: number, 
 async function handleQueryDevicesByFilter(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Search for hosts in your environment by FQL filter. */
 	const offsetStr = getStringParam(c, i, 'offset', '');
-	const offset = offsetStr ? parseInt(offsetStr, 10) : undefined;
+	const offset = offsetStr ? Number.parseInt(offsetStr, 10) : undefined;
 	const limit = c.getNodeParameter('limit', i, 100) as number;
 	const sort = getStringParam(c, i, 'sort', '');
 	const filter = getStringParam(c, i, 'filter', '');
@@ -155,7 +155,7 @@ async function handleQueryGetNetworkAddressHistoryV1(c: IExecuteFunctions, i: nu
 async function handleQueryHiddenDevices(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve hidden hosts matching filter criteria. */
 	const offsetStr = getStringParam(c, i, 'offset', '');
-	const offset = offsetStr ? parseInt(offsetStr, 10) : undefined;
+	const offset = offsetStr ? Number.parseInt(offsetStr, 10) : undefined;
 	const limit = c.getNodeParameter('limit', i, 100) as number;
 	const sort = getStringParam(c, i, 'sort', '');
 	const filter = getStringParam(c, i, 'filter', '');

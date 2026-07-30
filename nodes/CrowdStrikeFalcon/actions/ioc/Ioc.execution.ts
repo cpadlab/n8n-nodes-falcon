@@ -66,7 +66,7 @@ async function handleIndicatorCombinedV1(c: IExecuteFunctions, i: number, fc: Fa
 	/* Get Combined for Indicators. */
 	const filter = getStringParam(c, i, 'filter', '');
 	const offsetStr = getStringParam(c, i, 'offset', '');
-	const offset = offsetStr ? parseInt(offsetStr, 10) : undefined;
+	const offset = offsetStr ? Number.parseInt(offsetStr, 10) : undefined;
 	const limit = c.getNodeParameter('limit', i, 100) as number;
 	const sort = getStringParam(c, i, 'sort', '') as any;
 	const after = getStringParam(c, i, 'after', '');
@@ -155,7 +155,7 @@ async function handleIndicatorSearchV1(c: IExecuteFunctions, i: number, fc: Falc
 	/* Search for Indicators. */
 	const filter = getStringParam(c, i, 'filter', '');
 	const offsetStr = getStringParam(c, i, 'offset', '');
-	const offset = offsetStr ? parseInt(offsetStr, 10) : undefined;
+	const offset = offsetStr ? Number.parseInt(offsetStr, 10) : undefined;
 	const limit = c.getNodeParameter('limit', i, 100) as number;
 	const sort = getStringParam(c, i, 'sort', '') as any;
 	const after = getStringParam(c, i, 'after', '');
