@@ -13,7 +13,7 @@ describe('executeIntelligenceFeeds', () => {
 			get: () => new Proxy({}, {
 				get: () => jest.fn().mockResolvedValue({ success: true }),
 			}),
-		});
+		}) as unknown as FalconClient;
 	});
 
 	it('should throw an error for unsupported operation', async () => {
