@@ -6,7 +6,9 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles getRuntimeDetectionsCombinedV2 */
+/**
+ * Handles the 'getRuntimeDetectionsCombinedV2' operation.
+ */
 async function handleGetRuntimeDetectionsCombinedV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve container runtime detections by the provided search criteria. */
 	const filter = getStringParam(c, i, 'filter', '');
