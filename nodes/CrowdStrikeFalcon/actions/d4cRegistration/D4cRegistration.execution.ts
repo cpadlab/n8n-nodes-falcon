@@ -16,52 +16,68 @@ function parseArrayParam(context: IExecuteFunctions, index: number, paramName = 
 	return str.split(',').map((id) => id.trim()).filter(Boolean);
 }
 
-/** Handles connectD4CGCPAccount */
+/**
+ * Handles the 'connectD4CGCPAccount' operation.
+ */
 async function handleConnectD4CGCPAccount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Connects D4C GCP account. */
 	return await fc.d4cRegistration.connectD4CGCPAccount(parseJsonParam(c, i));
 }
 
-/** Handles createD4CAwsAccount */
+/**
+ * Handles the 'createD4CAwsAccount' operation.
+ */
 async function handleCreateD4CAwsAccount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates D4C AWS account. */
 	return await fc.d4cRegistration.createD4CAwsAccount(parseJsonParam(c, i));
 }
 
-/** Handles createD4CGcpAccount */
+/**
+ * Handles the 'createD4CGcpAccount' operation.
+ */
 async function handleCreateD4CGcpAccount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates D4C GCP account. */
 	return await fc.d4cRegistration.createD4CGcpAccount(parseJsonParam(c, i));
 }
 
-/** Handles createDiscoverCloudAzureAccount */
+/**
+ * Handles the 'createDiscoverCloudAzureAccount' operation.
+ */
 async function handleCreateDiscoverCloudAzureAccount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates Discover Cloud Azure account. */
 	return await fc.d4cRegistration.createDiscoverCloudAzureAccount(parseJsonParam(c, i));
 }
 
-/** Handles deleteD4CAwsAccount */
+/**
+ * Handles the 'deleteD4CAwsAccount' operation.
+ */
 async function handleDeleteD4CAwsAccount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes D4C AWS account. */
 	const ids = parseArrayParam(c, i, 'ids');
 	return await fc.d4cRegistration.deleteD4CAwsAccount(ids.length ? ids : undefined);
 }
 
-/** Handles deleteD4CGCPAccount */
+/**
+ * Handles the 'deleteD4CGCPAccount' operation.
+ */
 async function handleDeleteD4CGCPAccount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes D4C GCP account. */
 	const ids = parseArrayParam(c, i, 'ids');
 	return await fc.d4cRegistration.deleteD4CGCPAccount(ids.length ? ids : undefined);
 }
 
-/** Handles getD4CAWSAccountScriptsAttachment */
+/**
+ * Handles the 'getD4CAWSAccountScriptsAttachment' operation.
+ */
 async function handleGetD4CAWSAccountScriptsAttachment(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets D4C AWS account scripts attachment. */
 	const ids = parseArrayParam(c, i, 'ids');
 	return await fc.d4cRegistration.getD4CAWSAccountScriptsAttachment(ids.length ? ids : undefined);
 }
 
-/** Handles getD4CAwsAccount */
+/**
+ * Handles the 'getD4CAwsAccount' operation.
+ */
 async function handleGetD4CAwsAccount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets D4C AWS account status. */
 	const ids = parseArrayParam(c, i, 'ids');
@@ -70,27 +86,35 @@ async function handleGetD4CAwsAccount(c: IExecuteFunctions, i: number, fc: Falco
 	return await fc.d4cRegistration.getD4CAwsAccount(undefined, ids.length ? ids : undefined, undefined, undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles getD4CAwsConsoleSetupURLs */
+/**
+ * Handles the 'getD4CAwsConsoleSetupURLs' operation.
+ */
 async function handleGetD4CAwsConsoleSetupURLs(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets D4C AWS console setup URLs. */
 	return await fc.d4cRegistration.getD4CAwsConsoleSetupURLs();
 }
 
-/** Handles getD4CGCPServiceAccountsExt */
+/**
+ * Handles the 'getD4CGCPServiceAccountsExt' operation.
+ */
 async function handleGetD4CGCPServiceAccountsExt(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets D4C GCP service accounts ext. */
 	const id = c.getNodeParameter('idSingle', i, '') as string;
 	return await fc.d4cRegistration.getD4CGCPServiceAccountsExt(id || undefined);
 }
 
-/** Handles getD4CGCPUserScriptsAttachment */
+/**
+ * Handles the 'getD4CGCPUserScriptsAttachment' operation.
+ */
 async function handleGetD4CGCPUserScriptsAttachment(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets D4C GCP user scripts attachment. */
 	const ids = parseArrayParam(c, i, 'ids');
 	return await fc.d4cRegistration.getD4CGCPUserScriptsAttachment(undefined, ids.length ? ids : undefined);
 }
 
-/** Handles getD4CGcpAccount */
+/**
+ * Handles the 'getD4CGcpAccount' operation.
+ */
 async function handleGetD4CGcpAccount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets D4C GCP account status. */
 	const ids = parseArrayParam(c, i, 'ids');
@@ -100,13 +124,17 @@ async function handleGetD4CGcpAccount(c: IExecuteFunctions, i: number, fc: Falco
 	return await fc.d4cRegistration.getD4CGcpAccount(undefined, ids.length ? ids : undefined, undefined, undefined, limit || undefined, offset || undefined, sort || undefined);
 }
 
-/** Handles getD4CGcpUserScripts */
+/**
+ * Handles the 'getD4CGcpUserScripts' operation.
+ */
 async function handleGetD4CGcpUserScripts(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets D4C GCP user scripts. */
 	return await fc.d4cRegistration.getD4CGcpUserScripts();
 }
 
-/** Handles getDiscoverCloudAzureAccount */
+/**
+ * Handles the 'getDiscoverCloudAzureAccount' operation.
+ */
 async function handleGetDiscoverCloudAzureAccount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets Discover Cloud Azure account info. */
 	const ids = parseArrayParam(c, i, 'ids');
@@ -116,38 +144,50 @@ async function handleGetDiscoverCloudAzureAccount(c: IExecuteFunctions, i: numbe
 	return await fc.d4cRegistration.getDiscoverCloudAzureAccount(ids.length ? ids : undefined, tenantIds.length ? tenantIds : undefined, undefined, undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles getDiscoverCloudAzureTenantIDs */
+/**
+ * Handles the 'getDiscoverCloudAzureTenantIDs' operation.
+ */
 async function handleGetDiscoverCloudAzureTenantIDs(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets Discover Cloud Azure tenant IDs. */
 	return await fc.d4cRegistration.getDiscoverCloudAzureTenantIDs();
 }
 
-/** Handles getDiscoverCloudAzureUserScripts */
+/**
+ * Handles the 'getDiscoverCloudAzureUserScripts' operation.
+ */
 async function handleGetDiscoverCloudAzureUserScripts(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets Discover Cloud Azure user scripts. */
 	return await fc.d4cRegistration.getDiscoverCloudAzureUserScripts();
 }
 
-/** Handles getDiscoverCloudAzureUserScriptsAttachment */
+/**
+ * Handles the 'getDiscoverCloudAzureUserScriptsAttachment' operation.
+ */
 async function handleGetDiscoverCloudAzureUserScriptsAttachment(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets Discover Cloud Azure user scripts attachment. */
 	const tenantId = parseArrayParam(c, i, 'tenantIds');
 	return await fc.d4cRegistration.getDiscoverCloudAzureUserScriptsAttachment(tenantId);
 }
 
-/** Handles getHorizonD4CScripts */
+/**
+ * Handles the 'getHorizonD4CScripts' operation.
+ */
 async function handleGetHorizonD4CScripts(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets Horizon D4C scripts. */
 	return await fc.d4cRegistration.getHorizonD4CScripts();
 }
 
-/** Handles updateD4CGCPServiceAccountsExt */
+/**
+ * Handles the 'updateD4CGCPServiceAccountsExt' operation.
+ */
 async function handleUpdateD4CGCPServiceAccountsExt(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates D4C GCP service accounts ext. */
 	return await fc.d4cRegistration.updateD4CGCPServiceAccountsExt(parseJsonParam(c, i));
 }
 
-/** Handles updateDiscoverCloudAzureAccountClientID */
+/**
+ * Handles the 'updateDiscoverCloudAzureAccountClientID' operation.
+ */
 async function handleUpdateDiscoverCloudAzureAccountClientID(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates Discover Cloud Azure account client ID. */
 	const id = c.getNodeParameter('idSingle', i) as string;

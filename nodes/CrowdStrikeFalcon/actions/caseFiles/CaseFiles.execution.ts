@@ -11,7 +11,9 @@ function parseJsonParam(context: IExecuteFunctions, index: number, paramName = '
 	}
 }
 
-/** Handles aggregatesFileDetailsPostV1 */
+/**
+ * Handles the 'aggregatesFileDetailsPostV1' operation.
+ */
 async function handleAggregatesFileDetailsPostV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves file details aggregates. */
 	const idsString = c.getNodeParameter('ids', i, '') as string;
@@ -23,7 +25,9 @@ async function handleAggregatesFileDetailsPostV1(c: IExecuteFunctions, i: number
 	return await fc.caseFiles.aggregatesFileDetailsPostV1(ids, bodyArray, filter || undefined);
 }
 
-/** Handles combinedFileDetailsGetV1 */
+/**
+ * Handles the 'combinedFileDetailsGetV1' operation.
+ */
 async function handleCombinedFileDetailsGetV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries file details. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -33,7 +37,9 @@ async function handleCombinedFileDetailsGetV1(c: IExecuteFunctions, i: number, f
 	return await fc.caseFiles.combinedFileDetailsGetV1(filter || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles entitiesFileDetailsGetV1 */
+/**
+ * Handles the 'entitiesFileDetailsGetV1' operation.
+ */
 async function handleEntitiesFileDetailsGetV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves file details by ID. */
 	const idsString = c.getNodeParameter('ids', i, '') as string;
@@ -42,19 +48,25 @@ async function handleEntitiesFileDetailsGetV1(c: IExecuteFunctions, i: number, f
 	return await fc.caseFiles.entitiesFileDetailsGetV1(ids);
 }
 
-/** Handles entitiesFileDetailsPatchV1 */
+/**
+ * Handles the 'entitiesFileDetailsPatchV1' operation.
+ */
 async function handleEntitiesFileDetailsPatchV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates file details. */
 	return await fc.caseFiles.entitiesFileDetailsPatchV1(parseJsonParam(c, i));
 }
 
-/** Handles entitiesFilesBulkDownloadPostV1 */
+/**
+ * Handles the 'entitiesFilesBulkDownloadPostV1' operation.
+ */
 async function handleEntitiesFilesBulkDownloadPostV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Downloads multiple existing files as ZIP. */
 	return await fc.caseFiles.entitiesFilesBulkDownloadPostV1(parseJsonParam(c, i));
 }
 
-/** Handles entitiesFilesDeleteV1 */
+/**
+ * Handles the 'entitiesFilesDeleteV1' operation.
+ */
 async function handleEntitiesFilesDeleteV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes file details by ID. */
 	const idsString = c.getNodeParameter('ids', i, '') as string;
@@ -63,7 +75,9 @@ async function handleEntitiesFilesDeleteV1(c: IExecuteFunctions, i: number, fc: 
 	return await fc.caseFiles.entitiesFilesDeleteV1(ids);
 }
 
-/** Handles entitiesFilesDownloadGetV1 */
+/**
+ * Handles the 'entitiesFilesDownloadGetV1' operation.
+ */
 async function handleEntitiesFilesDownloadGetV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Downloads file from case by ID. */
 	const id = c.getNodeParameter('id', i) as string;
@@ -71,13 +85,17 @@ async function handleEntitiesFilesDownloadGetV1(c: IExecuteFunctions, i: number,
 	return await fc.caseFiles.entitiesFilesDownloadGetV1(id);
 }
 
-/** Handles entitiesFilesDownloadPostV1 */
+/**
+ * Handles the 'entitiesFilesDownloadPostV1' operation.
+ */
 async function handleEntitiesFilesDownloadPostV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Downloads file from case using POST (deprecated). */
 	return await fc.caseFiles.entitiesFilesDownloadPostV1(parseJsonParam(c, i));
 }
 
-/** Handles entitiesFilesUploadPostV1 */
+/**
+ * Handles the 'entitiesFilesUploadPostV1' operation.
+ */
 async function handleEntitiesFilesUploadPostV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Uploads file for case. */
 	const caseId = c.getNodeParameter('caseId', i) as string;
@@ -87,25 +105,33 @@ async function handleEntitiesFilesUploadPostV1(c: IExecuteFunctions, i: number, 
 	return await fc.caseFiles.entitiesFilesUploadPostV1(body as any, caseId, description || undefined);
 }
 
-/** Handles entitiesGetRtrFileMetadataPostV1 */
+/**
+ * Handles the 'entitiesGetRtrFileMetadataPostV1' operation.
+ */
 async function handleEntitiesGetRtrFileMetadataPostV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets RTR file metadata without retrieving file. */
 	return await fc.caseFiles.entitiesGetRtrFileMetadataPostV1(parseJsonParam(c, i));
 }
 
-/** Handles entitiesRetrieveRtrFilePostV1 */
+/**
+ * Handles the 'entitiesRetrieveRtrFilePostV1' operation.
+ */
 async function handleEntitiesRetrieveRtrFilePostV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves file via RTR and attaches to case. */
 	return await fc.caseFiles.entitiesRetrieveRtrFilePostV1(parseJsonParam(c, i));
 }
 
-/** Handles entitiesRetrieveRtrRecentFilePostV1 */
+/**
+ * Handles the 'entitiesRetrieveRtrRecentFilePostV1' operation.
+ */
 async function handleEntitiesRetrieveRtrRecentFilePostV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves recently fetched RTR file and attaches to case. */
 	return await fc.caseFiles.entitiesRetrieveRtrRecentFilePostV1(parseJsonParam(c, i));
 }
 
-/** Handles queriesFileDetailsGetV1 */
+/**
+ * Handles the 'queriesFileDetailsGetV1' operation.
+ */
 async function handleQueriesFileDetailsGetV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries for IDs of file details. */
 	const filter = c.getNodeParameter('filter', i, '') as string;

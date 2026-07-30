@@ -1,63 +1,81 @@
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
-/** Handles extAggregateClusterAssessments */
+/**
+ * Handles the 'extAggregateClusterAssessments' operation.
+ */
 async function handleExtAggregateClusterAssessments(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets assessments for each cluster. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
 	return await fc.containerImageCompliance.extAggregateClusterAssessments(filter || undefined);
 }
 
-/** Handles extAggregateFailedContainersByRulesPath */
+/**
+ * Handles the 'extAggregateFailedContainersByRulesPath' operation.
+ */
 async function handleExtAggregateFailedContainersByRulesPath(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets containers grouped into rules on which they failed. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
 	return await fc.containerImageCompliance.extAggregateFailedContainersByRulesPath(filter || undefined);
 }
 
-/** Handles extAggregateFailedContainersCountBySeverity */
+/**
+ * Handles the 'extAggregateFailedContainersCountBySeverity' operation.
+ */
 async function handleExtAggregateFailedContainersCountBySeverity(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets failed containers count grouped into severity levels. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
 	return await fc.containerImageCompliance.extAggregateFailedContainersCountBySeverity(filter || undefined);
 }
 
-/** Handles extAggregateFailedImagesByRulesPath */
+/**
+ * Handles the 'extAggregateFailedImagesByRulesPath' operation.
+ */
 async function handleExtAggregateFailedImagesByRulesPath(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets images grouped into rules on which they failed. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
 	return await fc.containerImageCompliance.extAggregateFailedImagesByRulesPath(filter || undefined);
 }
 
-/** Handles extAggregateFailedImagesCountBySeverity */
+/**
+ * Handles the 'extAggregateFailedImagesCountBySeverity' operation.
+ */
 async function handleExtAggregateFailedImagesCountBySeverity(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets failed images count grouped into severity levels. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
 	return await fc.containerImageCompliance.extAggregateFailedImagesCountBySeverity(filter || undefined);
 }
 
-/** Handles extAggregateFailedRulesByClusters */
+/**
+ * Handles the 'extAggregateFailedRulesByClusters' operation.
+ */
 async function handleExtAggregateFailedRulesByClusters(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets failed rules for each cluster grouped into severity levels. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
 	return await fc.containerImageCompliance.extAggregateFailedRulesByClusters(filter || undefined);
 }
 
-/** Handles extAggregateFailedRulesByImages */
+/**
+ * Handles the 'extAggregateFailedRulesByImages' operation.
+ */
 async function handleExtAggregateFailedRulesByImages(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets images with failed rules grouped by severity. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
 	return await fc.containerImageCompliance.extAggregateFailedRulesByImages(filter || undefined);
 }
 
-/** Handles extAggregateFailedRulesCountBySeverity */
+/**
+ * Handles the 'extAggregateFailedRulesCountBySeverity' operation.
+ */
 async function handleExtAggregateFailedRulesCountBySeverity(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets failed rules count grouped into severity levels. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
 	return await fc.containerImageCompliance.extAggregateFailedRulesCountBySeverity(filter || undefined);
 }
 
-/** Handles extAggregateImageAssessments */
+/**
+ * Handles the 'extAggregateImageAssessments' operation.
+ */
 async function handleExtAggregateImageAssessments(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets assessments for each image. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -65,14 +83,18 @@ async function handleExtAggregateImageAssessments(c: IExecuteFunctions, i: numbe
 	return await fc.containerImageCompliance.extAggregateImageAssessments(filter || undefined, undefined, limit || undefined);
 }
 
-/** Handles extAggregateRulesAssessments */
+/**
+ * Handles the 'extAggregateRulesAssessments' operation.
+ */
 async function handleExtAggregateRulesAssessments(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets assessments for each rule. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
 	return await fc.containerImageCompliance.extAggregateRulesAssessments(filter || undefined);
 }
 
-/** Handles extAggregateRulesByStatus */
+/**
+ * Handles the 'extAggregateRulesByStatus' operation.
+ */
 async function handleExtAggregateRulesByStatus(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets rules grouped by statuses. */
 	const filter = c.getNodeParameter('filter', i, '') as string;

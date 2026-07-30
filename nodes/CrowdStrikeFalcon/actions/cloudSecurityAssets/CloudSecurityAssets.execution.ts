@@ -11,7 +11,9 @@ function parseJsonParam(context: IExecuteFunctions, index: number, paramName = '
 	}
 }
 
-/** Handles cloudSecurityAssetsCombinedApplicationFindings */
+/**
+ * Handles the 'cloudSecurityAssetsCombinedApplicationFindings' operation.
+ */
 async function handleCloudSecurityAssetsCombinedApplicationFindings(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves findings for an application resource. */
 	const type = c.getNodeParameter('type', i) as string;
@@ -22,7 +24,9 @@ async function handleCloudSecurityAssetsCombinedApplicationFindings(c: IExecuteF
 	return await fc.cloudSecurityAssets.cloudSecurityAssetsCombinedApplicationFindings(type, undefined, undefined, filter || undefined, offset || undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles cloudSecurityAssetsCombinedComplianceByAccount */
+/**
+ * Handles the 'cloudSecurityAssetsCombinedComplianceByAccount' operation.
+ */
 async function handleCloudSecurityAssetsCombinedComplianceByAccount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves combined compliance data by account. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -32,7 +36,9 @@ async function handleCloudSecurityAssetsCombinedComplianceByAccount(c: IExecuteF
 	return await fc.cloudSecurityAssets.cloudSecurityAssetsCombinedComplianceByAccount(filter || undefined, sort || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles cloudSecurityAssetsEntitiesGet */
+/**
+ * Handles the 'cloudSecurityAssetsEntitiesGet' operation.
+ */
 async function handleCloudSecurityAssetsEntitiesGet(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets raw resources based on IDs. */
 	const idsString = c.getNodeParameter('ids', i, '') as string;
@@ -40,13 +46,17 @@ async function handleCloudSecurityAssetsEntitiesGet(c: IExecuteFunctions, i: num
 	return await fc.cloudSecurityAssets.cloudSecurityAssetsEntitiesGet(ids.length ? ids : undefined);
 }
 
-/** Handles cloudSecurityAssetsEntitiesPost */
+/**
+ * Handles the 'cloudSecurityAssetsEntitiesPost' operation.
+ */
 async function handleCloudSecurityAssetsEntitiesPost(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets raw resources via POST body. */
 	return await fc.cloudSecurityAssets.cloudSecurityAssetsEntitiesPost(parseJsonParam(c, i));
 }
 
-/** Handles cloudSecurityAssetsQueries */
+/**
+ * Handles the 'cloudSecurityAssetsQueries' operation.
+ */
 async function handleCloudSecurityAssetsQueries(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets a list of resource IDs matching parameters. */
 	const filter = c.getNodeParameter('filter', i, '') as string;

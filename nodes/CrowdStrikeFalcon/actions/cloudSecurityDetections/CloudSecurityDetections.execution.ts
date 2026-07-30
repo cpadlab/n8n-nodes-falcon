@@ -11,7 +11,9 @@ function parseJsonParam(context: IExecuteFunctions, index: number, paramName = '
 	}
 }
 
-/** Handles cspmEvaluationsCombinedIomByRule */
+/**
+ * Handles the 'cspmEvaluationsCombinedIomByRule' operation.
+ */
 async function handleCspmEvaluationsCombinedIomByRule(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves IOMs grouped by rule. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -21,7 +23,9 @@ async function handleCspmEvaluationsCombinedIomByRule(c: IExecuteFunctions, i: n
 	return await fc.cloudSecurityDetections.cspmEvaluationsCombinedIomByRule(filter || undefined, sort || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles cspmEvaluationsIomEntities */
+/**
+ * Handles the 'cspmEvaluationsIomEntities' operation.
+ */
 async function handleCspmEvaluationsIomEntities(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves IOM entities by IDs. */
 	const idsString = c.getNodeParameter('ids', i, '') as string;
@@ -29,13 +33,17 @@ async function handleCspmEvaluationsIomEntities(c: IExecuteFunctions, i: number,
 	return await fc.cloudSecurityDetections.cspmEvaluationsIomEntities(ids.length ? ids : undefined);
 }
 
-/** Handles cspmEvaluationsIomEntitiesPost */
+/**
+ * Handles the 'cspmEvaluationsIomEntitiesPost' operation.
+ */
 async function handleCspmEvaluationsIomEntitiesPost(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves IOM entities via POST body. */
 	return await fc.cloudSecurityDetections.cspmEvaluationsIomEntitiesPost(parseJsonParam(c, i));
 }
 
-/** Handles cspmEvaluationsIomQueries */
+/**
+ * Handles the 'cspmEvaluationsIomQueries' operation.
+ */
 async function handleCspmEvaluationsIomQueries(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries IOM IDs. */
 	const filter = c.getNodeParameter('filter', i, '') as string;

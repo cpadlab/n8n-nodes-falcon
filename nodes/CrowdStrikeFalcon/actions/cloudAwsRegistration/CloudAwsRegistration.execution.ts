@@ -11,13 +11,17 @@ function parseJsonParam(context: IExecuteFunctions, index: number, paramName = '
 	}
 }
 
-/** Handles cloudRegistrationAwsCreateAccount */
+/**
+ * Handles the 'cloudRegistrationAwsCreateAccount' operation.
+ */
 async function handleCloudRegistrationAwsCreateAccount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates a new AWS account in CrowdStrike. */
 	return await fc.cloudAwsRegistration.cloudRegistrationAwsCreateAccount(parseJsonParam(c, i));
 }
 
-/** Handles cloudRegistrationAwsDeleteAccount */
+/**
+ * Handles the 'cloudRegistrationAwsDeleteAccount' operation.
+ */
 async function handleCloudRegistrationAwsDeleteAccount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes an existing AWS account or organization. */
 	const idsString = c.getNodeParameter('ids', i, '') as string;
@@ -28,7 +32,9 @@ async function handleCloudRegistrationAwsDeleteAccount(c: IExecuteFunctions, i: 
 	return await fc.cloudAwsRegistration.cloudRegistrationAwsDeleteAccount(ids.length ? ids : undefined, organizationIds.length ? organizationIds : undefined);
 }
 
-/** Handles cloudRegistrationAwsGetAccounts */
+/**
+ * Handles the 'cloudRegistrationAwsGetAccounts' operation.
+ */
 async function handleCloudRegistrationAwsGetAccounts(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves existing AWS accounts by account or organization IDs. */
 	const idsString = c.getNodeParameter('ids', i, '') as string;
@@ -39,7 +45,9 @@ async function handleCloudRegistrationAwsGetAccounts(c: IExecuteFunctions, i: nu
 	return await fc.cloudAwsRegistration.cloudRegistrationAwsGetAccounts(ids.length ? ids : undefined, organizationIds.length ? organizationIds : undefined);
 }
 
-/** Handles cloudRegistrationAwsQueryAccounts */
+/**
+ * Handles the 'cloudRegistrationAwsQueryAccounts' operation.
+ */
 async function handleCloudRegistrationAwsQueryAccounts(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves existing AWS accounts by query parameters. */
 	const productsString = c.getNodeParameter('products', i, '') as string;
@@ -52,7 +60,9 @@ async function handleCloudRegistrationAwsQueryAccounts(c: IExecuteFunctions, i: 
 	return await fc.cloudAwsRegistration.cloudRegistrationAwsQueryAccounts(products, features, undefined, undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles cloudRegistrationAwsTriggerHealthCheck */
+/**
+ * Handles the 'cloudRegistrationAwsTriggerHealthCheck' operation.
+ */
 async function handleCloudRegistrationAwsTriggerHealthCheck(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Triggers health check scan for AWS accounts. */
 	const idsString = c.getNodeParameter('ids', i, '') as string;
@@ -63,13 +73,17 @@ async function handleCloudRegistrationAwsTriggerHealthCheck(c: IExecuteFunctions
 	return await fc.cloudAwsRegistration.cloudRegistrationAwsTriggerHealthCheck(accountIds.length ? accountIds : undefined, organizationIds.length ? organizationIds : undefined);
 }
 
-/** Handles cloudRegistrationAwsUpdateAccount */
+/**
+ * Handles the 'cloudRegistrationAwsUpdateAccount' operation.
+ */
 async function handleCloudRegistrationAwsUpdateAccount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Patches an existing AWS account. */
 	return await fc.cloudAwsRegistration.cloudRegistrationAwsUpdateAccount(parseJsonParam(c, i));
 }
 
-/** Handles cloudRegistrationAwsValidateAccounts */
+/**
+ * Handles the 'cloudRegistrationAwsValidateAccounts' operation.
+ */
 async function handleCloudRegistrationAwsValidateAccounts(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Validates AWS account registration status. */
 	const accountId = c.getNodeParameter('accountId', i, '') as string;

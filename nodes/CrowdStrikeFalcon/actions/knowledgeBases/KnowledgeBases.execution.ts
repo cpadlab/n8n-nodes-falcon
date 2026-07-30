@@ -21,7 +21,9 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles aggregatesKnowledgeBasesV1 */
+/**
+ * Handles the 'aggregatesKnowledgeBasesV1' operation.
+ */
 async function handleAggregatesKnowledgeBasesV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Aggregate knowledge bases based on MSA criteria. */
 	const body = parseJsonParam(c, i);
@@ -29,7 +31,9 @@ async function handleAggregatesKnowledgeBasesV1(c: IExecuteFunctions, i: number,
 	return await fc.knowledgeBases.aggregatesKnowledgeBasesV1(Array.isArray(body) ? body : [body], includeDeleted);
 }
 
-/** Handles combinedKnowledgeBasesV1 */
+/**
+ * Handles the 'combinedKnowledgeBasesV1' operation.
+ */
 async function handleCombinedKnowledgeBasesV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Search for knowledge bases returning full entity details. */
 	const offset = c.getNodeParameter('offset', i, 0) as number;
@@ -40,19 +44,25 @@ async function handleCombinedKnowledgeBasesV1(c: IExecuteFunctions, i: number, f
 	return await fc.knowledgeBases.combinedKnowledgeBasesV1(offset || undefined, limit || undefined, sort || undefined, filter || undefined, includeDeleted);
 }
 
-/** Handles entitiesKnowledgeBasesCreateV1 */
+/**
+ * Handles the 'entitiesKnowledgeBasesCreateV1' operation.
+ */
 async function handleEntitiesKnowledgeBasesCreateV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create a knowledge base. */
 	return await fc.knowledgeBases.entitiesKnowledgeBasesCreateV1(parseJsonParam(c, i));
 }
 
-/** Handles entitiesKnowledgeBasesUpdateV1 */
+/**
+ * Handles the 'entitiesKnowledgeBasesUpdateV1' operation.
+ */
 async function handleEntitiesKnowledgeBasesUpdateV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update an existing knowledge base. */
 	return await fc.knowledgeBases.entitiesKnowledgeBasesUpdateV1(parseJsonParam(c, i));
 }
 
-/** Handles entitiesKnowledgeBasesV1 */
+/**
+ * Handles the 'entitiesKnowledgeBasesV1' operation.
+ */
 async function handleEntitiesKnowledgeBasesV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve knowledge base entities for provided IDs. */
 	const ids = parseArrayParam(c, i, 'ids');
@@ -60,7 +70,9 @@ async function handleEntitiesKnowledgeBasesV1(c: IExecuteFunctions, i: number, f
 	return await fc.knowledgeBases.entitiesKnowledgeBasesV1(ids, includeDeleted);
 }
 
-/** Handles queriesKnowledgeBasesV1 */
+/**
+ * Handles the 'queriesKnowledgeBasesV1' operation.
+ */
 async function handleQueriesKnowledgeBasesV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Query knowledge bases based on provided filters. */
 	const offset = c.getNodeParameter('offset', i, 0) as number;

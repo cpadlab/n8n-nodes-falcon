@@ -1,7 +1,9 @@
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
-/** Handles readCombinedDetections */
+/**
+ * Handles the 'readCombinedDetections' operation.
+ */
 async function handleReadCombinedDetections(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Reads combined detections. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -11,7 +13,9 @@ async function handleReadCombinedDetections(c: IExecuteFunctions, i: number, fc:
 	return await fc.containerDetections.readCombinedDetections(filter || undefined, sort || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles readDetections */
+/**
+ * Handles the 'readDetections' operation.
+ */
 async function handleReadDetections(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Reads detections. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -20,28 +24,36 @@ async function handleReadDetections(c: IExecuteFunctions, i: number, fc: FalconC
 	return await fc.containerDetections.readDetections(filter || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles readDetectionsCount */
+/**
+ * Handles the 'readDetectionsCount' operation.
+ */
 async function handleReadDetectionsCount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Reads detections count. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
 	return await fc.containerDetections.readDetectionsCount(filter || undefined);
 }
 
-/** Handles readDetectionsCountBySeverity */
+/**
+ * Handles the 'readDetectionsCountBySeverity' operation.
+ */
 async function handleReadDetectionsCountBySeverity(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Reads detections count by severity. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
 	return await fc.containerDetections.readDetectionsCountBySeverity(filter || undefined);
 }
 
-/** Handles readDetectionsCountByType */
+/**
+ * Handles the 'readDetectionsCountByType' operation.
+ */
 async function handleReadDetectionsCountByType(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Reads detections count by type. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
 	return await fc.containerDetections.readDetectionsCountByType(filter || undefined);
 }
 
-/** Handles searchDetections */
+/**
+ * Handles the 'searchDetections' operation.
+ */
 async function handleSearchDetections(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Searches detections. */
 	const filter = c.getNodeParameter('filter', i, '') as string;

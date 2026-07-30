@@ -21,139 +21,185 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles addCIDGroupMembers */
+/**
+ * Handles the 'addCIDGroupMembers' operation.
+ */
 async function handleAddCIDGroupMembers(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Add new CID group member. */
 	return await fc.mssp.addCIDGroupMembers(parseJsonParam(c, i));
 }
 
-/** Handles addRole */
+/**
+ * Handles the 'addRole' operation.
+ */
 async function handleAddRole(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create link between user group and CID group with roles. */
 	return await fc.mssp.addRole(parseJsonParam(c, i));
 }
 
-/** Handles addUserGroupMembers */
+/**
+ * Handles the 'addUserGroupMembers' operation.
+ */
 async function handleAddUserGroupMembers(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Add new user group member. */
 	return await fc.mssp.addUserGroupMembers(parseJsonParam(c, i));
 }
 
-/** Handles createCIDGroups */
+/**
+ * Handles the 'createCIDGroups' operation.
+ */
 async function handleCreateCIDGroups(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create new CID groups. */
 	return await fc.mssp.createCIDGroups(parseJsonParam(c, i));
 }
 
-/** Handles createUserGroups */
+/**
+ * Handles the 'createUserGroups' operation.
+ */
 async function handleCreateUserGroups(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create new user groups. */
 	return await fc.mssp.createUserGroups(parseJsonParam(c, i));
 }
 
-/** Handles deleteCIDGroupMembers */
+/**
+ * Handles the 'deleteCIDGroupMembers' operation.
+ */
 async function handleDeleteCIDGroupMembers(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete CID group members (Deprecated). */
 	return await fc.mssp.deleteCIDGroupMembers(parseJsonParam(c, i));
 }
 
-/** Handles deleteCIDGroupMembersV2 */
+/**
+ * Handles the 'deleteCIDGroupMembersV2' operation.
+ */
 async function handleDeleteCIDGroupMembersV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete CID group members V2. */
 	return await fc.mssp.deleteCIDGroupMembersV2(parseJsonParam(c, i));
 }
 
-/** Handles deleteCIDGroups */
+/**
+ * Handles the 'deleteCIDGroups' operation.
+ */
 async function handleDeleteCIDGroups(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete CID groups by ID. */
 	return await fc.mssp.deleteCIDGroups(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles deleteUserGroupMembers */
+/**
+ * Handles the 'deleteUserGroupMembers' operation.
+ */
 async function handleDeleteUserGroupMembers(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete user group members entry. */
 	return await fc.mssp.deleteUserGroupMembers(parseJsonParam(c, i));
 }
 
-/** Handles deleteUserGroups */
+/**
+ * Handles the 'deleteUserGroups' operation.
+ */
 async function handleDeleteUserGroups(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete user groups by ID. */
 	return await fc.mssp.deleteUserGroups(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles deletedRoles */
+/**
+ * Handles the 'deletedRoles' operation.
+ */
 async function handleDeletedRoles(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete links or additional roles between user groups and CID groups. */
 	return await fc.mssp.deletedRoles(parseJsonParam(c, i));
 }
 
-/** Handles getCIDGroupById */
+/**
+ * Handles the 'getCIDGroupById' operation.
+ */
 async function handleGetCIDGroupById(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get CID groups by ID (Deprecated). */
 	return await fc.mssp.getCIDGroupById(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getCIDGroupByIdV2 */
+/**
+ * Handles the 'getCIDGroupByIdV2' operation.
+ */
 async function handleGetCIDGroupByIdV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get CID Groups by ID V2. */
 	return await fc.mssp.getCIDGroupByIdV2(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getCIDGroupMembersBy */
+/**
+ * Handles the 'getCIDGroupMembersBy' operation.
+ */
 async function handleGetCIDGroupMembersBy(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get CID group members by CID group ID (Deprecated). */
 	return await fc.mssp.getCIDGroupMembersBy(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getCIDGroupMembersByV2 */
+/**
+ * Handles the 'getCIDGroupMembersByV2' operation.
+ */
 async function handleGetCIDGroupMembersByV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get CID group members by CID Group ID V2. */
 	return await fc.mssp.getCIDGroupMembersByV2(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getChildren */
+/**
+ * Handles the 'getChildren' operation.
+ */
 async function handleGetChildren(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get link to child customer by child CID(s). */
 	return await fc.mssp.getChildren(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getChildrenV2 */
+/**
+ * Handles the 'getChildrenV2' operation.
+ */
 async function handleGetChildrenV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get link to child customer by child CID(s) V2. */
 	return await fc.mssp.getChildrenV2(parseJsonParam(c, i));
 }
 
-/** Handles getRolesByID */
+/**
+ * Handles the 'getRolesByID' operation.
+ */
 async function handleGetRolesByID(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get link between user group and CID group by ID. */
 	return await fc.mssp.getRolesByID(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getUserGroupMembersByID */
+/**
+ * Handles the 'getUserGroupMembersByID' operation.
+ */
 async function handleGetUserGroupMembersByID(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get user group members by user group ID (Deprecated). */
 	return await fc.mssp.getUserGroupMembersByID(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getUserGroupMembersByIDV2 */
+/**
+ * Handles the 'getUserGroupMembersByIDV2' operation.
+ */
 async function handleGetUserGroupMembersByIDV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get user group members by user group ID V2. */
 	return await fc.mssp.getUserGroupMembersByIDV2(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getUserGroupsByID */
+/**
+ * Handles the 'getUserGroupsByID' operation.
+ */
 async function handleGetUserGroupsByID(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get user groups by ID (Deprecated). */
 	return await fc.mssp.getUserGroupsByID(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getUserGroupsByIDV2 */
+/**
+ * Handles the 'getUserGroupsByIDV2' operation.
+ */
 async function handleGetUserGroupsByIDV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get user groups by ID V2. */
 	return await fc.mssp.getUserGroupsByIDV2(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles queryCIDGroupMembers */
+/**
+ * Handles the 'queryCIDGroupMembers' operation.
+ */
 async function handleQueryCIDGroupMembers(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Query a CID groups members by associated CID. */
 	const cid = getStringParam(c, i, 'cid', '');
@@ -163,7 +209,9 @@ async function handleQueryCIDGroupMembers(c: IExecuteFunctions, i: number, fc: F
 	return await fc.mssp.queryCIDGroupMembers(cid, sort as any || undefined, offset || undefined, limit || undefined);
 }
 
-/** Handles queryCIDGroups */
+/**
+ * Handles the 'queryCIDGroups' operation.
+ */
 async function handleQueryCIDGroups(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Query CID groups. */
 	const name = getStringParam(c, i, 'name', '');
@@ -173,7 +221,9 @@ async function handleQueryCIDGroups(c: IExecuteFunctions, i: number, fc: FalconC
 	return await fc.mssp.queryCIDGroups(name || undefined, sort as any || undefined, offset || undefined, limit || undefined);
 }
 
-/** Handles queryChildren */
+/**
+ * Handles the 'queryChildren' operation.
+ */
 async function handleQueryChildren(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Query for customers linked as children. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -183,7 +233,9 @@ async function handleQueryChildren(c: IExecuteFunctions, i: number, fc: FalconCl
 	return await fc.mssp.queryChildren(filter || undefined, sort as any || undefined, offset || undefined, limit || undefined);
 }
 
-/** Handles queryRoles */
+/**
+ * Handles the 'queryRoles' operation.
+ */
 async function handleQueryRoles(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Query links between user groups and CID groups. */
 	const userGroupId = getStringParam(c, i, 'userGroupId', '');
@@ -195,7 +247,9 @@ async function handleQueryRoles(c: IExecuteFunctions, i: number, fc: FalconClien
 	return await fc.mssp.queryRoles(userGroupId || undefined, cidGroupId || undefined, roleId || undefined, sort as any || undefined, offset || undefined, limit || undefined);
 }
 
-/** Handles queryUserGroupMembers */
+/**
+ * Handles the 'queryUserGroupMembers' operation.
+ */
 async function handleQueryUserGroupMembers(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Query user group member by user UUID. */
 	const userUuid = getStringParam(c, i, 'userUuid', '');
@@ -205,7 +259,9 @@ async function handleQueryUserGroupMembers(c: IExecuteFunctions, i: number, fc: 
 	return await fc.mssp.queryUserGroupMembers(userUuid, sort as any || undefined, offset || undefined, limit || undefined);
 }
 
-/** Handles queryUserGroups */
+/**
+ * Handles the 'queryUserGroups' operation.
+ */
 async function handleQueryUserGroups(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Query user groups. */
 	const name = getStringParam(c, i, 'name', '');
@@ -215,13 +271,17 @@ async function handleQueryUserGroups(c: IExecuteFunctions, i: number, fc: Falcon
 	return await fc.mssp.queryUserGroups(name || undefined, sort as any || undefined, offset || undefined, limit || undefined);
 }
 
-/** Handles updateCIDGroups */
+/**
+ * Handles the 'updateCIDGroups' operation.
+ */
 async function handleUpdateCIDGroups(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update existing CID groups. */
 	return await fc.mssp.updateCIDGroups(parseJsonParam(c, i));
 }
 
-/** Handles updateUserGroups */
+/**
+ * Handles the 'updateUserGroups' operation.
+ */
 async function handleUpdateUserGroups(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update existing user group(s). */
 	return await fc.mssp.updateUserGroups(parseJsonParam(c, i));

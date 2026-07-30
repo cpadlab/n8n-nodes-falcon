@@ -6,7 +6,9 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles createFileV1 */
+/**
+ * Handles the 'createFileV1' operation.
+ */
 async function handleCreateFileV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates a lookup file within a foundry app. */
 	const name = getStringParam(c, i, 'name', '');
@@ -17,7 +19,9 @@ async function handleCreateFileV1(c: IExecuteFunctions, i: number, fc: FalconCli
 	return await fc.foundryLookupFiles.createFileV1(fileBlob, name, undefined, undefined, description || undefined, id || undefined, repo || undefined);
 }
 
-/** Handles updateFileV1 */
+/**
+ * Handles the 'updateFileV1' operation.
+ */
 async function handleUpdateFileV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates a lookup file within a Foundry app. */
 	const id = getStringParam(c, i, 'id', '');

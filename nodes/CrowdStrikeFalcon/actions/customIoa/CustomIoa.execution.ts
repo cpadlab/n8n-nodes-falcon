@@ -16,26 +16,34 @@ function parseArrayParam(context: IExecuteFunctions, index: number, paramName = 
 	return str.split(',').map((id) => id.trim()).filter(Boolean);
 }
 
-/** Handles createRule */
+/**
+ * Handles the 'createRule' operation.
+ */
 async function handleCreateRule(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates a rule within a rule group. */
 	return await fc.customIoa.createRule(parseJsonParam(c, i));
 }
 
-/** Handles createRuleGroupMixin0 */
+/**
+ * Handles the 'createRuleGroupMixin0' operation.
+ */
 async function handleCreateRuleGroupMixin0(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates a rule group. */
 	return await fc.customIoa.createRuleGroupMixin0(parseJsonParam(c, i));
 }
 
-/** Handles deleteRuleGroupsMixin0 */
+/**
+ * Handles the 'deleteRuleGroupsMixin0' operation.
+ */
 async function handleDeleteRuleGroupsMixin0(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes rule groups by ID. */
 	const comment = c.getNodeParameter('comment', i, '') as string;
 	return await fc.customIoa.deleteRuleGroupsMixin0(parseArrayParam(c, i), comment || undefined);
 }
 
-/** Handles deleteRules */
+/**
+ * Handles the 'deleteRules' operation.
+ */
 async function handleDeleteRules(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes rules from a rule group. */
 	const ruleGroupId = c.getNodeParameter('ruleGroupId', i) as string;
@@ -43,43 +51,57 @@ async function handleDeleteRules(c: IExecuteFunctions, i: number, fc: FalconClie
 	return await fc.customIoa.deleteRules(ruleGroupId, parseArrayParam(c, i), comment || undefined);
 }
 
-/** Handles getPatterns */
+/**
+ * Handles the 'getPatterns' operation.
+ */
 async function handleGetPatterns(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets pattern severities by ID. */
 	return await fc.customIoa.getPatterns(parseArrayParam(c, i));
 }
 
-/** Handles getPlatformsMixin0 */
+/**
+ * Handles the 'getPlatformsMixin0' operation.
+ */
 async function handleGetPlatformsMixin0(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets platforms by ID. */
 	return await fc.customIoa.getPlatformsMixin0(parseArrayParam(c, i));
 }
 
-/** Handles getRuleGroupsMixin0 */
+/**
+ * Handles the 'getRuleGroupsMixin0' operation.
+ */
 async function handleGetRuleGroupsMixin0(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets rule groups by ID. */
 	return await fc.customIoa.getRuleGroupsMixin0(parseArrayParam(c, i));
 }
 
-/** Handles getRuleTypes */
+/**
+ * Handles the 'getRuleTypes' operation.
+ */
 async function handleGetRuleTypes(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets rule types by ID. */
 	return await fc.customIoa.getRuleTypes(parseArrayParam(c, i));
 }
 
-/** Handles getRulesGet */
+/**
+ * Handles the 'getRulesGet' operation.
+ */
 async function handleGetRulesGet(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets rules via POST body. */
 	return await fc.customIoa.getRulesGet(parseJsonParam(c, i));
 }
 
-/** Handles getRulesMixin0 */
+/**
+ * Handles the 'getRulesMixin0' operation.
+ */
 async function handleGetRulesMixin0(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets rules by ID list. */
 	return await fc.customIoa.getRulesMixin0(parseArrayParam(c, i));
 }
 
-/** Handles queryPatterns */
+/**
+ * Handles the 'queryPatterns' operation.
+ */
 async function handleQueryPatterns(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets all pattern severity IDs. */
 	const offset = c.getNodeParameter('offset', i, '') as string;
@@ -87,7 +109,9 @@ async function handleQueryPatterns(c: IExecuteFunctions, i: number, fc: FalconCl
 	return await fc.customIoa.queryPatterns(offset || undefined, limit || undefined);
 }
 
-/** Handles queryPlatformsMixin0 */
+/**
+ * Handles the 'queryPlatformsMixin0' operation.
+ */
 async function handleQueryPlatformsMixin0(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets all platform IDs. */
 	const offset = c.getNodeParameter('offset', i, '') as string;
@@ -95,7 +119,9 @@ async function handleQueryPlatformsMixin0(c: IExecuteFunctions, i: number, fc: F
 	return await fc.customIoa.queryPlatformsMixin0(offset || undefined, limit || undefined);
 }
 
-/** Handles queryRuleGroupsFull */
+/**
+ * Handles the 'queryRuleGroupsFull' operation.
+ */
 async function handleQueryRuleGroupsFull(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Finds all rule groups matching query with filter. */
 	const sort = c.getNodeParameter('sort', i, '') as any;
@@ -106,7 +132,9 @@ async function handleQueryRuleGroupsFull(c: IExecuteFunctions, i: number, fc: Fa
 	return await fc.customIoa.queryRuleGroupsFull(sort || undefined, filter || undefined, q || undefined, offset || undefined, limit || undefined);
 }
 
-/** Handles queryRuleGroupsMixin0 */
+/**
+ * Handles the 'queryRuleGroupsMixin0' operation.
+ */
 async function handleQueryRuleGroupsMixin0(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Finds all rule group IDs matching query. */
 	const sort = c.getNodeParameter('sort', i, '') as any;
@@ -117,7 +145,9 @@ async function handleQueryRuleGroupsMixin0(c: IExecuteFunctions, i: number, fc: 
 	return await fc.customIoa.queryRuleGroupsMixin0(sort || undefined, filter || undefined, q || undefined, offset || undefined, limit || undefined);
 }
 
-/** Handles queryRuleTypes */
+/**
+ * Handles the 'queryRuleTypes' operation.
+ */
 async function handleQueryRuleTypes(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets all rule type IDs. */
 	const offset = c.getNodeParameter('offset', i, '') as string;
@@ -125,7 +155,9 @@ async function handleQueryRuleTypes(c: IExecuteFunctions, i: number, fc: FalconC
 	return await fc.customIoa.queryRuleTypes(offset || undefined, limit || undefined);
 }
 
-/** Handles queryRulesMixin0 */
+/**
+ * Handles the 'queryRulesMixin0' operation.
+ */
 async function handleQueryRulesMixin0(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Finds all rule IDs matching query. */
 	const sort = c.getNodeParameter('sort', i, '') as any;
@@ -136,25 +168,33 @@ async function handleQueryRulesMixin0(c: IExecuteFunctions, i: number, fc: Falco
 	return await fc.customIoa.queryRulesMixin0(sort || undefined, filter || undefined, q || undefined, offset || undefined, limit || undefined);
 }
 
-/** Handles updateRuleGroupMixin0 */
+/**
+ * Handles the 'updateRuleGroupMixin0' operation.
+ */
 async function handleUpdateRuleGroupMixin0(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates a rule group. */
 	return await fc.customIoa.updateRuleGroupMixin0(parseJsonParam(c, i));
 }
 
-/** Handles updateRules */
+/**
+ * Handles the 'updateRules' operation.
+ */
 async function handleUpdateRules(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates rules within a rule group. */
 	return await fc.customIoa.updateRules(parseJsonParam(c, i));
 }
 
-/** Handles updateRulesV2 */
+/**
+ * Handles the 'updateRulesV2' operation.
+ */
 async function handleUpdateRulesV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates rules V2. */
 	return await fc.customIoa.updateRulesV2(parseJsonParam(c, i));
 }
 
-/** Handles validate */
+/**
+ * Handles the 'validate' operation.
+ */
 async function handleValidate(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Validates field values and test string. */
 	return await fc.customIoa.validate(parseJsonParam(c, i));

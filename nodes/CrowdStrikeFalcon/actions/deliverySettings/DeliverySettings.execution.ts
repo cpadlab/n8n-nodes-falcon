@@ -11,13 +11,17 @@ function parseJsonParam(context: IExecuteFunctions, index: number, paramName = '
 	}
 }
 
-/** Handles getDeliverySettings */
+/**
+ * Handles the 'getDeliverySettings' operation.
+ */
 async function handleGetDeliverySettings(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets delivery settings. */
 	return await fc.deliverySettings.getDeliverySettings();
 }
 
-/** Handles postDeliverySettings */
+/**
+ * Handles the 'postDeliverySettings' operation.
+ */
 async function handlePostDeliverySettings(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Posts delivery settings. */
 	return await fc.deliverySettings.postDeliverySettings(parseJsonParam(c, i));

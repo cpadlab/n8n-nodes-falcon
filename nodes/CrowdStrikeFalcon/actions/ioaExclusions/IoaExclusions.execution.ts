@@ -21,13 +21,17 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles createIOAExclusionsV1 */
+/**
+ * Handles the 'createIOAExclusionsV1' operation.
+ */
 async function handleCreateIOAExclusionsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create the IOA exclusions V1. */
 	return await fc.ioaExclusions.createIOAExclusionsV1(parseJsonParam(c, i));
 }
 
-/** Handles deleteIOAExclusionsV1 */
+/**
+ * Handles the 'deleteIOAExclusionsV1' operation.
+ */
 async function handleDeleteIOAExclusionsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete the IOA exclusions by ID V1. */
 	const ids = parseArrayParam(c, i, 'ids');
@@ -35,13 +39,17 @@ async function handleDeleteIOAExclusionsV1(c: IExecuteFunctions, i: number, fc: 
 	return await fc.ioaExclusions.deleteIOAExclusionsV1(ids, comment || undefined);
 }
 
-/** Handles getIOAExclusionsV1 */
+/**
+ * Handles the 'getIOAExclusionsV1' operation.
+ */
 async function handleGetIOAExclusionsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get a set of IOA Exclusions by specifying their IDs V1. */
 	return await fc.ioaExclusions.getIOAExclusionsV1(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles queryIOAExclusionsV1 */
+/**
+ * Handles the 'queryIOAExclusionsV1' operation.
+ */
 async function handleQueryIOAExclusionsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Search for IOA exclusions V1. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -60,7 +68,9 @@ async function handleQueryIOAExclusionsV1(c: IExecuteFunctions, i: number, fc: F
 	);
 }
 
-/** Handles ssIoaExclusionsAggregatesV2 */
+/**
+ * Handles the 'ssIoaExclusionsAggregatesV2' operation.
+ */
 async function handleSsIoaExclusionsAggregatesV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get Self Service IOA Exclusion aggregates as specified via JSON. */
 	const body = parseJsonParam(c, i);
@@ -81,13 +91,17 @@ async function handleSsIoaExclusionsAggregatesV2(c: IExecuteFunctions, i: number
 	);
 }
 
-/** Handles ssIoaExclusionsCreateV2 */
+/**
+ * Handles the 'ssIoaExclusionsCreateV2' operation.
+ */
 async function handleSsIoaExclusionsCreateV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create new Self Service IOA Exclusions V2. */
 	return await fc.ioaExclusions.ssIoaExclusionsCreateV2(parseJsonParam(c, i));
 }
 
-/** Handles ssIoaExclusionsDeleteV2 */
+/**
+ * Handles the 'ssIoaExclusionsDeleteV2' operation.
+ */
 async function handleSsIoaExclusionsDeleteV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete Self Service IOA Exclusions rule by ID V2. */
 	const ids = parseArrayParam(c, i, 'ids');
@@ -95,31 +109,41 @@ async function handleSsIoaExclusionsDeleteV2(c: IExecuteFunctions, i: number, fc
 	return await fc.ioaExclusions.ssIoaExclusionsDeleteV2(ids, comment || undefined);
 }
 
-/** Handles ssIoaExclusionsGetReportsV2 */
+/**
+ * Handles the 'ssIoaExclusionsGetReportsV2' operation.
+ */
 async function handleSsIoaExclusionsGetReportsV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create a report of Self Service IOA Exclusions. */
 	return await fc.ioaExclusions.ssIoaExclusionsGetReportsV2(parseJsonParam(c, i));
 }
 
-/** Handles ssIoaExclusionsGetV2 */
+/**
+ * Handles the 'ssIoaExclusionsGetV2' operation.
+ */
 async function handleSsIoaExclusionsGetV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get Self Service IOA Exclusions rules by ID V2. */
 	return await fc.ioaExclusions.ssIoaExclusionsGetV2(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles ssIoaExclusionsMatchedRuleV2 */
+/**
+ * Handles the 'ssIoaExclusionsMatchedRuleV2' operation.
+ */
 async function handleSsIoaExclusionsMatchedRuleV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get Self Service IOA Exclusions rules for matched IFN/CLI. */
 	return await fc.ioaExclusions.ssIoaExclusionsMatchedRuleV2(parseJsonParam(c, i));
 }
 
-/** Handles ssIoaExclusionsNewRulesV2 */
+/**
+ * Handles the 'ssIoaExclusionsNewRulesV2' operation.
+ */
 async function handleSsIoaExclusionsNewRulesV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get defaults for Self Service IOA Exclusions based on IFN/CLI. */
 	return await fc.ioaExclusions.ssIoaExclusionsNewRulesV2(parseJsonParam(c, i));
 }
 
-/** Handles ssIoaExclusionsSearchV2 */
+/**
+ * Handles the 'ssIoaExclusionsSearchV2' operation.
+ */
 async function handleSsIoaExclusionsSearchV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Search for Self Service IOA Exclusions V2. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -146,13 +170,17 @@ async function handleSsIoaExclusionsSearchV2(c: IExecuteFunctions, i: number, fc
 	);
 }
 
-/** Handles ssIoaExclusionsUpdateV2 */
+/**
+ * Handles the 'ssIoaExclusionsUpdateV2' operation.
+ */
 async function handleSsIoaExclusionsUpdateV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update Self Service IOA Exclusions rule by ID V2. */
 	return await fc.ioaExclusions.ssIoaExclusionsUpdateV2(parseJsonParam(c, i));
 }
 
-/** Handles updateIOAExclusionsV1 */
+/**
+ * Handles the 'updateIOAExclusionsV1' operation.
+ */
 async function handleUpdateIOAExclusionsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update the IOA exclusions V1. */
 	return await fc.ioaExclusions.updateIOAExclusionsV1(parseJsonParam(c, i));

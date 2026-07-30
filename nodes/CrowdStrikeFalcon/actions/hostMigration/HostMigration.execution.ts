@@ -21,13 +21,17 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles createMigrationV1 */
+/**
+ * Handles the 'createMigrationV1' operation.
+ */
 async function handleCreateMigrationV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create a device migration job. */
 	return await fc.hostMigration.createMigrationV1(parseJsonParam(c, i));
 }
 
-/** Handles getHostMigrationIDsV1 */
+/**
+ * Handles the 'getHostMigrationIDsV1' operation.
+ */
 async function handleGetHostMigrationIDsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Query host migration IDs. */
 	const id = getStringParam(c, i, 'id', '');
@@ -38,19 +42,25 @@ async function handleGetHostMigrationIDsV1(c: IExecuteFunctions, i: number, fc: 
 	return await fc.hostMigration.getHostMigrationIDsV1(id, offset || undefined, limit || undefined, sort || undefined, filter || undefined);
 }
 
-/** Handles getHostMigrationsV1 */
+/**
+ * Handles the 'getHostMigrationsV1' operation.
+ */
 async function handleGetHostMigrationsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get host migration details. */
 	return await fc.hostMigration.getHostMigrationsV1(parseJsonParam(c, i));
 }
 
-/** Handles getMigrationDestinationsV1 */
+/**
+ * Handles the 'getMigrationDestinationsV1' operation.
+ */
 async function handleGetMigrationDestinationsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get destinations for a migration. */
 	return await fc.hostMigration.getMigrationDestinationsV1(parseJsonParam(c, i));
 }
 
-/** Handles getMigrationIDsV1 */
+/**
+ * Handles the 'getMigrationIDsV1' operation.
+ */
 async function handleGetMigrationIDsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Query migration jobs. */
 	const offset = c.getNodeParameter('offset', i, 0) as number;
@@ -60,20 +70,26 @@ async function handleGetMigrationIDsV1(c: IExecuteFunctions, i: number, fc: Falc
 	return await fc.hostMigration.getMigrationIDsV1(offset || undefined, limit || undefined, sort || undefined, filter || undefined);
 }
 
-/** Handles getMigrationsV1 */
+/**
+ * Handles the 'getMigrationsV1' operation.
+ */
 async function handleGetMigrationsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get migration job details. */
 	return await fc.hostMigration.getMigrationsV1(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles hostMigrationAggregatesV1 */
+/**
+ * Handles the 'hostMigrationAggregatesV1' operation.
+ */
 async function handleHostMigrationAggregatesV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get host migration aggregates as specified via JSON. */
 	const body = parseJsonParam(c, i);
 	return await fc.hostMigration.hostMigrationAggregatesV1(Array.isArray(body) ? body : [body]);
 }
 
-/** Handles hostMigrationsActionsV1 */
+/**
+ * Handles the 'hostMigrationsActionsV1' operation.
+ */
 async function handleHostMigrationsActionsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Perform an action on host migrations. */
 	const id = getStringParam(c, i, 'id', '');
@@ -82,14 +98,18 @@ async function handleHostMigrationsActionsV1(c: IExecuteFunctions, i: number, fc
 	return await fc.hostMigration.hostMigrationsActionsV1(id, actionName, body);
 }
 
-/** Handles migrationAggregatesV1 */
+/**
+ * Handles the 'migrationAggregatesV1' operation.
+ */
 async function handleMigrationAggregatesV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get migration aggregates as specified via JSON. */
 	const body = parseJsonParam(c, i);
 	return await fc.hostMigration.migrationAggregatesV1(Array.isArray(body) ? body : [body]);
 }
 
-/** Handles migrationsActionsV1 */
+/**
+ * Handles the 'migrationsActionsV1' operation.
+ */
 async function handleMigrationsActionsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Perform an action on a migration job. */
 	const actionName = getStringParam(c, i, 'actionNameMigrations', '') as any;

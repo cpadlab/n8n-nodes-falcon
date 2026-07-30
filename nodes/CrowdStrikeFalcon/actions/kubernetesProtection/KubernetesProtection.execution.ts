@@ -21,7 +21,9 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles clusterCombined */
+/**
+ * Handles the 'clusterCombined' operation.
+ */
 async function handleClusterCombined(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve kubernetes clusters identified by filter criteria. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -31,14 +33,18 @@ async function handleClusterCombined(c: IExecuteFunctions, i: number, fc: Falcon
 	return await fc.kubernetesProtection.clusterCombined(filter || undefined, sort || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles clusterCount */
+/**
+ * Handles the 'clusterCount' operation.
+ */
 async function handleClusterCount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve cluster counts. */
 	const filter = getStringParam(c, i, 'filter', '');
 	return await fc.kubernetesProtection.clusterCount(filter || undefined);
 }
 
-/** Handles clusterEnrichment */
+/**
+ * Handles the 'clusterEnrichment' operation.
+ */
 async function handleClusterEnrichment(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve cluster enrichment data. */
 	const clusterId = parseArrayParam(c, i, 'ids');
@@ -46,27 +52,35 @@ async function handleClusterEnrichment(c: IExecuteFunctions, i: number, fc: Falc
 	return await fc.kubernetesProtection.clusterEnrichment(clusterId, filter || undefined);
 }
 
-/** Handles clustersByDateRangeCount */
+/**
+ * Handles the 'clustersByDateRangeCount' operation.
+ */
 async function handleClustersByDateRangeCount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve clusters by date range counts. */
 	return await fc.kubernetesProtection.clustersByDateRangeCount();
 }
 
-/** Handles clustersByKubernetesVersionCount */
+/**
+ * Handles the 'clustersByKubernetesVersionCount' operation.
+ */
 async function handleClustersByKubernetesVersionCount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Bucket clusters by kubernetes version. */
 	const filter = getStringParam(c, i, 'filter', '');
 	return await fc.kubernetesProtection.clustersByKubernetesVersionCount(filter || undefined);
 }
 
-/** Handles clustersByStatusCount */
+/**
+ * Handles the 'clustersByStatusCount' operation.
+ */
 async function handleClustersByStatusCount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Bucket clusters by status. */
 	const filter = getStringParam(c, i, 'filter', '');
 	return await fc.kubernetesProtection.clustersByStatusCount(filter || undefined);
 }
 
-/** Handles containerCombined */
+/**
+ * Handles the 'containerCombined' operation.
+ */
 async function handleContainerCombined(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves a paginated list of containers identified by filter criteria. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -76,14 +90,18 @@ async function handleContainerCombined(c: IExecuteFunctions, i: number, fc: Falc
 	return await fc.kubernetesProtection.containerCombined(filter || undefined, sort || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles containerCount */
+/**
+ * Handles the 'containerCount' operation.
+ */
 async function handleContainerCount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve container counts. */
 	const filter = getStringParam(c, i, 'filter', '');
 	return await fc.kubernetesProtection.containerCount(filter || undefined);
 }
 
-/** Handles containerCountByRegistry */
+/**
+ * Handles the 'containerCountByRegistry' operation.
+ */
 async function handleContainerCountByRegistry(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves a list with the top container image registries. */
 	const limit = c.getNodeParameter('limit', i, 100) as number;
@@ -91,7 +109,9 @@ async function handleContainerCountByRegistry(c: IExecuteFunctions, i: number, f
 	return await fc.kubernetesProtection.containerCountByRegistry(undefined, limit || undefined, filter || undefined);
 }
 
-/** Handles containerEnrichment */
+/**
+ * Handles the 'containerEnrichment' operation.
+ */
 async function handleContainerEnrichment(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve container enrichment data. */
 	const containerId = parseArrayParam(c, i, 'ids');
@@ -99,73 +119,95 @@ async function handleContainerEnrichment(c: IExecuteFunctions, i: number, fc: Fa
 	return await fc.kubernetesProtection.containerEnrichment(containerId, filter || undefined);
 }
 
-/** Handles containerImageDetectionsCountByDate */
+/**
+ * Handles the 'containerImageDetectionsCountByDate' operation.
+ */
 async function handleContainerImageDetectionsCountByDate(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve count of image assessment detections on running containers. */
 	const filter = getStringParam(c, i, 'filter', '');
 	return await fc.kubernetesProtection.containerImageDetectionsCountByDate(filter || undefined);
 }
 
-/** Handles containerImagesByMostUsed */
+/**
+ * Handles the 'containerImagesByMostUsed' operation.
+ */
 async function handleContainerImagesByMostUsed(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Bucket container by image-digest. */
 	const filter = getStringParam(c, i, 'filter', '');
 	return await fc.kubernetesProtection.containerImagesByMostUsed(filter || undefined);
 }
 
-/** Handles containerImagesByState */
+/**
+ * Handles the 'containerImagesByState' operation.
+ */
 async function handleContainerImagesByState(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve count of image states running on containers. */
 	const filter = getStringParam(c, i, 'filter', '');
 	return await fc.kubernetesProtection.containerImagesByState(filter || undefined);
 }
 
-/** Handles containerVulnerabilitiesBySeverityCount */
+/**
+ * Handles the 'containerVulnerabilitiesBySeverityCount' operation.
+ */
 async function handleContainerVulnerabilitiesBySeverityCount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve container vulnerabilities by severity counts. */
 	const filter = getStringParam(c, i, 'filter', '');
 	return await fc.kubernetesProtection.containerVulnerabilitiesBySeverityCount(filter || undefined);
 }
 
-/** Handles containersByDateRangeCount */
+/**
+ * Handles the 'containersByDateRangeCount' operation.
+ */
 async function handleContainersByDateRangeCount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve containers by date range counts. */
 	const filter = getStringParam(c, i, 'filter', '');
 	return await fc.kubernetesProtection.containersByDateRangeCount(filter || undefined);
 }
 
-/** Handles containersSensorCoverage */
+/**
+ * Handles the 'containersSensorCoverage' operation.
+ */
 async function handleContainersSensorCoverage(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Bucket containers by agent type and calculate sensor coverage. */
 	const filter = getStringParam(c, i, 'filter', '');
 	return await fc.kubernetesProtection.containersSensorCoverage(filter || undefined);
 }
 
-/** Handles createAWSAccount */
+/**
+ * Handles the 'createAWSAccount' operation.
+ */
 async function handleCreateAWSAccount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates a new AWS account in system and generates installation script. */
 	return await fc.kubernetesProtection.createAWSAccount(parseJsonParam(c, i));
 }
 
-/** Handles createAzureSubscription */
+/**
+ * Handles the 'createAzureSubscription' operation.
+ */
 async function handleCreateAzureSubscription(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates a new Azure Subscription in system. */
 	return await fc.kubernetesProtection.createAzureSubscription(parseJsonParam(c, i));
 }
 
-/** Handles deleteAWSAccountsMixin0 */
+/**
+ * Handles the 'deleteAWSAccountsMixin0' operation.
+ */
 async function handleDeleteAWSAccountsMixin0(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete AWS accounts. */
 	return await fc.kubernetesProtection.deleteAWSAccountsMixin0(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles deleteAzureSubscription */
+/**
+ * Handles the 'deleteAzureSubscription' operation.
+ */
 async function handleDeleteAzureSubscription(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes Azure Subscriptions in system. */
 	return await fc.kubernetesProtection.deleteAzureSubscription(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles deploymentCombined */
+/**
+ * Handles the 'deploymentCombined' operation.
+ */
 async function handleDeploymentCombined(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve kubernetes deployments identified by filter criteria. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -175,14 +217,18 @@ async function handleDeploymentCombined(c: IExecuteFunctions, i: number, fc: Fal
 	return await fc.kubernetesProtection.deploymentCombined(filter || undefined, sort || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles deploymentCount */
+/**
+ * Handles the 'deploymentCount' operation.
+ */
 async function handleDeploymentCount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve deployment counts. */
 	const filter = getStringParam(c, i, 'filter', '');
 	return await fc.kubernetesProtection.deploymentCount(filter || undefined);
 }
 
-/** Handles deploymentEnrichment */
+/**
+ * Handles the 'deploymentEnrichment' operation.
+ */
 async function handleDeploymentEnrichment(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve deployment enrichment data. */
 	const deploymentId = parseArrayParam(c, i, 'ids');
@@ -190,20 +236,26 @@ async function handleDeploymentEnrichment(c: IExecuteFunctions, i: number, fc: F
 	return await fc.kubernetesProtection.deploymentEnrichment(deploymentId, filter || undefined);
 }
 
-/** Handles deploymentsByDateRangeCount */
+/**
+ * Handles the 'deploymentsByDateRangeCount' operation.
+ */
 async function handleDeploymentsByDateRangeCount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve deployments by date range counts. */
 	return await fc.kubernetesProtection.deploymentsByDateRangeCount();
 }
 
-/** Handles distinctContainerImageCount */
+/**
+ * Handles the 'distinctContainerImageCount' operation.
+ */
 async function handleDistinctContainerImageCount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve count of distinct images running on containers. */
 	const filter = getStringParam(c, i, 'filter', '');
 	return await fc.kubernetesProtection.distinctContainerImageCount(filter || undefined);
 }
 
-/** Handles findContainersByContainerRunTimeVersion */
+/**
+ * Handles the 'findContainersByContainerRunTimeVersion' operation.
+ */
 async function handleFindContainersByContainerRunTimeVersion(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve containers by container_runtime_version. */
 	const limit = c.getNodeParameter('limit', i, 100) as number;
@@ -213,13 +265,17 @@ async function handleFindContainersByContainerRunTimeVersion(c: IExecuteFunction
 	return await fc.kubernetesProtection.findContainersByContainerRunTimeVersion(limit || undefined, offset || undefined, sort || undefined, filter || undefined);
 }
 
-/** Handles findContainersCountAffectedByZeroDayVulnerabilities */
+/**
+ * Handles the 'findContainersCountAffectedByZeroDayVulnerabilities' operation.
+ */
 async function handleFindContainersCountAffectedByZeroDayVulnerabilities(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve containers count affected by zero day vulnerabilities. */
 	return await fc.kubernetesProtection.findContainersCountAffectedByZeroDayVulnerabilities();
 }
 
-/** Handles getAWSAccountsMixin0 */
+/**
+ * Handles the 'getAWSAccountsMixin0' operation.
+ */
 async function handleGetAWSAccountsMixin0(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Provides a list of AWS accounts. */
 	const ids = parseArrayParam(c, i, 'ids');
@@ -228,7 +284,9 @@ async function handleGetAWSAccountsMixin0(c: IExecuteFunctions, i: number, fc: F
 	return await fc.kubernetesProtection.getAWSAccountsMixin0(ids.length ? ids : undefined, undefined, undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles getAzureInstallScript */
+/**
+ * Handles the 'getAzureInstallScript' operation.
+ */
 async function handleGetAzureInstallScript(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Provides script to run for given tenant ID and subscription IDs. */
 	const id = getStringParam(c, i, 'id', '');
@@ -236,7 +294,9 @@ async function handleGetAzureInstallScript(c: IExecuteFunctions, i: number, fc: 
 	return await fc.kubernetesProtection.getAzureInstallScript(id || undefined, ids.length ? ids : undefined);
 }
 
-/** Handles getAzureTenantConfig */
+/**
+ * Handles the 'getAzureTenantConfig' operation.
+ */
 async function handleGetAzureTenantConfig(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets the Azure tenant Config. */
 	const ids = parseArrayParam(c, i, 'ids');
@@ -245,7 +305,9 @@ async function handleGetAzureTenantConfig(c: IExecuteFunctions, i: number, fc: F
 	return await fc.kubernetesProtection.getAzureTenantConfig(ids.length ? ids : undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles getAzureTenantIDs */
+/**
+ * Handles the 'getAzureTenantIDs' operation.
+ */
 async function handleGetAzureTenantIDs(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Provides all azure subscriptions and tenants. */
 	const ids = parseArrayParam(c, i, 'ids');
@@ -254,7 +316,9 @@ async function handleGetAzureTenantIDs(c: IExecuteFunctions, i: number, fc: Falc
 	return await fc.kubernetesProtection.getAzureTenantIDs(ids.length ? ids : undefined, undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles getClusters */
+/**
+ * Handles the 'getClusters' operation.
+ */
 async function handleGetClusters(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Provides clusters acknowledged by Kubernetes Protection service. */
 	const limit = c.getNodeParameter('limit', i, 100) as number;
@@ -262,7 +326,9 @@ async function handleGetClusters(c: IExecuteFunctions, i: number, fc: FalconClie
 	return await fc.kubernetesProtection.getClusters(undefined, undefined, undefined, undefined, undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles getCombinedCloudClusters */
+/**
+ * Handles the 'getCombinedCloudClusters' operation.
+ */
 async function handleGetCombinedCloudClusters(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Returns combined list of provisioned cloud accounts and clusters. */
 	const ids = parseArrayParam(c, i, 'ids');
@@ -271,54 +337,70 @@ async function handleGetCombinedCloudClusters(c: IExecuteFunctions, i: number, f
 	return await fc.kubernetesProtection.getCombinedCloudClusters(undefined, ids.length ? ids : undefined, undefined, undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles getHelmValuesYaml */
+/**
+ * Handles the 'getHelmValuesYaml' operation.
+ */
 async function handleGetHelmValuesYaml(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Provides sample Helm values.yaml file for agent Helm chart. */
 	const clusterName = getStringParam(c, i, 'clusterName', '');
 	return await fc.kubernetesProtection.getHelmValuesYaml(clusterName);
 }
 
-/** Handles getLocations */
+/**
+ * Handles the 'getLocations' operation.
+ */
 async function handleGetLocations(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Provides cloud locations acknowledged by Kubernetes Protection. */
 	return await fc.kubernetesProtection.getLocations();
 }
 
-/** Handles getStaticScripts */
+/**
+ * Handles the 'getStaticScripts' operation.
+ */
 async function handleGetStaticScripts(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets static bash scripts used during registration. */
 	return await fc.kubernetesProtection.getStaticScripts();
 }
 
-/** Handles groupContainersByManaged */
+/**
+ * Handles the 'groupContainersByManaged' operation.
+ */
 async function handleGroupContainersByManaged(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Group the containers by Managed. */
 	const filter = getStringParam(c, i, 'filter', '');
 	return await fc.kubernetesProtection.groupContainersByManaged(filter || undefined);
 }
 
-/** Handles kubernetesIomByDateRange */
+/**
+ * Handles the 'kubernetesIomByDateRange' operation.
+ */
 async function handleKubernetesIomByDateRange(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Returns count of Kubernetes IOMs by date range. */
 	const filter = getStringParam(c, i, 'filter', '');
 	return await fc.kubernetesProtection.kubernetesIomByDateRange(filter || undefined);
 }
 
-/** Handles kubernetesIomCount */
+/**
+ * Handles the 'kubernetesIomCount' operation.
+ */
 async function handleKubernetesIomCount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Returns total count of Kubernetes IOMs. */
 	const filter = getStringParam(c, i, 'filter', '');
 	return await fc.kubernetesProtection.kubernetesIomCount(filter || undefined);
 }
 
-/** Handles kubernetesIomEntities */
+/**
+ * Handles the 'kubernetesIomEntities' operation.
+ */
 async function handleKubernetesIomEntities(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve Kubernetes IOM entities by IDs. */
 	const ids = parseArrayParam(c, i, 'ids');
 	return await fc.kubernetesProtection.kubernetesIomEntities(ids.length ? ids : undefined);
 }
 
-/** Handles kubernetesIomEntitiesCombined */
+/**
+ * Handles the 'kubernetesIomEntitiesCombined' operation.
+ */
 async function handleKubernetesIomEntitiesCombined(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves list of Kubernetes IOMs by search criteria. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -328,7 +410,9 @@ async function handleKubernetesIomEntitiesCombined(c: IExecuteFunctions, i: numb
 	return await fc.kubernetesProtection.kubernetesIomEntitiesCombined(filter || undefined, sort || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles listAzureAccounts */
+/**
+ * Handles the 'listAzureAccounts' operation.
+ */
 async function handleListAzureAccounts(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Provides azure subscriptions registered to Kubernetes Protection. */
 	const ids = parseArrayParam(c, i, 'ids');
@@ -337,7 +421,9 @@ async function handleListAzureAccounts(c: IExecuteFunctions, i: number, fc: Falc
 	return await fc.kubernetesProtection.listAzureAccounts(ids.length ? ids : undefined, undefined, undefined, undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles nodeCombined */
+/**
+ * Handles the 'nodeCombined' operation.
+ */
 async function handleNodeCombined(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve kubernetes nodes identified by filter criteria. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -347,14 +433,18 @@ async function handleNodeCombined(c: IExecuteFunctions, i: number, fc: FalconCli
 	return await fc.kubernetesProtection.nodeCombined(filter || undefined, sort || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles nodeCount */
+/**
+ * Handles the 'nodeCount' operation.
+ */
 async function handleNodeCount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve node counts. */
 	const filter = getStringParam(c, i, 'filter', '');
 	return await fc.kubernetesProtection.nodeCount(filter || undefined);
 }
 
-/** Handles nodeEnrichment */
+/**
+ * Handles the 'nodeEnrichment' operation.
+ */
 async function handleNodeEnrichment(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve node enrichment data. */
 	const nodeName = parseArrayParam(c, i, 'ids');
@@ -362,28 +452,36 @@ async function handleNodeEnrichment(c: IExecuteFunctions, i: number, fc: FalconC
 	return await fc.kubernetesProtection.nodeEnrichment(nodeName, filter || undefined);
 }
 
-/** Handles nodesByCloudCount */
+/**
+ * Handles the 'nodesByCloudCount' operation.
+ */
 async function handleNodesByCloudCount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Bucket nodes by cloud providers. */
 	const filter = getStringParam(c, i, 'filter', '');
 	return await fc.kubernetesProtection.nodesByCloudCount(filter || undefined);
 }
 
-/** Handles nodesByContainerEngineVersionCount */
+/**
+ * Handles the 'nodesByContainerEngineVersionCount' operation.
+ */
 async function handleNodesByContainerEngineVersionCount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Bucket nodes by container engine version. */
 	const filter = getStringParam(c, i, 'filter', '');
 	return await fc.kubernetesProtection.nodesByContainerEngineVersionCount(filter || undefined);
 }
 
-/** Handles nodesByDateRangeCount */
+/**
+ * Handles the 'nodesByDateRangeCount' operation.
+ */
 async function handleNodesByDateRangeCount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve nodes by date range counts. */
 	const filter = getStringParam(c, i, 'filter', '');
 	return await fc.kubernetesProtection.nodesByDateRangeCount(filter || undefined);
 }
 
-/** Handles patchAzureServicePrincipal */
+/**
+ * Handles the 'patchAzureServicePrincipal' operation.
+ */
 async function handlePatchAzureServicePrincipal(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Adds client ID for given tenant ID to system. */
 	const id = getStringParam(c, i, 'id', '');
@@ -391,7 +489,9 @@ async function handlePatchAzureServicePrincipal(c: IExecuteFunctions, i: number,
 	return await fc.kubernetesProtection.patchAzureServicePrincipal(id, clientId);
 }
 
-/** Handles podCombined */
+/**
+ * Handles the 'podCombined' operation.
+ */
 async function handlePodCombined(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve kubernetes pods identified by filter criteria. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -401,14 +501,18 @@ async function handlePodCombined(c: IExecuteFunctions, i: number, fc: FalconClie
 	return await fc.kubernetesProtection.podCombined(filter || undefined, sort || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles podCount */
+/**
+ * Handles the 'podCount' operation.
+ */
 async function handlePodCount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve pod counts. */
 	const filter = getStringParam(c, i, 'filter', '');
 	return await fc.kubernetesProtection.podCount(filter || undefined);
 }
 
-/** Handles podEnrichment */
+/**
+ * Handles the 'podEnrichment' operation.
+ */
 async function handlePodEnrichment(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve pod enrichment data. */
 	const podId = parseArrayParam(c, i, 'ids');
@@ -416,20 +520,26 @@ async function handlePodEnrichment(c: IExecuteFunctions, i: number, fc: FalconCl
 	return await fc.kubernetesProtection.podEnrichment(podId, filter || undefined);
 }
 
-/** Handles podsByDateRangeCount */
+/**
+ * Handles the 'podsByDateRangeCount' operation.
+ */
 async function handlePodsByDateRangeCount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve pods by date range counts. */
 	return await fc.kubernetesProtection.podsByDateRangeCount();
 }
 
-/** Handles postAggregatesPods */
+/**
+ * Handles the 'postAggregatesPods' operation.
+ */
 async function handlePostAggregatesPods(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get aggregate query result for pods. */
 	const body = parseJsonParam(c, i);
 	return await fc.kubernetesProtection.postAggregatesPods(Array.isArray(body) ? body : [body]);
 }
 
-/** Handles postSearchKubernetesIOMEntities */
+/**
+ * Handles the 'postSearchKubernetesIOMEntities' operation.
+ */
 async function handlePostSearchKubernetesIOMEntities(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Search for Kubernetes IOMs with filtering options. */
 	const body = parseJsonParam(c, i);
@@ -439,7 +549,9 @@ async function handlePostSearchKubernetesIOMEntities(c: IExecuteFunctions, i: nu
 	return await fc.kubernetesProtection.postSearchKubernetesIOMEntities(body, filter || undefined, sort || undefined, limit || undefined);
 }
 
-/** Handles queryKubernetesIoms */
+/**
+ * Handles the 'queryKubernetesIoms' operation.
+ */
 async function handleQueryKubernetesIoms(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Search Kubernetes IOMs returning list of UUIDs. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -449,7 +561,9 @@ async function handleQueryKubernetesIoms(c: IExecuteFunctions, i: number, fc: Fa
 	return await fc.kubernetesProtection.queryKubernetesIoms(filter || undefined, sort || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles readClusterCombinedV2 */
+/**
+ * Handles the 'readClusterCombinedV2' operation.
+ */
 async function handleReadClusterCombinedV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve Kubernetes cluster data V2. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -459,26 +573,34 @@ async function handleReadClusterCombinedV2(c: IExecuteFunctions, i: number, fc: 
 	return await fc.kubernetesProtection.readClusterCombinedV2(filter || undefined, sort || undefined, undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles readNamespaceCount */
+/**
+ * Handles the 'readNamespaceCount' operation.
+ */
 async function handleReadNamespaceCount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve namespace counts. */
 	const filter = getStringParam(c, i, 'filter', '');
 	return await fc.kubernetesProtection.readNamespaceCount(filter || undefined);
 }
 
-/** Handles readNamespacesByDateRangeCount */
+/**
+ * Handles the 'readNamespacesByDateRangeCount' operation.
+ */
 async function handleReadNamespacesByDateRangeCount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve namespaces by date range counts. */
 	return await fc.kubernetesProtection.readNamespacesByDateRangeCount();
 }
 
-/** Handles regenerateAPIKey */
+/**
+ * Handles the 'regenerateAPIKey' operation.
+ */
 async function handleRegenerateAPIKey(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Regenerate API key for docker registry integrations. */
 	return await fc.kubernetesProtection.regenerateAPIKey();
 }
 
-/** Handles runningContainerImages */
+/**
+ * Handles the 'runningContainerImages' operation.
+ */
 async function handleRunningContainerImages(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve images on running containers. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -488,14 +610,18 @@ async function handleRunningContainerImages(c: IExecuteFunctions, i: number, fc:
 	return await fc.kubernetesProtection.runningContainerImages(filter || undefined, sort || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles triggerScan */
+/**
+ * Handles the 'triggerScan' operation.
+ */
 async function handleTriggerScan(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Triggers dry run or full scan of kubernetes footprint. */
 	const scanType = getStringParam(c, i, 'scanType', 'full') as any;
 	return await fc.kubernetesProtection.triggerScan(scanType);
 }
 
-/** Handles updateAWSAccount */
+/**
+ * Handles the 'updateAWSAccount' operation.
+ */
 async function handleUpdateAWSAccount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates AWS account per query parameters. */
 	const ids = parseArrayParam(c, i, 'ids');
@@ -503,7 +629,9 @@ async function handleUpdateAWSAccount(c: IExecuteFunctions, i: number, fc: Falco
 	return await fc.kubernetesProtection.updateAWSAccount(ids, region || undefined);
 }
 
-/** Handles vulnerableContainerImageCount */
+/**
+ * Handles the 'vulnerableContainerImageCount' operation.
+ */
 async function handleVulnerableContainerImageCount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve count of vulnerable images running on containers. */
 	const filter = getStringParam(c, i, 'filter', '');

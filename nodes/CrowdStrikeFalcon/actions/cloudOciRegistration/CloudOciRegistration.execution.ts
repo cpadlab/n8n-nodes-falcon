@@ -11,13 +11,17 @@ function parseJsonParam(context: IExecuteFunctions, index: number, paramName = '
 	}
 }
 
-/** Handles cloudSecurityRegistrationOciCreateAccount */
+/**
+ * Handles the 'cloudSecurityRegistrationOciCreateAccount' operation.
+ */
 async function handleCloudSecurityRegistrationOciCreateAccount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates OCI tenancy account in CSPM. */
 	return await fc.cloudOciRegistration.cloudSecurityRegistrationOciCreateAccount(parseJsonParam(c, i));
 }
 
-/** Handles cloudSecurityRegistrationOciDeleteAccount */
+/**
+ * Handles the 'cloudSecurityRegistrationOciDeleteAccount' operation.
+ */
 async function handleCloudSecurityRegistrationOciDeleteAccount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes OCI tenancy account. */
 	const idsString = c.getNodeParameter('ids', i, '') as string;
@@ -25,13 +29,17 @@ async function handleCloudSecurityRegistrationOciDeleteAccount(c: IExecuteFuncti
 	return await fc.cloudOciRegistration.cloudSecurityRegistrationOciDeleteAccount(ids.length ? ids : undefined);
 }
 
-/** Handles cloudSecurityRegistrationOciDownloadScript */
+/**
+ * Handles the 'cloudSecurityRegistrationOciDownloadScript' operation.
+ */
 async function handleCloudSecurityRegistrationOciDownloadScript(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Downloads OCI provision script. */
 	return await fc.cloudOciRegistration.cloudSecurityRegistrationOciDownloadScript(parseJsonParam(c, i));
 }
 
-/** Handles cloudSecurityRegistrationOciGetAccount */
+/**
+ * Handles the 'cloudSecurityRegistrationOciGetAccount' operation.
+ */
 async function handleCloudSecurityRegistrationOciGetAccount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves OCI tenancy list. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -41,19 +49,25 @@ async function handleCloudSecurityRegistrationOciGetAccount(c: IExecuteFunctions
 	return await fc.cloudOciRegistration.cloudSecurityRegistrationOciGetAccount(filter || undefined, sort || undefined, undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles cloudSecurityRegistrationOciRotateKey */
+/**
+ * Handles the 'cloudSecurityRegistrationOciRotateKey' operation.
+ */
 async function handleCloudSecurityRegistrationOciRotateKey(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Rotates OCI tenancy key. */
 	return await fc.cloudOciRegistration.cloudSecurityRegistrationOciRotateKey(parseJsonParam(c, i));
 }
 
-/** Handles cloudSecurityRegistrationOciUpdateAccount */
+/**
+ * Handles the 'cloudSecurityRegistrationOciUpdateAccount' operation.
+ */
 async function handleCloudSecurityRegistrationOciUpdateAccount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates OCI tenancy account. */
 	return await fc.cloudOciRegistration.cloudSecurityRegistrationOciUpdateAccount(parseJsonParam(c, i));
 }
 
-/** Handles cloudSecurityRegistrationOciValidateTenancy */
+/**
+ * Handles the 'cloudSecurityRegistrationOciValidateTenancy' operation.
+ */
 async function handleCloudSecurityRegistrationOciValidateTenancy(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Validates OCI tenancy in CSPM. */
 	return await fc.cloudOciRegistration.cloudSecurityRegistrationOciValidateTenancy(parseJsonParam(c, i));

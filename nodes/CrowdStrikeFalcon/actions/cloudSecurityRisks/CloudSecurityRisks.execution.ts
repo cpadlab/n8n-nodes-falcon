@@ -1,7 +1,9 @@
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
-/** Handles cloudSecurityTimelineRisksEnriched */
+/**
+ * Handles the 'cloudSecurityTimelineRisksEnriched' operation.
+ */
 async function handleCloudSecurityTimelineRisksEnriched(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves enriched asset timeline. */
 	const id = c.getNodeParameter('id', i) as string;

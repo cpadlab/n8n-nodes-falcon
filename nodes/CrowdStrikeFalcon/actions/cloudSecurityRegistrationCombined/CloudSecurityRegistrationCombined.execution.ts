@@ -11,7 +11,9 @@ function parseJsonParam(context: IExecuteFunctions, index: number, paramName = '
 	}
 }
 
-/** Handles cloudRegistrationCrossProviderGetAccountAggregates */
+/**
+ * Handles the 'cloudRegistrationCrossProviderGetAccountAggregates' operation.
+ */
 async function handleCloudRegistrationCrossProviderGetAccountAggregates(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves cross-provider account aggregates by status. */
 	const body = parseJsonParam(c, i);

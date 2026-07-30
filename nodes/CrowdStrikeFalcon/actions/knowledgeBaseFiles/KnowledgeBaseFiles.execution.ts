@@ -11,7 +11,9 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles entitiesKnowledgeBaseFilesCreateV1 */
+/**
+ * Handles the 'entitiesKnowledgeBaseFilesCreateV1' operation.
+ */
 async function handleEntitiesKnowledgeBaseFilesCreateV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Upload a file to a knowledge base. */
 	const knowledgeBaseId = getStringParam(c, i, 'knowledgeBaseId', '');
@@ -21,7 +23,9 @@ async function handleEntitiesKnowledgeBaseFilesCreateV1(c: IExecuteFunctions, i:
 	return await fc.knowledgeBaseFiles.entitiesKnowledgeBaseFilesCreateV1(knowledgeBaseId, fileBlob, fileDescription || undefined);
 }
 
-/** Handles entitiesKnowledgeBaseFilesDeleteV1 */
+/**
+ * Handles the 'entitiesKnowledgeBaseFilesDeleteV1' operation.
+ */
 async function handleEntitiesKnowledgeBaseFilesDeleteV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete document from knowledge base. */
 	const knowledgeBaseId = getStringParam(c, i, 'knowledgeBaseId', '');
@@ -29,7 +33,9 @@ async function handleEntitiesKnowledgeBaseFilesDeleteV1(c: IExecuteFunctions, i:
 	return await fc.knowledgeBaseFiles.entitiesKnowledgeBaseFilesDeleteV1(knowledgeBaseId, id);
 }
 
-/** Handles entitiesKnowledgeBaseFilesDownloadV1 */
+/**
+ * Handles the 'entitiesKnowledgeBaseFilesDownloadV1' operation.
+ */
 async function handleEntitiesKnowledgeBaseFilesDownloadV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Download knowledge base file entities for the provided id. */
 	const knowledgeBaseId = getStringParam(c, i, 'knowledgeBaseId', '');
@@ -37,7 +43,9 @@ async function handleEntitiesKnowledgeBaseFilesDownloadV1(c: IExecuteFunctions, 
 	return await fc.knowledgeBaseFiles.entitiesKnowledgeBaseFilesDownloadV1(knowledgeBaseId, id);
 }
 
-/** Handles entitiesKnowledgeBaseFilesUpdateV1 */
+/**
+ * Handles the 'entitiesKnowledgeBaseFilesUpdateV1' operation.
+ */
 async function handleEntitiesKnowledgeBaseFilesUpdateV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update an existing file in a knowledge base. */
 	const id = getStringParam(c, i, 'id', '');
@@ -46,7 +54,9 @@ async function handleEntitiesKnowledgeBaseFilesUpdateV1(c: IExecuteFunctions, i:
 	return await fc.knowledgeBaseFiles.entitiesKnowledgeBaseFilesUpdateV1(id, fileBlob, fileDescription || undefined);
 }
 
-/** Handles entitiesKnowledgeBaseFilesV1 */
+/**
+ * Handles the 'entitiesKnowledgeBaseFilesV1' operation.
+ */
 async function handleEntitiesKnowledgeBaseFilesV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve knowledge base file entities for the provided id. */
 	const knowledgeBaseId = getStringParam(c, i, 'knowledgeBaseId', '');
@@ -55,7 +65,9 @@ async function handleEntitiesKnowledgeBaseFilesV1(c: IExecuteFunctions, i: numbe
 	return await fc.knowledgeBaseFiles.entitiesKnowledgeBaseFilesV1(knowledgeBaseId, ids, includeDeleted);
 }
 
-/** Handles queriesKnowledgeBaseFilesV1 */
+/**
+ * Handles the 'queriesKnowledgeBaseFilesV1' operation.
+ */
 async function handleQueriesKnowledgeBaseFilesV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Query knowledge base files based on the provided filters. */
 	const knowledgeBaseId = getStringParam(c, i, 'knowledgeBaseId', '');

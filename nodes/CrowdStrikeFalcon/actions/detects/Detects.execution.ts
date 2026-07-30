@@ -16,7 +16,9 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles getAggregateDetects */
+/**
+ * Handles the 'getAggregateDetects' operation.
+ */
 async function handleGetAggregateDetects(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets aggregate detects (deprecated). */
 	const body = parseJsonParam(c, i);
@@ -24,13 +26,17 @@ async function handleGetAggregateDetects(c: IExecuteFunctions, i: number, fc: Fa
 	return await fc.detects.getAggregateDetects(bodyArray);
 }
 
-/** Handles getDetectSummaries */
+/**
+ * Handles the 'getDetectSummaries' operation.
+ */
 async function handleGetDetectSummaries(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets detect summaries (deprecated). */
 	return await fc.detects.getDetectSummaries(parseJsonParam(c, i));
 }
 
-/** Handles queryDetects */
+/**
+ * Handles the 'queryDetects' operation.
+ */
 async function handleQueryDetects(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries detects (deprecated). */
 	const offset = c.getNodeParameter('offset', i, 0) as number;
@@ -41,7 +47,9 @@ async function handleQueryDetects(c: IExecuteFunctions, i: number, fc: FalconCli
 	return await fc.detects.queryDetects(offset || undefined, limit || undefined, sort || undefined, filter || undefined, q || undefined);
 }
 
-/** Handles updateDetectsByIdsV2 */
+/**
+ * Handles the 'updateDetectsByIdsV2' operation.
+ */
 async function handleUpdateDetectsByIdsV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates detects by IDs (deprecated). */
 	return await fc.detects.updateDetectsByIdsV2(parseJsonParam(c, i));

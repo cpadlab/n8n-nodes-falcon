@@ -11,7 +11,9 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles combinedApplications */
+/**
+ * Handles the 'combinedApplications' operation.
+ */
 async function handleCombinedApplications(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Searches combined applications. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -20,7 +22,9 @@ async function handleCombinedApplications(c: IExecuteFunctions, i: number, fc: F
 	return await fc.discover.combinedApplications(filter, undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles combinedHosts */
+/**
+ * Handles the 'combinedHosts' operation.
+ */
 async function handleCombinedHosts(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Searches combined hosts. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -29,31 +33,41 @@ async function handleCombinedHosts(c: IExecuteFunctions, i: number, fc: FalconCl
 	return await fc.discover.combinedHosts(filter, undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles getAccounts */
+/**
+ * Handles the 'getAccounts' operation.
+ */
 async function handleGetAccounts(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets account details by IDs. */
 	return await fc.discover.getAccounts(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getApplications */
+/**
+ * Handles the 'getApplications' operation.
+ */
 async function handleGetApplications(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets application details by IDs. */
 	return await fc.discover.getApplications(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getHosts */
+/**
+ * Handles the 'getHosts' operation.
+ */
 async function handleGetHosts(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets host details by IDs. */
 	return await fc.discover.getHosts(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getLogins */
+/**
+ * Handles the 'getLogins' operation.
+ */
 async function handleGetLogins(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets login details by IDs. */
 	return await fc.discover.getLogins(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles queryAccounts */
+/**
+ * Handles the 'queryAccounts' operation.
+ */
 async function handleQueryAccounts(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries account IDs. */
 	const offset = c.getNodeParameter('offset', i, 0) as number;
@@ -63,7 +77,9 @@ async function handleQueryAccounts(c: IExecuteFunctions, i: number, fc: FalconCl
 	return await fc.discover.queryAccounts(offset || undefined, limit || undefined, sort || undefined, filter || undefined);
 }
 
-/** Handles queryApplications */
+/**
+ * Handles the 'queryApplications' operation.
+ */
 async function handleQueryApplications(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries application IDs. */
 	const offset = c.getNodeParameter('offset', i, 0) as number;
@@ -73,7 +89,9 @@ async function handleQueryApplications(c: IExecuteFunctions, i: number, fc: Falc
 	return await fc.discover.queryApplications(offset || undefined, limit || undefined, sort || undefined, filter || undefined);
 }
 
-/** Handles queryHosts */
+/**
+ * Handles the 'queryHosts' operation.
+ */
 async function handleQueryHosts(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries host IDs. */
 	const offset = c.getNodeParameter('offset', i, 0) as number;
@@ -83,7 +101,9 @@ async function handleQueryHosts(c: IExecuteFunctions, i: number, fc: FalconClien
 	return await fc.discover.queryHosts(offset || undefined, limit || undefined, sort || undefined, filter || undefined);
 }
 
-/** Handles queryLogins */
+/**
+ * Handles the 'queryLogins' operation.
+ */
 async function handleQueryLogins(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries login IDs. */
 	const offset = c.getNodeParameter('offset', i, 0) as number;

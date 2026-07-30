@@ -11,13 +11,17 @@ function parseJsonParam(context: IExecuteFunctions, index: number, paramName = '
 	}
 }
 
-/** Handles cbExclusionsCreateV1 */
+/**
+ * Handles the 'cbExclusionsCreateV1' operation.
+ */
 async function handleCbExclusionsCreateV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates new Certificate Based Exclusions. */
 	return await fc.certificateBasedExclusions.cbExclusionsCreateV1(parseJsonParam(c, i));
 }
 
-/** Handles cbExclusionsDeleteV1 */
+/**
+ * Handles the 'cbExclusionsDeleteV1' operation.
+ */
 async function handleCbExclusionsDeleteV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes exclusions by ID. */
 	const idsString = c.getNodeParameter('ids', i, '') as string;
@@ -27,7 +31,9 @@ async function handleCbExclusionsDeleteV1(c: IExecuteFunctions, i: number, fc: F
 	return await fc.certificateBasedExclusions.cbExclusionsDeleteV1(ids, comment || undefined);
 }
 
-/** Handles cbExclusionsGetV1 */
+/**
+ * Handles the 'cbExclusionsGetV1' operation.
+ */
 async function handleCbExclusionsGetV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves exclusion details by ID. */
 	const idsString = c.getNodeParameter('ids', i, '') as string;
@@ -36,7 +42,9 @@ async function handleCbExclusionsGetV1(c: IExecuteFunctions, i: number, fc: Falc
 	return await fc.certificateBasedExclusions.cbExclusionsGetV1(ids);
 }
 
-/** Handles cbExclusionsQueryV1 */
+/**
+ * Handles the 'cbExclusionsQueryV1' operation.
+ */
 async function handleCbExclusionsQueryV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Searches for cert-based exclusions matching criteria. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -47,13 +55,17 @@ async function handleCbExclusionsQueryV1(c: IExecuteFunctions, i: number, fc: Fa
 	return await fc.certificateBasedExclusions.cbExclusionsQueryV1(filter || undefined, offset || undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles cbExclusionsUpdateV1 */
+/**
+ * Handles the 'cbExclusionsUpdateV1' operation.
+ */
 async function handleCbExclusionsUpdateV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates existing Certificate Based Exclusions. */
 	return await fc.certificateBasedExclusions.cbExclusionsUpdateV1(parseJsonParam(c, i));
 }
 
-/** Handles certificatesGetV1 */
+/**
+ * Handles the 'certificatesGetV1' operation.
+ */
 async function handleCertificatesGetV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves certificate signing information for a file ID. */
 	const ids = c.getNodeParameter('ids', i) as string;

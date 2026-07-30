@@ -21,21 +21,27 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles deleteReport */
+/**
+ * Handles the 'deleteReport' operation.
+ */
 async function handleDeleteReport(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes sandbox report by ID. */
 	const id = getStringParam(c, i, 'id', '');
 	return await fc.falconxSandbox.deleteReport(id);
 }
 
-/** Handles deleteSampleV2 */
+/**
+ * Handles the 'deleteSampleV2' operation.
+ */
 async function handleDeleteSampleV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes sandbox sample by ID. */
 	const id = getStringParam(c, i, 'id', '');
 	return await fc.falconxSandbox.deleteSampleV2(id);
 }
 
-/** Handles getArtifacts */
+/**
+ * Handles the 'getArtifacts' operation.
+ */
 async function handleGetArtifacts(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets analysis artifacts. */
 	const id = getStringParam(c, i, 'id', '');
@@ -43,7 +49,9 @@ async function handleGetArtifacts(c: IExecuteFunctions, i: number, fc: FalconCli
 	return await fc.falconxSandbox.getArtifacts(id, name || undefined);
 }
 
-/** Handles getMemoryDump */
+/**
+ * Handles the 'getMemoryDump' operation.
+ */
 async function handleGetMemoryDump(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets memory dump content. */
 	const id = getStringParam(c, i, 'id', '');
@@ -51,7 +59,9 @@ async function handleGetMemoryDump(c: IExecuteFunctions, i: number, fc: FalconCl
 	return await fc.falconxSandbox.getMemoryDump(id, name || undefined);
 }
 
-/** Handles getMemoryDumpExtractedStrings */
+/**
+ * Handles the 'getMemoryDumpExtractedStrings' operation.
+ */
 async function handleGetMemoryDumpExtractedStrings(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets extracted strings from memory dump. */
 	const id = getStringParam(c, i, 'id', '');
@@ -59,7 +69,9 @@ async function handleGetMemoryDumpExtractedStrings(c: IExecuteFunctions, i: numb
 	return await fc.falconxSandbox.getMemoryDumpExtractedStrings(id, name || undefined);
 }
 
-/** Handles getMemoryDumpHexDump */
+/**
+ * Handles the 'getMemoryDumpHexDump' operation.
+ */
 async function handleGetMemoryDumpHexDump(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets hex view of memory dump. */
 	const id = getStringParam(c, i, 'id', '');
@@ -67,13 +79,17 @@ async function handleGetMemoryDumpHexDump(c: IExecuteFunctions, i: number, fc: F
 	return await fc.falconxSandbox.getMemoryDumpHexDump(id, name || undefined);
 }
 
-/** Handles getReports */
+/**
+ * Handles the 'getReports' operation.
+ */
 async function handleGetReports(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets full sandbox reports by IDs. */
 	return await fc.falconxSandbox.getReports(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getSampleV2 */
+/**
+ * Handles the 'getSampleV2' operation.
+ */
 async function handleGetSampleV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets sample file by SHA256 ID. */
 	const id = getStringParam(c, i, 'id', '');
@@ -81,19 +97,25 @@ async function handleGetSampleV2(c: IExecuteFunctions, i: number, fc: FalconClie
 	return await fc.falconxSandbox.getSampleV2(id, passwordProtected);
 }
 
-/** Handles getSubmissions */
+/**
+ * Handles the 'getSubmissions' operation.
+ */
 async function handleGetSubmissions(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets status of sandbox analysis submissions. */
 	return await fc.falconxSandbox.getSubmissions(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getSummaryReports */
+/**
+ * Handles the 'getSummaryReports' operation.
+ */
 async function handleGetSummaryReports(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets summary sandbox reports by IDs. */
 	return await fc.falconxSandbox.getSummaryReports(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles queryReports */
+/**
+ * Handles the 'queryReports' operation.
+ */
 async function handleQueryReports(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries sandbox report IDs. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -103,13 +125,17 @@ async function handleQueryReports(c: IExecuteFunctions, i: number, fc: FalconCli
 	return await fc.falconxSandbox.queryReports(filter || undefined, offset || undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles querySampleV1 */
+/**
+ * Handles the 'querySampleV1' operation.
+ */
 async function handleQuerySampleV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries accessible sample SHA256s. */
 	return await fc.falconxSandbox.querySampleV1(parseJsonParam(c, i));
 }
 
-/** Handles querySubmissions */
+/**
+ * Handles the 'querySubmissions' operation.
+ */
 async function handleQuerySubmissions(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries submission IDs. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -119,7 +145,9 @@ async function handleQuerySubmissions(c: IExecuteFunctions, i: number, fc: Falco
 	return await fc.falconxSandbox.querySubmissions(filter || undefined, offset || undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles submit */
+/**
+ * Handles the 'submit' operation.
+ */
 async function handleSubmit(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Submits file/URL for sandbox analysis. */
 	const body = parseJsonParam(c, i);
@@ -127,7 +155,9 @@ async function handleSubmit(c: IExecuteFunctions, i: number, fc: FalconClient): 
 	return await fc.falconxSandbox.submit(body, aid || undefined);
 }
 
-/** Handles uploadSampleV2 */
+/**
+ * Handles the 'uploadSampleV2' operation.
+ */
 async function handleUploadSampleV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Uploads a sample file for sandbox analysis. */
 	const fileName = getStringParam(c, i, 'fileName', 'sample.bin');

@@ -16,19 +16,25 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles aggregateCases */
+/**
+ * Handles the 'aggregateCases' operation.
+ */
 async function handleAggregateCases(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve aggregate case values based on the matched filter. */
 	return await fc.messageCenter.aggregateCases(parseJsonParam(c, i));
 }
 
-/** Handles caseAddActivity */
+/**
+ * Handles the 'caseAddActivity' operation.
+ */
 async function handleCaseAddActivity(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Add an activity to case. */
 	return await fc.messageCenter.caseAddActivity(parseJsonParam(c, i));
 }
 
-/** Handles caseAddAttachment */
+/**
+ * Handles the 'caseAddAttachment' operation.
+ */
 async function handleCaseAddAttachment(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Upload an attachment for the case. */
 	const caseId = getStringParam(c, i, 'caseId', '');
@@ -37,32 +43,42 @@ async function handleCaseAddAttachment(c: IExecuteFunctions, i: number, fc: Falc
 	return await fc.messageCenter.caseAddAttachment(caseId, userUuid, bodyJson as any);
 }
 
-/** Handles caseDownloadAttachment */
+/**
+ * Handles the 'caseDownloadAttachment' operation.
+ */
 async function handleCaseDownloadAttachment(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* retrieves an attachment for the case, given the attachment id. */
 	const id = getStringParam(c, i, 'id', '');
 	return await fc.messageCenter.caseDownloadAttachment(id);
 }
 
-/** Handles createCaseV2 */
+/**
+ * Handles the 'createCaseV2' operation.
+ */
 async function handleCreateCaseV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* create a new case. */
 	return await fc.messageCenter.createCaseV2(parseJsonParam(c, i));
 }
 
-/** Handles getCaseActivityByIds */
+/**
+ * Handles the 'getCaseActivityByIds' operation.
+ */
 async function handleGetCaseActivityByIds(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve activities for given id's. */
 	return await fc.messageCenter.getCaseActivityByIds(parseJsonParam(c, i));
 }
 
-/** Handles getCaseEntitiesByIDs */
+/**
+ * Handles the 'getCaseEntitiesByIDs' operation.
+ */
 async function handleGetCaseEntitiesByIDs(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve message center cases. */
 	return await fc.messageCenter.getCaseEntitiesByIDs(parseJsonParam(c, i));
 }
 
-/** Handles queryActivityByCaseID */
+/**
+ * Handles the 'queryActivityByCaseID' operation.
+ */
 async function handleQueryActivityByCaseID(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve activities id's for a case. */
 	const caseId = getStringParam(c, i, 'caseId', '');
@@ -73,7 +89,9 @@ async function handleQueryActivityByCaseID(c: IExecuteFunctions, i: number, fc: 
 	return await fc.messageCenter.queryActivityByCaseID(caseId, limit || undefined, sort || undefined, filter || undefined, offset || undefined);
 }
 
-/** Handles queryCasesIdsByFilter */
+/**
+ * Handles the 'queryCasesIdsByFilter' operation.
+ */
 async function handleQueryCasesIdsByFilter(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve case id's that match the provided filter criteria. */
 	const limit = c.getNodeParameter('limit', i, 100) as number;

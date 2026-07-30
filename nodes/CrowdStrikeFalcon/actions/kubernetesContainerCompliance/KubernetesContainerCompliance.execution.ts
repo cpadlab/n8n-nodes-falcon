@@ -11,7 +11,9 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles aggregateAssessmentsGroupedByClustersV2 */
+/**
+ * Handles the 'aggregateAssessmentsGroupedByClustersV2' operation.
+ */
 async function handleAggregateAssessmentsGroupedByClustersV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Returns cluster details along with aggregated assessment results organized by cluster. */
 	const offset = c.getNodeParameter('offset', i, 0) as number;
@@ -20,7 +22,9 @@ async function handleAggregateAssessmentsGroupedByClustersV2(c: IExecuteFunction
 	return await fc.kubernetesContainerCompliance.aggregateAssessmentsGroupedByClustersV2(offset || undefined, limit || undefined, filter || undefined);
 }
 
-/** Handles aggregateAssessmentsGroupedByRulesV2 */
+/**
+ * Handles the 'aggregateAssessmentsGroupedByRulesV2' operation.
+ */
 async function handleAggregateAssessmentsGroupedByRulesV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Returns rule details along with aggregated assessment results organized by compliance rule. */
 	const offset = c.getNodeParameter('offset', i, 0) as number;
@@ -29,28 +33,36 @@ async function handleAggregateAssessmentsGroupedByRulesV2(c: IExecuteFunctions, 
 	return await fc.kubernetesContainerCompliance.aggregateAssessmentsGroupedByRulesV2(offset || undefined, limit || undefined, filter || undefined);
 }
 
-/** Handles aggregateComplianceByAssetType */
+/**
+ * Handles the 'aggregateComplianceByAssetType' operation.
+ */
 async function handleAggregateComplianceByAssetType(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Provides aggregated compliance assessment metrics organized by asset type. */
 	const filter = getStringParam(c, i, 'filter', '');
 	return await fc.kubernetesContainerCompliance.aggregateComplianceByAssetType(filter || undefined);
 }
 
-/** Handles aggregateComplianceByClusterType */
+/**
+ * Handles the 'aggregateComplianceByClusterType' operation.
+ */
 async function handleAggregateComplianceByClusterType(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Provides aggregated compliance assessment metrics organized by cluster type. */
 	const filter = getStringParam(c, i, 'filter', '');
 	return await fc.kubernetesContainerCompliance.aggregateComplianceByClusterType(filter || undefined);
 }
 
-/** Handles aggregateComplianceByFramework */
+/**
+ * Handles the 'aggregateComplianceByFramework' operation.
+ */
 async function handleAggregateComplianceByFramework(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Provides aggregated compliance assessment metrics organized by framework. */
 	const filter = getStringParam(c, i, 'filter', '');
 	return await fc.kubernetesContainerCompliance.aggregateComplianceByFramework(filter || undefined);
 }
 
-/** Handles aggregateFailedRulesByClustersV3 */
+/**
+ * Handles the 'aggregateFailedRulesByClustersV3' operation.
+ */
 async function handleAggregateFailedRulesByClustersV3(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves the most non-compliant clusters ranked by failed compliance rules. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -58,7 +70,9 @@ async function handleAggregateFailedRulesByClustersV3(c: IExecuteFunctions, i: n
 	return await fc.kubernetesContainerCompliance.aggregateFailedRulesByClustersV3(filter || undefined, limit || undefined);
 }
 
-/** Handles aggregateTopFailedImages */
+/**
+ * Handles the 'aggregateTopFailedImages' operation.
+ */
 async function handleAggregateTopFailedImages(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves the most non-compliant container images ranked by failed assessments. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -66,7 +80,9 @@ async function handleAggregateTopFailedImages(c: IExecuteFunctions, i: number, f
 	return await fc.kubernetesContainerCompliance.aggregateTopFailedImages(filter || undefined, limit || undefined);
 }
 
-/** Handles combinedImagesFindings */
+/**
+ * Handles the 'combinedImagesFindings' operation.
+ */
 async function handleCombinedImagesFindings(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Returns detailed compliance assessment results for container images. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -75,7 +91,9 @@ async function handleCombinedImagesFindings(c: IExecuteFunctions, i: number, fc:
 	return await fc.kubernetesContainerCompliance.combinedImagesFindings(filter || undefined, after || undefined, limit || undefined);
 }
 
-/** Handles combinedNodesFindings */
+/**
+ * Handles the 'combinedNodesFindings' operation.
+ */
 async function handleCombinedNodesFindings(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Returns detailed compliance assessment results for kubernetes nodes. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -84,7 +102,9 @@ async function handleCombinedNodesFindings(c: IExecuteFunctions, i: number, fc: 
 	return await fc.kubernetesContainerCompliance.combinedNodesFindings(filter || undefined, after || undefined, limit || undefined);
 }
 
-/** Handles getRulesMetadataByID */
+/**
+ * Handles the 'getRulesMetadataByID' operation.
+ */
 async function handleGetRulesMetadataByID(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve detailed compliance rule information by specifying rule identifiers. */
 	return await fc.kubernetesContainerCompliance.getRulesMetadataByID(parseArrayParam(c, i, 'ids'));

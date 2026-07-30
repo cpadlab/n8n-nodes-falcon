@@ -11,7 +11,9 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles devicesCount */
+/**
+ * Handles the 'devicesCount' operation.
+ */
 async function handleDevicesCount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Number of hosts in your customer account that have observed a given custom IOC. */
 	const type = getStringParam(c, i, 'type', '');
@@ -19,7 +21,9 @@ async function handleDevicesCount(c: IExecuteFunctions, i: number, fc: FalconCli
 	return await fc.iocs.devicesCount(type, value);
 }
 
-/** Handles devicesRanOn */
+/**
+ * Handles the 'devicesRanOn' operation.
+ */
 async function handleDevicesRanOn(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Find hosts that have observed a given custom IOC. */
 	const type = getStringParam(c, i, 'type', '');
@@ -29,13 +33,17 @@ async function handleDevicesRanOn(c: IExecuteFunctions, i: number, fc: FalconCli
 	return await fc.iocs.devicesRanOn(type, value, limit || undefined, offset || undefined);
 }
 
-/** Handles entitiesProcesses */
+/**
+ * Handles the 'entitiesProcesses' operation.
+ */
 async function handleEntitiesProcesses(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* For the provided ProcessID retrieve the process details. */
 	return await fc.iocs.entitiesProcesses(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles processesRanOn */
+/**
+ * Handles the 'processesRanOn' operation.
+ */
 async function handleProcessesRanOn(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Search for processes associated with a custom IOC. */
 	const type = getStringParam(c, i, 'type', '');

@@ -11,7 +11,9 @@ function parseJsonParam(context: IExecuteFunctions, index: number, paramName = '
 	}
 }
 
-/** Handles customerSettingsUpdate */
+/**
+ * Handles the 'customerSettingsUpdate' operation.
+ */
 async function handleCustomerSettingsUpdate(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update installation token settings. */
 	return await fc.installationTokensSettings.customerSettingsUpdate(parseJsonParam(c, i));

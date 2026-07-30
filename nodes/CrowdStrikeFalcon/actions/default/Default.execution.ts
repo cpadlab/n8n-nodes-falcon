@@ -21,7 +21,9 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles combinedQueryInstalledPatches */
+/**
+ * Handles the 'combinedQueryInstalledPatches' operation.
+ */
 async function handleCombinedQueryInstalledPatches(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves installed patches information. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -30,32 +32,42 @@ async function handleCombinedQueryInstalledPatches(c: IExecuteFunctions, i: numb
 	return await fc.default.combinedQueryInstalledPatches(undefined, limit || undefined, filter || undefined, sort || undefined);
 }
 
-/** Handles deleteCollectionsV1 */
+/**
+ * Handles the 'deleteCollectionsV1' operation.
+ */
 async function handleDeleteCollectionsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Cancels collections. */
 	const ids = parseArrayParam(c, i, 'ids');
 	return await fc.default.deleteCollectionsV1(ids.length ? ids : undefined);
 }
 
-/** Handles deleteConfigsV1 */
+/**
+ * Handles the 'deleteConfigsV1' operation.
+ */
 async function handleDeleteConfigsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retires a custom configuration. */
 	return await fc.default.deleteConfigsV1(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles falconCompleteDashboardsQueriesDetectsV1Get */
+/**
+ * Handles the 'falconCompleteDashboardsQueriesDetectsV1Get' operation.
+ */
 async function handleFalconCompleteDashboardsQueriesDetectsV1Get(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries detects for Falcon Complete dashboards. */
 	return await fc.default.falconCompleteDashboardsQueriesDetectsV1Get();
 }
 
-/** Handles falconCompleteDashboardsQueriesIncidentsV1Get */
+/**
+ * Handles the 'falconCompleteDashboardsQueriesIncidentsV1Get' operation.
+ */
 async function handleFalconCompleteDashboardsQueriesIncidentsV1Get(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries incidents for Falcon Complete dashboards. */
 	return await fc.default.falconCompleteDashboardsQueriesIncidentsV1Get();
 }
 
-/** Handles getCollectionCountsByV1 */
+/**
+ * Handles the 'getCollectionCountsByV1' operation.
+ */
 async function handleGetCollectionCountsByV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets collection counts by field names. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -65,7 +77,9 @@ async function handleGetCollectionCountsByV1(c: IExecuteFunctions, i: number, fc
 	return await fc.default.getCollectionCountsByV1(filter || undefined, limit || undefined, offset || undefined, sort || undefined);
 }
 
-/** Handles getCollectionsV1 */
+/**
+ * Handles the 'getCollectionsV1' operation.
+ */
 async function handleGetCollectionsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets collections with given IDs, platform, etc. */
 	const ids = parseArrayParam(c, i, 'ids');
@@ -73,7 +87,9 @@ async function handleGetCollectionsV1(c: IExecuteFunctions, i: number, fc: Falco
 	return await fc.default.getCollectionsV1(ids.length ? ids : undefined, undefined, undefined, undefined, undefined, sort || undefined);
 }
 
-/** Handles getCollectorsV1 */
+/**
+ * Handles the 'getCollectorsV1' operation.
+ */
 async function handleGetCollectorsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets collectors. */
 	const ids = parseArrayParam(c, i, 'ids');
@@ -81,7 +97,9 @@ async function handleGetCollectorsV1(c: IExecuteFunctions, i: number, fc: Falcon
 	return await fc.default.getCollectorsV1(ids.length ? ids : undefined, undefined, sort || undefined);
 }
 
-/** Handles getCombinedCollectionsV1 */
+/**
+ * Handles the 'getCombinedCollectionsV1' operation.
+ */
 async function handleGetCombinedCollectionsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets combined collections. */
 	const ids = parseArrayParam(c, i, 'ids');
@@ -92,7 +110,9 @@ async function handleGetCombinedCollectionsV1(c: IExecuteFunctions, i: number, f
 	return await fc.default.getCombinedCollectionsV1(ids.length ? ids : undefined, filter || undefined, limit || undefined, offset || undefined, sort || undefined);
 }
 
-/** Handles getCombinedCollectorsV1 */
+/**
+ * Handles the 'getCombinedCollectorsV1' operation.
+ */
 async function handleGetCombinedCollectorsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets combined collectors. */
 	const ids = parseArrayParam(c, i, 'ids');
@@ -103,7 +123,9 @@ async function handleGetCombinedCollectorsV1(c: IExecuteFunctions, i: number, fc
 	return await fc.default.getCombinedCollectorsV1(ids.length ? ids : undefined, filter || undefined, limit || undefined, offset || undefined, sort || undefined);
 }
 
-/** Handles getCombinedConfigsV1 */
+/**
+ * Handles the 'getCombinedConfigsV1' operation.
+ */
 async function handleGetCombinedConfigsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets combined configurations. */
 	const ids = parseArrayParam(c, i, 'ids');
@@ -114,7 +136,9 @@ async function handleGetCombinedConfigsV1(c: IExecuteFunctions, i: number, fc: F
 	return await fc.default.getCombinedConfigsV1(ids.length ? ids : undefined, filter || undefined, limit || undefined, offset || undefined, sort || undefined);
 }
 
-/** Handles getCombinedTemplatesV1 */
+/**
+ * Handles the 'getCombinedTemplatesV1' operation.
+ */
 async function handleGetCombinedTemplatesV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets combined templates. */
 	const ids = parseArrayParam(c, i, 'ids');
@@ -125,62 +149,82 @@ async function handleGetCombinedTemplatesV1(c: IExecuteFunctions, i: number, fc:
 	return await fc.default.getCombinedTemplatesV1(ids.length ? ids : undefined, filter || undefined, limit || undefined, offset || undefined, sort || undefined);
 }
 
-/** Handles getConfigDownloadV1 */
+/**
+ * Handles the 'getConfigDownloadV1' operation.
+ */
 async function handleGetConfigDownloadV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Downloads configuration file. */
 	const id = getStringParam(c, i, 'idSingle', '');
 	return await fc.default.getConfigDownloadV1(id);
 }
 
-/** Handles getConfigsV1 */
+/**
+ * Handles the 'getConfigsV1' operation.
+ */
 async function handleGetConfigsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets configurations by IDs. */
 	return await fc.default.getConfigsV1(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getTemplatesV1 */
+/**
+ * Handles the 'getTemplatesV1' operation.
+ */
 async function handleGetTemplatesV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets templates by IDs. */
 	return await fc.default.getTemplatesV1(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles postCollectionsV1 */
+/**
+ * Handles the 'postCollectionsV1' operation.
+ */
 async function handlePostCollectionsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates collections. */
 	return await fc.default.postCollectionsV1(parseJsonParam(c, i));
 }
 
-/** Handles postCollectorsV1 */
+/**
+ * Handles the 'postCollectorsV1' operation.
+ */
 async function handlePostCollectorsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Shutdowns collectors. */
 	return await fc.default.postCollectorsV1(parseJsonParam(c, i));
 }
 
-/** Handles postConfigsV1 */
+/**
+ * Handles the 'postConfigsV1' operation.
+ */
 async function handlePostConfigsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates a custom configuration. */
 	return await fc.default.postConfigsV1(parseJsonParam(c, i));
 }
 
-/** Handles postDeployV1 */
+/**
+ * Handles the 'postDeployV1' operation.
+ */
 async function handlePostDeployV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deploys collector to managed endpoints. */
 	return await fc.default.postDeployV1(parseJsonParam(c, i));
 }
 
-/** Handles putCollectionsV1 */
+/**
+ * Handles the 'putCollectionsV1' operation.
+ */
 async function handlePutCollectionsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates collections. */
 	return await fc.default.putCollectionsV1(parseJsonParam(c, i));
 }
 
-/** Handles putConfigsV1 */
+/**
+ * Handles the 'putConfigsV1' operation.
+ */
 async function handlePutConfigsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Replaces custom configuration. */
 	return await fc.default.putConfigsV1(parseJsonParam(c, i));
 }
 
-/** Handles searchCollectionsV1 */
+/**
+ * Handles the 'searchCollectionsV1' operation.
+ */
 async function handleSearchCollectionsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Searches collections. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -190,7 +234,9 @@ async function handleSearchCollectionsV1(c: IExecuteFunctions, i: number, fc: Fa
 	return await fc.default.searchCollectionsV1(undefined, undefined, undefined, undefined, filter || undefined, limit || undefined, offset || undefined, sort || undefined);
 }
 
-/** Handles searchCollectorsV1 */
+/**
+ * Handles the 'searchCollectorsV1' operation.
+ */
 async function handleSearchCollectorsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Searches collectors. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -200,7 +246,9 @@ async function handleSearchCollectorsV1(c: IExecuteFunctions, i: number, fc: Fal
 	return await fc.default.searchCollectorsV1(undefined, filter || undefined, limit || undefined, offset || undefined, sort || undefined);
 }
 
-/** Handles searchConfigsV1 */
+/**
+ * Handles the 'searchConfigsV1' operation.
+ */
 async function handleSearchConfigsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Searches configurations. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -210,7 +258,9 @@ async function handleSearchConfigsV1(c: IExecuteFunctions, i: number, fc: Falcon
 	return await fc.default.searchConfigsV1(filter || undefined, limit || undefined, offset || undefined, sort || undefined);
 }
 
-/** Handles searchTemplatesV1 */
+/**
+ * Handles the 'searchTemplatesV1' operation.
+ */
 async function handleSearchTemplatesV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Searches templates. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -220,25 +270,33 @@ async function handleSearchTemplatesV1(c: IExecuteFunctions, i: number, fc: Falc
 	return await fc.default.searchTemplatesV1(filter || undefined, limit || undefined, offset || undefined, sort || undefined);
 }
 
-/** Handles v1HostConfigsPost */
+/**
+ * Handles the 'v1HostConfigsPost' operation.
+ */
 async function handleV1HostConfigsPost(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Configures hosts in host group. */
 	return await fc.default.v1HostConfigsPost(parseJsonParam(c, i));
 }
 
-/** Handles v1StatusGet */
+/**
+ * Handles the 'v1StatusGet' operation.
+ */
 async function handleV1StatusGet(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets host configs within host group. */
 	return await fc.default.v1StatusGet(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles validateCollectionV1 */
+/**
+ * Handles the 'validateCollectionV1' operation.
+ */
 async function handleValidateCollectionV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Validates configuration collection. */
 	return await fc.default.validateCollectionV1(parseJsonParam(c, i));
 }
 
-/** Handles validateConfigV1 */
+/**
+ * Handles the 'validateConfigV1' operation.
+ */
 async function handleValidateConfigV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Validates custom configuration. */
 	return await fc.default.validateConfigV1(parseJsonParam(c, i));

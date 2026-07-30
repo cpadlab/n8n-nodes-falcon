@@ -11,66 +11,86 @@ function parseJsonParam(context: IExecuteFunctions, index: number, paramName = '
 	}
 }
 
-/** Handles createExecutorNode */
+/**
+ * Handles the 'createExecutorNode' operation.
+ */
 async function handleCreateExecutorNode(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates a new relay node using body JSON payload. */
 	return await fc.aspm.createExecutorNode(parseJsonParam(c, i));
 }
 
-/** Handles createIntegration */
+/**
+ * Handles the 'createIntegration' operation.
+ */
 async function handleCreateIntegration(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates a new ASPM integration. */
 	return await fc.aspm.createIntegration(parseJsonParam(c, i));
 }
 
-/** Handles createIntegrationTask */
+/**
+ * Handles the 'createIntegrationTask' operation.
+ */
 async function handleCreateIntegrationTask(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates a new integration task. */
 	return await fc.aspm.createIntegrationTask(parseJsonParam(c, i));
 }
 
-/** Handles deleteExecutorNode */
+/**
+ * Handles the 'deleteExecutorNode' operation.
+ */
 async function handleDeleteExecutorNode(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes a relay node by ID. */
 	const iD = c.getNodeParameter('iD', i) as number;
 	return await fc.aspm.deleteExecutorNode(iD);
 }
 
-/** Handles deleteGroupID09 */
+/**
+ * Handles the 'deleteGroupID09' operation.
+ */
 async function handleDeleteGroupID09(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes group by ID. */
 	const iD = c.getNodeParameter('iD', i) as number;
 	return await fc.aspm.deleteGroupID09(iD);
 }
 
-/** Handles deleteIntegration */
+/**
+ * Handles the 'deleteIntegration' operation.
+ */
 async function handleDeleteIntegration(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes an existing integration by ID. */
 	const iD = c.getNodeParameter('iD', i) as number;
 	return await fc.aspm.deleteIntegration(iD);
 }
 
-/** Handles deleteIntegrationTask */
+/**
+ * Handles the 'deleteIntegrationTask' operation.
+ */
 async function handleDeleteIntegrationTask(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes an existing integration task by ID. */
 	const iD = c.getNodeParameter('iD', i) as number;
 	return await fc.aspm.deleteIntegrationTask(iD);
 }
 
-/** Handles deleteTags */
+/**
+ * Handles the 'deleteTags' operation.
+ */
 async function handleDeleteTags(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Removes existing tags. */
 	return await fc.aspm.deleteTags(parseJsonParam(c, i));
 }
 
-/** Handles executeFunctionData */
+/**
+ * Handles the 'executeFunctionData' operation.
+ */
 async function handleExecuteFunctionData(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Executes function data query in MSA format. */
 	const field = c.getNodeParameter('field', i) as string;
 	return await fc.aspm.executeFunctionData(field);
 }
 
-/** Handles executeFunctionDataCount */
+/**
+ * Handles the 'executeFunctionDataCount' operation.
+ */
 async function handleExecuteFunctionDataCount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Executes function data count query. */
 	const body = parseJsonParam(c, i);
@@ -85,28 +105,36 @@ async function handleExecuteFunctionDataCount(c: IExecuteFunctions, i: number, f
 	);
 }
 
-/** Handles executeFunctionDataQuery */
+/**
+ * Handles the 'executeFunctionDataQuery' operation.
+ */
 async function handleExecuteFunctionDataQuery(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Executes function data query language. */
 	const field = c.getNodeParameter('field', i) as string;
 	return await fc.aspm.executeFunctionDataQuery(field);
 }
 
-/** Handles executeFunctionDataQueryCount */
+/**
+ * Handles the 'executeFunctionDataQueryCount' operation.
+ */
 async function handleExecuteFunctionDataQueryCount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Executes function data count query. */
 	const field = c.getNodeParameter('field', i) as string;
 	return await fc.aspm.executeFunctionDataQueryCount(field);
 }
 
-/** Handles executeFunctions */
+/**
+ * Handles the 'executeFunctions' operation.
+ */
 async function handleExecuteFunctions(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Executes functions services query. */
 	const field = c.getNodeParameter('field', i) as string;
 	return await fc.aspm.executeFunctions(field);
 }
 
-/** Handles executeFunctionsCount */
+/**
+ * Handles the 'executeFunctionsCount' operation.
+ */
 async function handleExecuteFunctionsCount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Executes functions count query. */
 	const body = parseJsonParam(c, i);
@@ -119,47 +147,61 @@ async function handleExecuteFunctionsCount(c: IExecuteFunctions, i: number, fc: 
 	);
 }
 
-/** Handles executeFunctionsOvertime */
+/**
+ * Handles the 'executeFunctionsOvertime' operation.
+ */
 async function handleExecuteFunctionsOvertime(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Executes functions overtime query. */
 	const field = c.getNodeParameter('field', i) as string;
 	return await fc.aspm.executeFunctionsOvertime(field);
 }
 
-/** Handles executeFunctionsQuery */
+/**
+ * Handles the 'executeFunctionsQuery' operation.
+ */
 async function handleExecuteFunctionsQuery(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Executes functions services query. */
 	const field = c.getNodeParameter('field', i) as string;
 	return await fc.aspm.executeFunctionsQuery(field);
 }
 
-/** Handles executeFunctionsQueryCount */
+/**
+ * Handles the 'executeFunctionsQueryCount' operation.
+ */
 async function handleExecuteFunctionsQueryCount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Executes functions query count. */
 	const field = c.getNodeParameter('field', i) as string;
 	return await fc.aspm.executeFunctionsQueryCount(field);
 }
 
-/** Handles executeFunctionsQueryOvertime */
+/**
+ * Handles the 'executeFunctionsQueryOvertime' operation.
+ */
 async function handleExecuteFunctionsQueryOvertime(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Executes functions query overtime. */
 	const field = c.getNodeParameter('field', i) as string;
 	return await fc.aspm.executeFunctionsQueryOvertime(field);
 }
 
-/** Handles executeQuery */
+/**
+ * Handles the 'executeQuery' operation.
+ */
 async function handleExecuteQuery(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Executes query matching query page syntax. */
 	return await fc.aspm.executeQuery(parseJsonParam(c, i));
 }
 
-/** Handles getCloudSecurityIntegrationState */
+/**
+ * Handles the 'getCloudSecurityIntegrationState' operation.
+ */
 async function handleGetCloudSecurityIntegrationState(_c: IExecuteFunctions, _i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves Cloud Security integration state. */
 	return await fc.aspm.getCloudSecurityIntegrationState();
 }
 
-/** Handles getExecutorNodes */
+/**
+ * Handles the 'getExecutorNodes' operation.
+ */
 async function handleGetExecutorNodes(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves all relay nodes. */
 	const nodeType = c.getNodeParameter('nodeType', i) as string;
@@ -168,39 +210,51 @@ async function handleGetExecutorNodes(c: IExecuteFunctions, i: number, fc: Falco
 	return await fc.aspm.getExecutorNodes(nodeType, undefined, offset || undefined, limit || undefined);
 }
 
-/** Handles getExecutorNodesID09InstancesCsv */
+/**
+ * Handles the 'getExecutorNodesID09InstancesCsv' operation.
+ */
 async function handleGetExecutorNodesID09InstancesCsv(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves relay instances in CSV format. */
 	const iD = c.getNodeParameter('iD', i) as number;
 	return await fc.aspm.getExecutorNodesID09InstancesCsv(iD, parseJsonParam(c, i));
 }
 
-/** Handles getExecutorNodesMetadata */
+/**
+ * Handles the 'getExecutorNodesMetadata' operation.
+ */
 async function handleGetExecutorNodesMetadata(_c: IExecuteFunctions, _i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves metadata about all executor nodes. */
 	return await fc.aspm.getExecutorNodesMetadata();
 }
 
-/** Handles getGroupID09V2 */
+/**
+ * Handles the 'getGroupID09V2' operation.
+ */
 async function handleGetGroupID09V2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves group details by ID. */
 	const iD = c.getNodeParameter('iD', i) as number;
 	return await fc.aspm.getGroupID09V2(iD);
 }
 
-/** Handles getGroupsHierV2 */
+/**
+ * Handles the 'getGroupsHierV2' operation.
+ */
 async function handleGetGroupsHierV2(_c: IExecuteFunctions, _i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves group hierarchy V2. */
 	return await fc.aspm.getGroupsHierV2();
 }
 
-/** Handles getGroupsListV2 */
+/**
+ * Handles the 'getGroupsListV2' operation.
+ */
 async function handleGetGroupsListV2(_c: IExecuteFunctions, _i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves group list V2. */
 	return await fc.aspm.getGroupsListV2();
 }
 
-/** Handles getIntegrationTasks */
+/**
+ * Handles the 'getIntegrationTasks' operation.
+ */
 async function handleGetIntegrationTasks(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves integration tasks. */
 	const category = c.getNodeParameter('category', i, '') as string;
@@ -209,7 +263,9 @@ async function handleGetIntegrationTasks(c: IExecuteFunctions, i: number, fc: Fa
 	return await fc.aspm.getIntegrationTasks(undefined, category || undefined, offset || undefined, limit || undefined);
 }
 
-/** Handles getIntegrationTasksAdmin */
+/**
+ * Handles the 'getIntegrationTasksAdmin' operation.
+ */
 async function handleGetIntegrationTasksAdmin(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves integration tasks with admin scope. */
 	const category = c.getNodeParameter('category', i, '') as string;
@@ -218,13 +274,17 @@ async function handleGetIntegrationTasksAdmin(c: IExecuteFunctions, i: number, f
 	return await fc.aspm.getIntegrationTasksAdmin(undefined, category || undefined, offset || undefined, limit || undefined);
 }
 
-/** Handles getIntegrationTasksMetadata */
+/**
+ * Handles the 'getIntegrationTasksMetadata' operation.
+ */
 async function handleGetIntegrationTasksMetadata(_c: IExecuteFunctions, _i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves integration tasks metadata. */
 	return await fc.aspm.getIntegrationTasksMetadata();
 }
 
-/** Handles getIntegrationTasksV2 */
+/**
+ * Handles the 'getIntegrationTasksV2' operation.
+ */
 async function handleGetIntegrationTasksV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves integration tasks V2. */
 	const category = c.getNodeParameter('category', i, '') as string;
@@ -233,27 +293,35 @@ async function handleGetIntegrationTasksV2(c: IExecuteFunctions, i: number, fc: 
 	return await fc.aspm.getIntegrationTasksV2(undefined, category || undefined, offset || undefined, limit || undefined);
 }
 
-/** Handles getIntegrationTypes */
+/**
+ * Handles the 'getIntegrationTypes' operation.
+ */
 async function handleGetIntegrationTypes(_c: IExecuteFunctions, _i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves integration types. */
 	return await fc.aspm.getIntegrationTypes();
 }
 
-/** Handles getIntegrations */
+/**
+ * Handles the 'getIntegrations' operation.
+ */
 async function handleGetIntegrations(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves integrations. */
 	const category = c.getNodeParameter('category', i, '') as string;
 	return await fc.aspm.getIntegrations(undefined, category || undefined);
 }
 
-/** Handles getIntegrationsV2 */
+/**
+ * Handles the 'getIntegrationsV2' operation.
+ */
 async function handleGetIntegrationsV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves integrations V2. */
 	const category = c.getNodeParameter('category', i, '') as string;
 	return await fc.aspm.getIntegrationsV2(undefined, category || undefined);
 }
 
-/** Handles getServiceArtifacts */
+/**
+ * Handles the 'getServiceArtifacts' operation.
+ */
 async function handleGetServiceArtifacts(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves service artifacts. */
 	const persistentSignature = c.getNodeParameter('persistentSignature', i) as string;
@@ -262,19 +330,25 @@ async function handleGetServiceArtifacts(c: IExecuteFunctions, i: number, fc: Fa
 	return await fc.aspm.getServiceArtifacts(persistentSignature, undefined, undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles getServiceViolationTypes */
+/**
+ * Handles the 'getServiceViolationTypes' operation.
+ */
 async function handleGetServiceViolationTypes(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves service violation types. */
 	return await fc.aspm.getServiceViolationTypes(parseJsonParam(c, i));
 }
 
-/** Handles getServicesCount */
+/**
+ * Handles the 'getServicesCount' operation.
+ */
 async function handleGetServicesCount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves total count of services. */
 	return await fc.aspm.getServicesCount(parseJsonParam(c, i));
 }
 
-/** Handles getTags */
+/**
+ * Handles the 'getTags' operation.
+ */
 async function handleGetTags(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves all tags. */
 	const limit = c.getNodeParameter('limit', i, 100) as number;
@@ -282,33 +356,43 @@ async function handleGetTags(c: IExecuteFunctions, i: number, fc: FalconClient):
 	return await fc.aspm.getTags(undefined, undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles getUsersV2 */
+/**
+ * Handles the 'getUsersV2' operation.
+ */
 async function handleGetUsersV2(_c: IExecuteFunctions, _i: number, fc: FalconClient): Promise<any> {
 	/* Lists users V2. */
 	return await fc.aspm.getUsersV2();
 }
 
-/** Handles postGroupID09UpdateDefault */
+/**
+ * Handles the 'postGroupID09UpdateDefault' operation.
+ */
 async function handlePostGroupID09UpdateDefault(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates default group. */
 	const iD = c.getNodeParameter('iD', i) as number;
 	return await fc.aspm.postGroupID09UpdateDefault(iD);
 }
 
-/** Handles postGroupID09V2 */
+/**
+ * Handles the 'postGroupID09V2' operation.
+ */
 async function handlePostGroupID09V2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates group V2. */
 	const iD = c.getNodeParameter('iD', i) as number;
 	return await fc.aspm.postGroupID09V2(iD, parseJsonParam(c, i));
 }
 
-/** Handles postGroupV2 */
+/**
+ * Handles the 'postGroupV2' operation.
+ */
 async function handlePostGroupV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates group V2. */
 	return await fc.aspm.postGroupV2(parseJsonParam(c, i));
 }
 
-/** Handles runIntegrationTask */
+/**
+ * Handles the 'runIntegrationTask' operation.
+ */
 async function handleRunIntegrationTask(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Runs integration task by ID. */
 	const iD = c.getNodeParameter('iD', i) as number;
@@ -316,7 +400,9 @@ async function handleRunIntegrationTask(c: IExecuteFunctions, i: number, fc: Fal
 	return await fc.aspm.runIntegrationTask(iD, parseJsonParam(c, i), category || undefined);
 }
 
-/** Handles runIntegrationTaskAdmin */
+/**
+ * Handles the 'runIntegrationTaskAdmin' operation.
+ */
 async function handleRunIntegrationTaskAdmin(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Runs integration task by ID (admin scope). */
 	const iD = c.getNodeParameter('iD', i) as number;
@@ -324,7 +410,9 @@ async function handleRunIntegrationTaskAdmin(c: IExecuteFunctions, i: number, fc
 	return await fc.aspm.runIntegrationTaskAdmin(iD, parseJsonParam(c, i), category || undefined);
 }
 
-/** Handles runIntegrationTaskV2 */
+/**
+ * Handles the 'runIntegrationTaskV2' operation.
+ */
 async function handleRunIntegrationTaskV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Runs integration task by ID V2. */
 	const iD = c.getNodeParameter('iD', i) as number;
@@ -332,7 +420,9 @@ async function handleRunIntegrationTaskV2(c: IExecuteFunctions, i: number, fc: F
 	return await fc.aspm.runIntegrationTaskV2(iD, parseJsonParam(c, i), category || undefined);
 }
 
-/** Handles serviceNowGetDeployments */
+/**
+ * Handles the 'serviceNowGetDeployments' operation.
+ */
 async function handleServiceNowGetDeployments(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves ServiceNow deployments. */
 	const limit = c.getNodeParameter('limit', i, 100) as number;
@@ -340,7 +430,9 @@ async function handleServiceNowGetDeployments(c: IExecuteFunctions, i: number, f
 	return await fc.aspm.serviceNowGetDeployments(undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles serviceNowGetServices */
+/**
+ * Handles the 'serviceNowGetServices' operation.
+ */
 async function handleServiceNowGetServices(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves ServiceNow services. */
 	const limit = c.getNodeParameter('limit', i, 100) as number;
@@ -348,39 +440,51 @@ async function handleServiceNowGetServices(c: IExecuteFunctions, i: number, fc: 
 	return await fc.aspm.serviceNowGetServices(undefined, undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles setCloudSecurityIntegrationState */
+/**
+ * Handles the 'setCloudSecurityIntegrationState' operation.
+ */
 async function handleSetCloudSecurityIntegrationState(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Sets Cloud Security integration state. */
 	return await fc.aspm.setCloudSecurityIntegrationState(parseJsonParam(c, i));
 }
 
-/** Handles updateExecutorNode */
+/**
+ * Handles the 'updateExecutorNode' operation.
+ */
 async function handleUpdateExecutorNode(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates relay node. */
 	return await fc.aspm.updateExecutorNode(parseJsonParam(c, i));
 }
 
-/** Handles updateIntegration */
+/**
+ * Handles the 'updateIntegration' operation.
+ */
 async function handleUpdateIntegration(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates integration by ID. */
 	const iD = c.getNodeParameter('iD', i) as number;
 	return await fc.aspm.updateIntegration(iD, parseJsonParam(c, i));
 }
 
-/** Handles updateIntegrationTask */
+/**
+ * Handles the 'updateIntegrationTask' operation.
+ */
 async function handleUpdateIntegrationTask(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates integration task by ID. */
 	const iD = c.getNodeParameter('iD', i) as number;
 	return await fc.aspm.updateIntegrationTask(iD, parseJsonParam(c, i));
 }
 
-/** Handles upsertBusinessApplications */
+/**
+ * Handles the 'upsertBusinessApplications' operation.
+ */
 async function handleUpsertBusinessApplications(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates or updates business applications. */
 	return await fc.aspm.upsertBusinessApplications(parseJsonParam(c, i));
 }
 
-/** Handles upsertTags */
+/**
+ * Handles the 'upsertTags' operation.
+ */
 async function handleUpsertTags(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates or updates tags. */
 	return await fc.aspm.upsertTags(parseJsonParam(c, i));

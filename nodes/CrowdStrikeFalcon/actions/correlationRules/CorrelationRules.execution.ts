@@ -16,7 +16,9 @@ function parseArrayParam(context: IExecuteFunctions, index: number, paramName = 
 	return str.split(',').map((id) => id.trim()).filter(Boolean);
 }
 
-/** Handles aggregatesRuleVersionsPostV1 */
+/**
+ * Handles the 'aggregatesRuleVersionsPostV1' operation.
+ */
 async function handleAggregatesRuleVersionsPostV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets rules aggregates via json. */
 	const ids = parseArrayParam(c, i, 'ids');
@@ -26,7 +28,9 @@ async function handleAggregatesRuleVersionsPostV1(c: IExecuteFunctions, i: numbe
 	return await fc.correlationRules.aggregatesRuleVersionsPostV1(ids, bodyArray, filter || undefined);
 }
 
-/** Handles combinedRulesGetV1 */
+/**
+ * Handles the 'combinedRulesGetV1' operation.
+ */
 async function handleCombinedRulesGetV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Finds all rules matching query and filter. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -37,7 +41,9 @@ async function handleCombinedRulesGetV1(c: IExecuteFunctions, i: number, fc: Fal
 	return await fc.correlationRules.combinedRulesGetV1(filter || undefined, q || undefined, sort || undefined, offset || undefined, limit || undefined);
 }
 
-/** Handles combinedRulesGetV2 */
+/**
+ * Handles the 'combinedRulesGetV2' operation.
+ */
 async function handleCombinedRulesGetV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Finds all rules matching query and filter V2. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -48,56 +54,74 @@ async function handleCombinedRulesGetV2(c: IExecuteFunctions, i: number, fc: Fal
 	return await fc.correlationRules.combinedRulesGetV2(filter || undefined, q || undefined, sort || undefined, offset || undefined, limit || undefined);
 }
 
-/** Handles entitiesLatestRulesGetV1 */
+/**
+ * Handles the 'entitiesLatestRulesGetV1' operation.
+ */
 async function handleEntitiesLatestRulesGetV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves latest rule versions by rule IDs. */
 	const ruleIds = parseArrayParam(c, i, 'ruleIds');
 	return await fc.correlationRules.entitiesLatestRulesGetV1(ruleIds);
 }
 
-/** Handles entitiesRuleVersionsDeleteV1 */
+/**
+ * Handles the 'entitiesRuleVersionsDeleteV1' operation.
+ */
 async function handleEntitiesRuleVersionsDeleteV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes versions by IDs. */
 	return await fc.correlationRules.entitiesRuleVersionsDeleteV1(parseArrayParam(c, i));
 }
 
-/** Handles entitiesRuleVersionsExportPostV1 */
+/**
+ * Handles the 'entitiesRuleVersionsExportPostV1' operation.
+ */
 async function handleEntitiesRuleVersionsExportPostV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Exports rule versions. */
 	return await fc.correlationRules.entitiesRuleVersionsExportPostV1(parseJsonParam(c, i));
 }
 
-/** Handles entitiesRuleVersionsImportPostV1 */
+/**
+ * Handles the 'entitiesRuleVersionsImportPostV1' operation.
+ */
 async function handleEntitiesRuleVersionsImportPostV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Imports rule versions. */
 	return await fc.correlationRules.entitiesRuleVersionsImportPostV1();
 }
 
-/** Handles entitiesRuleVersionsPublishPatchV1 */
+/**
+ * Handles the 'entitiesRuleVersionsPublishPatchV1' operation.
+ */
 async function handleEntitiesRuleVersionsPublishPatchV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Publishes existing rule version. */
 	return await fc.correlationRules.entitiesRuleVersionsPublishPatchV1(parseJsonParam(c, i));
 }
 
-/** Handles entitiesRulesDeleteV1 */
+/**
+ * Handles the 'entitiesRulesDeleteV1' operation.
+ */
 async function handleEntitiesRulesDeleteV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes rules by IDs. */
 	return await fc.correlationRules.entitiesRulesDeleteV1(parseArrayParam(c, i));
 }
 
-/** Handles entitiesRulesGetV1 */
+/**
+ * Handles the 'entitiesRulesGetV1' operation.
+ */
 async function handleEntitiesRulesGetV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves rules by IDs. */
 	return await fc.correlationRules.entitiesRulesGetV1(parseArrayParam(c, i));
 }
 
-/** Handles entitiesRulesGetV2 */
+/**
+ * Handles the 'entitiesRulesGetV2' operation.
+ */
 async function handleEntitiesRulesGetV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves rule versions by IDs. */
 	return await fc.correlationRules.entitiesRulesGetV2(parseArrayParam(c, i));
 }
 
-/** Handles entitiesRulesPatchV1 */
+/**
+ * Handles the 'entitiesRulesPatchV1' operation.
+ */
 async function handleEntitiesRulesPatchV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates rules. */
 	const body = parseJsonParam(c, i);
@@ -105,19 +129,25 @@ async function handleEntitiesRulesPatchV1(c: IExecuteFunctions, i: number, fc: F
 	return await fc.correlationRules.entitiesRulesPatchV1(bodyArray);
 }
 
-/** Handles entitiesRulesPostV1 */
+/**
+ * Handles the 'entitiesRulesPostV1' operation.
+ */
 async function handleEntitiesRulesPostV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates rule. */
 	return await fc.correlationRules.entitiesRulesPostV1(parseJsonParam(c, i));
 }
 
-/** Handles entitiesTemplatesGetV1Mixin0 */
+/**
+ * Handles the 'entitiesTemplatesGetV1Mixin0' operation.
+ */
 async function handleEntitiesTemplatesGetV1Mixin0(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves rule templates by IDs. */
 	return await fc.correlationRules.entitiesTemplatesGetV1Mixin0(parseArrayParam(c, i));
 }
 
-/** Handles entitiesTemplatesRulesPostV1 */
+/**
+ * Handles the 'entitiesTemplatesRulesPostV1' operation.
+ */
 async function handleEntitiesTemplatesRulesPostV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates rule from template. */
 	const body = parseJsonParam(c, i);
@@ -125,7 +155,9 @@ async function handleEntitiesTemplatesRulesPostV1(c: IExecuteFunctions, i: numbe
 	return await fc.correlationRules.entitiesTemplatesRulesPostV1(bodyArray);
 }
 
-/** Handles queriesRulesGetV1 */
+/**
+ * Handles the 'queriesRulesGetV1' operation.
+ */
 async function handleQueriesRulesGetV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Finds all rule IDs matching query and filter. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -136,7 +168,9 @@ async function handleQueriesRulesGetV1(c: IExecuteFunctions, i: number, fc: Falc
 	return await fc.correlationRules.queriesRulesGetV1(filter || undefined, q || undefined, sort || undefined, offset || undefined, limit || undefined);
 }
 
-/** Handles queriesRulesGetV2 */
+/**
+ * Handles the 'queriesRulesGetV2' operation.
+ */
 async function handleQueriesRulesGetV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Finds all rule version IDs matching query and filter. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -147,7 +181,9 @@ async function handleQueriesRulesGetV2(c: IExecuteFunctions, i: number, fc: Falc
 	return await fc.correlationRules.queriesRulesGetV2(filter || undefined, q || undefined, sort || undefined, offset || undefined, limit || undefined);
 }
 
-/** Handles queriesTemplatesGetV1Mixin0 */
+/**
+ * Handles the 'queriesTemplatesGetV1Mixin0' operation.
+ */
 async function handleQueriesTemplatesGetV1Mixin0(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Searches rule template IDs matching filter. */
 	const filter = c.getNodeParameter('filter', i, '') as string;

@@ -21,19 +21,25 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles deleteThirdPartyPasskeyRegistry */
+/**
+ * Handles the 'deleteThirdPartyPasskeyRegistry' operation.
+ */
 async function handleDeleteThirdPartyPasskeyRegistry(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes third party passkey registries by IDs. */
 	return await fc.falconId.deleteThirdPartyPasskeyRegistry(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getThirdPartyPasskeyRegistry */
+/**
+ * Handles the 'getThirdPartyPasskeyRegistry' operation.
+ */
 async function handleGetThirdPartyPasskeyRegistry(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Fetches third party passkey registries by IDs. */
 	return await fc.falconId.getThirdPartyPasskeyRegistry(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles queryThirdPartyPasskeyRegistry */
+/**
+ * Handles the 'queryThirdPartyPasskeyRegistry' operation.
+ */
 async function handleQueryThirdPartyPasskeyRegistry(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries third party passkey registries. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -43,7 +49,9 @@ async function handleQueryThirdPartyPasskeyRegistry(c: IExecuteFunctions, i: num
 	return await fc.falconId.queryThirdPartyPasskeyRegistry(filter || undefined, offset || undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles updateThirdPartyPasskeyRegistry */
+/**
+ * Handles the 'updateThirdPartyPasskeyRegistry' operation.
+ */
 async function handleUpdateThirdPartyPasskeyRegistry(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates third party passkey registries. */
 	const body = parseJsonParam(c, i);

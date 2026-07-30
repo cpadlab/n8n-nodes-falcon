@@ -11,25 +11,33 @@ function parseJsonParam(context: IExecuteFunctions, index: number, paramName = '
 	}
 }
 
-/** Handles cloudRegistrationAzureCreateRegistration */
+/**
+ * Handles the 'cloudRegistrationAzureCreateRegistration' operation.
+ */
 async function handleCloudRegistrationAzureCreateRegistration(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates an Azure registration. */
 	return await fc.cloudAzureRegistration.cloudRegistrationAzureCreateRegistration(parseJsonParam(c, i));
 }
 
-/** Handles cloudRegistrationAzureCreateSuppressions */
+/**
+ * Handles the 'cloudRegistrationAzureCreateSuppressions' operation.
+ */
 async function handleCloudRegistrationAzureCreateSuppressions(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates Azure issue suppression rules. */
 	return await fc.cloudAzureRegistration.cloudRegistrationAzureCreateSuppressions(parseJsonParam(c, i));
 }
 
-/** Handles cloudRegistrationAzureDeleteLegacySubscription */
+/**
+ * Handles the 'cloudRegistrationAzureDeleteLegacySubscription' operation.
+ */
 async function handleCloudRegistrationAzureDeleteLegacySubscription(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes legacy Azure subscriptions. */
 	return await fc.cloudAzureRegistration.cloudRegistrationAzureDeleteLegacySubscription(parseJsonParam(c, i));
 }
 
-/** Handles cloudRegistrationAzureDeleteRegistration */
+/**
+ * Handles the 'cloudRegistrationAzureDeleteRegistration' operation.
+ */
 async function handleCloudRegistrationAzureDeleteRegistration(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes Azure registrations by tenant IDs. */
 	const tenantIdsString = c.getNodeParameter('tenantIds', i, '') as string;
@@ -37,19 +45,25 @@ async function handleCloudRegistrationAzureDeleteRegistration(c: IExecuteFunctio
 	return await fc.cloudAzureRegistration.cloudRegistrationAzureDeleteRegistration(tenantIds);
 }
 
-/** Handles cloudRegistrationAzureDeleteSuppressions */
+/**
+ * Handles the 'cloudRegistrationAzureDeleteSuppressions' operation.
+ */
 async function handleCloudRegistrationAzureDeleteSuppressions(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes Azure suppression rules. */
 	return await fc.cloudAzureRegistration.cloudRegistrationAzureDeleteSuppressions(parseJsonParam(c, i));
 }
 
-/** Handles cloudRegistrationAzureDownloadScript */
+/**
+ * Handles the 'cloudRegistrationAzureDownloadScript' operation.
+ */
 async function handleCloudRegistrationAzureDownloadScript(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Downloads Azure provision script. */
 	return await fc.cloudAzureRegistration.cloudRegistrationAzureDownloadScript(parseJsonParam(c, i));
 }
 
-/** Handles cloudRegistrationAzureGetIssueSuppressionValuesByField */
+/**
+ * Handles the 'cloudRegistrationAzureGetIssueSuppressionValuesByField' operation.
+ */
 async function handleCloudRegistrationAzureGetIssueSuppressionValuesByField(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets issue suppression values by field. */
 	const registrationId = c.getNodeParameter('registrationId', i) as string;
@@ -57,7 +71,9 @@ async function handleCloudRegistrationAzureGetIssueSuppressionValuesByField(c: I
 	return await fc.cloudAzureRegistration.cloudRegistrationAzureGetIssueSuppressionValuesByField(registrationId, field);
 }
 
-/** Handles cloudRegistrationAzureGetIssueValuesByField */
+/**
+ * Handles the 'cloudRegistrationAzureGetIssueValuesByField' operation.
+ */
 async function handleCloudRegistrationAzureGetIssueValuesByField(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets issue values by field. */
 	const registrationId = c.getNodeParameter('registrationId', i) as string;
@@ -66,7 +82,9 @@ async function handleCloudRegistrationAzureGetIssueValuesByField(c: IExecuteFunc
 	return await fc.cloudAzureRegistration.cloudRegistrationAzureGetIssueValuesByField(registrationId, field, filter || undefined);
 }
 
-/** Handles cloudRegistrationAzureGetIssues */
+/**
+ * Handles the 'cloudRegistrationAzureGetIssues' operation.
+ */
 async function handleCloudRegistrationAzureGetIssues(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves Azure issues. */
 	const registrationId = c.getNodeParameter('registrationId', i) as string;
@@ -76,7 +94,9 @@ async function handleCloudRegistrationAzureGetIssues(c: IExecuteFunctions, i: nu
 	return await fc.cloudAzureRegistration.cloudRegistrationAzureGetIssues(registrationId, filter || undefined, undefined, undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles cloudRegistrationAzureGetRegistration */
+/**
+ * Handles the 'cloudRegistrationAzureGetRegistration' operation.
+ */
 async function handleCloudRegistrationAzureGetRegistration(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves Azure registration. */
 	const tenantId = c.getNodeParameter('tenantId', i, '') as string;
@@ -84,14 +104,18 @@ async function handleCloudRegistrationAzureGetRegistration(c: IExecuteFunctions,
 	return await fc.cloudAzureRegistration.cloudRegistrationAzureGetRegistration(tenantId || undefined, registrationId || undefined);
 }
 
-/** Handles cloudRegistrationAzureGetScript */
+/**
+ * Handles the 'cloudRegistrationAzureGetScript' operation.
+ */
 async function handleCloudRegistrationAzureGetScript(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Downloads Azure deployment script. */
 	const tenantId = c.getNodeParameter('tenantId', i) as string;
 	return await fc.cloudAzureRegistration.cloudRegistrationAzureGetScript(tenantId);
 }
 
-/** Handles cloudRegistrationAzureGetScriptVersions */
+/**
+ * Handles the 'cloudRegistrationAzureGetScriptVersions' operation.
+ */
 async function handleCloudRegistrationAzureGetScriptVersions(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves available Azure script versions. */
 	const deploymentMethod = c.getNodeParameter('deploymentMethod', i) as string;
@@ -100,7 +124,9 @@ async function handleCloudRegistrationAzureGetScriptVersions(c: IExecuteFunction
 	return await fc.cloudAzureRegistration.cloudRegistrationAzureGetScriptVersions(deploymentMethod, undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles cloudRegistrationAzureGetSuppressions */
+/**
+ * Handles the 'cloudRegistrationAzureGetSuppressions' operation.
+ */
 async function handleCloudRegistrationAzureGetSuppressions(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves Azure suppressions. */
 	const registrationId = c.getNodeParameter('registrationId', i) as string;
@@ -110,7 +136,9 @@ async function handleCloudRegistrationAzureGetSuppressions(c: IExecuteFunctions,
 	return await fc.cloudAzureRegistration.cloudRegistrationAzureGetSuppressions(registrationId, filter || undefined, undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles cloudRegistrationAzureTriggerHealthCheck */
+/**
+ * Handles the 'cloudRegistrationAzureTriggerHealthCheck' operation.
+ */
 async function handleCloudRegistrationAzureTriggerHealthCheck(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Triggers health check scan for Azure. */
 	const tenantIdsString = c.getNodeParameter('tenantIds', i, '') as string;
@@ -118,19 +146,25 @@ async function handleCloudRegistrationAzureTriggerHealthCheck(c: IExecuteFunctio
 	return await fc.cloudAzureRegistration.cloudRegistrationAzureTriggerHealthCheck(tenantIds.length ? tenantIds : undefined);
 }
 
-/** Handles cloudRegistrationAzureUpdateRegistration */
+/**
+ * Handles the 'cloudRegistrationAzureUpdateRegistration' operation.
+ */
 async function handleCloudRegistrationAzureUpdateRegistration(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates Azure registration. */
 	return await fc.cloudAzureRegistration.cloudRegistrationAzureUpdateRegistration(parseJsonParam(c, i));
 }
 
-/** Handles cloudRegistrationAzureUpdateSuppressions */
+/**
+ * Handles the 'cloudRegistrationAzureUpdateSuppressions' operation.
+ */
 async function handleCloudRegistrationAzureUpdateSuppressions(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates Azure suppression rules. */
 	return await fc.cloudAzureRegistration.cloudRegistrationAzureUpdateSuppressions(parseJsonParam(c, i));
 }
 
-/** Handles cloudRegistrationAzureValidateRegistration */
+/**
+ * Handles the 'cloudRegistrationAzureValidateRegistration' operation.
+ */
 async function handleCloudRegistrationAzureValidateRegistration(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Validates Azure registration status. */
 	const tenantId = c.getNodeParameter('tenantId', i) as string;

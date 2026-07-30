@@ -11,13 +11,17 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles entitiesStatesV1 */
+/**
+ * Handles the 'entitiesStatesV1' operation.
+ */
 async function handleEntitiesStatesV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves host content state for IDs. */
 	return await fc.deviceContent.entitiesStatesV1(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles queriesStatesV1 */
+/**
+ * Handles the 'queriesStatesV1' operation.
+ */
 async function handleQueriesStatesV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries for content state of the host. */
 	const limit = c.getNodeParameter('limit', i, 100) as number;

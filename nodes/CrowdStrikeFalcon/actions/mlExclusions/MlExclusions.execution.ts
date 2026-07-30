@@ -21,70 +21,92 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles createMLExclusionsV1 */
+/**
+ * Handles the 'createMLExclusionsV1' operation.
+ */
 async function handleCreateMLExclusionsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create the ML exclusions. */
 	return await fc.mlExclusions.createMLExclusionsV1(parseJsonParam(c, i));
 }
 
-/** Handles deleteMLExclusionsV1 */
+/**
+ * Handles the 'deleteMLExclusionsV1' operation.
+ */
 async function handleDeleteMLExclusionsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete the ML exclusions by id. */
 	const comment = getStringParam(c, i, 'comment', '');
 	return await fc.mlExclusions.deleteMLExclusionsV1(parseArrayParam(c, i, 'ids'), comment || undefined);
 }
 
-/** Handles exclusionsAggregatesV2 */
+/**
+ * Handles the 'exclusionsAggregatesV2' operation.
+ */
 async function handleExclusionsAggregatesV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get exclusion aggregates as specified via json in request body. */
 	return await fc.mlExclusions.exclusionsAggregatesV2(parseJsonParam(c, i));
 }
 
-/** Handles exclusionsCreateV2 */
+/**
+ * Handles the 'exclusionsCreateV2' operation.
+ */
 async function handleExclusionsCreateV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create the exclusions, with ancestor fields. */
 	return await fc.mlExclusions.exclusionsCreateV2(parseJsonParam(c, i));
 }
 
-/** Handles exclusionsDeleteV2 */
+/**
+ * Handles the 'exclusionsDeleteV2' operation.
+ */
 async function handleExclusionsDeleteV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete the exclusions by id, with ancestor fields. */
 	const comment = getStringParam(c, i, 'comment', '');
 	return await fc.mlExclusions.exclusionsDeleteV2(parseArrayParam(c, i, 'ids'), comment || undefined);
 }
 
-/** Handles exclusionsGetAllV2 */
+/**
+ * Handles the 'exclusionsGetAllV2' operation.
+ */
 async function handleExclusionsGetAllV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get all exclusions. */
 	return await fc.mlExclusions.exclusionsGetAllV2();
 }
 
-/** Handles exclusionsGetReportsV2 */
+/**
+ * Handles the 'exclusionsGetReportsV2' operation.
+ */
 async function handleExclusionsGetReportsV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create a report of ML exclusions scoped by the given filters. */
 	return await fc.mlExclusions.exclusionsGetReportsV2(parseJsonParam(c, i));
 }
 
-/** Handles exclusionsGetV2 */
+/**
+ * Handles the 'exclusionsGetV2' operation.
+ */
 async function handleExclusionsGetV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get the exclusions by id, with ancestor fields. */
 	return await fc.mlExclusions.exclusionsGetV2(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles exclusionsPerformActionV2 */
+/**
+ * Handles the 'exclusionsPerformActionV2' operation.
+ */
 async function handleExclusionsPerformActionV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Actions used to manipulate the content of exclusions, with ancestor fields. */
 	const actionName = getStringParam(c, i, 'actionName', 'add_item') as any;
 	return await fc.mlExclusions.exclusionsPerformActionV2(actionName, parseJsonParam(c, i));
 }
 
-/** Handles exclusionsSdmfQueryV1 */
+/**
+ * Handles the 'exclusionsSdmfQueryV1' operation.
+ */
 async function handleExclusionsSdmfQueryV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Executes an SDMF data frame query against exclusion entities. */
 	return await fc.mlExclusions.exclusionsSdmfQueryV1(parseJsonParam(c, i));
 }
 
-/** Handles exclusionsSearchV2 */
+/**
+ * Handles the 'exclusionsSearchV2' operation.
+ */
 async function handleExclusionsSearchV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Search for exclusions, with ancestor fields. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -94,19 +116,25 @@ async function handleExclusionsSearchV2(c: IExecuteFunctions, i: number, fc: Fal
 	return await fc.mlExclusions.exclusionsSearchV2(filter || undefined, offset || undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles exclusionsUpdateV2 */
+/**
+ * Handles the 'exclusionsUpdateV2' operation.
+ */
 async function handleExclusionsUpdateV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update the exclusions by id, with ancestor fields. */
 	return await fc.mlExclusions.exclusionsUpdateV2(parseJsonParam(c, i));
 }
 
-/** Handles getMLExclusionsV1 */
+/**
+ * Handles the 'getMLExclusionsV1' operation.
+ */
 async function handleGetMLExclusionsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get a set of ML Exclusions by specifying their IDs. */
 	return await fc.mlExclusions.getMLExclusionsV1(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles queryMLExclusionsV1 */
+/**
+ * Handles the 'queryMLExclusionsV1' operation.
+ */
 async function handleQueryMLExclusionsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Search for ML exclusions. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -116,7 +144,9 @@ async function handleQueryMLExclusionsV1(c: IExecuteFunctions, i: number, fc: Fa
 	return await fc.mlExclusions.queryMLExclusionsV1(filter || undefined, offset || undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles updateMLExclusionsV1 */
+/**
+ * Handles the 'updateMLExclusionsV1' operation.
+ */
 async function handleUpdateMLExclusionsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update the ML exclusions. */
 	return await fc.mlExclusions.updateMLExclusionsV1(parseJsonParam(c, i));

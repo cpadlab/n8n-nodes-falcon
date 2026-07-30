@@ -1,7 +1,9 @@
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
-/** Handles combinedDetections */
+/**
+ * Handles the 'combinedDetections' operation.
+ */
 async function handleCombinedDetections(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Searches IaC Detections using FQL. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -11,7 +13,9 @@ async function handleCombinedDetections(c: IExecuteFunctions, i: number, fc: Fal
 	return await fc.cspgIacapi.combinedDetections(filter || undefined, limit || undefined, offset || undefined, sort || undefined);
 }
 
-/** Handles getCredentialsMixin0 */
+/**
+ * Handles the 'getCredentialsMixin0' operation.
+ */
 async function handleGetCredentialsMixin0(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets registry credentials. */
 	return await fc.cspgIacapi.getCredentialsMixin0();

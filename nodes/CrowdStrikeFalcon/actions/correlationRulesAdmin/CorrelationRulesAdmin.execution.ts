@@ -11,13 +11,17 @@ function parseJsonParam(context: IExecuteFunctions, index: number, paramName = '
 	}
 }
 
-/** Handles entitiesRulesOwnershipPutV1 */
+/**
+ * Handles the 'entitiesRulesOwnershipPutV1' operation.
+ */
 async function handleEntitiesRulesOwnershipPutV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Changes the owner of a Correlation Rule. */
 	return await fc.correlationRulesAdmin.entitiesRulesOwnershipPutV1(parseJsonParam(c, i));
 }
 
-/** Handles entitiesRulesOwnershipPutV2 */
+/**
+ * Handles the 'entitiesRulesOwnershipPutV2' operation.
+ */
 async function handleEntitiesRulesOwnershipPutV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Bulk changes the owner of Correlation Rules. */
 	return await fc.correlationRulesAdmin.entitiesRulesOwnershipPutV2(parseJsonParam(c, i));

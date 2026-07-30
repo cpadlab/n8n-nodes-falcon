@@ -11,7 +11,9 @@ function parseJsonParam(context: IExecuteFunctions, index: number, paramName = '
 	}
 }
 
-/** Handles combinedCloudRisks */
+/**
+ * Handles the 'combinedCloudRisks' operation.
+ */
 async function handleCombinedCloudRisks(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves combined cloud risks. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -21,13 +23,17 @@ async function handleCombinedCloudRisks(c: IExecuteFunctions, i: number, fc: Fal
 	return await fc.cloudSecurity.combinedCloudRisks(filter || undefined, sort || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles createCloudGroupExternal */
+/**
+ * Handles the 'createCloudGroupExternal' operation.
+ */
 async function handleCreateCloudGroupExternal(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates a Cloud Group. */
 	return await fc.cloudSecurity.createCloudGroupExternal(parseJsonParam(c, i));
 }
 
-/** Handles deleteCloudGroupsExternal */
+/**
+ * Handles the 'deleteCloudGroupsExternal' operation.
+ */
 async function handleDeleteCloudGroupsExternal(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes Cloud Groups by IDs. */
 	const idsString = c.getNodeParameter('ids', i, '') as string;
@@ -35,7 +41,9 @@ async function handleDeleteCloudGroupsExternal(c: IExecuteFunctions, i: number, 
 	return await fc.cloudSecurity.deleteCloudGroupsExternal(ids.length ? ids : undefined);
 }
 
-/** Handles listCloudGroupIDsExternal */
+/**
+ * Handles the 'listCloudGroupIDsExternal' operation.
+ */
 async function handleListCloudGroupIDsExternal(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Lists Cloud Group IDs. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -45,7 +53,9 @@ async function handleListCloudGroupIDsExternal(c: IExecuteFunctions, i: number, 
 	return await fc.cloudSecurity.listCloudGroupIDsExternal(filter || undefined, sort || undefined, offset || undefined, limit || undefined);
 }
 
-/** Handles listCloudGroupsByIDExternal */
+/**
+ * Handles the 'listCloudGroupsByIDExternal' operation.
+ */
 async function handleListCloudGroupsByIDExternal(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Lists Cloud Groups by IDs. */
 	const idsString = c.getNodeParameter('ids', i, '') as string;
@@ -53,7 +63,9 @@ async function handleListCloudGroupsByIDExternal(c: IExecuteFunctions, i: number
 	return await fc.cloudSecurity.listCloudGroupsByIDExternal(ids.length ? ids : undefined);
 }
 
-/** Handles listCloudGroupsExternal */
+/**
+ * Handles the 'listCloudGroupsExternal' operation.
+ */
 async function handleListCloudGroupsExternal(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Lists Cloud Groups entities. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -63,7 +75,9 @@ async function handleListCloudGroupsExternal(c: IExecuteFunctions, i: number, fc
 	return await fc.cloudSecurity.listCloudGroupsExternal(filter || undefined, sort || undefined, offset || undefined, limit || undefined);
 }
 
-/** Handles updateCloudGroupExternal */
+/**
+ * Handles the 'updateCloudGroupExternal' operation.
+ */
 async function handleUpdateCloudGroupExternal(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates a Cloud Group. */
 	return await fc.cloudSecurity.updateCloudGroupExternal(parseJsonParam(c, i));

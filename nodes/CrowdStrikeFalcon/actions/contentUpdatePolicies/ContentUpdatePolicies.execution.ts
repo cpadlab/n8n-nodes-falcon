@@ -11,13 +11,17 @@ function parseJsonParam(context: IExecuteFunctions, index: number, paramName = '
 	}
 }
 
-/** Handles createContentUpdatePolicies */
+/**
+ * Handles the 'createContentUpdatePolicies' operation.
+ */
 async function handleCreateContentUpdatePolicies(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates Content Update Policies. */
 	return await fc.contentUpdatePolicies.createContentUpdatePolicies(parseJsonParam(c, i));
 }
 
-/** Handles deleteContentUpdatePolicies */
+/**
+ * Handles the 'deleteContentUpdatePolicies' operation.
+ */
 async function handleDeleteContentUpdatePolicies(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes Content Update Policies by IDs. */
 	const idsString = c.getNodeParameter('ids', i, '') as string;
@@ -25,7 +29,9 @@ async function handleDeleteContentUpdatePolicies(c: IExecuteFunctions, i: number
 	return await fc.contentUpdatePolicies.deleteContentUpdatePolicies(ids);
 }
 
-/** Handles getContentUpdatePolicies */
+/**
+ * Handles the 'getContentUpdatePolicies' operation.
+ */
 async function handleGetContentUpdatePolicies(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves Content Update Policies by IDs. */
 	const idsString = c.getNodeParameter('ids', i, '') as string;
@@ -33,14 +39,18 @@ async function handleGetContentUpdatePolicies(c: IExecuteFunctions, i: number, f
 	return await fc.contentUpdatePolicies.getContentUpdatePolicies(ids);
 }
 
-/** Handles performContentUpdatePoliciesAction */
+/**
+ * Handles the 'performContentUpdatePoliciesAction' operation.
+ */
 async function handlePerformContentUpdatePoliciesAction(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Performs action on Content Update Policies. */
 	const actionName = c.getNodeParameter('actionName', i) as any;
 	return await fc.contentUpdatePolicies.performContentUpdatePoliciesAction(actionName, parseJsonParam(c, i));
 }
 
-/** Handles queryCombinedContentUpdatePolicies */
+/**
+ * Handles the 'queryCombinedContentUpdatePolicies' operation.
+ */
 async function handleQueryCombinedContentUpdatePolicies(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries combined Content Update Policies. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -50,7 +60,9 @@ async function handleQueryCombinedContentUpdatePolicies(c: IExecuteFunctions, i:
 	return await fc.contentUpdatePolicies.queryCombinedContentUpdatePolicies(filter || undefined, offset || undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles queryCombinedContentUpdatePolicyMembers */
+/**
+ * Handles the 'queryCombinedContentUpdatePolicyMembers' operation.
+ */
 async function handleQueryCombinedContentUpdatePolicyMembers(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries combined Content Update Policy members. */
 	const id = c.getNodeParameter('id', i, '') as string;
@@ -61,7 +73,9 @@ async function handleQueryCombinedContentUpdatePolicyMembers(c: IExecuteFunction
 	return await fc.contentUpdatePolicies.queryCombinedContentUpdatePolicyMembers(id || undefined, filter || undefined, offset || undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles queryContentUpdatePolicies */
+/**
+ * Handles the 'queryContentUpdatePolicies' operation.
+ */
 async function handleQueryContentUpdatePolicies(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries Content Update Policy IDs. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -71,7 +85,9 @@ async function handleQueryContentUpdatePolicies(c: IExecuteFunctions, i: number,
 	return await fc.contentUpdatePolicies.queryContentUpdatePolicies(filter || undefined, offset || undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles queryContentUpdatePolicyMembers */
+/**
+ * Handles the 'queryContentUpdatePolicyMembers' operation.
+ */
 async function handleQueryContentUpdatePolicyMembers(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries Content Update Policy member IDs. */
 	const id = c.getNodeParameter('id', i, '') as string;
@@ -82,7 +98,9 @@ async function handleQueryContentUpdatePolicyMembers(c: IExecuteFunctions, i: nu
 	return await fc.contentUpdatePolicies.queryContentUpdatePolicyMembers(id || undefined, filter || undefined, offset || undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles queryPinnableContentVersions */
+/**
+ * Handles the 'queryPinnableContentVersions' operation.
+ */
 async function handleQueryPinnableContentVersions(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries pinnable content versions. */
 	const category = c.getNodeParameter('category', i) as any;
@@ -90,13 +108,17 @@ async function handleQueryPinnableContentVersions(c: IExecuteFunctions, i: numbe
 	return await fc.contentUpdatePolicies.queryPinnableContentVersions(category, sort || undefined);
 }
 
-/** Handles setContentUpdatePoliciesPrecedence */
+/**
+ * Handles the 'setContentUpdatePoliciesPrecedence' operation.
+ */
 async function handleSetContentUpdatePoliciesPrecedence(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Sets Content Update Policies precedence. */
 	return await fc.contentUpdatePolicies.setContentUpdatePoliciesPrecedence(parseJsonParam(c, i));
 }
 
-/** Handles updateContentUpdatePolicies */
+/**
+ * Handles the 'updateContentUpdatePolicies' operation.
+ */
 async function handleUpdateContentUpdatePolicies(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates Content Update Policies. */
 	return await fc.contentUpdatePolicies.updateContentUpdatePolicies(parseJsonParam(c, i));

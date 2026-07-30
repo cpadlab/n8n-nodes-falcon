@@ -11,13 +11,17 @@ function parseJsonParam(context: IExecuteFunctions, index: number, paramName = '
 	}
 }
 
-/** Handles createOrUpdateAWSSettings */
+/**
+ * Handles the 'createOrUpdateAWSSettings' operation.
+ */
 async function handleCreateOrUpdateAWSSettings(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates or updates AWS global settings. */
 	return await fc.cloudConnectAws.createOrUpdateAWSSettings(parseJsonParam(c, i));
 }
 
-/** Handles deleteAWSAccounts */
+/**
+ * Handles the 'deleteAWSAccounts' operation.
+ */
 async function handleDeleteAWSAccounts(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes AWS accounts by IDs. */
 	const idsString = c.getNodeParameter('ids', i, '') as string;
@@ -25,7 +29,9 @@ async function handleDeleteAWSAccounts(c: IExecuteFunctions, i: number, fc: Falc
 	return await fc.cloudConnectAws.deleteAWSAccounts(ids);
 }
 
-/** Handles getAWSAccounts */
+/**
+ * Handles the 'getAWSAccounts' operation.
+ */
 async function handleGetAWSAccounts(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves AWS accounts by IDs. */
 	const idsString = c.getNodeParameter('ids', i, '') as string;
@@ -33,20 +39,26 @@ async function handleGetAWSAccounts(c: IExecuteFunctions, i: number, fc: FalconC
 	return await fc.cloudConnectAws.getAWSAccounts(ids);
 }
 
-/** Handles getAWSSettings */
+/**
+ * Handles the 'getAWSSettings' operation.
+ */
 async function handleGetAWSSettings(_c: IExecuteFunctions, _i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves AWS global settings. */
 	return await fc.cloudConnectAws.getAWSSettings();
 }
 
-/** Handles provisionAWSAccounts */
+/**
+ * Handles the 'provisionAWSAccounts' operation.
+ */
 async function handleProvisionAWSAccounts(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Provisions AWS accounts. */
 	const mode = c.getNodeParameter('mode', i, '') as any;
 	return await fc.cloudConnectAws.provisionAWSAccounts(parseJsonParam(c, i), mode || undefined);
 }
 
-/** Handles queryAWSAccounts */
+/**
+ * Handles the 'queryAWSAccounts' operation.
+ */
 async function handleQueryAWSAccounts(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Searches for provisioned AWS accounts. */
 	const limit = c.getNodeParameter('limit', i, 100) as number;
@@ -56,7 +68,9 @@ async function handleQueryAWSAccounts(c: IExecuteFunctions, i: number, fc: Falco
 	return await fc.cloudConnectAws.queryAWSAccounts(limit || undefined, offset || undefined, sort || undefined, filter || undefined);
 }
 
-/** Handles queryAWSAccountsForIDs */
+/**
+ * Handles the 'queryAWSAccountsForIDs' operation.
+ */
 async function handleQueryAWSAccountsForIDs(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Searches for provisioned AWS account IDs. */
 	const limit = c.getNodeParameter('limit', i, 100) as number;
@@ -66,13 +80,17 @@ async function handleQueryAWSAccountsForIDs(c: IExecuteFunctions, i: number, fc:
 	return await fc.cloudConnectAws.queryAWSAccountsForIDs(limit || undefined, offset || undefined, sort || undefined, filter || undefined);
 }
 
-/** Handles updateAWSAccounts */
+/**
+ * Handles the 'updateAWSAccounts' operation.
+ */
 async function handleUpdateAWSAccounts(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates AWS accounts. */
 	return await fc.cloudConnectAws.updateAWSAccounts(parseJsonParam(c, i));
 }
 
-/** Handles verifyAWSAccountAccess */
+/**
+ * Handles the 'verifyAWSAccountAccess' operation.
+ */
 async function handleVerifyAWSAccountAccess(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Verifies access to AWS accounts by IDs. */
 	const idsString = c.getNodeParameter('ids', i, '') as string;

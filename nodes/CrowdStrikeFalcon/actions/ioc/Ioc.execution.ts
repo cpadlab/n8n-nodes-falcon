@@ -21,14 +21,18 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles actionGetV1 */
+/**
+ * Handles the 'actionGetV1' operation.
+ */
 async function handleActionGetV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get Actions by IDs. */
 	const ids = parseArrayParam(c, i, 'ids');
 	return await fc.ioc.actionGetV1(ids.length > 0 ? ids : undefined);
 }
 
-/** Handles actionQueryV1 */
+/**
+ * Handles the 'actionQueryV1' operation.
+ */
 async function handleActionQueryV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Query Actions. */
 	const offset = getStringParam(c, i, 'offset', '');
@@ -36,13 +40,17 @@ async function handleActionQueryV1(c: IExecuteFunctions, i: number, fc: FalconCl
 	return await fc.ioc.actionQueryV1(offset || undefined, limit || undefined);
 }
 
-/** Handles getIndicatorsReport */
+/**
+ * Handles the 'getIndicatorsReport' operation.
+ */
 async function handleGetIndicatorsReport(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Launch an indicators report creation job. */
 	return await fc.ioc.getIndicatorsReport(parseJsonParam(c, i));
 }
 
-/** Handles indicatorAggregateV1 */
+/**
+ * Handles the 'indicatorAggregateV1' operation.
+ */
 async function handleIndicatorAggregateV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get Indicators aggregates as specified via JSON. */
 	const body = parseJsonParam(c, i);
@@ -51,7 +59,9 @@ async function handleIndicatorAggregateV1(c: IExecuteFunctions, i: number, fc: F
 	return await fc.ioc.indicatorAggregateV1(body, filter || undefined, fromParent);
 }
 
-/** Handles indicatorCombinedV1 */
+/**
+ * Handles the 'indicatorCombinedV1' operation.
+ */
 async function handleIndicatorCombinedV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get Combined for Indicators. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -64,7 +74,9 @@ async function handleIndicatorCombinedV1(c: IExecuteFunctions, i: number, fc: Fa
 	return await fc.ioc.indicatorCombinedV1(filter || undefined, offset, limit || undefined, sort || undefined, after || undefined, fromParent);
 }
 
-/** Handles indicatorCreateV1 */
+/**
+ * Handles the 'indicatorCreateV1' operation.
+ */
 async function handleIndicatorCreateV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create Indicators. */
 	const body = parseJsonParam(c, i);
@@ -73,7 +85,9 @@ async function handleIndicatorCreateV1(c: IExecuteFunctions, i: number, fc: Falc
 	return await fc.ioc.indicatorCreateV1(body, retrodetects, ignoreWarnings);
 }
 
-/** Handles indicatorDeleteV1 */
+/**
+ * Handles the 'indicatorDeleteV1' operation.
+ */
 async function handleIndicatorDeleteV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete Indicators by IDs. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -83,7 +97,9 @@ async function handleIndicatorDeleteV1(c: IExecuteFunctions, i: number, fc: Falc
 	return await fc.ioc.indicatorDeleteV1(filter || undefined, ids.length > 0 ? ids : undefined, comment || undefined, fromParent);
 }
 
-/** Handles indicatorGetDeviceCountV1 */
+/**
+ * Handles the 'indicatorGetDeviceCountV1' operation.
+ */
 async function handleIndicatorGetDeviceCountV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get the number of devices the indicator has run on. */
 	const type = getStringParam(c, i, 'type', '');
@@ -91,7 +107,9 @@ async function handleIndicatorGetDeviceCountV1(c: IExecuteFunctions, i: number, 
 	return await fc.ioc.indicatorGetDeviceCountV1(type, value);
 }
 
-/** Handles indicatorGetDevicesRanOnV1 */
+/**
+ * Handles the 'indicatorGetDevicesRanOnV1' operation.
+ */
 async function handleIndicatorGetDevicesRanOnV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get the IDs of devices the indicator has run on. */
 	const type = getStringParam(c, i, 'type', '');
@@ -101,7 +119,9 @@ async function handleIndicatorGetDevicesRanOnV1(c: IExecuteFunctions, i: number,
 	return await fc.ioc.indicatorGetDevicesRanOnV1(type, value, limit || undefined, offset || undefined);
 }
 
-/** Handles indicatorGetProcessesRanOnV1 */
+/**
+ * Handles the 'indicatorGetProcessesRanOnV1' operation.
+ */
 async function handleIndicatorGetProcessesRanOnV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get the number of processes the indicator has run on. */
 	const type = getStringParam(c, i, 'type', '');
@@ -112,19 +132,25 @@ async function handleIndicatorGetProcessesRanOnV1(c: IExecuteFunctions, i: numbe
 	return await fc.ioc.indicatorGetProcessesRanOnV1(type, value, deviceId, limit || undefined, offset || undefined);
 }
 
-/** Handles indicatorGetV1 */
+/**
+ * Handles the 'indicatorGetV1' operation.
+ */
 async function handleIndicatorGetV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get Indicators by IDs. */
 	return await fc.ioc.indicatorGetV1(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles indicatorSdmfQueryV1 */
+/**
+ * Handles the 'indicatorSdmfQueryV1' operation.
+ */
 async function handleIndicatorSdmfQueryV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Executes an SDMF data frame query against IOC indicators. */
 	return await fc.ioc.indicatorSdmfQueryV1(parseJsonParam(c, i));
 }
 
-/** Handles indicatorSearchV1 */
+/**
+ * Handles the 'indicatorSearchV1' operation.
+ */
 async function handleIndicatorSearchV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Search for Indicators. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -137,7 +163,9 @@ async function handleIndicatorSearchV1(c: IExecuteFunctions, i: number, fc: Falc
 	return await fc.ioc.indicatorSearchV1(filter || undefined, offset, limit || undefined, sort || undefined, after || undefined, fromParent);
 }
 
-/** Handles indicatorUpdateV1 */
+/**
+ * Handles the 'indicatorUpdateV1' operation.
+ */
 async function handleIndicatorUpdateV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update Indicators. */
 	const body = parseJsonParam(c, i);
@@ -146,7 +174,9 @@ async function handleIndicatorUpdateV1(c: IExecuteFunctions, i: number, fc: Falc
 	return await fc.ioc.indicatorUpdateV1(body, retrodetects, ignoreWarnings);
 }
 
-/** Handles iocTypeQueryV1 */
+/**
+ * Handles the 'iocTypeQueryV1' operation.
+ */
 async function handleIocTypeQueryV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Query IOC Types. */
 	const offset = getStringParam(c, i, 'offset', '');
@@ -154,7 +184,9 @@ async function handleIocTypeQueryV1(c: IExecuteFunctions, i: number, fc: FalconC
 	return await fc.ioc.iocTypeQueryV1(offset || undefined, limit || undefined);
 }
 
-/** Handles platformQueryV1 */
+/**
+ * Handles the 'platformQueryV1' operation.
+ */
 async function handlePlatformQueryV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Query Platforms. */
 	const offset = getStringParam(c, i, 'offset', '');
@@ -162,7 +194,9 @@ async function handlePlatformQueryV1(c: IExecuteFunctions, i: number, fc: Falcon
 	return await fc.ioc.platformQueryV1(offset || undefined, limit || undefined);
 }
 
-/** Handles severityQueryV1 */
+/**
+ * Handles the 'severityQueryV1' operation.
+ */
 async function handleSeverityQueryV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Query Severities. */
 	const offset = getStringParam(c, i, 'offset', '');

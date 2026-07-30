@@ -1,21 +1,27 @@
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
-/** Handles readContainerAlertsCount */
+/**
+ * Handles the 'readContainerAlertsCount' operation.
+ */
 async function handleReadContainerAlertsCount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Reads container alerts count. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
 	return await fc.containerAlerts.readContainerAlertsCount(filter || undefined);
 }
 
-/** Handles readContainerAlertsCountBySeverity */
+/**
+ * Handles the 'readContainerAlertsCountBySeverity' operation.
+ */
 async function handleReadContainerAlertsCountBySeverity(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Reads container alerts count by severity. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
 	return await fc.containerAlerts.readContainerAlertsCountBySeverity(filter || undefined);
 }
 
-/** Handles searchAndReadContainerAlerts */
+/**
+ * Handles the 'searchAndReadContainerAlerts' operation.
+ */
 async function handleSearchAndReadContainerAlerts(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Searches and reads container alerts. */
 	const filter = c.getNodeParameter('filter', i, '') as string;

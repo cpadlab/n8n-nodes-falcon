@@ -11,19 +11,25 @@ function parseJsonParam(context: IExecuteFunctions, index: number, paramName = '
 	}
 }
 
-/** Handles createDeploymentEntity */
+/**
+ * Handles the 'createDeploymentEntity' operation.
+ */
 async function handleCreateDeploymentEntity(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Launches a snapshot scan for a cloud asset. */
 	return await fc.cloudSnapshots.createDeploymentEntity(parseJsonParam(c, i));
 }
 
-/** Handles getCredentialsMixin0Mixin60 */
+/**
+ * Handles the 'getCredentialsMixin0Mixin60' operation.
+ */
 async function handleGetCredentialsMixin0Mixin60(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets registry credentials. */
 	return await fc.cloudSnapshots.getCredentialsMixin0Mixin60();
 }
 
-/** Handles getScanReport */
+/**
+ * Handles the 'getScanReport' operation.
+ */
 async function handleGetScanReport(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves scan report for instance IDs. */
 	const idsString = c.getNodeParameter('ids', i, '') as string;
@@ -31,7 +37,9 @@ async function handleGetScanReport(c: IExecuteFunctions, i: number, fc: FalconCl
 	return await fc.cloudSnapshots.getScanReport(ids);
 }
 
-/** Handles readDeploymentsCombined */
+/**
+ * Handles the 'readDeploymentsCombined' operation.
+ */
 async function handleReadDeploymentsCombined(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves snapshot jobs matching criteria. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -41,7 +49,9 @@ async function handleReadDeploymentsCombined(c: IExecuteFunctions, i: number, fc
 	return await fc.cloudSnapshots.readDeploymentsCombined(filter || undefined, limit || undefined, offset || undefined, sort || undefined);
 }
 
-/** Handles readDeploymentsEntities */
+/**
+ * Handles the 'readDeploymentsEntities' operation.
+ */
 async function handleReadDeploymentsEntities(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves snapshot jobs by IDs. */
 	const idsString = c.getNodeParameter('ids', i, '') as string;
@@ -49,7 +59,9 @@ async function handleReadDeploymentsEntities(c: IExecuteFunctions, i: number, fc
 	return await fc.cloudSnapshots.readDeploymentsEntities(ids.length ? ids : undefined);
 }
 
-/** Handles register */
+/**
+ * Handles the 'register' operation.
+ */
 async function handleRegister(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Registers cloud account for snapshot scanning. */
 	return await fc.cloudSnapshots.register(parseJsonParam(c, i));

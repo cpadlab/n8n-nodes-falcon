@@ -16,7 +16,9 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles crowdScore */
+/**
+ * Handles the 'crowdScore' operation.
+ */
 async function handleCrowdScore(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Query environment wide CrowdScore and return entity data. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -26,19 +28,25 @@ async function handleCrowdScore(c: IExecuteFunctions, i: number, fc: FalconClien
 	return await fc.incidents.crowdScore(filter || undefined, offset || undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles getBehaviors */
+/**
+ * Handles the 'getBehaviors' operation.
+ */
 async function handleGetBehaviors(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get details on behaviors by providing behavior IDs in body. */
 	return await fc.incidents.getBehaviors(parseJsonParam(c, i));
 }
 
-/** Handles getIncidents */
+/**
+ * Handles the 'getIncidents' operation.
+ */
 async function handleGetIncidents(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get details on incidents by providing incident IDs in body. */
 	return await fc.incidents.getIncidents(parseJsonParam(c, i));
 }
 
-/** Handles performIncidentAction */
+/**
+ * Handles the 'performIncidentAction' operation.
+ */
 async function handlePerformIncidentAction(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Perform actions on one or more incidents. */
 	const body = parseJsonParam(c, i);
@@ -47,7 +55,9 @@ async function handlePerformIncidentAction(c: IExecuteFunctions, i: number, fc: 
 	return await fc.incidents.performIncidentAction(body, updateDetects, overwriteDetects);
 }
 
-/** Handles queryBehaviors */
+/**
+ * Handles the 'queryBehaviors' operation.
+ */
 async function handleQueryBehaviors(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Search for behaviors by providing filter, sort, and paging. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -57,7 +67,9 @@ async function handleQueryBehaviors(c: IExecuteFunctions, i: number, fc: FalconC
 	return await fc.incidents.queryBehaviors(filter || undefined, offset || undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles queryIncidents */
+/**
+ * Handles the 'queryIncidents' operation.
+ */
 async function handleQueryIncidents(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Search for incidents by providing filter, sort, and paging. */
 	const sort = getStringParam(c, i, 'sort', '') as any;

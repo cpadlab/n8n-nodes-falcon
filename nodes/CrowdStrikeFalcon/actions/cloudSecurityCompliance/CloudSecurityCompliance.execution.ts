@@ -1,7 +1,9 @@
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
-/** Handles cloudComplianceFrameworkPostureSummaries */
+/**
+ * Handles the 'cloudComplianceFrameworkPostureSummaries' operation.
+ */
 async function handleCloudComplianceFrameworkPostureSummaries(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves framework posture summaries. */
 	const idsString = c.getNodeParameter('ids', i, '') as string;
@@ -10,7 +12,9 @@ async function handleCloudComplianceFrameworkPostureSummaries(c: IExecuteFunctio
 	return await fc.cloudSecurityCompliance.cloudComplianceFrameworkPostureSummaries(ids, filter || undefined);
 }
 
-/** Handles cloudComplianceRulePostureSummaries */
+/**
+ * Handles the 'cloudComplianceRulePostureSummaries' operation.
+ */
 async function handleCloudComplianceRulePostureSummaries(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves rule posture summaries. */
 	const idsString = c.getNodeParameter('ids', i, '') as string;

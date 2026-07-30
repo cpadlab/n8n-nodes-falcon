@@ -21,25 +21,33 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles createHostGroups */
+/**
+ * Handles the 'createHostGroups' operation.
+ */
 async function handleCreateHostGroups(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create Host Groups by specifying details about the group to create. */
 	return await fc.hostGroup.createHostGroups(parseJsonParam(c, i));
 }
 
-/** Handles deleteHostGroups */
+/**
+ * Handles the 'deleteHostGroups' operation.
+ */
 async function handleDeleteHostGroups(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete a set of Host Groups by specifying their IDs. */
 	return await fc.hostGroup.deleteHostGroups(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getHostGroups */
+/**
+ * Handles the 'getHostGroups' operation.
+ */
 async function handleGetHostGroups(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve a set of Host Groups by specifying their IDs. */
 	return await fc.hostGroup.getHostGroups(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles performGroupAction */
+/**
+ * Handles the 'performGroupAction' operation.
+ */
 async function handlePerformGroupAction(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Perform specified action on specified Host Groups. */
 	const actionName = getStringParam(c, i, 'actionName', '') as any;
@@ -48,7 +56,9 @@ async function handlePerformGroupAction(c: IExecuteFunctions, i: number, fc: Fal
 	return await fc.hostGroup.performGroupAction(actionName, body, disableHostnameCheck);
 }
 
-/** Handles queryCombinedGroupMembers */
+/**
+ * Handles the 'queryCombinedGroupMembers' operation.
+ */
 async function handleQueryCombinedGroupMembers(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Search for members of a Host Group returning host details. */
 	const id = getStringParam(c, i, 'id', '');
@@ -59,7 +69,9 @@ async function handleQueryCombinedGroupMembers(c: IExecuteFunctions, i: number, 
 	return await fc.hostGroup.queryCombinedGroupMembers(id || undefined, filter || undefined, offset || undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles queryCombinedHostGroups */
+/**
+ * Handles the 'queryCombinedHostGroups' operation.
+ */
 async function handleQueryCombinedHostGroups(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Search for Host Groups returning matching Host Groups. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -69,7 +81,9 @@ async function handleQueryCombinedHostGroups(c: IExecuteFunctions, i: number, fc
 	return await fc.hostGroup.queryCombinedHostGroups(filter || undefined, offset || undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles queryGroupMembers */
+/**
+ * Handles the 'queryGroupMembers' operation.
+ */
 async function handleQueryGroupMembers(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Search for members of a Host Group returning Agent IDs. */
 	const id = getStringParam(c, i, 'id', '');
@@ -80,7 +94,9 @@ async function handleQueryGroupMembers(c: IExecuteFunctions, i: number, fc: Falc
 	return await fc.hostGroup.queryGroupMembers(id || undefined, filter || undefined, offset || undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles queryHostGroups */
+/**
+ * Handles the 'queryHostGroups' operation.
+ */
 async function handleQueryHostGroups(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Search for Host Groups returning Host Group IDs. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -90,7 +106,9 @@ async function handleQueryHostGroups(c: IExecuteFunctions, i: number, fc: Falcon
 	return await fc.hostGroup.queryHostGroups(filter || undefined, offset || undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles updateHostGroups */
+/**
+ * Handles the 'updateHostGroups' operation.
+ */
 async function handleUpdateHostGroups(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update Host Groups by specifying ID and details. */
 	return await fc.hostGroup.updateHostGroups(parseJsonParam(c, i));

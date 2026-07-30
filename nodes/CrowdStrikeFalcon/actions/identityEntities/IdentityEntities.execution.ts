@@ -16,19 +16,25 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles getSensorAggregates */
+/**
+ * Handles the 'getSensorAggregates' operation.
+ */
 async function handleGetSensorAggregates(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get sensor aggregates as specified via JSON in request body. */
 	return await fc.identityEntities.getSensorAggregates(parseJsonParam(c, i));
 }
 
-/** Handles getSensorDetails */
+/**
+ * Handles the 'getSensorDetails' operation.
+ */
 async function handleGetSensorDetails(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get details on one or more sensors by providing device IDs in body. */
 	return await fc.identityEntities.getSensorDetails(parseJsonParam(c, i));
 }
 
-/** Handles querySensorsByFilter */
+/**
+ * Handles the 'querySensorsByFilter' operation.
+ */
 async function handleQuerySensorsByFilter(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Search for sensors by hostname, IP, and other criteria. */
 	const offset = c.getNodeParameter('offset', i, 0) as number;

@@ -11,7 +11,9 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles getDeploymentsExternalV1 */
+/**
+ * Handles the 'getDeploymentsExternalV1' operation.
+ */
 async function handleGetDeploymentsExternalV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets deployments resources by IDs. */
 	const authorization = getStringParam(c, i, 'authorization', '');

@@ -11,42 +11,54 @@ function parseJsonParam(context: IExecuteFunctions, index: number, paramName = '
 	}
 }
 
-/** Handles aggregateImageAssessmentHistory */
+/**
+ * Handles the 'aggregateImageAssessmentHistory' operation.
+ */
 async function handleAggregateImageAssessmentHistory(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves image assessment history. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
 	return await fc.containerImages.aggregateImageAssessmentHistory(filter || undefined);
 }
 
-/** Handles aggregateImageCount */
+/**
+ * Handles the 'aggregateImageCount' operation.
+ */
 async function handleAggregateImageCount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves aggregate image count. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
 	return await fc.containerImages.aggregateImageCount(filter || undefined);
 }
 
-/** Handles aggregateImageCountByBaseOS */
+/**
+ * Handles the 'aggregateImageCountByBaseOS' operation.
+ */
 async function handleAggregateImageCountByBaseOS(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves image count by base OS. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
 	return await fc.containerImages.aggregateImageCountByBaseOS(filter || undefined);
 }
 
-/** Handles aggregateImageCountByState */
+/**
+ * Handles the 'aggregateImageCountByState' operation.
+ */
 async function handleAggregateImageCountByState(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves image count by state. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
 	return await fc.containerImages.aggregateImageCountByState(filter || undefined);
 }
 
-/** Handles combinedBaseImages */
+/**
+ * Handles the 'combinedBaseImages' operation.
+ */
 async function handleCombinedBaseImages(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves combined base images. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
 	return await fc.containerImages.combinedBaseImages(filter || undefined);
 }
 
-/** Handles combinedImageByVulnerabilityCount */
+/**
+ * Handles the 'combinedImageByVulnerabilityCount' operation.
+ */
 async function handleCombinedImageByVulnerabilityCount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves top images by vulnerability count. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -55,7 +67,9 @@ async function handleCombinedImageByVulnerabilityCount(c: IExecuteFunctions, i: 
 	return await fc.containerImages.combinedImageByVulnerabilityCount(filter || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles combinedImageDetail */
+/**
+ * Handles the 'combinedImageDetail' operation.
+ */
 async function handleCombinedImageDetail(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves combined image detail. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -65,7 +79,9 @@ async function handleCombinedImageDetail(c: IExecuteFunctions, i: number, fc: Fa
 	return await fc.containerImages.combinedImageDetail(filter || undefined, undefined, sort || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles combinedImageIssuesSummary */
+/**
+ * Handles the 'combinedImageIssuesSummary' operation.
+ */
 async function handleCombinedImageIssuesSummary(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves combined image issues summary. */
 	const cid = c.getNodeParameter('cid', i) as string;
@@ -75,7 +91,9 @@ async function handleCombinedImageIssuesSummary(c: IExecuteFunctions, i: number,
 	return await fc.containerImages.combinedImageIssuesSummary(cid, registry, repository, tag);
 }
 
-/** Handles combinedImageVulnerabilitySummary */
+/**
+ * Handles the 'combinedImageVulnerabilitySummary' operation.
+ */
 async function handleCombinedImageVulnerabilitySummary(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves combined image vulnerability summary. */
 	const cid = c.getNodeParameter('cid', i) as string;
@@ -85,13 +103,17 @@ async function handleCombinedImageVulnerabilitySummary(c: IExecuteFunctions, i: 
 	return await fc.containerImages.combinedImageVulnerabilitySummary(cid, registry, repository, tag);
 }
 
-/** Handles createBaseImagesEntities */
+/**
+ * Handles the 'createBaseImagesEntities' operation.
+ */
 async function handleCreateBaseImagesEntities(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates base images entities. */
 	return await fc.containerImages.createBaseImagesEntities(parseJsonParam(c, i));
 }
 
-/** Handles deleteBaseImages */
+/**
+ * Handles the 'deleteBaseImages' operation.
+ */
 async function handleDeleteBaseImages(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes base images by UUIDs. */
 	const idsString = c.getNodeParameter('ids', i, '') as string;
@@ -99,7 +121,9 @@ async function handleDeleteBaseImages(c: IExecuteFunctions, i: number, fc: Falco
 	return await fc.containerImages.deleteBaseImages(ids);
 }
 
-/** Handles getCombinedImages */
+/**
+ * Handles the 'getCombinedImages' operation.
+ */
 async function handleGetCombinedImages(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves combined images. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -109,7 +133,9 @@ async function handleGetCombinedImages(c: IExecuteFunctions, i: number, fc: Falc
 	return await fc.containerImages.getCombinedImages(filter || undefined, sort || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles readCombinedImagesExport */
+/**
+ * Handles the 'readCombinedImagesExport' operation.
+ */
 async function handleReadCombinedImagesExport(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Reads combined images export. */
 	const filter = c.getNodeParameter('filter', i, '') as string;

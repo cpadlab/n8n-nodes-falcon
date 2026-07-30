@@ -1,7 +1,9 @@
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
-/** Handles getCombinedAssessmentsQuery */
+/**
+ * Handles the 'getCombinedAssessmentsQuery' operation.
+ */
 async function handleGetCombinedAssessmentsQuery(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Searches for assessments by FQL filter. */
 	const filter = c.getNodeParameter('filter', i) as string;
@@ -10,7 +12,9 @@ async function handleGetCombinedAssessmentsQuery(c: IExecuteFunctions, i: number
 	return await fc.configurationAssessment.getCombinedAssessmentsQuery(filter, undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles getRuleDetails */
+/**
+ * Handles the 'getRuleDetails' operation.
+ */
 async function handleGetRuleDetails(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets rule details by rule IDs. */
 	const idsString = c.getNodeParameter('ids', i, '') as string;

@@ -21,20 +21,26 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles caoIncidentsAggregatesV1 */
+/**
+ * Handles the 'caoIncidentsAggregatesV1' operation.
+ */
 async function handleCaoIncidentsAggregatesV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Perform statistical aggregations over incident data. */
 	const body = parseJsonParam(c, i);
 	return await fc.intel.caoIncidentsAggregatesV1(Array.isArray(body) ? body : [body]);
 }
 
-/** Handles caoIncidentsEntitiesV1 */
+/**
+ * Handles the 'caoIncidentsEntitiesV1' operation.
+ */
 async function handleCaoIncidentsEntitiesV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve full details for adversary incidents by IDs. */
 	return await fc.intel.caoIncidentsEntitiesV1(parseJsonParam(c, i));
 }
 
-/** Handles caoIncidentsQueriesV1 */
+/**
+ * Handles the 'caoIncidentsQueriesV1' operation.
+ */
 async function handleCaoIncidentsQueriesV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Search for adversary incidents using FQL criteria. */
 	const sort = getStringParam(c, i, 'sort', '');
@@ -44,38 +50,50 @@ async function handleCaoIncidentsQueriesV1(c: IExecuteFunctions, i: number, fc: 
 	return await fc.intel.caoIncidentsQueriesV1(sort || undefined, filter || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles getIntelActorEntities */
+/**
+ * Handles the 'getIntelActorEntities' operation.
+ */
 async function handleGetIntelActorEntities(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve specific actors using their actor IDs. */
 	return await fc.intel.getIntelActorEntities(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getIntelIndicatorEntities */
+/**
+ * Handles the 'getIntelIndicatorEntities' operation.
+ */
 async function handleGetIntelIndicatorEntities(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve specific indicators using their indicator IDs. */
 	return await fc.intel.getIntelIndicatorEntities(parseJsonParam(c, i));
 }
 
-/** Handles getIntelReportEntities */
+/**
+ * Handles the 'getIntelReportEntities' operation.
+ */
 async function handleGetIntelReportEntities(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve specific reports using their report IDs. */
 	return await fc.intel.getIntelReportEntities(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getIntelReportPDF */
+/**
+ * Handles the 'getIntelReportPDF' operation.
+ */
 async function handleGetIntelReportPDF(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Return a Report PDF attachment. */
 	const id = getStringParam(c, i, 'id', '');
 	return await fc.intel.getIntelReportPDF(id || undefined);
 }
 
-/** Handles getIntelRuleEntities */
+/**
+ * Handles the 'getIntelRuleEntities' operation.
+ */
 async function handleGetIntelRuleEntities(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve details for rule sets for specified IDs. */
 	return await fc.intel.getIntelRuleEntities(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getIntelRuleFile */
+/**
+ * Handles the 'getIntelRuleFile' operation.
+ */
 async function handleGetIntelRuleFile(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Download earlier rule sets. */
 	const idStr = getStringParam(c, i, 'id', '0');
@@ -83,20 +101,26 @@ async function handleGetIntelRuleFile(c: IExecuteFunctions, i: number, fc: Falco
 	return await fc.intel.getIntelRuleFile(id);
 }
 
-/** Handles getLatestIntelRuleFile */
+/**
+ * Handles the 'getLatestIntelRuleFile' operation.
+ */
 async function handleGetLatestIntelRuleFile(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Download the latest rule set. */
 	const type = getStringParam(c, i, 'type', '');
 	return await fc.intel.getLatestIntelRuleFile(type);
 }
 
-/** Handles getMalwareEntities */
+/**
+ * Handles the 'getMalwareEntities' operation.
+ */
 async function handleGetMalwareEntities(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get malware entities for specified IDs. */
 	return await fc.intel.getMalwareEntities(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getMalwareMitreReport */
+/**
+ * Handles the 'getMalwareMitreReport' operation.
+ */
 async function handleGetMalwareMitreReport(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Export MITRE ATT&CK information for a malware family. */
 	const id = getStringParam(c, i, 'id', '');
@@ -104,7 +128,9 @@ async function handleGetMalwareMitreReport(c: IExecuteFunctions, i: number, fc: 
 	return await fc.intel.getMalwareMitreReport(id, format);
 }
 
-/** Handles getMitreReport */
+/**
+ * Handles the 'getMitreReport' operation.
+ */
 async function handleGetMitreReport(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Export MITRE ATT&CK information for an actor. */
 	const actorId = getStringParam(c, i, 'actorId', '');
@@ -112,19 +138,25 @@ async function handleGetMitreReport(c: IExecuteFunctions, i: number, fc: FalconC
 	return await fc.intel.getMitreReport(actorId, format);
 }
 
-/** Handles getVulnerabilities */
+/**
+ * Handles the 'getVulnerabilities' operation.
+ */
 async function handleGetVulnerabilities(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get vulnerabilities by providing IDs in body. */
 	return await fc.intel.getVulnerabilities(parseJsonParam(c, i));
 }
 
-/** Handles postMitreAttacks */
+/**
+ * Handles the 'postMitreAttacks' operation.
+ */
 async function handlePostMitreAttacks(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves report and observable IDs associated with actor and attacks. */
 	return await fc.intel.postMitreAttacks(parseJsonParam(c, i));
 }
 
-/** Handles queryIntelActorEntities */
+/**
+ * Handles the 'queryIntelActorEntities' operation.
+ */
 async function handleQueryIntelActorEntities(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get info about actors matching provided FQL filters. */
 	const offsetStr = getStringParam(c, i, 'offset', '');
@@ -136,7 +168,9 @@ async function handleQueryIntelActorEntities(c: IExecuteFunctions, i: number, fc
 	return await fc.intel.queryIntelActorEntities(offset, limit || undefined, sort || undefined, filter || undefined, q || undefined);
 }
 
-/** Handles queryIntelActorIds */
+/**
+ * Handles the 'queryIntelActorIds' operation.
+ */
 async function handleQueryIntelActorIds(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get actor IDs matching provided FQL filters. */
 	const offsetStr = getStringParam(c, i, 'offset', '');
@@ -148,7 +182,9 @@ async function handleQueryIntelActorIds(c: IExecuteFunctions, i: number, fc: Fal
 	return await fc.intel.queryIntelActorIds(offset, limit || undefined, sort || undefined, filter || undefined, q || undefined);
 }
 
-/** Handles queryIntelIndicatorEntities */
+/**
+ * Handles the 'queryIntelIndicatorEntities' operation.
+ */
 async function handleQueryIntelIndicatorEntities(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get info about indicators matching FQL filters. */
 	const offsetStr = getStringParam(c, i, 'offset', '');
@@ -160,7 +196,9 @@ async function handleQueryIntelIndicatorEntities(c: IExecuteFunctions, i: number
 	return await fc.intel.queryIntelIndicatorEntities(offset, limit || undefined, sort || undefined, filter || undefined, q || undefined);
 }
 
-/** Handles queryIntelIndicatorIds */
+/**
+ * Handles the 'queryIntelIndicatorIds' operation.
+ */
 async function handleQueryIntelIndicatorIds(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get indicator IDs matching FQL filters. */
 	const offsetStr = getStringParam(c, i, 'offset', '');
@@ -172,7 +210,9 @@ async function handleQueryIntelIndicatorIds(c: IExecuteFunctions, i: number, fc:
 	return await fc.intel.queryIntelIndicatorIds(offset, limit || undefined, sort || undefined, filter || undefined, q || undefined);
 }
 
-/** Handles queryIntelReportEntities */
+/**
+ * Handles the 'queryIntelReportEntities' operation.
+ */
 async function handleQueryIntelReportEntities(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get info about reports matching FQL filters. */
 	const offsetStr = getStringParam(c, i, 'offset', '');
@@ -184,7 +224,9 @@ async function handleQueryIntelReportEntities(c: IExecuteFunctions, i: number, f
 	return await fc.intel.queryIntelReportEntities(offset, limit || undefined, sort || undefined, filter || undefined, q || undefined);
 }
 
-/** Handles queryIntelReportIds */
+/**
+ * Handles the 'queryIntelReportIds' operation.
+ */
 async function handleQueryIntelReportIds(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get report IDs matching FQL filters. */
 	const offsetStr = getStringParam(c, i, 'offset', '');
@@ -196,7 +238,9 @@ async function handleQueryIntelReportIds(c: IExecuteFunctions, i: number, fc: Fa
 	return await fc.intel.queryIntelReportIds(offset, limit || undefined, sort || undefined, filter || undefined, q || undefined);
 }
 
-/** Handles queryIntelRuleIds */
+/**
+ * Handles the 'queryIntelRuleIds' operation.
+ */
 async function handleQueryIntelRuleIds(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Search for rule IDs matching provided filter criteria. */
 	const type = getStringParam(c, i, 'type', '');
@@ -208,7 +252,9 @@ async function handleQueryIntelRuleIds(c: IExecuteFunctions, i: number, fc: Falc
 	return await fc.intel.queryIntelRuleIds(type, offset, limit || undefined, sort || undefined, undefined, undefined, undefined, undefined, undefined, q || undefined);
 }
 
-/** Handles queryMalware */
+/**
+ * Handles the 'queryMalware' operation.
+ */
 async function handleQueryMalware(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get malware family names matching FQL filters. */
 	const offsetStr = getStringParam(c, i, 'offset', '');
@@ -220,7 +266,9 @@ async function handleQueryMalware(c: IExecuteFunctions, i: number, fc: FalconCli
 	return await fc.intel.queryMalware(offset, limit || undefined, sort || undefined, filter || undefined, q || undefined);
 }
 
-/** Handles queryMalwareEntities */
+/**
+ * Handles the 'queryMalwareEntities' operation.
+ */
 async function handleQueryMalwareEntities(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get malware entities matching FQL filters. */
 	const offsetStr = getStringParam(c, i, 'offset', '');
@@ -232,20 +280,26 @@ async function handleQueryMalwareEntities(c: IExecuteFunctions, i: number, fc: F
 	return await fc.intel.queryMalwareEntities(offset, limit || undefined, sort || undefined, filter || undefined, q || undefined);
 }
 
-/** Handles queryMitreAttacks */
+/**
+ * Handles the 'queryMitreAttacks' operation.
+ */
 async function handleQueryMitreAttacks(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets MITRE tactics and techniques for given actor. */
 	const id = getStringParam(c, i, 'id', '');
 	return await fc.intel.queryMitreAttacks(id || undefined);
 }
 
-/** Handles queryMitreAttacksForMalware */
+/**
+ * Handles the 'queryMitreAttacksForMalware' operation.
+ */
 async function handleQueryMitreAttacksForMalware(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets MITRE tactics and techniques for given malware. */
 	return await fc.intel.queryMitreAttacksForMalware(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles queryVulnerabilities */
+/**
+ * Handles the 'queryVulnerabilities' operation.
+ */
 async function handleQueryVulnerabilities(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get vulnerability IDs matching FQL filters. */
 	const offset = getStringParam(c, i, 'offset', '');

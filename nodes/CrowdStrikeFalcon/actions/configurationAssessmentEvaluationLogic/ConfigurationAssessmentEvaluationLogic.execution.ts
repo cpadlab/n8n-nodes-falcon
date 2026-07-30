@@ -1,7 +1,9 @@
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
-/** Handles getEvaluationLogicMixin0 */
+/**
+ * Handles the 'getEvaluationLogicMixin0' operation.
+ */
 async function handleGetEvaluationLogicMixin0(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets evaluation logic items by finding IDs. */
 	const idsString = c.getNodeParameter('ids', i, '') as string;

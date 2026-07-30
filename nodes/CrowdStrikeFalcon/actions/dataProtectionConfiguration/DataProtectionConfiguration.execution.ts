@@ -21,238 +21,314 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles entitiesClassificationDeleteV2 */
+/**
+ * Handles the 'entitiesClassificationDeleteV2' operation.
+ */
 async function handleEntitiesClassificationDeleteV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes classifications that match the provided ids. */
 	return await fc.dataProtectionConfiguration.entitiesClassificationDeleteV2(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles entitiesClassificationGetV2 */
+/**
+ * Handles the 'entitiesClassificationGetV2' operation.
+ */
 async function handleEntitiesClassificationGetV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets the classifications that match the provided ids. */
 	return await fc.dataProtectionConfiguration.entitiesClassificationGetV2(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles entitiesClassificationPatchV2 */
+/**
+ * Handles the 'entitiesClassificationPatchV2' operation.
+ */
 async function handleEntitiesClassificationPatchV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update classifications. */
 	return await fc.dataProtectionConfiguration.entitiesClassificationPatchV2(parseJsonParam(c, i));
 }
 
-/** Handles entitiesClassificationPostV2 */
+/**
+ * Handles the 'entitiesClassificationPostV2' operation.
+ */
 async function handleEntitiesClassificationPostV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create classifications. */
 	return await fc.dataProtectionConfiguration.entitiesClassificationPostV2(parseJsonParam(c, i));
 }
 
-/** Handles entitiesCloudApplicationCreate */
+/**
+ * Handles the 'entitiesCloudApplicationCreate' operation.
+ */
 async function handleEntitiesCloudApplicationCreate(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Persist the given cloud application for the provided entity instance. */
 	return await fc.dataProtectionConfiguration.entitiesCloudApplicationCreate(parseJsonParam(c, i));
 }
 
-/** Handles entitiesCloudApplicationDelete */
+/**
+ * Handles the 'entitiesCloudApplicationDelete' operation.
+ */
 async function handleEntitiesCloudApplicationDelete(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete cloud application. */
 	return await fc.dataProtectionConfiguration.entitiesCloudApplicationDelete(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles entitiesCloudApplicationGet */
+/**
+ * Handles the 'entitiesCloudApplicationGet' operation.
+ */
 async function handleEntitiesCloudApplicationGet(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get a particular cloud-application. */
 	return await fc.dataProtectionConfiguration.entitiesCloudApplicationGet(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles entitiesCloudApplicationPatch */
+/**
+ * Handles the 'entitiesCloudApplicationPatch' operation.
+ */
 async function handleEntitiesCloudApplicationPatch(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update a cloud application. */
 	const id = getStringParam(c, i, 'id', '');
 	return await fc.dataProtectionConfiguration.entitiesCloudApplicationPatch(id, parseJsonParam(c, i));
 }
 
-/** Handles entitiesContentPatternCreate */
+/**
+ * Handles the 'entitiesContentPatternCreate' operation.
+ */
 async function handleEntitiesContentPatternCreate(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Persist the given content pattern for the provided entity instance. */
 	return await fc.dataProtectionConfiguration.entitiesContentPatternCreate(parseJsonParam(c, i));
 }
 
-/** Handles entitiesContentPatternDelete */
+/**
+ * Handles the 'entitiesContentPatternDelete' operation.
+ */
 async function handleEntitiesContentPatternDelete(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete content pattern. */
 	return await fc.dataProtectionConfiguration.entitiesContentPatternDelete(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles entitiesContentPatternGet */
+/**
+ * Handles the 'entitiesContentPatternGet' operation.
+ */
 async function handleEntitiesContentPatternGet(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get a particular content-pattern(s). */
 	return await fc.dataProtectionConfiguration.entitiesContentPatternGet(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles entitiesContentPatternPatch */
+/**
+ * Handles the 'entitiesContentPatternPatch' operation.
+ */
 async function handleEntitiesContentPatternPatch(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update a content pattern. */
 	const id = getStringParam(c, i, 'id', '');
 	return await fc.dataProtectionConfiguration.entitiesContentPatternPatch(id, parseJsonParam(c, i));
 }
 
-/** Handles entitiesEnterpriseAccountCreate */
+/**
+ * Handles the 'entitiesEnterpriseAccountCreate' operation.
+ */
 async function handleEntitiesEnterpriseAccountCreate(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Persist the given enterprise account for the provided entity instance. */
 	return await fc.dataProtectionConfiguration.entitiesEnterpriseAccountCreate(parseJsonParam(c, i));
 }
 
-/** Handles entitiesEnterpriseAccountDelete */
+/**
+ * Handles the 'entitiesEnterpriseAccountDelete' operation.
+ */
 async function handleEntitiesEnterpriseAccountDelete(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete enterprise account. */
 	return await fc.dataProtectionConfiguration.entitiesEnterpriseAccountDelete(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles entitiesEnterpriseAccountGet */
+/**
+ * Handles the 'entitiesEnterpriseAccountGet' operation.
+ */
 async function handleEntitiesEnterpriseAccountGet(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get a particular enterprise-account(s). */
 	return await fc.dataProtectionConfiguration.entitiesEnterpriseAccountGet(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles entitiesEnterpriseAccountPatch */
+/**
+ * Handles the 'entitiesEnterpriseAccountPatch' operation.
+ */
 async function handleEntitiesEnterpriseAccountPatch(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update a enterprise account. */
 	const id = getStringParam(c, i, 'id', '');
 	return await fc.dataProtectionConfiguration.entitiesEnterpriseAccountPatch(id, parseJsonParam(c, i));
 }
 
-/** Handles entitiesFileTypeGet */
+/**
+ * Handles the 'entitiesFileTypeGet' operation.
+ */
 async function handleEntitiesFileTypeGet(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get a particular file-type. */
 	return await fc.dataProtectionConfiguration.entitiesFileTypeGet(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles entitiesLocalApplicationCreate */
+/**
+ * Handles the 'entitiesLocalApplicationCreate' operation.
+ */
 async function handleEntitiesLocalApplicationCreate(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Persist the given local application for the provided entity instance. */
 	return await fc.dataProtectionConfiguration.entitiesLocalApplicationCreate(parseJsonParam(c, i));
 }
 
-/** Handles entitiesLocalApplicationDelete */
+/**
+ * Handles the 'entitiesLocalApplicationDelete' operation.
+ */
 async function handleEntitiesLocalApplicationDelete(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Soft Delete local application. */
 	return await fc.dataProtectionConfiguration.entitiesLocalApplicationDelete(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles entitiesLocalApplicationGet */
+/**
+ * Handles the 'entitiesLocalApplicationGet' operation.
+ */
 async function handleEntitiesLocalApplicationGet(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get a particular local application. */
 	return await fc.dataProtectionConfiguration.entitiesLocalApplicationGet(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles entitiesLocalApplicationGroupCreate */
+/**
+ * Handles the 'entitiesLocalApplicationGroupCreate' operation.
+ */
 async function handleEntitiesLocalApplicationGroupCreate(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Persist the given local application group for the provided entity instance. */
 	return await fc.dataProtectionConfiguration.entitiesLocalApplicationGroupCreate(parseJsonParam(c, i));
 }
 
-/** Handles entitiesLocalApplicationGroupDelete */
+/**
+ * Handles the 'entitiesLocalApplicationGroupDelete' operation.
+ */
 async function handleEntitiesLocalApplicationGroupDelete(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Soft Delete local application group. */
 	return await fc.dataProtectionConfiguration.entitiesLocalApplicationGroupDelete(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles entitiesLocalApplicationGroupGet */
+/**
+ * Handles the 'entitiesLocalApplicationGroupGet' operation.
+ */
 async function handleEntitiesLocalApplicationGroupGet(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get specific local application groups. */
 	return await fc.dataProtectionConfiguration.entitiesLocalApplicationGroupGet(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles entitiesLocalApplicationGroupPatch */
+/**
+ * Handles the 'entitiesLocalApplicationGroupPatch' operation.
+ */
 async function handleEntitiesLocalApplicationGroupPatch(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update a local application group. */
 	const id = getStringParam(c, i, 'id', '');
 	return await fc.dataProtectionConfiguration.entitiesLocalApplicationGroupPatch(id, parseJsonParam(c, i));
 }
 
-/** Handles entitiesLocalApplicationPatch */
+/**
+ * Handles the 'entitiesLocalApplicationPatch' operation.
+ */
 async function handleEntitiesLocalApplicationPatch(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update a local application. */
 	const id = getStringParam(c, i, 'id', '');
 	return await fc.dataProtectionConfiguration.entitiesLocalApplicationPatch(id, parseJsonParam(c, i));
 }
 
-/** Handles entitiesPolicyDeleteV2 */
+/**
+ * Handles the 'entitiesPolicyDeleteV2' operation.
+ */
 async function handleEntitiesPolicyDeleteV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes policies that match the provided ids. */
 	const platformName = getStringParam(c, i, 'platformName', 'Windows');
 	return await fc.dataProtectionConfiguration.entitiesPolicyDeleteV2(parseArrayParam(c, i, 'ids'), platformName);
 }
 
-/** Handles entitiesPolicyGetV2 */
+/**
+ * Handles the 'entitiesPolicyGetV2' operation.
+ */
 async function handleEntitiesPolicyGetV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets policies that match the provided ids. */
 	return await fc.dataProtectionConfiguration.entitiesPolicyGetV2(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles entitiesPolicyPatchV2 */
+/**
+ * Handles the 'entitiesPolicyPatchV2' operation.
+ */
 async function handleEntitiesPolicyPatchV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update policies. */
 	const platformName = getStringParam(c, i, 'platformName', 'Windows');
 	return await fc.dataProtectionConfiguration.entitiesPolicyPatchV2(platformName, parseJsonParam(c, i));
 }
 
-/** Handles entitiesPolicyPostV2 */
+/**
+ * Handles the 'entitiesPolicyPostV2' operation.
+ */
 async function handleEntitiesPolicyPostV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create policies. */
 	const platformName = getStringParam(c, i, 'platformName', 'Windows');
 	return await fc.dataProtectionConfiguration.entitiesPolicyPostV2(platformName, parseJsonParam(c, i));
 }
 
-/** Handles entitiesPolicyPrecedencePostV1 */
+/**
+ * Handles the 'entitiesPolicyPrecedencePostV1' operation.
+ */
 async function handleEntitiesPolicyPrecedencePostV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update Policy Precedence. */
 	return await fc.dataProtectionConfiguration.entitiesPolicyPrecedencePostV1(parseJsonParam(c, i));
 }
 
-/** Handles entitiesSensitivityLabelCreateV2 */
+/**
+ * Handles the 'entitiesSensitivityLabelCreateV2' operation.
+ */
 async function handleEntitiesSensitivityLabelCreateV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create new sensitivity label (V2). */
 	return await fc.dataProtectionConfiguration.entitiesSensitivityLabelCreateV2(parseJsonParam(c, i));
 }
 
-/** Handles entitiesSensitivityLabelDeleteV2 */
+/**
+ * Handles the 'entitiesSensitivityLabelDeleteV2' operation.
+ */
 async function handleEntitiesSensitivityLabelDeleteV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete sensitivity labels matching the IDs (V2). */
 	return await fc.dataProtectionConfiguration.entitiesSensitivityLabelDeleteV2(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles entitiesSensitivityLabelGetV2 */
+/**
+ * Handles the 'entitiesSensitivityLabelGetV2' operation.
+ */
 async function handleEntitiesSensitivityLabelGetV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get sensitivity label matching the IDs (V2). */
 	return await fc.dataProtectionConfiguration.entitiesSensitivityLabelGetV2(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles entitiesWebLocationCreateV2 */
+/**
+ * Handles the 'entitiesWebLocationCreateV2' operation.
+ */
 async function handleEntitiesWebLocationCreateV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Persist the given web-locations. */
 	return await fc.dataProtectionConfiguration.entitiesWebLocationCreateV2(parseJsonParam(c, i));
 }
 
-/** Handles entitiesWebLocationDeleteV2 */
+/**
+ * Handles the 'entitiesWebLocationDeleteV2' operation.
+ */
 async function handleEntitiesWebLocationDeleteV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete web-location. */
 	return await fc.dataProtectionConfiguration.entitiesWebLocationDeleteV2(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles entitiesWebLocationGetV2 */
+/**
+ * Handles the 'entitiesWebLocationGetV2' operation.
+ */
 async function handleEntitiesWebLocationGetV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get web-location entities matching the provided ID(s). */
 	return await fc.dataProtectionConfiguration.entitiesWebLocationGetV2(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles entitiesWebLocationPatchV2 */
+/**
+ * Handles the 'entitiesWebLocationPatchV2' operation.
+ */
 async function handleEntitiesWebLocationPatchV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update a web-location. */
 	const id = getStringParam(c, i, 'id', '');
 	return await fc.dataProtectionConfiguration.entitiesWebLocationPatchV2(id, parseJsonParam(c, i));
 }
 
-/** Handles queriesClassificationGetV2 */
+/**
+ * Handles the 'queriesClassificationGetV2' operation.
+ */
 async function handleQueriesClassificationGetV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Search for classifications that match the provided criteria. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -262,7 +338,9 @@ async function handleQueriesClassificationGetV2(c: IExecuteFunctions, i: number,
 	return await fc.dataProtectionConfiguration.queriesClassificationGetV2(filter || undefined, offset || undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles queriesCloudApplicationGetV2 */
+/**
+ * Handles the 'queriesCloudApplicationGetV2' operation.
+ */
 async function handleQueriesCloudApplicationGetV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get all cloud-application IDs matching the query with filter. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -272,7 +350,9 @@ async function handleQueriesCloudApplicationGetV2(c: IExecuteFunctions, i: numbe
 	return await fc.dataProtectionConfiguration.queriesCloudApplicationGetV2(filter || undefined, sort || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles queriesContentPatternGetV2 */
+/**
+ * Handles the 'queriesContentPatternGetV2' operation.
+ */
 async function handleQueriesContentPatternGetV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get all content-pattern IDs matching the query with filter. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -282,7 +362,9 @@ async function handleQueriesContentPatternGetV2(c: IExecuteFunctions, i: number,
 	return await fc.dataProtectionConfiguration.queriesContentPatternGetV2(filter || undefined, sort || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles queriesEnterpriseAccountGetV2 */
+/**
+ * Handles the 'queriesEnterpriseAccountGetV2' operation.
+ */
 async function handleQueriesEnterpriseAccountGetV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get all enterprise-account IDs matching the query with filter. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -292,7 +374,9 @@ async function handleQueriesEnterpriseAccountGetV2(c: IExecuteFunctions, i: numb
 	return await fc.dataProtectionConfiguration.queriesEnterpriseAccountGetV2(filter || undefined, sort || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles queriesFileTypeGetV2 */
+/**
+ * Handles the 'queriesFileTypeGetV2' operation.
+ */
 async function handleQueriesFileTypeGetV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get all file-type IDs matching the query with filter. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -302,7 +386,9 @@ async function handleQueriesFileTypeGetV2(c: IExecuteFunctions, i: number, fc: F
 	return await fc.dataProtectionConfiguration.queriesFileTypeGetV2(filter || undefined, sort || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles queriesLocalApplicationGet */
+/**
+ * Handles the 'queriesLocalApplicationGet' operation.
+ */
 async function handleQueriesLocalApplicationGet(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get all local-application IDs matching the query with filter. */
 	const xCSUSERUUID = getStringParam(c, i, 'xCSUSERUUID', '');
@@ -312,7 +398,9 @@ async function handleQueriesLocalApplicationGet(c: IExecuteFunctions, i: number,
 	return await fc.dataProtectionConfiguration.queriesLocalApplicationGet(xCSUSERUUID, filter || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles queriesLocalApplicationGroupGet */
+/**
+ * Handles the 'queriesLocalApplicationGroupGet' operation.
+ */
 async function handleQueriesLocalApplicationGroupGet(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get all local application group IDs matching the query with filter. */
 	const xCSUSERUUID = getStringParam(c, i, 'xCSUSERUUID', '');
@@ -322,7 +410,9 @@ async function handleQueriesLocalApplicationGroupGet(c: IExecuteFunctions, i: nu
 	return await fc.dataProtectionConfiguration.queriesLocalApplicationGroupGet(xCSUSERUUID, filter || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles queriesPolicyGetV2 */
+/**
+ * Handles the 'queriesPolicyGetV2' operation.
+ */
 async function handleQueriesPolicyGetV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Search for policies that match the provided criteria. */
 	const platformName = getStringParam(c, i, 'platformName', 'Windows');
@@ -333,7 +423,9 @@ async function handleQueriesPolicyGetV2(c: IExecuteFunctions, i: number, fc: Fal
 	return await fc.dataProtectionConfiguration.queriesPolicyGetV2(platformName, filter || undefined, offset || undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles queriesSensitivityLabelGetV2 */
+/**
+ * Handles the 'queriesSensitivityLabelGetV2' operation.
+ */
 async function handleQueriesSensitivityLabelGetV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get all sensitivity label IDs matching the query with filter. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -343,7 +435,9 @@ async function handleQueriesSensitivityLabelGetV2(c: IExecuteFunctions, i: numbe
 	return await fc.dataProtectionConfiguration.queriesSensitivityLabelGetV2(filter || undefined, sort || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles queriesWebLocationGetV2 */
+/**
+ * Handles the 'queriesWebLocationGetV2' operation.
+ */
 async function handleQueriesWebLocationGetV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get web-location IDs matching the query with filter. */
 	const filter = getStringParam(c, i, 'filter', '');

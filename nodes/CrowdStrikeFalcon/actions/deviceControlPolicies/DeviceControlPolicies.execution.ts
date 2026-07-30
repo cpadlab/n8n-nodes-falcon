@@ -21,38 +21,50 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles createDeviceControlPolicies */
+/**
+ * Handles the 'createDeviceControlPolicies' operation.
+ */
 async function handleCreateDeviceControlPolicies(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates Device Control Policies (deprecated). */
 	return await fc.deviceControlPolicies.createDeviceControlPolicies(parseJsonParam(c, i));
 }
 
-/** Handles deleteDeviceControlPolicies */
+/**
+ * Handles the 'deleteDeviceControlPolicies' operation.
+ */
 async function handleDeleteDeviceControlPolicies(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes Device Control Policies by IDs. */
 	return await fc.deviceControlPolicies.deleteDeviceControlPolicies(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getDefaultDeviceControlPolicies */
+/**
+ * Handles the 'getDefaultDeviceControlPolicies' operation.
+ */
 async function handleGetDefaultDeviceControlPolicies(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets Default Device Control Policies configuration (deprecated). */
 	return await fc.deviceControlPolicies.getDefaultDeviceControlPolicies();
 }
 
-/** Handles getDeviceControlPolicies */
+/**
+ * Handles the 'getDeviceControlPolicies' operation.
+ */
 async function handleGetDeviceControlPolicies(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets Device Control Policies by IDs (deprecated). */
 	return await fc.deviceControlPolicies.getDeviceControlPolicies(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles performDeviceControlPoliciesAction */
+/**
+ * Handles the 'performDeviceControlPoliciesAction' operation.
+ */
 async function handlePerformDeviceControlPoliciesAction(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Performs action on Device Control Policies. */
 	const actionName = c.getNodeParameter('actionName', i) as any;
 	return await fc.deviceControlPolicies.performDeviceControlPoliciesAction(actionName, parseJsonParam(c, i));
 }
 
-/** Handles queryCombinedDeviceControlPolicies */
+/**
+ * Handles the 'queryCombinedDeviceControlPolicies' operation.
+ */
 async function handleQueryCombinedDeviceControlPolicies(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries combined Device Control Policies. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -62,7 +74,9 @@ async function handleQueryCombinedDeviceControlPolicies(c: IExecuteFunctions, i:
 	return await fc.deviceControlPolicies.queryCombinedDeviceControlPolicies(filter || undefined, offset || undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles queryCombinedDeviceControlPolicyMembers */
+/**
+ * Handles the 'queryCombinedDeviceControlPolicyMembers' operation.
+ */
 async function handleQueryCombinedDeviceControlPolicyMembers(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries combined Device Control Policy members. */
 	const id = getStringParam(c, i, 'id', '');
@@ -73,7 +87,9 @@ async function handleQueryCombinedDeviceControlPolicyMembers(c: IExecuteFunction
 	return await fc.deviceControlPolicies.queryCombinedDeviceControlPolicyMembers(id || undefined, filter || undefined, offset || undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles queryDeviceControlPolicies */
+/**
+ * Handles the 'queryDeviceControlPolicies' operation.
+ */
 async function handleQueryDeviceControlPolicies(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries Device Control Policy IDs. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -83,7 +99,9 @@ async function handleQueryDeviceControlPolicies(c: IExecuteFunctions, i: number,
 	return await fc.deviceControlPolicies.queryDeviceControlPolicies(filter || undefined, offset || undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles queryDeviceControlPolicyMembers */
+/**
+ * Handles the 'queryDeviceControlPolicyMembers' operation.
+ */
 async function handleQueryDeviceControlPolicyMembers(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries Device Control Policy member IDs. */
 	const id = getStringParam(c, i, 'id', '');
@@ -94,19 +112,25 @@ async function handleQueryDeviceControlPolicyMembers(c: IExecuteFunctions, i: nu
 	return await fc.deviceControlPolicies.queryDeviceControlPolicyMembers(id || undefined, filter || undefined, offset || undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles setDeviceControlPoliciesPrecedence */
+/**
+ * Handles the 'setDeviceControlPoliciesPrecedence' operation.
+ */
 async function handleSetDeviceControlPoliciesPrecedence(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Sets Device Control Policies precedence. */
 	return await fc.deviceControlPolicies.setDeviceControlPoliciesPrecedence(parseJsonParam(c, i));
 }
 
-/** Handles updateDefaultDeviceControlPolicies */
+/**
+ * Handles the 'updateDefaultDeviceControlPolicies' operation.
+ */
 async function handleUpdateDefaultDeviceControlPolicies(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates Default Device Control Policies configuration (deprecated). */
 	return await fc.deviceControlPolicies.updateDefaultDeviceControlPolicies(parseJsonParam(c, i));
 }
 
-/** Handles updateDeviceControlPolicies */
+/**
+ * Handles the 'updateDeviceControlPolicies' operation.
+ */
 async function handleUpdateDeviceControlPolicies(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates Device Control Policies (deprecated). */
 	return await fc.deviceControlPolicies.updateDeviceControlPolicies(parseJsonParam(c, i));

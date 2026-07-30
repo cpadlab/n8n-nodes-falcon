@@ -6,7 +6,9 @@ function parseArrayParam(context: IExecuteFunctions, index: number, paramName = 
 	return str.split(',').map((name) => name.trim()).filter(Boolean);
 }
 
-/** Handles delete */
+/**
+ * Handles the 'delete' operation.
+ */
 async function handleDelete(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes an object in custom storage. */
 	const collectionName = c.getNodeParameter('collectionName', i) as string;
@@ -14,7 +16,9 @@ async function handleDelete(c: IExecuteFunctions, i: number, fc: FalconClient): 
 	return await fc.customStorage._delete(collectionName, objectKey);
 }
 
-/** Handles deleteVersionedObject */
+/**
+ * Handles the 'deleteVersionedObject' operation.
+ */
 async function handleDeleteVersionedObject(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes a versioned object. */
 	const collectionName = c.getNodeParameter('collectionName', i) as string;
@@ -23,20 +27,26 @@ async function handleDeleteVersionedObject(c: IExecuteFunctions, i: number, fc: 
 	return await fc.customStorage.deleteVersionedObject(collectionName, collectionVersion, objectKey);
 }
 
-/** Handles describeCollection */
+/**
+ * Handles the 'describeCollection' operation.
+ */
 async function handleDescribeCollection(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Describes a collection. */
 	const collectionName = c.getNodeParameter('collectionName', i) as string;
 	return await fc.customStorage.describeCollection(collectionName);
 }
 
-/** Handles describeCollections */
+/**
+ * Handles the 'describeCollections' operation.
+ */
 async function handleDescribeCollections(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Describes multiple collections. */
 	return await fc.customStorage.describeCollections(parseArrayParam(c, i, 'names'));
 }
 
-/** Handles get */
+/**
+ * Handles the 'get' operation.
+ */
 async function handleGet(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets object bytes. */
 	const collectionName = c.getNodeParameter('collectionName', i) as string;
@@ -44,7 +54,9 @@ async function handleGet(c: IExecuteFunctions, i: number, fc: FalconClient): Pro
 	return await fc.customStorage.get(collectionName, objectKey);
 }
 
-/** Handles getSchema */
+/**
+ * Handles the 'getSchema' operation.
+ */
 async function handleGetSchema(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets schema bytes. */
 	const collectionName = c.getNodeParameter('collectionName', i) as string;
@@ -52,7 +64,9 @@ async function handleGetSchema(c: IExecuteFunctions, i: number, fc: FalconClient
 	return await fc.customStorage.getSchema(collectionName, schemaVersion);
 }
 
-/** Handles getSchemaMetadata */
+/**
+ * Handles the 'getSchemaMetadata' operation.
+ */
 async function handleGetSchemaMetadata(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets schema metadata. */
 	const collectionName = c.getNodeParameter('collectionName', i) as string;
@@ -60,7 +74,9 @@ async function handleGetSchemaMetadata(c: IExecuteFunctions, i: number, fc: Falc
 	return await fc.customStorage.getSchemaMetadata(collectionName, schemaVersion);
 }
 
-/** Handles getVersionedObject */
+/**
+ * Handles the 'getVersionedObject' operation.
+ */
 async function handleGetVersionedObject(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets versioned object bytes. */
 	const collectionName = c.getNodeParameter('collectionName', i) as string;
@@ -69,7 +85,9 @@ async function handleGetVersionedObject(c: IExecuteFunctions, i: number, fc: Fal
 	return await fc.customStorage.getVersionedObject(collectionName, collectionVersion, objectKey);
 }
 
-/** Handles getVersionedObjectMetadata */
+/**
+ * Handles the 'getVersionedObjectMetadata' operation.
+ */
 async function handleGetVersionedObjectMetadata(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets versioned object metadata. */
 	const collectionName = c.getNodeParameter('collectionName', i) as string;
@@ -78,7 +96,9 @@ async function handleGetVersionedObjectMetadata(c: IExecuteFunctions, i: number,
 	return await fc.customStorage.getVersionedObjectMetadata(collectionName, collectionVersion, objectKey);
 }
 
-/** Handles list */
+/**
+ * Handles the 'list' operation.
+ */
 async function handleList(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Lists object keys. */
 	const collectionName = c.getNodeParameter('collectionName', i) as string;
@@ -86,14 +106,18 @@ async function handleList(c: IExecuteFunctions, i: number, fc: FalconClient): Pr
 	return await fc.customStorage.list(collectionName, undefined, limit || undefined);
 }
 
-/** Handles listCollections */
+/**
+ * Handles the 'listCollections' operation.
+ */
 async function handleListCollections(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Lists collection names. */
 	const limit = c.getNodeParameter('limit', i, 100) as number;
 	return await fc.customStorage.listCollections(undefined, limit || undefined);
 }
 
-/** Handles listObjectsByVersion */
+/**
+ * Handles the 'listObjectsByVersion' operation.
+ */
 async function handleListObjectsByVersion(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Lists objects by version. */
 	const collectionName = c.getNodeParameter('collectionName', i) as string;
@@ -102,7 +126,9 @@ async function handleListObjectsByVersion(c: IExecuteFunctions, i: number, fc: F
 	return await fc.customStorage.listObjectsByVersion(collectionName, collectionVersion, undefined, limit || undefined);
 }
 
-/** Handles listSchemas */
+/**
+ * Handles the 'listSchemas' operation.
+ */
 async function handleListSchemas(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Lists schemas for collection. */
 	const collectionName = c.getNodeParameter('collectionName', i) as string;
@@ -110,7 +136,9 @@ async function handleListSchemas(c: IExecuteFunctions, i: number, fc: FalconClie
 	return await fc.customStorage.listSchemas(collectionName, undefined, limit || undefined);
 }
 
-/** Handles metadata */
+/**
+ * Handles the 'metadata' operation.
+ */
 async function handleMetadata(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets metadata for object. */
 	const collectionName = c.getNodeParameter('collectionName', i) as string;
@@ -118,7 +146,9 @@ async function handleMetadata(c: IExecuteFunctions, i: number, fc: FalconClient)
 	return await fc.customStorage.metadata(collectionName, objectKey);
 }
 
-/** Handles search */
+/**
+ * Handles the 'search' operation.
+ */
 async function handleSearch(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Searches objects matching filter. */
 	const collectionName = c.getNodeParameter('collectionName', i) as string;
@@ -127,7 +157,9 @@ async function handleSearch(c: IExecuteFunctions, i: number, fc: FalconClient): 
 	return await fc.customStorage.search(collectionName, filter, limit || undefined);
 }
 
-/** Handles searchObjectsByVersion */
+/**
+ * Handles the 'searchObjectsByVersion' operation.
+ */
 async function handleSearchObjectsByVersion(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Searches versioned objects matching filter. */
 	const collectionName = c.getNodeParameter('collectionName', i) as string;

@@ -16,37 +16,49 @@ function parseArrayParam(context: IExecuteFunctions, index: number, paramName = 
 	return str.split(',').map((id) => id.trim()).filter(Boolean);
 }
 
-/** Handles getDefaultDeviceControlSettings */
+/**
+ * Handles the 'getDefaultDeviceControlSettings' operation.
+ */
 async function handleGetDefaultDeviceControlSettings(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets default device control settings. */
 	return await fc.deviceControlWithBluetooth.getDefaultDeviceControlSettings();
 }
 
-/** Handles getDeviceControlPoliciesV2 */
+/**
+ * Handles the 'getDeviceControlPoliciesV2' operation.
+ */
 async function handleGetDeviceControlPoliciesV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets device control policies V2. */
 	return await fc.deviceControlWithBluetooth.getDeviceControlPoliciesV2(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles patchDeviceControlPoliciesClassesV1 */
+/**
+ * Handles the 'patchDeviceControlPoliciesClassesV1' operation.
+ */
 async function handlePatchDeviceControlPoliciesClassesV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Patches device control policy classes V1. */
 	return await fc.deviceControlWithBluetooth.patchDeviceControlPoliciesClassesV1(parseJsonParam(c, i));
 }
 
-/** Handles patchDeviceControlPoliciesV2 */
+/**
+ * Handles the 'patchDeviceControlPoliciesV2' operation.
+ */
 async function handlePatchDeviceControlPoliciesV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Patches device control policy base V2. */
 	return await fc.deviceControlWithBluetooth.patchDeviceControlPoliciesV2(parseJsonParam(c, i));
 }
 
-/** Handles postDeviceControlPoliciesV2 */
+/**
+ * Handles the 'postDeviceControlPoliciesV2' operation.
+ */
 async function handlePostDeviceControlPoliciesV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Posts device control policy V2. */
 	return await fc.deviceControlWithBluetooth.postDeviceControlPoliciesV2(parseJsonParam(c, i));
 }
 
-/** Handles updateDefaultDeviceControlSettings */
+/**
+ * Handles the 'updateDefaultDeviceControlSettings' operation.
+ */
 async function handleUpdateDefaultDeviceControlSettings(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates default device control settings. */
 	return await fc.deviceControlWithBluetooth.updateDefaultDeviceControlSettings(parseJsonParam(c, i));

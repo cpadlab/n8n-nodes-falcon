@@ -11,13 +11,17 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles fdrschemaEntitiesFieldGet */
+/**
+ * Handles the 'fdrschemaEntitiesFieldGet' operation.
+ */
 async function handleFdrschemaEntitiesFieldGet(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Fetch field schema by ID. */
 	return await fc.fieldSchema.fdrschemaEntitiesFieldGet(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles fdrschemaQueriesFieldGet */
+/**
+ * Handles the 'fdrschemaQueriesFieldGet' operation.
+ */
 async function handleFdrschemaQueriesFieldGet(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get list of field IDs given a particular query. */
 	const limit = c.getNodeParameter('limit', i, 100) as number;

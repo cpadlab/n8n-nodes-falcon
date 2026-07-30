@@ -11,7 +11,9 @@ function parseJsonParam(context: IExecuteFunctions, index: number, paramName = '
 	}
 }
 
-/** Handles incrementUninstallToken */
+/**
+ * Handles the 'incrementUninstallToken' operation.
+ */
 async function handleIncrementUninstallToken(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Increments a bulk maintenance token. */
 	return await fc.maintenanceToken.incrementUninstallToken(parseJsonParam(c, i));

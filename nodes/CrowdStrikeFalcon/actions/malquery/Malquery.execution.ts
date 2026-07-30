@@ -21,56 +21,74 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles getMalQueryDownloadV1 */
+/**
+ * Handles the 'getMalQueryDownloadV1' operation.
+ */
 async function handleGetMalQueryDownloadV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Download a file indexed by MalQuery. Specify the file using its SHA256. */
 	return await fc.malquery.getMalQueryDownloadV1(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getMalQueryEntitiesSamplesFetchV1 */
+/**
+ * Handles the 'getMalQueryEntitiesSamplesFetchV1' operation.
+ */
 async function handleGetMalQueryEntitiesSamplesFetchV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Fetch a zip archive containing the samples. */
 	const id = getStringParam(c, i, 'id', '');
 	return await fc.malquery.getMalQueryEntitiesSamplesFetchV1(id);
 }
 
-/** Handles getMalQueryMetadataV1 */
+/**
+ * Handles the 'getMalQueryMetadataV1' operation.
+ */
 async function handleGetMalQueryMetadataV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve indexed files metadata by their hash. */
 	return await fc.malquery.getMalQueryMetadataV1(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getMalQueryQuotasV1 */
+/**
+ * Handles the 'getMalQueryQuotasV1' operation.
+ */
 async function handleGetMalQueryQuotasV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get information about search and download quotas in your environment. */
 	return await fc.malquery.getMalQueryQuotasV1();
 }
 
-/** Handles getMalQueryRequestV1 */
+/**
+ * Handles the 'getMalQueryRequestV1' operation.
+ */
 async function handleGetMalQueryRequestV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Check the status and results of an asynchronous request. */
 	return await fc.malquery.getMalQueryRequestV1(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles postMalQueryEntitiesSamplesMultidownloadV1 */
+/**
+ * Handles the 'postMalQueryEntitiesSamplesMultidownloadV1' operation.
+ */
 async function handlePostMalQueryEntitiesSamplesMultidownloadV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Schedule samples for download. */
 	return await fc.malquery.postMalQueryEntitiesSamplesMultidownloadV1(parseJsonParam(c, i));
 }
 
-/** Handles postMalQueryExactSearchV1 */
+/**
+ * Handles the 'postMalQueryExactSearchV1' operation.
+ */
 async function handlePostMalQueryExactSearchV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Search Falcon MalQuery for a combination of hex patterns and strings. */
 	return await fc.malquery.postMalQueryExactSearchV1(parseJsonParam(c, i));
 }
 
-/** Handles postMalQueryFuzzySearchV1 */
+/**
+ * Handles the 'postMalQueryFuzzySearchV1' operation.
+ */
 async function handlePostMalQueryFuzzySearchV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Search Falcon MalQuery quickly with potential for false positives. */
 	return await fc.malquery.postMalQueryFuzzySearchV1(parseJsonParam(c, i));
 }
 
-/** Handles postMalQueryHuntV1 */
+/**
+ * Handles the 'postMalQueryHuntV1' operation.
+ */
 async function handlePostMalQueryHuntV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Schedule a YARA-based search for execution. */
 	return await fc.malquery.postMalQueryHuntV1(parseJsonParam(c, i));

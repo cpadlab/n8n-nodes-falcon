@@ -6,7 +6,9 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles downloadFile */
+/**
+ * Handles the 'downloadFile' operation.
+ */
 async function handleDownloadFile(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Downloads file pre-signed URL (deprecated). */
 	const fileName = getStringParam(c, i, 'fileName', '');
@@ -14,7 +16,9 @@ async function handleDownloadFile(c: IExecuteFunctions, i: number, fc: FalconCli
 	return await fc.downloadsApi.downloadFile(fileName, fileVersion);
 }
 
-/** Handles enumerateFile */
+/**
+ * Handles the 'enumerateFile' operation.
+ */
 async function handleEnumerateFile(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Enumerates files (deprecated). */
 	const fileName = getStringParam(c, i, 'fileName', '');
@@ -22,7 +26,9 @@ async function handleEnumerateFile(c: IExecuteFunctions, i: number, fc: FalconCl
 	return await fc.downloadsApi.enumerateFile(fileName || undefined, fileVersion || undefined);
 }
 
-/** Handles fetchFilesDownloadInfo */
+/**
+ * Handles the 'fetchFilesDownloadInfo' operation.
+ */
 async function handleFetchFilesDownloadInfo(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Fetches files download info (deprecated). */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -30,7 +36,9 @@ async function handleFetchFilesDownloadInfo(c: IExecuteFunctions, i: number, fc:
 	return await fc.downloadsApi.fetchFilesDownloadInfo(filter || undefined, sort || undefined);
 }
 
-/** Handles fetchFilesDownloadInfoV2 */
+/**
+ * Handles the 'fetchFilesDownloadInfoV2' operation.
+ */
 async function handleFetchFilesDownloadInfoV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Fetches files download info V2. */
 	const filter = getStringParam(c, i, 'filter', '');

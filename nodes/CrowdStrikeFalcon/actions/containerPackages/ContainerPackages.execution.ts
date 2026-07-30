@@ -1,7 +1,9 @@
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
-/** Handles readPackagesByFixableVulnCount */
+/**
+ * Handles the 'readPackagesByFixableVulnCount' operation.
+ */
 async function handleReadPackagesByFixableVulnCount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Reads packages by fixable vuln count. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -10,7 +12,9 @@ async function handleReadPackagesByFixableVulnCount(c: IExecuteFunctions, i: num
 	return await fc.containerPackages.readPackagesByFixableVulnCount(filter || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles readPackagesByImageCount */
+/**
+ * Handles the 'readPackagesByImageCount' operation.
+ */
 async function handleReadPackagesByImageCount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Reads packages by image count. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -18,7 +22,9 @@ async function handleReadPackagesByImageCount(c: IExecuteFunctions, i: number, f
 	return await fc.containerPackages.readPackagesByImageCount(filter || undefined, limit || undefined);
 }
 
-/** Handles readPackagesByVulnCount */
+/**
+ * Handles the 'readPackagesByVulnCount' operation.
+ */
 async function handleReadPackagesByVulnCount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Reads packages by vuln count. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -27,7 +33,9 @@ async function handleReadPackagesByVulnCount(c: IExecuteFunctions, i: number, fc
 	return await fc.containerPackages.readPackagesByVulnCount(filter || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles readPackagesCombined */
+/**
+ * Handles the 'readPackagesCombined' operation.
+ */
 async function handleReadPackagesCombined(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Reads packages combined. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -37,7 +45,9 @@ async function handleReadPackagesCombined(c: IExecuteFunctions, i: number, fc: F
 	return await fc.containerPackages.readPackagesCombined(filter || undefined, undefined, sort || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles readPackagesCombinedExport */
+/**
+ * Handles the 'readPackagesCombinedExport' operation.
+ */
 async function handleReadPackagesCombinedExport(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Reads packages combined export. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -47,7 +57,9 @@ async function handleReadPackagesCombinedExport(c: IExecuteFunctions, i: number,
 	return await fc.containerPackages.readPackagesCombinedExport(filter || undefined, undefined, sort || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles readPackagesCombinedV2 */
+/**
+ * Handles the 'readPackagesCombinedV2' operation.
+ */
 async function handleReadPackagesCombinedV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Reads packages combined V2. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -57,7 +69,9 @@ async function handleReadPackagesCombinedV2(c: IExecuteFunctions, i: number, fc:
 	return await fc.containerPackages.readPackagesCombinedV2(filter || undefined, undefined, sort || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles readPackagesCountByZeroDay */
+/**
+ * Handles the 'readPackagesCountByZeroDay' operation.
+ */
 async function handleReadPackagesCountByZeroDay(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Reads packages count by zero day. */
 	const filter = c.getNodeParameter('filter', i, '') as string;

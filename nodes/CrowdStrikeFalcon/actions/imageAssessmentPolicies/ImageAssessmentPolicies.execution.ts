@@ -16,71 +16,93 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles createPolicies */
+/**
+ * Handles the 'createPolicies' operation.
+ */
 async function handleCreatePolicies(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create Image Assessment policies. */
 	return await fc.imageAssessmentPolicies.createPolicies(parseJsonParam(c, i));
 }
 
-/** Handles createPolicyGroups */
+/**
+ * Handles the 'createPolicyGroups' operation.
+ */
 async function handleCreatePolicyGroups(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create Image Assessment Policy Group entities. */
 	return await fc.imageAssessmentPolicies.createPolicyGroups(parseJsonParam(c, i));
 }
 
-/** Handles deletePolicy */
+/**
+ * Handles the 'deletePolicy' operation.
+ */
 async function handleDeletePolicy(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete Image Assessment Policy by policy UUID. */
 	const id = getStringParam(c, i, 'id', '');
 	return await fc.imageAssessmentPolicies.deletePolicy(id);
 }
 
-/** Handles deletePolicyGroup */
+/**
+ * Handles the 'deletePolicyGroup' operation.
+ */
 async function handleDeletePolicyGroup(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete Image Assessment Policy Group entities. */
 	const id = getStringParam(c, i, 'id', '');
 	return await fc.imageAssessmentPolicies.deletePolicyGroup(id);
 }
 
-/** Handles readPolicies */
+/**
+ * Handles the 'readPolicies' operation.
+ */
 async function handleReadPolicies(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get all Image Assessment policies. */
 	return await fc.imageAssessmentPolicies.readPolicies();
 }
 
-/** Handles readPolicyExclusions */
+/**
+ * Handles the 'readPolicyExclusions' operation.
+ */
 async function handleReadPolicyExclusions(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve Image Assessment Policy Exclusion entities. */
 	return await fc.imageAssessmentPolicies.readPolicyExclusions();
 }
 
-/** Handles readPolicyGroups */
+/**
+ * Handles the 'readPolicyGroups' operation.
+ */
 async function handleReadPolicyGroups(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve Image Assessment Policy Group entities. */
 	return await fc.imageAssessmentPolicies.readPolicyGroups();
 }
 
-/** Handles updatePolicies */
+/**
+ * Handles the 'updatePolicies' operation.
+ */
 async function handleUpdatePolicies(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update Image Assessment Policy entities. */
 	const id = getStringParam(c, i, 'id', '');
 	return await fc.imageAssessmentPolicies.updatePolicies(id, parseJsonParam(c, i));
 }
 
-/** Handles updatePolicyExclusions */
+/**
+ * Handles the 'updatePolicyExclusions' operation.
+ */
 async function handleUpdatePolicyExclusions(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update Image Assessment Policy Exclusion entities. */
 	return await fc.imageAssessmentPolicies.updatePolicyExclusions(parseJsonParam(c, i));
 }
 
-/** Handles updatePolicyGroups */
+/**
+ * Handles the 'updatePolicyGroups' operation.
+ */
 async function handleUpdatePolicyGroups(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update Image Assessment Policy Group entities. */
 	const id = getStringParam(c, i, 'id', '');
 	return await fc.imageAssessmentPolicies.updatePolicyGroups(id, parseJsonParam(c, i));
 }
 
-/** Handles updatePolicyPrecedence */
+/**
+ * Handles the 'updatePolicyPrecedence' operation.
+ */
 async function handleUpdatePolicyPrecedence(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update Image Assessment Policy precedence. */
 	return await fc.imageAssessmentPolicies.updatePolicyPrecedence(parseJsonParam(c, i));

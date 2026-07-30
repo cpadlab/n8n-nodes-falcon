@@ -6,20 +6,26 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles downloadFeedArchive */
+/**
+ * Handles the 'downloadFeedArchive' operation.
+ */
 async function handleDownloadFeedArchive(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Downloads the content as a zip archive for a given feed item ID. */
 	const feedItemId = getStringParam(c, i, 'feedItemId', '');
 	return await fc.intelligenceFeeds.downloadFeedArchive(feedItemId);
 }
 
-/** Handles listFeedTypes */
+/**
+ * Handles the 'listFeedTypes' operation.
+ */
 async function handleListFeedTypes(_c: IExecuteFunctions, _i: number, fc: FalconClient): Promise<any> {
 	/* Lists the accessible feed types for a given customer. */
 	return await fc.intelligenceFeeds.listFeedTypes();
 }
 
-/** Handles queryFeedArchives */
+/**
+ * Handles the 'queryFeedArchives' operation.
+ */
 async function handleQueryFeedArchives(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries the accessible feed types for a customer returning feed item IDs. */
 	const feedName = getStringParam(c, i, 'feedName', '');

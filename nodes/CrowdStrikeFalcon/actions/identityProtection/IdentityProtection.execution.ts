@@ -21,21 +21,27 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles apiPreemptProxyDeletePolicyRules */
+/**
+ * Handles the 'apiPreemptProxyDeletePolicyRules' operation.
+ */
 async function handleApiPreemptProxyDeletePolicyRules(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete policy rules. */
 	const setIds = new Set(parseArrayParam(c, i, 'ids'));
 	return await fc.identityProtection.apiPreemptProxyDeletePolicyRules(setIds);
 }
 
-/** Handles apiPreemptProxyGetPolicyRules */
+/**
+ * Handles the 'apiPreemptProxyGetPolicyRules' operation.
+ */
 async function handleApiPreemptProxyGetPolicyRules(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get policy rules. */
 	const setIds = new Set(parseArrayParam(c, i, 'ids'));
 	return await fc.identityProtection.apiPreemptProxyGetPolicyRules(setIds);
 }
 
-/** Handles apiPreemptProxyGetPolicyRulesQuery */
+/**
+ * Handles the 'apiPreemptProxyGetPolicyRulesQuery' operation.
+ */
 async function handleApiPreemptProxyGetPolicyRulesQuery(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Query policy rule IDs. */
 	const enabled = c.getNodeParameter('enabled', i, true) as boolean;
@@ -44,13 +50,17 @@ async function handleApiPreemptProxyGetPolicyRulesQuery(c: IExecuteFunctions, i:
 	return await fc.identityProtection.apiPreemptProxyGetPolicyRulesQuery(enabled, simulationMode, name || undefined);
 }
 
-/** Handles apiPreemptProxyPostGraphql */
+/**
+ * Handles the 'apiPreemptProxyPostGraphql' operation.
+ */
 async function handleApiPreemptProxyPostGraphql(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Identity Protection GraphQL API. */
 	return await fc.identityProtection.apiPreemptProxyPostGraphql(parseJsonParam(c, i));
 }
 
-/** Handles apiPreemptProxyPostPolicyRules */
+/**
+ * Handles the 'apiPreemptProxyPostPolicyRules' operation.
+ */
 async function handleApiPreemptProxyPostPolicyRules(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create policy rule. */
 	return await fc.identityProtection.apiPreemptProxyPostPolicyRules(parseJsonParam(c, i));

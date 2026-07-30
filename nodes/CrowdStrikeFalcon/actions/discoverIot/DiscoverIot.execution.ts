@@ -11,13 +11,17 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles getIotHosts */
+/**
+ * Handles the 'getIotHosts' operation.
+ */
 async function handleGetIotHosts(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets IoT hosts by IDs. */
 	return await fc.discoverIot.getIotHosts(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles queryIotHosts */
+/**
+ * Handles the 'queryIotHosts' operation.
+ */
 async function handleQueryIotHosts(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries IoT host IDs. */
 	const offset = c.getNodeParameter('offset', i, 0) as number;
@@ -27,7 +31,9 @@ async function handleQueryIotHosts(c: IExecuteFunctions, i: number, fc: FalconCl
 	return await fc.discoverIot.queryIotHosts(offset || undefined, limit || undefined, sort || undefined, filter || undefined);
 }
 
-/** Handles queryIotHostsV2 */
+/**
+ * Handles the 'queryIotHostsV2' operation.
+ */
 async function handleQueryIotHostsV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries IoT host IDs V2. */
 	const limit = c.getNodeParameter('limit', i, 100) as number;

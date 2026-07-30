@@ -16,21 +16,27 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles deleteFederatedConnectionsConfig */
+/**
+ * Handles the 'deleteFederatedConnectionsConfig' operation.
+ */
 async function handleDeleteFederatedConnectionsConfig(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete configuration for a federated connection. */
 	const connectionId = getStringParam(c, i, 'connectionId', '');
 	return await fc.federatedConnections.deleteFederatedConnectionsConfig(connectionId);
 }
 
-/** Handles patchFederatedConnectionsConfig */
+/**
+ * Handles the 'patchFederatedConnectionsConfig' operation.
+ */
 async function handlePatchFederatedConnectionsConfig(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Patch configuration for a federated connection. */
 	const connectionId = getStringParam(c, i, 'connectionId', '');
 	return await fc.federatedConnections.patchFederatedConnectionsConfig(connectionId, parseJsonParam(c, i));
 }
 
-/** Handles postFederatedConnectionsConfig */
+/**
+ * Handles the 'postFederatedConnectionsConfig' operation.
+ */
 async function handlePostFederatedConnectionsConfig(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create configuration for a federated connection. */
 	return await fc.federatedConnections.postFederatedConnectionsConfig(parseJsonParam(c, i));

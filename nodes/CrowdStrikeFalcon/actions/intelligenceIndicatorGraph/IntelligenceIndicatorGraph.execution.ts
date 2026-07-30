@@ -16,13 +16,17 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles lookupIndicators */
+/**
+ * Handles the 'lookupIndicators' operation.
+ */
 async function handleLookupIndicators(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Look up intelligence data for multiple indicators. */
 	return await fc.intelligenceIndicatorGraph.lookupIndicators(parseJsonParam(c, i));
 }
 
-/** Handles searchIndicators */
+/**
+ * Handles the 'searchIndicators' operation.
+ */
 async function handleSearchIndicators(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Search indicators based on FQL filter or request body. */
 	const body = parseJsonParam(c, i);

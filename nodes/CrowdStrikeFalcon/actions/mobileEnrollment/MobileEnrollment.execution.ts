@@ -16,7 +16,9 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles requestDeviceEnrollmentV3 */
+/**
+ * Handles the 'requestDeviceEnrollmentV3' operation.
+ */
 async function handleRequestDeviceEnrollmentV3(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Trigger on-boarding process for a mobile device. */
 	const actionName = getStringParam(c, i, 'actionName', '') as any;
@@ -24,7 +26,9 @@ async function handleRequestDeviceEnrollmentV3(c: IExecuteFunctions, i: number, 
 	return await fc.mobileEnrollment.requestDeviceEnrollmentV3(parseJsonParam(c, i), actionName || undefined, filter || undefined);
 }
 
-/** Handles requestDeviceEnrollmentV4 */
+/**
+ * Handles the 'requestDeviceEnrollmentV4' operation.
+ */
 async function handleRequestDeviceEnrollmentV4(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Trigger on-boarding process for a mobile device. */
 	const actionName = getStringParam(c, i, 'actionName', '') as any;

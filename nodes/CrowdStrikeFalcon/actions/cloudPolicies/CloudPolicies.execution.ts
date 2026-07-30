@@ -16,87 +16,115 @@ function parseArrayParam(context: IExecuteFunctions, index: number, paramName = 
 	return str.split(',').map((id) => id.trim()).filter(Boolean);
 }
 
-/** Handles cloneComplianceFramework */
+/**
+ * Handles the 'cloneComplianceFramework' operation.
+ */
 async function handleCloneComplianceFramework(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Clones an existing compliance framework. */
 	const ids = c.getNodeParameter('ids', i) as string;
 	return await fc.cloudPolicies.cloneComplianceFramework(ids);
 }
 
-/** Handles createComplianceControl */
+/**
+ * Handles the 'createComplianceControl' operation.
+ */
 async function handleCreateComplianceControl(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates a compliance control. */
 	return await fc.cloudPolicies.createComplianceControl(parseJsonParam(c, i));
 }
 
-/** Handles createComplianceFramework */
+/**
+ * Handles the 'createComplianceFramework' operation.
+ */
 async function handleCreateComplianceFramework(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates a compliance framework. */
 	return await fc.cloudPolicies.createComplianceFramework(parseJsonParam(c, i));
 }
 
-/** Handles createRuleMixin0 */
+/**
+ * Handles the 'createRuleMixin0' operation.
+ */
 async function handleCreateRuleMixin0(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates a new rule. */
 	return await fc.cloudPolicies.createRuleMixin0(parseJsonParam(c, i));
 }
 
-/** Handles createRuleOverride */
+/**
+ * Handles the 'createRuleOverride' operation.
+ */
 async function handleCreateRuleOverride(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates a rule override. */
 	return await fc.cloudPolicies.createRuleOverride(parseJsonParam(c, i));
 }
 
-/** Handles createSuppressionRule */
+/**
+ * Handles the 'createSuppressionRule' operation.
+ */
 async function handleCreateSuppressionRule(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates a suppression rule. */
 	return await fc.cloudPolicies.createSuppressionRule(parseJsonParam(c, i));
 }
 
-/** Handles deleteComplianceControl */
+/**
+ * Handles the 'deleteComplianceControl' operation.
+ */
 async function handleDeleteComplianceControl(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes compliance controls. */
 	return await fc.cloudPolicies.deleteComplianceControl(parseArrayParam(c, i));
 }
 
-/** Handles deleteComplianceFramework */
+/**
+ * Handles the 'deleteComplianceFramework' operation.
+ */
 async function handleDeleteComplianceFramework(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes a compliance framework. */
 	const ids = c.getNodeParameter('ids', i) as string;
 	return await fc.cloudPolicies.deleteComplianceFramework(ids);
 }
 
-/** Handles deleteRuleMixin0 */
+/**
+ * Handles the 'deleteRuleMixin0' operation.
+ */
 async function handleDeleteRuleMixin0(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes rules. */
 	return await fc.cloudPolicies.deleteRuleMixin0(parseArrayParam(c, i));
 }
 
-/** Handles deleteRuleOverride */
+/**
+ * Handles the 'deleteRuleOverride' operation.
+ */
 async function handleDeleteRuleOverride(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes rule overrides. */
 	return await fc.cloudPolicies.deleteRuleOverride(parseArrayParam(c, i));
 }
 
-/** Handles deleteSuppressionRules */
+/**
+ * Handles the 'deleteSuppressionRules' operation.
+ */
 async function handleDeleteSuppressionRules(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes suppression rules. */
 	return await fc.cloudPolicies.deleteSuppressionRules(parseArrayParam(c, i));
 }
 
-/** Handles getComplianceControls */
+/**
+ * Handles the 'getComplianceControls' operation.
+ */
 async function handleGetComplianceControls(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves compliance controls by IDs. */
 	return await fc.cloudPolicies.getComplianceControls(parseArrayParam(c, i));
 }
 
-/** Handles getComplianceFrameworks */
+/**
+ * Handles the 'getComplianceFrameworks' operation.
+ */
 async function handleGetComplianceFrameworks(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves compliance frameworks by IDs. */
 	return await fc.cloudPolicies.getComplianceFrameworks(parseArrayParam(c, i));
 }
 
-/** Handles getEnrichedAsset */
+/**
+ * Handles the 'getEnrichedAsset' operation.
+ */
 async function handleGetEnrichedAsset(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves enriched assets. */
 	const ids = parseArrayParam(c, i);
@@ -107,7 +135,9 @@ async function handleGetEnrichedAsset(c: IExecuteFunctions, i: number, fc: Falco
 	return await fc.cloudPolicies.getEnrichedAsset(ids.length ? ids : undefined, domain || undefined, subdomain || undefined, resourceType || undefined);
 }
 
-/** Handles getEvaluationResult */
+/**
+ * Handles the 'getEvaluationResult' operation.
+ */
 async function handleGetEvaluationResult(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves evaluation results. */
 	const body = parseJsonParam(c, i);
@@ -117,13 +147,17 @@ async function handleGetEvaluationResult(c: IExecuteFunctions, i: number, fc: Fa
 	return await fc.cloudPolicies.getEvaluationResult(body, undefined, resourceType || undefined, ids.length ? ids : undefined);
 }
 
-/** Handles getRule */
+/**
+ * Handles the 'getRule' operation.
+ */
 async function handleGetRule(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves rules by IDs. */
 	return await fc.cloudPolicies.getRule(parseArrayParam(c, i));
 }
 
-/** Handles getRuleInputSchema */
+/**
+ * Handles the 'getRuleInputSchema' operation.
+ */
 async function handleGetRuleInputSchema(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves rule input schema. */
 	const domain = c.getNodeParameter('domain', i) as string;
@@ -133,19 +167,25 @@ async function handleGetRuleInputSchema(c: IExecuteFunctions, i: number, fc: Fal
 	return await fc.cloudPolicies.getRuleInputSchema(domain, subdomain, resourceType);
 }
 
-/** Handles getRuleOverride */
+/**
+ * Handles the 'getRuleOverride' operation.
+ */
 async function handleGetRuleOverride(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves rule overrides by IDs. */
 	return await fc.cloudPolicies.getRuleOverride(parseArrayParam(c, i));
 }
 
-/** Handles getSuppressionRules */
+/**
+ * Handles the 'getSuppressionRules' operation.
+ */
 async function handleGetSuppressionRules(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves suppression rules by IDs. */
 	return await fc.cloudPolicies.getSuppressionRules(parseArrayParam(c, i));
 }
 
-/** Handles queryComplianceControls */
+/**
+ * Handles the 'queryComplianceControls' operation.
+ */
 async function handleQueryComplianceControls(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries compliance controls. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -156,7 +196,9 @@ async function handleQueryComplianceControls(c: IExecuteFunctions, i: number, fc
 	return await fc.cloudPolicies.queryComplianceControls(filter || undefined, limit || undefined, offset || undefined, sort || undefined);
 }
 
-/** Handles queryComplianceFrameworks */
+/**
+ * Handles the 'queryComplianceFrameworks' operation.
+ */
 async function handleQueryComplianceFrameworks(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries compliance frameworks. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -167,7 +209,9 @@ async function handleQueryComplianceFrameworks(c: IExecuteFunctions, i: number, 
 	return await fc.cloudPolicies.queryComplianceFrameworks(filter || undefined, limit || undefined, offset || undefined, sort || undefined);
 }
 
-/** Handles queryRule */
+/**
+ * Handles the 'queryRule' operation.
+ */
 async function handleQueryRule(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries rules. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -178,7 +222,9 @@ async function handleQueryRule(c: IExecuteFunctions, i: number, fc: FalconClient
 	return await fc.cloudPolicies.queryRule(filter || undefined, limit || undefined, offset || undefined, sort || undefined);
 }
 
-/** Handles querySuppressionRules */
+/**
+ * Handles the 'querySuppressionRules' operation.
+ */
 async function handleQuerySuppressionRules(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries suppression rules. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -189,7 +235,9 @@ async function handleQuerySuppressionRules(c: IExecuteFunctions, i: number, fc: 
 	return await fc.cloudPolicies.querySuppressionRules(filter || undefined, limit || undefined, offset || undefined, sort || undefined);
 }
 
-/** Handles renameSectionComplianceFramework */
+/**
+ * Handles the 'renameSectionComplianceFramework' operation.
+ */
 async function handleRenameSectionComplianceFramework(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Renames a section in a compliance framework. */
 	const ids = c.getNodeParameter('ids', i) as string;
@@ -199,7 +247,9 @@ async function handleRenameSectionComplianceFramework(c: IExecuteFunctions, i: n
 	return await fc.cloudPolicies.renameSectionComplianceFramework(ids, sectionName, body);
 }
 
-/** Handles replaceControlRules */
+/**
+ * Handles the 'replaceControlRules' operation.
+ */
 async function handleReplaceControlRules(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Replaces control rules. */
 	const ids = c.getNodeParameter('ids', i) as string;
@@ -208,7 +258,9 @@ async function handleReplaceControlRules(c: IExecuteFunctions, i: number, fc: Fa
 	return await fc.cloudPolicies.replaceControlRules(ids, body);
 }
 
-/** Handles updateComplianceControl */
+/**
+ * Handles the 'updateComplianceControl' operation.
+ */
 async function handleUpdateComplianceControl(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates a compliance control. */
 	const ids = c.getNodeParameter('ids', i) as string;
@@ -217,7 +269,9 @@ async function handleUpdateComplianceControl(c: IExecuteFunctions, i: number, fc
 	return await fc.cloudPolicies.updateComplianceControl(ids, body);
 }
 
-/** Handles updateComplianceFramework */
+/**
+ * Handles the 'updateComplianceFramework' operation.
+ */
 async function handleUpdateComplianceFramework(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates a compliance framework. */
 	const ids = c.getNodeParameter('ids', i) as string;
@@ -226,19 +280,25 @@ async function handleUpdateComplianceFramework(c: IExecuteFunctions, i: number, 
 	return await fc.cloudPolicies.updateComplianceFramework(ids, body);
 }
 
-/** Handles updateRule */
+/**
+ * Handles the 'updateRule' operation.
+ */
 async function handleUpdateRule(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates a rule. */
 	return await fc.cloudPolicies.updateRule(parseJsonParam(c, i));
 }
 
-/** Handles updateRuleOverride */
+/**
+ * Handles the 'updateRuleOverride' operation.
+ */
 async function handleUpdateRuleOverride(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates a rule override. */
 	return await fc.cloudPolicies.updateRuleOverride(parseJsonParam(c, i));
 }
 
-/** Handles updateSuppressionRule */
+/**
+ * Handles the 'updateSuppressionRule' operation.
+ */
 async function handleUpdateSuppressionRule(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates a suppression rule. */
 	return await fc.cloudPolicies.updateSuppressionRule(parseJsonParam(c, i));

@@ -21,13 +21,17 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles iTAutomationCancelTaskExecution */
+/**
+ * Handles the 'iTAutomationCancelTaskExecution' operation.
+ */
 async function handleITAutomationCancelTaskExecution(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Cancel a task execution specified in the request. */
 	return await fc.itAutomation.iTAutomationCancelTaskExecution(parseJsonParam(c, i));
 }
 
-/** Handles iTAutomationCombinedScheduledTasks */
+/**
+ * Handles the 'iTAutomationCombinedScheduledTasks' operation.
+ */
 async function handleITAutomationCombinedScheduledTasks(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Returns full details of scheduled tasks matching filter. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -37,67 +41,89 @@ async function handleITAutomationCombinedScheduledTasks(c: IExecuteFunctions, i:
 	return await fc.itAutomation.iTAutomationCombinedScheduledTasks(filter || undefined, sort || undefined, offset || undefined, limit || undefined);
 }
 
-/** Handles iTAutomationCreatePolicy */
+/**
+ * Handles the 'iTAutomationCreatePolicy' operation.
+ */
 async function handleITAutomationCreatePolicy(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates a new policy of the specified type. */
 	return await fc.itAutomation.iTAutomationCreatePolicy(parseJsonParam(c, i));
 }
 
-/** Handles iTAutomationCreateScheduledTask */
+/**
+ * Handles the 'iTAutomationCreateScheduledTask' operation.
+ */
 async function handleITAutomationCreateScheduledTask(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates a scheduled task from the given request. */
 	return await fc.itAutomation.iTAutomationCreateScheduledTask(parseJsonParam(c, i));
 }
 
-/** Handles iTAutomationCreateTask */
+/**
+ * Handles the 'iTAutomationCreateTask' operation.
+ */
 async function handleITAutomationCreateTask(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates a task with details from the given request. */
 	return await fc.itAutomation.iTAutomationCreateTask(parseJsonParam(c, i));
 }
 
-/** Handles iTAutomationCreateTaskGroup */
+/**
+ * Handles the 'iTAutomationCreateTaskGroup' operation.
+ */
 async function handleITAutomationCreateTaskGroup(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates a task group from the given request. */
 	return await fc.itAutomation.iTAutomationCreateTaskGroup(parseJsonParam(c, i));
 }
 
-/** Handles iTAutomationCreateUserGroup */
+/**
+ * Handles the 'iTAutomationCreateUserGroup' operation.
+ */
 async function handleITAutomationCreateUserGroup(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates a user group from the given request. */
 	return await fc.itAutomation.iTAutomationCreateUserGroup(parseJsonParam(c, i));
 }
 
-/** Handles iTAutomationDeletePolicy */
+/**
+ * Handles the 'iTAutomationDeletePolicy' operation.
+ */
 async function handleITAutomationDeletePolicy(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes 1 or more disabled policies. */
 	return await fc.itAutomation.iTAutomationDeletePolicy(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles iTAutomationDeleteScheduledTasks */
+/**
+ * Handles the 'iTAutomationDeleteScheduledTasks' operation.
+ */
 async function handleITAutomationDeleteScheduledTasks(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete one or more scheduled tasks by ID. */
 	return await fc.itAutomation.iTAutomationDeleteScheduledTasks(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles iTAutomationDeleteTask */
+/**
+ * Handles the 'iTAutomationDeleteTask' operation.
+ */
 async function handleITAutomationDeleteTask(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes tasks for each provided ID. */
 	return await fc.itAutomation.iTAutomationDeleteTask(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles iTAutomationDeleteTaskGroups */
+/**
+ * Handles the 'iTAutomationDeleteTaskGroups' operation.
+ */
 async function handleITAutomationDeleteTaskGroups(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete one or more task groups by ID. */
 	return await fc.itAutomation.iTAutomationDeleteTaskGroups(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles iTAutomationDeleteUserGroup */
+/**
+ * Handles the 'iTAutomationDeleteUserGroup' operation.
+ */
 async function handleITAutomationDeleteUserGroup(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes user groups for each provided ID. */
 	return await fc.itAutomation.iTAutomationDeleteUserGroup(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles iTAutomationGetAssociatedTasks */
+/**
+ * Handles the 'iTAutomationGetAssociatedTasks' operation.
+ */
 async function handleITAutomationGetAssociatedTasks(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve tasks associated with the provided file ID. */
 	const id = getStringParam(c, i, 'id', '');
@@ -108,7 +134,9 @@ async function handleITAutomationGetAssociatedTasks(c: IExecuteFunctions, i: num
 	return await fc.itAutomation.iTAutomationGetAssociatedTasks(id, filter || undefined, sort || undefined, offset || undefined, limit || undefined);
 }
 
-/** Handles iTAutomationGetExecutionResults */
+/**
+ * Handles the 'iTAutomationGetExecutionResults' operation.
+ */
 async function handleITAutomationGetExecutionResults(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get the task execution results from an async search. */
 	const id = getStringParam(c, i, 'id', '');
@@ -118,32 +146,42 @@ async function handleITAutomationGetExecutionResults(c: IExecuteFunctions, i: nu
 	return await fc.itAutomation.iTAutomationGetExecutionResults(id, offset || undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles iTAutomationGetExecutionResultsSearchStatus */
+/**
+ * Handles the 'iTAutomationGetExecutionResultsSearchStatus' operation.
+ */
 async function handleITAutomationGetExecutionResultsSearchStatus(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get the status of an async task execution results search. */
 	const id = getStringParam(c, i, 'id', '');
 	return await fc.itAutomation.iTAutomationGetExecutionResultsSearchStatus(id);
 }
 
-/** Handles iTAutomationGetPolicies */
+/**
+ * Handles the 'iTAutomationGetPolicies' operation.
+ */
 async function handleITAutomationGetPolicies(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves the configuration for 1 or more policies. */
 	return await fc.itAutomation.iTAutomationGetPolicies(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles iTAutomationGetScheduledTasks */
+/**
+ * Handles the 'iTAutomationGetScheduledTasks' operation.
+ */
 async function handleITAutomationGetScheduledTasks(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Returns scheduled tasks for each provided ID. */
 	return await fc.itAutomation.iTAutomationGetScheduledTasks(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles iTAutomationGetTaskExecution */
+/**
+ * Handles the 'iTAutomationGetTaskExecution' operation.
+ */
 async function handleITAutomationGetTaskExecution(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get the task execution for provided task execution IDs. */
 	return await fc.itAutomation.iTAutomationGetTaskExecution(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles iTAutomationGetTaskExecutionHostStatus */
+/**
+ * Handles the 'iTAutomationGetTaskExecutionHostStatus' operation.
+ */
 async function handleITAutomationGetTaskExecutionHostStatus(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get the status of host executions by providing execution IDs. */
 	const ids = parseArrayParam(c, i, 'ids');
@@ -154,7 +192,9 @@ async function handleITAutomationGetTaskExecutionHostStatus(c: IExecuteFunctions
 	return await fc.itAutomation.iTAutomationGetTaskExecutionHostStatus(ids, filter || undefined, sort || undefined, offset || undefined, limit || undefined);
 }
 
-/** Handles iTAutomationGetTaskExecutionsByQuery */
+/**
+ * Handles the 'iTAutomationGetTaskExecutionsByQuery' operation.
+ */
 async function handleITAutomationGetTaskExecutionsByQuery(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Returns list of task executions matching filter query. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -164,13 +204,17 @@ async function handleITAutomationGetTaskExecutionsByQuery(c: IExecuteFunctions, 
 	return await fc.itAutomation.iTAutomationGetTaskExecutionsByQuery(filter || undefined, sort || undefined, offset || undefined, limit || undefined);
 }
 
-/** Handles iTAutomationGetTaskGroups */
+/**
+ * Handles the 'iTAutomationGetTaskGroups' operation.
+ */
 async function handleITAutomationGetTaskGroups(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Returns task groups for each provided ID. */
 	return await fc.itAutomation.iTAutomationGetTaskGroups(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles iTAutomationGetTaskGroupsByQuery */
+/**
+ * Handles the 'iTAutomationGetTaskGroupsByQuery' operation.
+ */
 async function handleITAutomationGetTaskGroupsByQuery(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Returns full details of task groups matching filter. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -180,13 +224,17 @@ async function handleITAutomationGetTaskGroupsByQuery(c: IExecuteFunctions, i: n
 	return await fc.itAutomation.iTAutomationGetTaskGroupsByQuery(filter || undefined, sort || undefined, offset || undefined, limit || undefined);
 }
 
-/** Handles iTAutomationGetTasks */
+/**
+ * Handles the 'iTAutomationGetTasks' operation.
+ */
 async function handleITAutomationGetTasks(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Returns tasks for each provided ID. */
 	return await fc.itAutomation.iTAutomationGetTasks(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles iTAutomationGetTasksByQuery */
+/**
+ * Handles the 'iTAutomationGetTasksByQuery' operation.
+ */
 async function handleITAutomationGetTasksByQuery(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Returns full details of tasks matching filter. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -196,13 +244,17 @@ async function handleITAutomationGetTasksByQuery(c: IExecuteFunctions, i: number
 	return await fc.itAutomation.iTAutomationGetTasksByQuery(filter || undefined, sort || undefined, offset || undefined, limit || undefined);
 }
 
-/** Handles iTAutomationGetUserGroup */
+/**
+ * Handles the 'iTAutomationGetUserGroup' operation.
+ */
 async function handleITAutomationGetUserGroup(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Returns user groups for each provided ID. */
 	return await fc.itAutomation.iTAutomationGetUserGroup(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles iTAutomationQueryPolicies */
+/**
+ * Handles the 'iTAutomationQueryPolicies' operation.
+ */
 async function handleITAutomationQueryPolicies(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Returns list of policy IDs matching filter query. */
 	const platform = getStringParam(c, i, 'platform', 'Windows') as any;
@@ -212,19 +264,25 @@ async function handleITAutomationQueryPolicies(c: IExecuteFunctions, i: number, 
 	return await fc.itAutomation.iTAutomationQueryPolicies(platform, offset || undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles iTAutomationRerunTaskExecution */
+/**
+ * Handles the 'iTAutomationRerunTaskExecution' operation.
+ */
 async function handleITAutomationRerunTaskExecution(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Rerun the task execution specified in the request. */
 	return await fc.itAutomation.iTAutomationRerunTaskExecution(parseJsonParam(c, i));
 }
 
-/** Handles iTAutomationRunLiveQuery */
+/**
+ * Handles the 'iTAutomationRunLiveQuery' operation.
+ */
 async function handleITAutomationRunLiveQuery(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Starts a new task execution from provided query data. */
 	return await fc.itAutomation.iTAutomationRunLiveQuery(parseJsonParam(c, i));
 }
 
-/** Handles iTAutomationSearchScheduledTasks */
+/**
+ * Handles the 'iTAutomationSearchScheduledTasks' operation.
+ */
 async function handleITAutomationSearchScheduledTasks(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Returns list of scheduled task IDs matching filter. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -234,7 +292,9 @@ async function handleITAutomationSearchScheduledTasks(c: IExecuteFunctions, i: n
 	return await fc.itAutomation.iTAutomationSearchScheduledTasks(filter || undefined, sort || undefined, offset || undefined, limit || undefined);
 }
 
-/** Handles iTAutomationSearchTaskExecutions */
+/**
+ * Handles the 'iTAutomationSearchTaskExecutions' operation.
+ */
 async function handleITAutomationSearchTaskExecutions(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Returns list of task execution IDs matching filter. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -244,7 +304,9 @@ async function handleITAutomationSearchTaskExecutions(c: IExecuteFunctions, i: n
 	return await fc.itAutomation.iTAutomationSearchTaskExecutions(filter || undefined, sort || undefined, offset || undefined, limit || undefined);
 }
 
-/** Handles iTAutomationSearchTaskGroups */
+/**
+ * Handles the 'iTAutomationSearchTaskGroups' operation.
+ */
 async function handleITAutomationSearchTaskGroups(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Returns list of task group IDs matching filter. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -254,7 +316,9 @@ async function handleITAutomationSearchTaskGroups(c: IExecuteFunctions, i: numbe
 	return await fc.itAutomation.iTAutomationSearchTaskGroups(filter || undefined, sort || undefined, offset || undefined, limit || undefined);
 }
 
-/** Handles iTAutomationSearchTasks */
+/**
+ * Handles the 'iTAutomationSearchTasks' operation.
+ */
 async function handleITAutomationSearchTasks(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Returns list of task IDs matching filter query. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -264,7 +328,9 @@ async function handleITAutomationSearchTasks(c: IExecuteFunctions, i: number, fc
 	return await fc.itAutomation.iTAutomationSearchTasks(filter || undefined, sort || undefined, offset || undefined, limit || undefined);
 }
 
-/** Handles iTAutomationSearchUserGroup */
+/**
+ * Handles the 'iTAutomationSearchUserGroup' operation.
+ */
 async function handleITAutomationSearchUserGroup(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Returns list of user group IDs matching filter query. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -274,59 +340,77 @@ async function handleITAutomationSearchUserGroup(c: IExecuteFunctions, i: number
 	return await fc.itAutomation.iTAutomationSearchUserGroup(filter || undefined, sort || undefined, offset || undefined, limit || undefined);
 }
 
-/** Handles iTAutomationStartExecutionResultsSearch */
+/**
+ * Handles the 'iTAutomationStartExecutionResultsSearch' operation.
+ */
 async function handleITAutomationStartExecutionResultsSearch(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Starts an async task execution results search. */
 	return await fc.itAutomation.iTAutomationStartExecutionResultsSearch(parseJsonParam(c, i));
 }
 
-/** Handles iTAutomationStartTaskExecution */
+/**
+ * Handles the 'iTAutomationStartTaskExecution' operation.
+ */
 async function handleITAutomationStartTaskExecution(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Starts a new task execution from an existing task. */
 	return await fc.itAutomation.iTAutomationStartTaskExecution(parseJsonParam(c, i));
 }
 
-/** Handles iTAutomationUpdatePolicies */
+/**
+ * Handles the 'iTAutomationUpdatePolicies' operation.
+ */
 async function handleITAutomationUpdatePolicies(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates multiple fields for a policy. */
 	return await fc.itAutomation.iTAutomationUpdatePolicies(parseJsonParam(c, i));
 }
 
-/** Handles iTAutomationUpdatePoliciesPrecedence */
+/**
+ * Handles the 'iTAutomationUpdatePoliciesPrecedence' operation.
+ */
 async function handleITAutomationUpdatePoliciesPrecedence(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates policy precedence for all policies of a specific platform. */
 	const platform = getStringParam(c, i, 'platform', 'Windows');
 	return await fc.itAutomation.iTAutomationUpdatePoliciesPrecedence(platform, parseJsonParam(c, i));
 }
 
-/** Handles iTAutomationUpdatePolicyHostGroups */
+/**
+ * Handles the 'iTAutomationUpdatePolicyHostGroups' operation.
+ */
 async function handleITAutomationUpdatePolicyHostGroups(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Manage host groups assigned to a policy. */
 	return await fc.itAutomation.iTAutomationUpdatePolicyHostGroups(parseJsonParam(c, i));
 }
 
-/** Handles iTAutomationUpdateScheduledTask */
+/**
+ * Handles the 'iTAutomationUpdateScheduledTask' operation.
+ */
 async function handleITAutomationUpdateScheduledTask(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update an existing scheduled task. */
 	const id = getStringParam(c, i, 'id', '');
 	return await fc.itAutomation.iTAutomationUpdateScheduledTask(id, parseJsonParam(c, i));
 }
 
-/** Handles iTAutomationUpdateTask */
+/**
+ * Handles the 'iTAutomationUpdateTask' operation.
+ */
 async function handleITAutomationUpdateTask(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update a task with details from given request. */
 	const id = getStringParam(c, i, 'id', '');
 	return await fc.itAutomation.iTAutomationUpdateTask(id, parseJsonParam(c, i));
 }
 
-/** Handles iTAutomationUpdateTaskGroup */
+/**
+ * Handles the 'iTAutomationUpdateTaskGroup' operation.
+ */
 async function handleITAutomationUpdateTaskGroup(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update a task group for a given ID. */
 	const id = getStringParam(c, i, 'id', '');
 	return await fc.itAutomation.iTAutomationUpdateTaskGroup(id, parseJsonParam(c, i));
 }
 
-/** Handles iTAutomationUpdateUserGroup */
+/**
+ * Handles the 'iTAutomationUpdateUserGroup' operation.
+ */
 async function handleITAutomationUpdateUserGroup(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update a user group for a given ID. */
 	const id = getStringParam(c, i, 'id', '');

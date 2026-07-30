@@ -21,27 +21,35 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles createRegistryEntities */
+/**
+ * Handles the 'createRegistryEntities' operation.
+ */
 async function handleCreateRegistryEntities(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create a new registry entity. */
 	return await fc.falconContainerImage.createRegistryEntities(parseJsonParam(c, i));
 }
 
-/** Handles deleteRegistryEntities */
+/**
+ * Handles the 'deleteRegistryEntities' operation.
+ */
 async function handleDeleteRegistryEntities(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete registry entity by UUID. */
 	const id = getStringParam(c, i, 'id', '');
 	return await fc.falconContainerImage.deleteRegistryEntities(id);
 }
 
-/** Handles downloadExportFile */
+/**
+ * Handles the 'downloadExportFile' operation.
+ */
 async function handleDownloadExportFile(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Download export file by ID. */
 	const id = getStringParam(c, i, 'id', '');
 	return await fc.falconContainerImage.downloadExportFile(id);
 }
 
-/** Handles getReportByReference */
+/**
+ * Handles the 'getReportByReference' operation.
+ */
 async function handleGetReportByReference(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get image assessment scan report by image reference (v2). */
 	const registry = getStringParam(c, i, 'registry', '');
@@ -58,7 +66,9 @@ async function handleGetReportByReference(c: IExecuteFunctions, i: number, fc: F
 	);
 }
 
-/** Handles getReportByScanID */
+/**
+ * Handles the 'getReportByScanID' operation.
+ */
 async function handleGetReportByScanID(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get image assessment scan report by scan UUID (v2). */
 	const uuid = getStringParam(c, i, 'id', '');
@@ -66,19 +76,25 @@ async function handleGetReportByScanID(c: IExecuteFunctions, i: number, fc: Falc
 	return await fc.falconContainerImage.getReportByScanID(uuid, reportFormat || undefined);
 }
 
-/** Handles headImageScanInventory */
+/**
+ * Handles the 'headImageScanInventory' operation.
+ */
 async function handleHeadImageScanInventory(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get headers for POST request for image scan inventory. */
 	return await fc.falconContainerImage.headImageScanInventory();
 }
 
-/** Handles launchExportJob */
+/**
+ * Handles the 'launchExportJob' operation.
+ */
 async function handleLaunchExportJob(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Launch an export job of a Container Security resource. */
 	return await fc.falconContainerImage.launchExportJob(parseJsonParam(c, i));
 }
 
-/** Handles policyChecks */
+/**
+ * Handles the 'policyChecks' operation.
+ */
 async function handlePolicyChecks(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Check image prevention policies. */
 	const repository = getStringParam(c, i, 'repository', '');
@@ -88,26 +104,34 @@ async function handlePolicyChecks(c: IExecuteFunctions, i: number, fc: FalconCli
 	return await fc.falconContainerImage.policyChecks(repository, tag, registry || undefined, architecture || undefined);
 }
 
-/** Handles postImageScanInventory */
+/**
+ * Handles the 'postImageScanInventory' operation.
+ */
 async function handlePostImageScanInventory(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Post image scan inventory. */
 	return await fc.falconContainerImage.postImageScanInventory(parseJsonParam(c, i));
 }
 
-/** Handles queryExportJobs */
+/**
+ * Handles the 'queryExportJobs' operation.
+ */
 async function handleQueryExportJobs(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Query export jobs entities. */
 	const filter = getStringParam(c, i, 'filter', '');
 	return await fc.falconContainerImage.queryExportJobs(filter || undefined);
 }
 
-/** Handles readExportJobs */
+/**
+ * Handles the 'readExportJobs' operation.
+ */
 async function handleReadExportJobs(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Read export jobs entities. */
 	return await fc.falconContainerImage.readExportJobs(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles readRegistryEntities */
+/**
+ * Handles the 'readRegistryEntities' operation.
+ */
 async function handleReadRegistryEntities(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves a list of registry entities identified by customer ID. */
 	const limit = c.getNodeParameter('limit', i, 100) as number;
@@ -116,14 +140,18 @@ async function handleReadRegistryEntities(c: IExecuteFunctions, i: number, fc: F
 	return await fc.falconContainerImage.readRegistryEntities(limit || undefined, offset || undefined, sort || undefined);
 }
 
-/** Handles readRegistryEntitiesByUUID */
+/**
+ * Handles the 'readRegistryEntitiesByUUID' operation.
+ */
 async function handleReadRegistryEntitiesByUUID(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves a list of registry entities by provided UUIDs. */
 	const ids = getStringParam(c, i, 'id', '');
 	return await fc.falconContainerImage.readRegistryEntitiesByUUID(ids);
 }
 
-/** Handles updateRegistryEntities */
+/**
+ * Handles the 'updateRegistryEntities' operation.
+ */
 async function handleUpdateRegistryEntities(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update registry entity identified by entity UUID. */
 	const id = getStringParam(c, i, 'id', '');

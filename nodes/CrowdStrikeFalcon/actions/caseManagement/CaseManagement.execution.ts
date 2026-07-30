@@ -17,133 +17,175 @@ function parseSetParam(context: IExecuteFunctions, index: number, paramName = 'i
 	return new Set(idsArray);
 }
 
-/** Handles aggregatesAccessTagsPostV1 */
+/**
+ * Handles the 'aggregatesAccessTagsPostV1' operation.
+ */
 async function handleAggregatesAccessTagsPostV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves access tag aggregates. */
 	const body = parseJsonParam(c, i);
 	return await fc.caseManagement.aggregatesAccessTagsPostV1(Array.isArray(body) ? body : [body]);
 }
 
-/** Handles aggregatesNotificationGroupsPostV1 */
+/**
+ * Handles the 'aggregatesNotificationGroupsPostV1' operation.
+ */
 async function handleAggregatesNotificationGroupsPostV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves notification groups aggregations V1. */
 	const body = parseJsonParam(c, i);
 	return await fc.caseManagement.aggregatesNotificationGroupsPostV1(Array.isArray(body) ? body : [body]);
 }
 
-/** Handles aggregatesNotificationGroupsPostV2 */
+/**
+ * Handles the 'aggregatesNotificationGroupsPostV2' operation.
+ */
 async function handleAggregatesNotificationGroupsPostV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves notification groups aggregations V2. */
 	const body = parseJsonParam(c, i);
 	return await fc.caseManagement.aggregatesNotificationGroupsPostV2(Array.isArray(body) ? body : [body]);
 }
 
-/** Handles aggregatesSlasPostV1 */
+/**
+ * Handles the 'aggregatesSlasPostV1' operation.
+ */
 async function handleAggregatesSlasPostV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves SLA aggregations. */
 	const body = parseJsonParam(c, i);
 	return await fc.caseManagement.aggregatesSlasPostV1(Array.isArray(body) ? body : [body]);
 }
 
-/** Handles aggregatesTemplatesPostV1 */
+/**
+ * Handles the 'aggregatesTemplatesPostV1' operation.
+ */
 async function handleAggregatesTemplatesPostV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves templates aggregations. */
 	const body = parseJsonParam(c, i);
 	return await fc.caseManagement.aggregatesTemplatesPostV1(Array.isArray(body) ? body : [body]);
 }
 
-/** Handles entitiesFieldsGetV1 */
+/**
+ * Handles the 'entitiesFieldsGetV1' operation.
+ */
 async function handleEntitiesFieldsGetV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves fields by ID. */
 	return await fc.caseManagement.entitiesFieldsGetV1(parseSetParam(c, i));
 }
 
-/** Handles entitiesNotificationGroupsDeleteV1 */
+/**
+ * Handles the 'entitiesNotificationGroupsDeleteV1' operation.
+ */
 async function handleEntitiesNotificationGroupsDeleteV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes notification groups V1. */
 	return await fc.caseManagement.entitiesNotificationGroupsDeleteV1(parseSetParam(c, i));
 }
 
-/** Handles entitiesNotificationGroupsDeleteV2 */
+/**
+ * Handles the 'entitiesNotificationGroupsDeleteV2' operation.
+ */
 async function handleEntitiesNotificationGroupsDeleteV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes notification groups V2. */
 	return await fc.caseManagement.entitiesNotificationGroupsDeleteV2(parseSetParam(c, i));
 }
 
-/** Handles entitiesNotificationGroupsGetV1 */
+/**
+ * Handles the 'entitiesNotificationGroupsGetV1' operation.
+ */
 async function handleEntitiesNotificationGroupsGetV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves notification groups V1. */
 	return await fc.caseManagement.entitiesNotificationGroupsGetV1(parseSetParam(c, i));
 }
 
-/** Handles entitiesNotificationGroupsGetV2 */
+/**
+ * Handles the 'entitiesNotificationGroupsGetV2' operation.
+ */
 async function handleEntitiesNotificationGroupsGetV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves notification groups V2. */
 	return await fc.caseManagement.entitiesNotificationGroupsGetV2(parseSetParam(c, i));
 }
 
-/** Handles entitiesNotificationGroupsPatchV1 */
+/**
+ * Handles the 'entitiesNotificationGroupsPatchV1' operation.
+ */
 async function handleEntitiesNotificationGroupsPatchV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates notification group V1. */
 	return await fc.caseManagement.entitiesNotificationGroupsPatchV1(parseJsonParam(c, i));
 }
 
-/** Handles entitiesNotificationGroupsPatchV2 */
+/**
+ * Handles the 'entitiesNotificationGroupsPatchV2' operation.
+ */
 async function handleEntitiesNotificationGroupsPatchV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates notification group V2. */
 	return await fc.caseManagement.entitiesNotificationGroupsPatchV2(parseJsonParam(c, i));
 }
 
-/** Handles entitiesNotificationGroupsPostV1 */
+/**
+ * Handles the 'entitiesNotificationGroupsPostV1' operation.
+ */
 async function handleEntitiesNotificationGroupsPostV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates notification group V1. */
 	return await fc.caseManagement.entitiesNotificationGroupsPostV1(parseJsonParam(c, i));
 }
 
-/** Handles entitiesNotificationGroupsPostV2 */
+/**
+ * Handles the 'entitiesNotificationGroupsPostV2' operation.
+ */
 async function handleEntitiesNotificationGroupsPostV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates notification group V2. */
 	return await fc.caseManagement.entitiesNotificationGroupsPostV2(parseJsonParam(c, i));
 }
 
-/** Handles entitiesSlasDeleteV1 */
+/**
+ * Handles the 'entitiesSlasDeleteV1' operation.
+ */
 async function handleEntitiesSlasDeleteV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes SLAs by ID. */
 	return await fc.caseManagement.entitiesSlasDeleteV1(parseSetParam(c, i));
 }
 
-/** Handles entitiesSlasGetV1 */
+/**
+ * Handles the 'entitiesSlasGetV1' operation.
+ */
 async function handleEntitiesSlasGetV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves SLAs by ID. */
 	return await fc.caseManagement.entitiesSlasGetV1(parseSetParam(c, i));
 }
 
-/** Handles entitiesSlasPatchV1 */
+/**
+ * Handles the 'entitiesSlasPatchV1' operation.
+ */
 async function handleEntitiesSlasPatchV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates SLA. */
 	return await fc.caseManagement.entitiesSlasPatchV1(parseJsonParam(c, i));
 }
 
-/** Handles entitiesSlasPostV1 */
+/**
+ * Handles the 'entitiesSlasPostV1' operation.
+ */
 async function handleEntitiesSlasPostV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates SLA. */
 	return await fc.caseManagement.entitiesSlasPostV1(parseJsonParam(c, i));
 }
 
-/** Handles entitiesTemplateSnapshotsGetV1 */
+/**
+ * Handles the 'entitiesTemplateSnapshotsGetV1' operation.
+ */
 async function handleEntitiesTemplateSnapshotsGetV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves template snapshots. */
 	const idsSet = parseSetParam(c, i);
 	return await fc.caseManagement.entitiesTemplateSnapshotsGetV1(idsSet.size ? idsSet : undefined);
 }
 
-/** Handles entitiesTemplatesDeleteV1 */
+/**
+ * Handles the 'entitiesTemplatesDeleteV1' operation.
+ */
 async function handleEntitiesTemplatesDeleteV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes templates by ID. */
 	return await fc.caseManagement.entitiesTemplatesDeleteV1(parseSetParam(c, i));
 }
 
-/** Handles entitiesTemplatesExportGetV1 */
+/**
+ * Handles the 'entitiesTemplatesExportGetV1' operation.
+ */
 async function handleEntitiesTemplatesExportGetV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Exports templates. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -151,32 +193,42 @@ async function handleEntitiesTemplatesExportGetV1(c: IExecuteFunctions, i: numbe
 	return await fc.caseManagement.entitiesTemplatesExportGetV1(idsSet.size ? idsSet : undefined, filter || undefined);
 }
 
-/** Handles entitiesTemplatesGetV1 */
+/**
+ * Handles the 'entitiesTemplatesGetV1' operation.
+ */
 async function handleEntitiesTemplatesGetV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves templates by ID. */
 	return await fc.caseManagement.entitiesTemplatesGetV1(parseSetParam(c, i));
 }
 
-/** Handles entitiesTemplatesImportPostV1 */
+/**
+ * Handles the 'entitiesTemplatesImportPostV1' operation.
+ */
 async function handleEntitiesTemplatesImportPostV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Imports template from file. */
 	const body = parseJsonParam(c, i);
 	return await fc.caseManagement.entitiesTemplatesImportPostV1(body as any);
 }
 
-/** Handles entitiesTemplatesPatchV1 */
+/**
+ * Handles the 'entitiesTemplatesPatchV1' operation.
+ */
 async function handleEntitiesTemplatesPatchV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates template. */
 	return await fc.caseManagement.entitiesTemplatesPatchV1(parseJsonParam(c, i));
 }
 
-/** Handles entitiesTemplatesPostV1 */
+/**
+ * Handles the 'entitiesTemplatesPostV1' operation.
+ */
 async function handleEntitiesTemplatesPostV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates template. */
 	return await fc.caseManagement.entitiesTemplatesPostV1(parseJsonParam(c, i));
 }
 
-/** Handles queriesAccessTagsGetV1 */
+/**
+ * Handles the 'queriesAccessTagsGetV1' operation.
+ */
 async function handleQueriesAccessTagsGetV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries access tags. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -185,7 +237,9 @@ async function handleQueriesAccessTagsGetV1(c: IExecuteFunctions, i: number, fc:
 	return await fc.caseManagement.queriesAccessTagsGetV1(filter || undefined, sort || undefined, limit || undefined);
 }
 
-/** Handles queriesFieldsGetV1 */
+/**
+ * Handles the 'queriesFieldsGetV1' operation.
+ */
 async function handleQueriesFieldsGetV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries fields. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -194,7 +248,9 @@ async function handleQueriesFieldsGetV1(c: IExecuteFunctions, i: number, fc: Fal
 	return await fc.caseManagement.queriesFieldsGetV1(filter || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles queriesNotificationGroupsGetV1 */
+/**
+ * Handles the 'queriesNotificationGroupsGetV1' operation.
+ */
 async function handleQueriesNotificationGroupsGetV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries notification groups V1. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -204,7 +260,9 @@ async function handleQueriesNotificationGroupsGetV1(c: IExecuteFunctions, i: num
 	return await fc.caseManagement.queriesNotificationGroupsGetV1(filter || undefined, sort || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles queriesNotificationGroupsGetV2 */
+/**
+ * Handles the 'queriesNotificationGroupsGetV2' operation.
+ */
 async function handleQueriesNotificationGroupsGetV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries notification groups V2. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -214,7 +272,9 @@ async function handleQueriesNotificationGroupsGetV2(c: IExecuteFunctions, i: num
 	return await fc.caseManagement.queriesNotificationGroupsGetV2(filter || undefined, sort || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles queriesSlasGetV1 */
+/**
+ * Handles the 'queriesSlasGetV1' operation.
+ */
 async function handleQueriesSlasGetV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries SLAs. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -224,7 +284,9 @@ async function handleQueriesSlasGetV1(c: IExecuteFunctions, i: number, fc: Falco
 	return await fc.caseManagement.queriesSlasGetV1(filter || undefined, sort || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles queriesTemplateSnapshotsGetV1 */
+/**
+ * Handles the 'queriesTemplateSnapshotsGetV1' operation.
+ */
 async function handleQueriesTemplateSnapshotsGetV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries template snapshots. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
@@ -233,7 +295,9 @@ async function handleQueriesTemplateSnapshotsGetV1(c: IExecuteFunctions, i: numb
 	return await fc.caseManagement.queriesTemplateSnapshotsGetV1(filter || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles queriesTemplatesGetV1 */
+/**
+ * Handles the 'queriesTemplatesGetV1' operation.
+ */
 async function handleQueriesTemplatesGetV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries templates. */
 	const filter = c.getNodeParameter('filter', i, '') as string;

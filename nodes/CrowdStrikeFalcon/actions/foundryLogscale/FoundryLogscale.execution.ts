@@ -16,7 +16,9 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles createSavedSearchesDynamicExecuteAltV1 */
+/**
+ * Handles the 'createSavedSearchesDynamicExecuteAltV1' operation.
+ */
 async function handleCreateSavedSearchesDynamicExecuteAltV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Execute a dynamic saved search. */
 	const body = parseJsonParam(c, i);
@@ -24,7 +26,9 @@ async function handleCreateSavedSearchesDynamicExecuteAltV1(c: IExecuteFunctions
 	return await fc.foundryLogscale.createSavedSearchesDynamicExecuteAltV1(body, appId || undefined);
 }
 
-/** Handles createSavedSearchesExecuteAltV1 */
+/**
+ * Handles the 'createSavedSearchesExecuteAltV1' operation.
+ */
 async function handleCreateSavedSearchesExecuteAltV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Execute a saved search. */
 	const body = parseJsonParam(c, i);
@@ -32,21 +36,27 @@ async function handleCreateSavedSearchesExecuteAltV1(c: IExecuteFunctions, i: nu
 	return await fc.foundryLogscale.createSavedSearchesExecuteAltV1(body, appId || undefined);
 }
 
-/** Handles createSavedSearchesIngestAltV1 */
+/**
+ * Handles the 'createSavedSearchesIngestAltV1' operation.
+ */
 async function handleCreateSavedSearchesIngestAltV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Populate a saved search. */
 	const appId = getStringParam(c, i, 'appId', '');
 	return await fc.foundryLogscale.createSavedSearchesIngestAltV1(appId || undefined);
 }
 
-/** Handles downloadResults */
+/**
+ * Handles the 'downloadResults' operation.
+ */
 async function handleDownloadResults(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get the results of a saved search as a file. */
 	const jobId = getStringParam(c, i, 'jobId', '');
 	return await fc.foundryLogscale.downloadResults(jobId);
 }
 
-/** Handles execute */
+/**
+ * Handles the 'execute' operation.
+ */
 async function handleExecute(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Execute a saved search. */
 	const body = parseJsonParam(c, i);
@@ -54,7 +64,9 @@ async function handleExecute(c: IExecuteFunctions, i: number, fc: FalconClient):
 	return await fc.foundryLogscale.execute(body, appId || undefined);
 }
 
-/** Handles executeDynamic */
+/**
+ * Handles the 'executeDynamic' operation.
+ */
 async function handleExecuteDynamic(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Execute a dynamic saved search. */
 	const body = parseJsonParam(c, i);
@@ -62,7 +74,9 @@ async function handleExecuteDynamic(c: IExecuteFunctions, i: number, fc: FalconC
 	return await fc.foundryLogscale.executeDynamic(body, appId || undefined);
 }
 
-/** Handles getSavedSearchesExecuteAltV1 */
+/**
+ * Handles the 'getSavedSearchesExecuteAltV1' operation.
+ */
 async function handleGetSavedSearchesExecuteAltV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get the results of a saved search. */
 	const jobId = getStringParam(c, i, 'jobId', '');
@@ -70,14 +84,18 @@ async function handleGetSavedSearchesExecuteAltV1(c: IExecuteFunctions, i: numbe
 	return await fc.foundryLogscale.getSavedSearchesExecuteAltV1(jobId, appId || undefined);
 }
 
-/** Handles getSavedSearchesJobResultsDownloadAltV1 */
+/**
+ * Handles the 'getSavedSearchesJobResultsDownloadAltV1' operation.
+ */
 async function handleGetSavedSearchesJobResultsDownloadAltV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get the results of a saved search as a file. */
 	const jobId = getStringParam(c, i, 'jobId', '');
 	return await fc.foundryLogscale.getSavedSearchesJobResultsDownloadAltV1(jobId);
 }
 
-/** Handles getSearchResults */
+/**
+ * Handles the 'getSearchResults' operation.
+ */
 async function handleGetSearchResults(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get the results of a saved search. */
 	const jobId = getStringParam(c, i, 'jobId', '');
@@ -85,14 +103,18 @@ async function handleGetSearchResults(c: IExecuteFunctions, i: number, fc: Falco
 	return await fc.foundryLogscale.getSearchResults(jobId, appId || undefined);
 }
 
-/** Handles ingestData */
+/**
+ * Handles the 'ingestData' operation.
+ */
 async function handleIngestData(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Synchronously ingest data into the application repository. */
 	const dataContent = getStringParam(c, i, 'dataContent', '');
 	return await fc.foundryLogscale.ingestData(dataContent || undefined);
 }
 
-/** Handles ingestDataAsyncV1 */
+/**
+ * Handles the 'ingestDataAsyncV1' operation.
+ */
 async function handleIngestDataAsyncV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Asynchronously ingest data into the application repository. */
 	const dataContent = getStringParam(c, i, 'dataContent', '');
@@ -100,21 +122,27 @@ async function handleIngestDataAsyncV1(c: IExecuteFunctions, i: number, fc: Falc
 	return await fc.foundryLogscale.ingestDataAsyncV1(dataContent || undefined, undefined, repo || undefined);
 }
 
-/** Handles listRepos */
+/**
+ * Handles the 'listRepos' operation.
+ */
 async function handleListRepos(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Lists available repositories. */
 	const checkTestData = c.getNodeParameter('checkTestData', i, false) as boolean;
 	return await fc.foundryLogscale.listRepos(checkTestData);
 }
 
-/** Handles listViews */
+/**
+ * Handles the 'listViews' operation.
+ */
 async function handleListViews(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* List available views. */
 	const checkTestData = c.getNodeParameter('checkTestData', i, false) as boolean;
 	return await fc.foundryLogscale.listViews(checkTestData);
 }
 
-/** Handles populate */
+/**
+ * Handles the 'populate' operation.
+ */
 async function handlePopulate(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Populate a saved search. */
 	const appId = getStringParam(c, i, 'appId', '');

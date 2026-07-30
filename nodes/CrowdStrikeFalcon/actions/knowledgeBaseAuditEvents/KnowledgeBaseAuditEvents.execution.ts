@@ -22,7 +22,9 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles aggregatesKnowledgeBaseAuditEventsV1 */
+/**
+ * Handles the 'aggregatesKnowledgeBaseAuditEventsV1' operation.
+ */
 async function handleAggregatesKnowledgeBaseAuditEventsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Aggregate knowledge base audit events based on MSA criteria. */
 	const body = parseJsonParam(c, i);
@@ -30,7 +32,9 @@ async function handleAggregatesKnowledgeBaseAuditEventsV1(c: IExecuteFunctions, 
 	return await fc.knowledgeBaseAuditEvents.aggregatesKnowledgeBaseAuditEventsV1(body, includeDeleted);
 }
 
-/** Handles combinedKnowledgeBaseAuditEventsV1 */
+/**
+ * Handles the 'combinedKnowledgeBaseAuditEventsV1' operation.
+ */
 async function handleCombinedKnowledgeBaseAuditEventsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get knowledge base audit events with full details and pagination. */
 	const knowledgeBaseId = getStringParam(c, i, 'knowledgeBaseId', '');
@@ -42,7 +46,9 @@ async function handleCombinedKnowledgeBaseAuditEventsV1(c: IExecuteFunctions, i:
 	return await fc.knowledgeBaseAuditEvents.combinedKnowledgeBaseAuditEventsV1(knowledgeBaseId, offset || undefined, limit || undefined, sort || undefined, filter || undefined, includeDeleted);
 }
 
-/** Handles entitiesKnowledgeBaseAuditEventsV1 */
+/**
+ * Handles the 'entitiesKnowledgeBaseAuditEventsV1' operation.
+ */
 async function handleEntitiesKnowledgeBaseAuditEventsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve knowledge base audit event entities by their IDs. */
 	const knowledgeBaseId = getStringParam(c, i, 'knowledgeBaseId', '');
@@ -51,7 +57,9 @@ async function handleEntitiesKnowledgeBaseAuditEventsV1(c: IExecuteFunctions, i:
 	return await fc.knowledgeBaseAuditEvents.entitiesKnowledgeBaseAuditEventsV1(knowledgeBaseId, ids, includeDeleted);
 }
 
-/** Handles queriesKnowledgeBaseAuditEventsV1 */
+/**
+ * Handles the 'queriesKnowledgeBaseAuditEventsV1' operation.
+ */
 async function handleQueriesKnowledgeBaseAuditEventsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Query knowledge base audit event IDs with pagination and filtering. */
 	const knowledgeBaseId = getStringParam(c, i, 'knowledgeBaseId', '');

@@ -11,20 +11,26 @@ function parseJsonParam(context: IExecuteFunctions, index: number, paramName = '
 	}
 }
 
-/** Handles cloudRegistrationGcpCreateRegistration */
+/**
+ * Handles the 'cloudRegistrationGcpCreateRegistration' operation.
+ */
 async function handleCloudRegistrationGcpCreateRegistration(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates a Google Cloud Registration. */
 	return await fc.cloudGoogleCloudRegistration.cloudRegistrationGcpCreateRegistration(parseJsonParam(c, i));
 }
 
-/** Handles cloudRegistrationGcpDeleteRegistration */
+/**
+ * Handles the 'cloudRegistrationGcpDeleteRegistration' operation.
+ */
 async function handleCloudRegistrationGcpDeleteRegistration(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes a Google Cloud Registration by ID. */
 	const ids = c.getNodeParameter('ids', i) as string;
 	return await fc.cloudGoogleCloudRegistration.cloudRegistrationGcpDeleteRegistration(ids);
 }
 
-/** Handles cloudRegistrationGcpGetEntities */
+/**
+ * Handles the 'cloudRegistrationGcpGetEntities' operation.
+ */
 async function handleCloudRegistrationGcpGetEntities(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves GCP entities with filtering and pagination. */
 	const idsString = c.getNodeParameter('idsArray', i, '') as string;
@@ -37,26 +43,34 @@ async function handleCloudRegistrationGcpGetEntities(c: IExecuteFunctions, i: nu
 	return await fc.cloudGoogleCloudRegistration.cloudRegistrationGcpGetEntities(ids.length ? ids : undefined, filter || undefined, sort || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles cloudRegistrationGcpGetRegistration */
+/**
+ * Handles the 'cloudRegistrationGcpGetRegistration' operation.
+ */
 async function handleCloudRegistrationGcpGetRegistration(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves a Google Cloud Registration by ID. */
 	const ids = c.getNodeParameter('ids', i) as string;
 	return await fc.cloudGoogleCloudRegistration.cloudRegistrationGcpGetRegistration(ids);
 }
 
-/** Handles cloudRegistrationGcpPostTerraformScript */
+/**
+ * Handles the 'cloudRegistrationGcpPostTerraformScript' operation.
+ */
 async function handleCloudRegistrationGcpPostTerraformScript(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Generates GCP Terraform deployment scripts. */
 	return await fc.cloudGoogleCloudRegistration.cloudRegistrationGcpPostTerraformScript(parseJsonParam(c, i));
 }
 
-/** Handles cloudRegistrationGcpPutRegistration */
+/**
+ * Handles the 'cloudRegistrationGcpPutRegistration' operation.
+ */
 async function handleCloudRegistrationGcpPutRegistration(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates or updates a Google Cloud Registration. */
 	return await fc.cloudGoogleCloudRegistration.cloudRegistrationGcpPutRegistration(parseJsonParam(c, i));
 }
 
-/** Handles cloudRegistrationGcpTriggerHealthCheck */
+/**
+ * Handles the 'cloudRegistrationGcpTriggerHealthCheck' operation.
+ */
 async function handleCloudRegistrationGcpTriggerHealthCheck(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Triggers health check scan for GCP. */
 	const idsString = c.getNodeParameter('idsArray', i, '') as string;
@@ -65,7 +79,9 @@ async function handleCloudRegistrationGcpTriggerHealthCheck(c: IExecuteFunctions
 	return await fc.cloudGoogleCloudRegistration.cloudRegistrationGcpTriggerHealthCheck(ids.length ? ids : undefined);
 }
 
-/** Handles cloudRegistrationGcpUpdateRegistration */
+/**
+ * Handles the 'cloudRegistrationGcpUpdateRegistration' operation.
+ */
 async function handleCloudRegistrationGcpUpdateRegistration(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates a Google Cloud Registration by ID. */
 	const ids = c.getNodeParameter('ids', i) as string;
