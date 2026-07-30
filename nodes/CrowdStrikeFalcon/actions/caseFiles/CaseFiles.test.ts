@@ -2,7 +2,7 @@ import type { FalconClient } from 'crowdstrike-falcon';
 import { executeCaseFiles } from './CaseFiles.execution';
 
 /**
- * Unit test suite for executeCaseFiles operations.
+ * Comprehensive unit test suite for executeCaseFiles operations.
  */
 describe('executeCaseFiles', () => {
 	let mockFalconClient: FalconClient;
@@ -26,7 +26,7 @@ describe('executeCaseFiles', () => {
 		);
 	});
 
-		it("should execute 'aggregatesFileDetailsPostV1' operation successfully", async () => {
+		it("should execute 'aggregatesFileDetailsPostV1' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'aggregatesFileDetailsPostV1';
@@ -38,7 +38,25 @@ describe('executeCaseFiles', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'combinedFileDetailsGetV1' operation successfully", async () => {
+		it("should execute 'aggregatesFileDetailsPostV1' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'aggregatesFileDetailsPostV1';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeCaseFiles.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'combinedFileDetailsGetV1' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'combinedFileDetailsGetV1';
@@ -50,7 +68,25 @@ describe('executeCaseFiles', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'entitiesFileDetailsGetV1' operation successfully", async () => {
+		it("should execute 'combinedFileDetailsGetV1' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'combinedFileDetailsGetV1';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeCaseFiles.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'entitiesFileDetailsGetV1' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'entitiesFileDetailsGetV1';
@@ -62,7 +98,25 @@ describe('executeCaseFiles', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'entitiesFileDetailsPatchV1' operation successfully", async () => {
+		it("should execute 'entitiesFileDetailsGetV1' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'entitiesFileDetailsGetV1';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeCaseFiles.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'entitiesFileDetailsPatchV1' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'entitiesFileDetailsPatchV1';
@@ -74,7 +128,25 @@ describe('executeCaseFiles', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'entitiesFilesBulkDownloadPostV1' operation successfully", async () => {
+		it("should execute 'entitiesFileDetailsPatchV1' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'entitiesFileDetailsPatchV1';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeCaseFiles.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'entitiesFilesBulkDownloadPostV1' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'entitiesFilesBulkDownloadPostV1';
@@ -86,7 +158,25 @@ describe('executeCaseFiles', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'entitiesFilesDeleteV1' operation successfully", async () => {
+		it("should execute 'entitiesFilesBulkDownloadPostV1' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'entitiesFilesBulkDownloadPostV1';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeCaseFiles.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'entitiesFilesDeleteV1' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'entitiesFilesDeleteV1';
@@ -98,7 +188,25 @@ describe('executeCaseFiles', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'entitiesFilesDownloadGetV1' operation successfully", async () => {
+		it("should execute 'entitiesFilesDeleteV1' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'entitiesFilesDeleteV1';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeCaseFiles.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'entitiesFilesDownloadGetV1' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'entitiesFilesDownloadGetV1';
@@ -110,7 +218,25 @@ describe('executeCaseFiles', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'entitiesFilesDownloadPostV1' operation successfully", async () => {
+		it("should execute 'entitiesFilesDownloadGetV1' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'entitiesFilesDownloadGetV1';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeCaseFiles.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'entitiesFilesDownloadPostV1' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'entitiesFilesDownloadPostV1';
@@ -122,7 +248,25 @@ describe('executeCaseFiles', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'entitiesFilesUploadPostV1' operation successfully", async () => {
+		it("should execute 'entitiesFilesDownloadPostV1' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'entitiesFilesDownloadPostV1';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeCaseFiles.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'entitiesFilesUploadPostV1' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'entitiesFilesUploadPostV1';
@@ -134,7 +278,25 @@ describe('executeCaseFiles', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'entitiesGetRtrFileMetadataPostV1' operation successfully", async () => {
+		it("should execute 'entitiesFilesUploadPostV1' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'entitiesFilesUploadPostV1';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeCaseFiles.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'entitiesGetRtrFileMetadataPostV1' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'entitiesGetRtrFileMetadataPostV1';
@@ -146,7 +308,25 @@ describe('executeCaseFiles', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'entitiesRetrieveRtrFilePostV1' operation successfully", async () => {
+		it("should execute 'entitiesGetRtrFileMetadataPostV1' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'entitiesGetRtrFileMetadataPostV1';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeCaseFiles.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'entitiesRetrieveRtrFilePostV1' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'entitiesRetrieveRtrFilePostV1';
@@ -158,7 +338,25 @@ describe('executeCaseFiles', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'entitiesRetrieveRtrRecentFilePostV1' operation successfully", async () => {
+		it("should execute 'entitiesRetrieveRtrFilePostV1' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'entitiesRetrieveRtrFilePostV1';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeCaseFiles.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'entitiesRetrieveRtrRecentFilePostV1' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'entitiesRetrieveRtrRecentFilePostV1';
@@ -170,11 +368,47 @@ describe('executeCaseFiles', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'queriesFileDetailsGetV1' operation successfully", async () => {
+		it("should execute 'entitiesRetrieveRtrRecentFilePostV1' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'entitiesRetrieveRtrRecentFilePostV1';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeCaseFiles.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'queriesFileDetailsGetV1' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'queriesFileDetailsGetV1';
 					return fallback !== undefined ? fallback : '';
+				}),
+			};
+
+			const result = await executeCaseFiles.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'queriesFileDetailsGetV1' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'queriesFileDetailsGetV1';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
 				}),
 			};
 

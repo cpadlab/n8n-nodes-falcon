@@ -2,7 +2,7 @@ import type { FalconClient } from 'crowdstrike-falcon';
 import { executeContainerVulnerabilities } from './ContainerVulnerabilities.execution';
 
 /**
- * Unit test suite for executeContainerVulnerabilities operations.
+ * Comprehensive unit test suite for executeContainerVulnerabilities operations.
  */
 describe('executeContainerVulnerabilities', () => {
 	let mockFalconClient: FalconClient;
@@ -26,7 +26,7 @@ describe('executeContainerVulnerabilities', () => {
 		);
 	});
 
-		it("should execute 'readCombinedVulnerabilities' operation successfully", async () => {
+		it("should execute 'readCombinedVulnerabilities' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'readCombinedVulnerabilities';
@@ -38,7 +38,25 @@ describe('executeContainerVulnerabilities', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'readCombinedVulnerabilitiesDetails' operation successfully", async () => {
+		it("should execute 'readCombinedVulnerabilities' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'readCombinedVulnerabilities';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeContainerVulnerabilities.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'readCombinedVulnerabilitiesDetails' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'readCombinedVulnerabilitiesDetails';
@@ -50,7 +68,25 @@ describe('executeContainerVulnerabilities', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'readCombinedVulnerabilitiesInfo' operation successfully", async () => {
+		it("should execute 'readCombinedVulnerabilitiesDetails' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'readCombinedVulnerabilitiesDetails';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeContainerVulnerabilities.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'readCombinedVulnerabilitiesInfo' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'readCombinedVulnerabilitiesInfo';
@@ -62,7 +98,25 @@ describe('executeContainerVulnerabilities', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'readVulnerabilitiesByImageCount' operation successfully", async () => {
+		it("should execute 'readCombinedVulnerabilitiesInfo' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'readCombinedVulnerabilitiesInfo';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeContainerVulnerabilities.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'readVulnerabilitiesByImageCount' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'readVulnerabilitiesByImageCount';
@@ -74,7 +128,25 @@ describe('executeContainerVulnerabilities', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'readVulnerabilitiesPublicationDate' operation successfully", async () => {
+		it("should execute 'readVulnerabilitiesByImageCount' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'readVulnerabilitiesByImageCount';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeContainerVulnerabilities.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'readVulnerabilitiesPublicationDate' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'readVulnerabilitiesPublicationDate';
@@ -86,7 +158,25 @@ describe('executeContainerVulnerabilities', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'readVulnerabilityCount' operation successfully", async () => {
+		it("should execute 'readVulnerabilitiesPublicationDate' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'readVulnerabilitiesPublicationDate';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeContainerVulnerabilities.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'readVulnerabilityCount' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'readVulnerabilityCount';
@@ -98,7 +188,25 @@ describe('executeContainerVulnerabilities', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'readVulnerabilityCountByActivelyExploited' operation successfully", async () => {
+		it("should execute 'readVulnerabilityCount' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'readVulnerabilityCount';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeContainerVulnerabilities.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'readVulnerabilityCountByActivelyExploited' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'readVulnerabilityCountByActivelyExploited';
@@ -110,7 +218,25 @@ describe('executeContainerVulnerabilities', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'readVulnerabilityCountByCPSRating' operation successfully", async () => {
+		it("should execute 'readVulnerabilityCountByActivelyExploited' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'readVulnerabilityCountByActivelyExploited';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeContainerVulnerabilities.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'readVulnerabilityCountByCPSRating' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'readVulnerabilityCountByCPSRating';
@@ -122,7 +248,25 @@ describe('executeContainerVulnerabilities', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'readVulnerabilityCountByCVSSScore' operation successfully", async () => {
+		it("should execute 'readVulnerabilityCountByCPSRating' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'readVulnerabilityCountByCPSRating';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeContainerVulnerabilities.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'readVulnerabilityCountByCVSSScore' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'readVulnerabilityCountByCVSSScore';
@@ -134,11 +278,47 @@ describe('executeContainerVulnerabilities', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'readVulnerabilityCountBySeverity' operation successfully", async () => {
+		it("should execute 'readVulnerabilityCountByCVSSScore' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'readVulnerabilityCountByCVSSScore';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeContainerVulnerabilities.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'readVulnerabilityCountBySeverity' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'readVulnerabilityCountBySeverity';
 					return fallback !== undefined ? fallback : '';
+				}),
+			};
+
+			const result = await executeContainerVulnerabilities.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'readVulnerabilityCountBySeverity' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'readVulnerabilityCountBySeverity';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
 				}),
 			};
 

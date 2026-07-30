@@ -2,7 +2,7 @@ import type { FalconClient } from 'crowdstrike-falcon';
 import { executeKubernetesContainerCompliance } from './KubernetesContainerCompliance.execution';
 
 /**
- * Unit test suite for executeKubernetesContainerCompliance operations.
+ * Comprehensive unit test suite for executeKubernetesContainerCompliance operations.
  */
 describe('executeKubernetesContainerCompliance', () => {
 	let mockFalconClient: FalconClient;
@@ -26,7 +26,7 @@ describe('executeKubernetesContainerCompliance', () => {
 		);
 	});
 
-		it("should execute 'aggregateAssessmentsGroupedByClustersV2' operation successfully", async () => {
+		it("should execute 'aggregateAssessmentsGroupedByClustersV2' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'aggregateAssessmentsGroupedByClustersV2';
@@ -38,7 +38,25 @@ describe('executeKubernetesContainerCompliance', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'aggregateAssessmentsGroupedByRulesV2' operation successfully", async () => {
+		it("should execute 'aggregateAssessmentsGroupedByClustersV2' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'aggregateAssessmentsGroupedByClustersV2';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeKubernetesContainerCompliance.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'aggregateAssessmentsGroupedByRulesV2' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'aggregateAssessmentsGroupedByRulesV2';
@@ -50,7 +68,25 @@ describe('executeKubernetesContainerCompliance', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'aggregateComplianceByAssetType' operation successfully", async () => {
+		it("should execute 'aggregateAssessmentsGroupedByRulesV2' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'aggregateAssessmentsGroupedByRulesV2';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeKubernetesContainerCompliance.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'aggregateComplianceByAssetType' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'aggregateComplianceByAssetType';
@@ -62,7 +98,25 @@ describe('executeKubernetesContainerCompliance', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'aggregateComplianceByClusterType' operation successfully", async () => {
+		it("should execute 'aggregateComplianceByAssetType' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'aggregateComplianceByAssetType';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeKubernetesContainerCompliance.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'aggregateComplianceByClusterType' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'aggregateComplianceByClusterType';
@@ -74,7 +128,25 @@ describe('executeKubernetesContainerCompliance', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'aggregateComplianceByFramework' operation successfully", async () => {
+		it("should execute 'aggregateComplianceByClusterType' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'aggregateComplianceByClusterType';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeKubernetesContainerCompliance.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'aggregateComplianceByFramework' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'aggregateComplianceByFramework';
@@ -86,7 +158,25 @@ describe('executeKubernetesContainerCompliance', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'aggregateFailedRulesByClustersV3' operation successfully", async () => {
+		it("should execute 'aggregateComplianceByFramework' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'aggregateComplianceByFramework';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeKubernetesContainerCompliance.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'aggregateFailedRulesByClustersV3' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'aggregateFailedRulesByClustersV3';
@@ -98,7 +188,25 @@ describe('executeKubernetesContainerCompliance', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'aggregateTopFailedImages' operation successfully", async () => {
+		it("should execute 'aggregateFailedRulesByClustersV3' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'aggregateFailedRulesByClustersV3';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeKubernetesContainerCompliance.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'aggregateTopFailedImages' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'aggregateTopFailedImages';
@@ -110,7 +218,25 @@ describe('executeKubernetesContainerCompliance', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'combinedImagesFindings' operation successfully", async () => {
+		it("should execute 'aggregateTopFailedImages' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'aggregateTopFailedImages';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeKubernetesContainerCompliance.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'combinedImagesFindings' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'combinedImagesFindings';
@@ -122,7 +248,25 @@ describe('executeKubernetesContainerCompliance', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'combinedNodesFindings' operation successfully", async () => {
+		it("should execute 'combinedImagesFindings' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'combinedImagesFindings';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeKubernetesContainerCompliance.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'combinedNodesFindings' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'combinedNodesFindings';
@@ -134,11 +278,47 @@ describe('executeKubernetesContainerCompliance', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'getRulesMetadataByID' operation successfully", async () => {
+		it("should execute 'combinedNodesFindings' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'combinedNodesFindings';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeKubernetesContainerCompliance.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'getRulesMetadataByID' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'getRulesMetadataByID';
 					return fallback !== undefined ? fallback : '';
+				}),
+			};
+
+			const result = await executeKubernetesContainerCompliance.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'getRulesMetadataByID' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'getRulesMetadataByID';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
 				}),
 			};
 

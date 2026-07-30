@@ -2,7 +2,7 @@ import type { FalconClient } from 'crowdstrike-falcon';
 import { executeCloudConnectAws } from './CloudConnectAws.execution';
 
 /**
- * Unit test suite for executeCloudConnectAws operations.
+ * Comprehensive unit test suite for executeCloudConnectAws operations.
  */
 describe('executeCloudConnectAws', () => {
 	let mockFalconClient: FalconClient;
@@ -26,7 +26,7 @@ describe('executeCloudConnectAws', () => {
 		);
 	});
 
-		it("should execute 'createOrUpdateAWSSettings' operation successfully", async () => {
+		it("should execute 'createOrUpdateAWSSettings' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'createOrUpdateAWSSettings';
@@ -38,7 +38,25 @@ describe('executeCloudConnectAws', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'deleteAWSAccounts' operation successfully", async () => {
+		it("should execute 'createOrUpdateAWSSettings' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'createOrUpdateAWSSettings';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeCloudConnectAws.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'deleteAWSAccounts' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'deleteAWSAccounts';
@@ -50,7 +68,25 @@ describe('executeCloudConnectAws', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'getAWSAccounts' operation successfully", async () => {
+		it("should execute 'deleteAWSAccounts' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'deleteAWSAccounts';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeCloudConnectAws.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'getAWSAccounts' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'getAWSAccounts';
@@ -62,7 +98,25 @@ describe('executeCloudConnectAws', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'getAWSSettings' operation successfully", async () => {
+		it("should execute 'getAWSAccounts' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'getAWSAccounts';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeCloudConnectAws.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'getAWSSettings' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'getAWSSettings';
@@ -74,7 +128,25 @@ describe('executeCloudConnectAws', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'provisionAWSAccounts' operation successfully", async () => {
+		it("should execute 'getAWSSettings' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'getAWSSettings';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeCloudConnectAws.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'provisionAWSAccounts' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'provisionAWSAccounts';
@@ -86,7 +158,25 @@ describe('executeCloudConnectAws', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'queryAWSAccounts' operation successfully", async () => {
+		it("should execute 'provisionAWSAccounts' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'provisionAWSAccounts';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeCloudConnectAws.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'queryAWSAccounts' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'queryAWSAccounts';
@@ -98,7 +188,25 @@ describe('executeCloudConnectAws', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'queryAWSAccountsForIDs' operation successfully", async () => {
+		it("should execute 'queryAWSAccounts' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'queryAWSAccounts';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeCloudConnectAws.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'queryAWSAccountsForIDs' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'queryAWSAccountsForIDs';
@@ -110,7 +218,25 @@ describe('executeCloudConnectAws', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'updateAWSAccounts' operation successfully", async () => {
+		it("should execute 'queryAWSAccountsForIDs' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'queryAWSAccountsForIDs';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeCloudConnectAws.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'updateAWSAccounts' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'updateAWSAccounts';
@@ -122,11 +248,47 @@ describe('executeCloudConnectAws', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'verifyAWSAccountAccess' operation successfully", async () => {
+		it("should execute 'updateAWSAccounts' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'updateAWSAccounts';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeCloudConnectAws.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'verifyAWSAccountAccess' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'verifyAWSAccountAccess';
 					return fallback !== undefined ? fallback : '';
+				}),
+			};
+
+			const result = await executeCloudConnectAws.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'verifyAWSAccountAccess' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'verifyAWSAccountAccess';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
 				}),
 			};
 

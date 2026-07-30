@@ -2,7 +2,7 @@ import type { FalconClient } from 'crowdstrike-falcon';
 import { executeContainerAlerts } from './ContainerAlerts.execution';
 
 /**
- * Unit test suite for executeContainerAlerts operations.
+ * Comprehensive unit test suite for executeContainerAlerts operations.
  */
 describe('executeContainerAlerts', () => {
 	let mockFalconClient: FalconClient;
@@ -26,7 +26,7 @@ describe('executeContainerAlerts', () => {
 		);
 	});
 
-		it("should execute 'readContainerAlertsCount' operation successfully", async () => {
+		it("should execute 'readContainerAlertsCount' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'readContainerAlertsCount';
@@ -38,7 +38,25 @@ describe('executeContainerAlerts', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'readContainerAlertsCountBySeverity' operation successfully", async () => {
+		it("should execute 'readContainerAlertsCount' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'readContainerAlertsCount';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeContainerAlerts.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'readContainerAlertsCountBySeverity' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'readContainerAlertsCountBySeverity';
@@ -50,11 +68,47 @@ describe('executeContainerAlerts', () => {
 			expect(result).toEqual({ success: true });
 		});
 
-		it("should execute 'searchAndReadContainerAlerts' operation successfully", async () => {
+		it("should execute 'readContainerAlertsCountBySeverity' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'readContainerAlertsCountBySeverity';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+				}),
+			};
+
+			const result = await executeContainerAlerts.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'searchAndReadContainerAlerts' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'searchAndReadContainerAlerts';
 					return fallback !== undefined ? fallback : '';
+				}),
+			};
+
+			const result = await executeContainerAlerts.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'searchAndReadContainerAlerts' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'searchAndReadContainerAlerts';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
 				}),
 			};
 

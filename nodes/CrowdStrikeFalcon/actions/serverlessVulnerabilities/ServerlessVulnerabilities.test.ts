@@ -2,7 +2,7 @@ import type { FalconClient } from 'crowdstrike-falcon';
 import { executeServerlessVulnerabilities } from './ServerlessVulnerabilities.execution';
 
 /**
- * Unit test suite for executeServerlessVulnerabilities operations.
+ * Comprehensive unit test suite for executeServerlessVulnerabilities operations.
  */
 describe('executeServerlessVulnerabilities', () => {
 	let mockFalconClient: FalconClient;
@@ -26,11 +26,29 @@ describe('executeServerlessVulnerabilities', () => {
 		);
 	});
 
-		it("should execute 'getCombinedVulnerabilitiesSARIF' operation successfully", async () => {
+		it("should execute 'getCombinedVulnerabilitiesSARIF' operation with default parameters successfully", async () => {
 			const mockContext: any = {
 				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
 					if (paramName === 'operation') return 'getCombinedVulnerabilitiesSARIF';
 					return fallback !== undefined ? fallback : '';
+				}),
+			};
+
+			const result = await executeServerlessVulnerabilities.call(mockContext, 0, mockFalconClient);
+			expect(result).toEqual({ success: true });
+		});
+
+		it("should execute 'getCombinedVulnerabilitiesSARIF' operation with non-empty parameters successfully", async () => {
+			const mockContext: any = {
+				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+					if (paramName === 'operation') return 'getCombinedVulnerabilitiesSARIF';
+					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+					if (typeof fallback === 'number') return fallback;
+					if (typeof fallback === 'boolean') return true;
+					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
 				}),
 			};
 
