@@ -22,14 +22,18 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles createTemplates */
+/**
+ * Handles the 'createTemplates' operation.
+ */
 async function handleCreateTemplates(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create templates using provided specifications. */
 	const xCSUSERUUID = getStringParam(c, i, 'xCSUSERUUID', '');
 	return await fc.networkScanTemplates.createTemplates(parseJsonParam(c, i), xCSUSERUUID || undefined);
 }
 
-/** Handles deleteTemplates */
+/**
+ * Handles the 'deleteTemplates' operation.
+ */
 async function handleDeleteTemplates(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete templates by their IDs. */
 	const ids = parseArrayParam(c, i, 'ids');
@@ -37,14 +41,18 @@ async function handleDeleteTemplates(c: IExecuteFunctions, i: number, fc: Falcon
 	return await fc.networkScanTemplates.deleteTemplates(ids, xCSUSERUUID || undefined);
 }
 
-/** Handles getTemplateConfigs */
+/**
+ * Handles the 'getTemplateConfigs' operation.
+ */
 async function handleGetTemplateConfigs(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get details on network scan template configurations. */
 	const xCSUSERUUID = getStringParam(c, i, 'xCSUSERUUID', '');
 	return await fc.networkScanTemplates.getTemplateConfigs(xCSUSERUUID || undefined);
 }
 
-/** Handles getTemplates */
+/**
+ * Handles the 'getTemplates' operation.
+ */
 async function handleGetTemplates(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get templates by their IDs. */
 	const ids = parseArrayParam(c, i, 'ids');
@@ -52,7 +60,9 @@ async function handleGetTemplates(c: IExecuteFunctions, i: number, fc: FalconCli
 	return await fc.networkScanTemplates.getTemplates(ids, xCSUSERUUID || undefined);
 }
 
-/** Handles queryTemplates */
+/**
+ * Handles the 'queryTemplates' operation.
+ */
 async function handleQueryTemplates(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get templates IDs by filter. */
 	const xCSUSERUUID = getStringParam(c, i, 'xCSUSERUUID', '');
@@ -63,7 +73,9 @@ async function handleQueryTemplates(c: IExecuteFunctions, i: number, fc: FalconC
 	return await fc.networkScanTemplates.queryTemplates(xCSUSERUUID || undefined, offset || undefined, limit || undefined, sort || undefined, filter || undefined);
 }
 
-/** Handles updateTemplates */
+/**
+ * Handles the 'updateTemplates' operation.
+ */
 async function handleUpdateTemplates(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update templates using provided specifications. */
 	const xCSUSERUUID = getStringParam(c, i, 'xCSUSERUUID', '');
