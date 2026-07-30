@@ -6,7 +6,9 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles oauth2AccessToken */
+/**
+ * Handles the 'oauth2AccessToken' operation.
+ */
 async function handleOauth2AccessToken(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Generate an OAuth2 access token. */
 	const clientId = getStringParam(c, i, 'clientId', '');
@@ -15,7 +17,9 @@ async function handleOauth2AccessToken(c: IExecuteFunctions, i: number, fc: Falc
 	return await fc.oauth2.oauth2AccessToken(clientId, clientSecret, memberCid || undefined);
 }
 
-/** Handles oauth2RevokeToken */
+/**
+ * Handles the 'oauth2RevokeToken' operation.
+ */
 async function handleOauth2RevokeToken(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Revoke a previously issued OAuth2 access token. */
 	const token = getStringParam(c, i, 'token', '');
