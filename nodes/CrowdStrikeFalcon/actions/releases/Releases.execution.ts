@@ -6,7 +6,9 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles combinedReleasesV1Mixin0 */
+/**
+ * Handles the 'combinedReleasesV1Mixin0' operation.
+ */
 async function handleCombinedReleasesV1Mixin0(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries for releases resources and returns details. */
 	const authorization = getStringParam(c, i, 'authorization', '');
