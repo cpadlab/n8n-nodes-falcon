@@ -5,7 +5,15 @@ All notable changes to the `n8n-nodes-falcon` package will be documented in this
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.1.0]
+## [0.1.145]
+
+### Added
+- **Unit Testing Suite**: Implemented comprehensive unit tests (`.test.ts`) across all action modules.
+- **Coverage**: Achieved +90% test coverage for SonarQube quality gate compliance.
+- Test coverage for core execution logic (`*.execution.ts`) and resource definitions (`*.resource.ts`).
+- Mocking suite for CrowdStrike Falcon API calls and n8n workflow execution context.
+
+## [0.1.144]
 ### Added
 
 - Integrated CrowdStrike Falcon actions modules into node router and property definitions:
