@@ -1,10 +1,11 @@
+import type { FalconClient } from 'crowdstrike-falcon';
 import { executeWorkflows } from './Workflows.execution';
 
 /**
  * Unit test suite for executeWorkflows operations.
  */
 describe('executeWorkflows', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();
@@ -12,7 +13,7 @@ describe('executeWorkflows', () => {
 			get: () => new Proxy({}, {
 				get: () => jest.fn().mockResolvedValue({ success: true }),
 			}),
-		}) as unknown as FalconClient;
+		}) as any as FalconClient;
 	});
 
 	it('should throw an error for unsupported operation', async () => {
