@@ -21,51 +21,67 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles createGroupV1Mixin0 */
+/**
+ * Handles the 'createGroupV1Mixin0' operation.
+ */
 async function handleCreateGroupV1Mixin0(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates a new profile group. */
 	return await fc.profileGroups.createGroupV1Mixin0(parseJsonParam(c, i));
 }
 
-/** Handles deleteGroupsV1 */
+/**
+ * Handles the 'deleteGroupsV1' operation.
+ */
 async function handleDeleteGroupsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes profile groups by IDs. */
 	return await fc.profileGroups.deleteGroupsV1(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getGroupUsersV1 */
+/**
+ * Handles the 'getGroupUsersV1' operation.
+ */
 async function handleGetGroupUsersV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Returns information about a group's users in a profile group. */
 	return await fc.profileGroups.getGroupUsersV1(parseJsonParam(c, i));
 }
 
-/** Handles getGroupsV1Mixin0 */
+/**
+ * Handles the 'getGroupsV1Mixin0' operation.
+ */
 async function handleGetGroupsV1Mixin0(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Returns profile groups with details by IDs. */
 	return await fc.profileGroups.getGroupsV1Mixin0(parseJsonParam(c, i));
 }
 
-/** Handles getUserGroupsV1 */
+/**
+ * Handles the 'getUserGroupsV1' operation.
+ */
 async function handleGetUserGroupsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Returns information about a user's groups in a profile group. */
 	return await fc.profileGroups.getUserGroupsV1(parseJsonParam(c, i));
 }
 
-/** Handles groupActionsV1Mixin0 */
+/**
+ * Handles the 'groupActionsV1Mixin0' operation.
+ */
 async function handleGroupActionsV1Mixin0(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Perform actions on profile groups (add/remove roles, user groups, FGA objects). */
 	const actionName = getStringParam(c, i, 'actionNameGroup', 'add_roles');
 	return await fc.profileGroups.groupActionsV1Mixin0(actionName as any, parseJsonParam(c, i));
 }
 
-/** Handles groupUsersActionsV1Mixin0 */
+/**
+ * Handles the 'groupUsersActionsV1Mixin0' operation.
+ */
 async function handleGroupUsersActionsV1Mixin0(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Add or remove users from profile groups. */
 	const actionName = getStringParam(c, i, 'actionNameUser', 'add_users');
 	return await fc.profileGroups.groupUsersActionsV1Mixin0(actionName as any, parseJsonParam(c, i));
 }
 
-/** Handles queryGroupsV1Mixin0 */
+/**
+ * Handles the 'queryGroupsV1Mixin0' operation.
+ */
 async function handleQueryGroupsV1Mixin0(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Returns a list of profile group IDs available to the actor. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -75,7 +91,9 @@ async function handleQueryGroupsV1Mixin0(c: IExecuteFunctions, i: number, fc: Fa
 	return await fc.profileGroups.queryGroupsV1Mixin0(filter || undefined, sort || undefined, offset || undefined, limit || undefined);
 }
 
-/** Handles updateGroupV1Mixin0 */
+/**
+ * Handles the 'updateGroupV1Mixin0' operation.
+ */
 async function handleUpdateGroupV1Mixin0(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates an existing profile group's metadata. */
 	const id = getStringParam(c, i, 'id', '');
