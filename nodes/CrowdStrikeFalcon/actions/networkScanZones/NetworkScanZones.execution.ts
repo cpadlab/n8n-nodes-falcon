@@ -22,14 +22,18 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles aggregateZones */
+/**
+ * Handles the 'aggregateZones' operation.
+ */
 async function handleAggregateZones(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Returns zones aggregations. */
 	const xCSUSERUUID = getStringParam(c, i, 'xCSUSERUUID', '');
 	return await fc.networkScanZones.aggregateZones(parseJsonParam(c, i), xCSUSERUUID || undefined);
 }
 
-/** Handles combinedZones */
+/**
+ * Handles the 'combinedZones' operation.
+ */
 async function handleCombinedZones(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get zones by filter. */
 	const xCSUSERUUID = getStringParam(c, i, 'xCSUSERUUID', '');
@@ -40,14 +44,18 @@ async function handleCombinedZones(c: IExecuteFunctions, i: number, fc: FalconCl
 	return await fc.networkScanZones.combinedZones(xCSUSERUUID || undefined, offset || undefined, limit || undefined, sort || undefined, filter || undefined);
 }
 
-/** Handles createZones */
+/**
+ * Handles the 'createZones' operation.
+ */
 async function handleCreateZones(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create zones using provided specifications. */
 	const xCSUSERUUID = getStringParam(c, i, 'xCSUSERUUID', '');
 	return await fc.networkScanZones.createZones(parseJsonParam(c, i), xCSUSERUUID || undefined);
 }
 
-/** Handles deleteZones */
+/**
+ * Handles the 'deleteZones' operation.
+ */
 async function handleDeleteZones(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete zones by their IDs. */
 	const ids = parseArrayParam(c, i, 'ids');
@@ -55,7 +63,9 @@ async function handleDeleteZones(c: IExecuteFunctions, i: number, fc: FalconClie
 	return await fc.networkScanZones.deleteZones(ids, xCSUSERUUID || undefined);
 }
 
-/** Handles getZones */
+/**
+ * Handles the 'getZones' operation.
+ */
 async function handleGetZones(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get zones by their IDs. */
 	const ids = parseArrayParam(c, i, 'ids');
@@ -63,7 +73,9 @@ async function handleGetZones(c: IExecuteFunctions, i: number, fc: FalconClient)
 	return await fc.networkScanZones.getZones(ids, xCSUSERUUID || undefined);
 }
 
-/** Handles queryZones */
+/**
+ * Handles the 'queryZones' operation.
+ */
 async function handleQueryZones(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get zones IDs by filter. */
 	const xCSUSERUUID = getStringParam(c, i, 'xCSUSERUUID', '');
@@ -74,7 +86,9 @@ async function handleQueryZones(c: IExecuteFunctions, i: number, fc: FalconClien
 	return await fc.networkScanZones.queryZones(xCSUSERUUID || undefined, offset || undefined, limit || undefined, sort || undefined, filter || undefined);
 }
 
-/** Handles updateZones */
+/**
+ * Handles the 'updateZones' operation.
+ */
 async function handleUpdateZones(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update zones using provided specifications. */
 	const xCSUSERUUID = getStringParam(c, i, 'xCSUSERUUID', '');
