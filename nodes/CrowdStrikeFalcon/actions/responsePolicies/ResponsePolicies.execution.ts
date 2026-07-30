@@ -21,32 +21,42 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles createRTResponsePolicies */
+/**
+ * Handles the 'createRTResponsePolicies' operation.
+ */
 async function handleCreateRTResponsePolicies(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create Response Policies by specifying details about the policy to create. */
 	return await fc.responsePolicies.createRTResponsePolicies(parseJsonParam(c, i));
 }
 
-/** Handles deleteRTResponsePolicies */
+/**
+ * Handles the 'deleteRTResponsePolicies' operation.
+ */
 async function handleDeleteRTResponsePolicies(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete a set of Response Policies by specifying their IDs. */
 	return await fc.responsePolicies.deleteRTResponsePolicies(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getRTResponsePolicies */
+/**
+ * Handles the 'getRTResponsePolicies' operation.
+ */
 async function handleGetRTResponsePolicies(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve a set of Response Policies by specifying their IDs. */
 	return await fc.responsePolicies.getRTResponsePolicies(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles performRTResponsePoliciesAction */
+/**
+ * Handles the 'performRTResponsePoliciesAction' operation.
+ */
 async function handlePerformRTResponsePoliciesAction(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Perform the specified action on the Response Policies specified in the request. */
 	const actionName = getStringParam(c, i, 'actionName', 'enable');
 	return await fc.responsePolicies.performRTResponsePoliciesAction(actionName as any, parseJsonParam(c, i));
 }
 
-/** Handles queryCombinedRTResponsePolicies */
+/**
+ * Handles the 'queryCombinedRTResponsePolicies' operation.
+ */
 async function handleQueryCombinedRTResponsePolicies(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Search for Response Policies in your environment. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -56,7 +66,9 @@ async function handleQueryCombinedRTResponsePolicies(c: IExecuteFunctions, i: nu
 	return await fc.responsePolicies.queryCombinedRTResponsePolicies(filter || undefined, offset || undefined, limit || undefined, sort as any || undefined);
 }
 
-/** Handles queryCombinedRTResponsePolicyMembers */
+/**
+ * Handles the 'queryCombinedRTResponsePolicyMembers' operation.
+ */
 async function handleQueryCombinedRTResponsePolicyMembers(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Search for members of a Response policy returning host details. */
 	const id = getStringParam(c, i, 'id', '');
@@ -67,7 +79,9 @@ async function handleQueryCombinedRTResponsePolicyMembers(c: IExecuteFunctions, 
 	return await fc.responsePolicies.queryCombinedRTResponsePolicyMembers(id || undefined, filter || undefined, offset || undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles queryRTResponsePolicies */
+/**
+ * Handles the 'queryRTResponsePolicies' operation.
+ */
 async function handleQueryRTResponsePolicies(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Search for Response Policies returning IDs. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -77,7 +91,9 @@ async function handleQueryRTResponsePolicies(c: IExecuteFunctions, i: number, fc
 	return await fc.responsePolicies.queryRTResponsePolicies(filter || undefined, offset || undefined, limit || undefined, sort as any || undefined);
 }
 
-/** Handles queryRTResponsePolicyMembers */
+/**
+ * Handles the 'queryRTResponsePolicyMembers' operation.
+ */
 async function handleQueryRTResponsePolicyMembers(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Search for members of a Response policy returning Agent IDs. */
 	const id = getStringParam(c, i, 'id', '');
@@ -88,13 +104,17 @@ async function handleQueryRTResponsePolicyMembers(c: IExecuteFunctions, i: numbe
 	return await fc.responsePolicies.queryRTResponsePolicyMembers(id || undefined, filter || undefined, offset || undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles setRTResponsePoliciesPrecedence */
+/**
+ * Handles the 'setRTResponsePoliciesPrecedence' operation.
+ */
 async function handleSetRTResponsePoliciesPrecedence(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Sets the precedence of Response Policies based on order of IDs. */
 	return await fc.responsePolicies.setRTResponsePoliciesPrecedence(parseJsonParam(c, i));
 }
 
-/** Handles updateRTResponsePolicies */
+/**
+ * Handles the 'updateRTResponsePolicies' operation.
+ */
 async function handleUpdateRTResponsePolicies(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update Response Policies by specifying the ID of policy and details. */
 	return await fc.responsePolicies.updateRTResponsePolicies(parseJsonParam(c, i));
