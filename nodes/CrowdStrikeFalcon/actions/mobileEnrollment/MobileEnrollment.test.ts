@@ -5,7 +5,7 @@ import { executeMobileEnrollment } from './MobileEnrollment.execution';
  * Unit test suite for executeMobileEnrollment operations.
  */
 describe('executeMobileEnrollment', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

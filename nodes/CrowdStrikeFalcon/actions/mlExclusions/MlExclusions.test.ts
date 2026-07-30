@@ -5,7 +5,7 @@ import { executeMlExclusions } from './MlExclusions.execution';
  * Unit test suite for executeMlExclusions operations.
  */
 describe('executeMlExclusions', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

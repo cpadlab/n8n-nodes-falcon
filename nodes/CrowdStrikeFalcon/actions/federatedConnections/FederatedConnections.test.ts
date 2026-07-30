@@ -5,7 +5,7 @@ import { executeFederatedConnections } from './FederatedConnections.execution';
  * Unit test suite for executeFederatedConnections operations.
  */
 describe('executeFederatedConnections', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

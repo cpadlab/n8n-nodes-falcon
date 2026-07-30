@@ -5,7 +5,7 @@ import { executeHosts } from './Hosts.execution';
  * Unit test suite for executeHosts operations.
  */
 describe('executeHosts', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

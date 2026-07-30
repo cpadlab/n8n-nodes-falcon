@@ -5,7 +5,7 @@ import { executeIncidents } from './Incidents.execution';
  * Unit test suite for executeIncidents operations.
  */
 describe('executeIncidents', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

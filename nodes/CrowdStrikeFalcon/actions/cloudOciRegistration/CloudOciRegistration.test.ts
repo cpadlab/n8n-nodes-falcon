@@ -5,7 +5,7 @@ import { executeCloudOciRegistration } from './CloudOciRegistration.execution';
  * Unit test suite for executeCloudOciRegistration operations.
  */
 describe('executeCloudOciRegistration', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

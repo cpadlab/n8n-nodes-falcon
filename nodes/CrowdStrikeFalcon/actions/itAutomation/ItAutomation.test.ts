@@ -5,7 +5,7 @@ import { executeItAutomation } from './ItAutomation.execution';
  * Unit test suite for executeItAutomation operations.
  */
 describe('executeItAutomation', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

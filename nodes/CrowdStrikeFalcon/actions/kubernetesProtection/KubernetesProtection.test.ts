@@ -5,7 +5,7 @@ import { executeKubernetesProtection } from './KubernetesProtection.execution';
  * Unit test suite for executeKubernetesProtection operations.
  */
 describe('executeKubernetesProtection', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

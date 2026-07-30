@@ -5,7 +5,7 @@ import { executeCertificateBasedExclusions } from './CertificateBasedExclusions.
  * Unit test suite for executeCertificateBasedExclusions operations.
  */
 describe('executeCertificateBasedExclusions', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

@@ -5,7 +5,7 @@ import { executeCspmRegistration } from './CspmRegistration.execution';
  * Unit test suite for executeCspmRegistration operations.
  */
 describe('executeCspmRegistration', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

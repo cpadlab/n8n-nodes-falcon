@@ -5,7 +5,7 @@ import { executeFoundryLogscale } from './FoundryLogscale.execution';
  * Unit test suite for executeFoundryLogscale operations.
  */
 describe('executeFoundryLogscale', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

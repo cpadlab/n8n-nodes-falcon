@@ -5,7 +5,7 @@ import { executeIntelligenceFeeds } from './IntelligenceFeeds.execution';
  * Unit test suite for executeIntelligenceFeeds operations.
  */
 describe('executeIntelligenceFeeds', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

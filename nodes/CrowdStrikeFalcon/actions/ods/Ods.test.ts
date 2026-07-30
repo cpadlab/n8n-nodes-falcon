@@ -5,7 +5,7 @@ import { executeOds } from './Ods.execution';
  * Unit test suite for executeOds operations.
  */
 describe('executeOds', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

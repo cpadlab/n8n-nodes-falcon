@@ -5,7 +5,7 @@ import { executeAlerts } from './Alerts.execution';
  * Unit test suite for executeAlerts operations.
  */
 describe('executeAlerts', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

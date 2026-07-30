@@ -5,7 +5,7 @@ import { executeCustomIoa } from './CustomIoa.execution';
  * Unit test suite for executeCustomIoa operations.
  */
 describe('executeCustomIoa', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

@@ -5,7 +5,7 @@ import { executeFirewallManagement } from './FirewallManagement.execution';
  * Unit test suite for executeFirewallManagement operations.
  */
 describe('executeFirewallManagement', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

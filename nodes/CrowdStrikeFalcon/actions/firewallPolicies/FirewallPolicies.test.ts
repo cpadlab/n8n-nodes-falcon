@@ -5,7 +5,7 @@ import { executeFirewallPolicies } from './FirewallPolicies.execution';
  * Unit test suite for executeFirewallPolicies operations.
  */
 describe('executeFirewallPolicies', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

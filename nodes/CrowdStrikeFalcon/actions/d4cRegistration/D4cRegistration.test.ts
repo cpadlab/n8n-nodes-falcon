@@ -5,7 +5,7 @@ import { executeD4cRegistration } from './D4cRegistration.execution';
  * Unit test suite for executeD4cRegistration operations.
  */
 describe('executeD4cRegistration', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

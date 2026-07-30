@@ -5,7 +5,7 @@ import { executeZeroTrustAssessment } from './ZeroTrustAssessment.execution';
  * Unit test suite for executeZeroTrustAssessment operations.
  */
 describe('executeZeroTrustAssessment', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

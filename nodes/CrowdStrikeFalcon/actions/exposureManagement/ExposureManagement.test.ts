@@ -5,7 +5,7 @@ import { executeExposureManagement } from './ExposureManagement.execution';
  * Unit test suite for executeExposureManagement operations.
  */
 describe('executeExposureManagement', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

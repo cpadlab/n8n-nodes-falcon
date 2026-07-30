@@ -5,7 +5,7 @@ import { executeFieldSchema } from './FieldSchema.execution';
  * Unit test suite for executeFieldSchema operations.
  */
 describe('executeFieldSchema', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

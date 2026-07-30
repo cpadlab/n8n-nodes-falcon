@@ -5,7 +5,7 @@ import { executeMaintenanceToken } from './MaintenanceToken.execution';
  * Unit test suite for executeMaintenanceToken operations.
  */
 describe('executeMaintenanceToken', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

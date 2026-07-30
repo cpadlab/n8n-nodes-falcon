@@ -5,7 +5,7 @@ import { executeNetworkScanScanRunReports } from './NetworkScanScanRunReports.ex
  * Unit test suite for executeNetworkScanScanRunReports operations.
  */
 describe('executeNetworkScanScanRunReports', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

@@ -5,7 +5,7 @@ import { executeCloudAwsRegistration } from './CloudAwsRegistration.execution';
  * Unit test suite for executeCloudAwsRegistration operations.
  */
 describe('executeCloudAwsRegistration', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

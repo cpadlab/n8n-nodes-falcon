@@ -5,7 +5,7 @@ import { executeContentUpdatePolicies } from './ContentUpdatePolicies.execution'
  * Unit test suite for executeContentUpdatePolicies operations.
  */
 describe('executeContentUpdatePolicies', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

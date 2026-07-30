@@ -5,7 +5,7 @@ import { executeDiscover } from './Discover.execution';
  * Unit test suite for executeDiscover operations.
  */
 describe('executeDiscover', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

@@ -5,7 +5,7 @@ import { executeEventStreams } from './EventStreams.execution';
  * Unit test suite for executeEventStreams operations.
  */
 describe('executeEventStreams', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

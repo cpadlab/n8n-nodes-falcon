@@ -5,7 +5,7 @@ import { executeApiClients } from './ApiClients.execution';
  * Unit test suite for executeApiClients operations.
  */
 describe('executeApiClients', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

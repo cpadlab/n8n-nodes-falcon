@@ -5,7 +5,7 @@ import { executeHostMigration } from './HostMigration.execution';
  * Unit test suite for executeHostMigration operations.
  */
 describe('executeHostMigration', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

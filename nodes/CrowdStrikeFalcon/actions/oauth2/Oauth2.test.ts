@@ -5,7 +5,7 @@ import { executeOauth2 } from './Oauth2.execution';
  * Unit test suite for executeOauth2 operations.
  */
 describe('executeOauth2', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

@@ -5,7 +5,7 @@ import { executeImageAssessmentPolicies } from './ImageAssessmentPolicies.execut
  * Unit test suite for executeImageAssessmentPolicies operations.
  */
 describe('executeImageAssessmentPolicies', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

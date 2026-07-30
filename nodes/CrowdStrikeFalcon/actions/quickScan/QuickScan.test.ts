@@ -5,7 +5,7 @@ import { executeQuickScan } from './QuickScan.execution';
  * Unit test suite for executeQuickScan operations.
  */
 describe('executeQuickScan', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

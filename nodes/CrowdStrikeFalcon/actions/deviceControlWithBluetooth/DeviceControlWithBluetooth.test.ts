@@ -5,7 +5,7 @@ import { executeDeviceControlWithBluetooth } from './DeviceControlWithBluetooth.
  * Unit test suite for executeDeviceControlWithBluetooth operations.
  */
 describe('executeDeviceControlWithBluetooth', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

@@ -5,7 +5,7 @@ import { executeIoaExclusions } from './IoaExclusions.execution';
  * Unit test suite for executeIoaExclusions operations.
  */
 describe('executeIoaExclusions', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

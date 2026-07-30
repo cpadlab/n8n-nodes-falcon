@@ -5,7 +5,7 @@ import { executeNetworkScanZones } from './NetworkScanZones.execution';
  * Unit test suite for executeNetworkScanZones operations.
  */
 describe('executeNetworkScanZones', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

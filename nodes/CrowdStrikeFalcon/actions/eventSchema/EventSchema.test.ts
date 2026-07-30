@@ -5,7 +5,7 @@ import { executeEventSchema } from './EventSchema.execution';
  * Unit test suite for executeEventSchema operations.
  */
 describe('executeEventSchema', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

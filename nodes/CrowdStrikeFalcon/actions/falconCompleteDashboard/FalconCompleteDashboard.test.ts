@@ -5,7 +5,7 @@ import { executeFalconCompleteDashboard } from './FalconCompleteDashboard.execut
  * Unit test suite for executeFalconCompleteDashboard operations.
  */
 describe('executeFalconCompleteDashboard', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

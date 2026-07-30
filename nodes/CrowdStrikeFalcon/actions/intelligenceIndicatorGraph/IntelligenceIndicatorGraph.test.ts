@@ -5,7 +5,7 @@ import { executeIntelligenceIndicatorGraph } from './IntelligenceIndicatorGraph.
  * Unit test suite for executeIntelligenceIndicatorGraph operations.
  */
 describe('executeIntelligenceIndicatorGraph', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

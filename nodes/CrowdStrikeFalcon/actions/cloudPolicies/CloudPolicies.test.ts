@@ -5,7 +5,7 @@ import { executeCloudPolicies } from './CloudPolicies.execution';
  * Unit test suite for executeCloudPolicies operations.
  */
 describe('executeCloudPolicies', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

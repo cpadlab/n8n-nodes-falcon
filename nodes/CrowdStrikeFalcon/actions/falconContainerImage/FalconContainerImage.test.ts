@@ -5,7 +5,7 @@ import { executeFalconContainerImage } from './FalconContainerImage.execution';
  * Unit test suite for executeFalconContainerImage operations.
  */
 describe('executeFalconContainerImage', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

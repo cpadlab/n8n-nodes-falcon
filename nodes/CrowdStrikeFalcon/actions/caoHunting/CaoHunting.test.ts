@@ -5,7 +5,7 @@ import { executeCaoHunting } from './CaoHunting.execution';
  * Unit test suite for executeCaoHunting operations.
  */
 describe('executeCaoHunting', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

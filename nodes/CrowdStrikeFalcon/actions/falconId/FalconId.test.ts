@@ -5,7 +5,7 @@ import { executeFalconId } from './FalconId.execution';
  * Unit test suite for executeFalconId operations.
  */
 describe('executeFalconId', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

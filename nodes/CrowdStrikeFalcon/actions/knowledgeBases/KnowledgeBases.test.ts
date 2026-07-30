@@ -5,7 +5,7 @@ import { executeKnowledgeBases } from './KnowledgeBases.execution';
  * Unit test suite for executeKnowledgeBases operations.
  */
 describe('executeKnowledgeBases', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

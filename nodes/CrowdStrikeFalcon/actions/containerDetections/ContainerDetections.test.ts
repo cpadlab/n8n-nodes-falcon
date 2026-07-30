@@ -5,7 +5,7 @@ import { executeContainerDetections } from './ContainerDetections.execution';
  * Unit test suite for executeContainerDetections operations.
  */
 describe('executeContainerDetections', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

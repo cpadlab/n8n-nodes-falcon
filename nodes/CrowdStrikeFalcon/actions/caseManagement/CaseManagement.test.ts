@@ -5,7 +5,7 @@ import { executeCaseManagement } from './CaseManagement.execution';
  * Unit test suite for executeCaseManagement operations.
  */
 describe('executeCaseManagement', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

@@ -5,7 +5,7 @@ import { executePreventionPolicies } from './PreventionPolicies.execution';
  * Unit test suite for executePreventionPolicies operations.
  */
 describe('executePreventionPolicies', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

@@ -5,7 +5,7 @@ import { executeDeviceContent } from './DeviceContent.execution';
  * Unit test suite for executeDeviceContent operations.
  */
 describe('executeDeviceContent', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

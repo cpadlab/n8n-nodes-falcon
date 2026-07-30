@@ -5,7 +5,7 @@ import { executeNgsiem } from './Ngsiem.execution';
  * Unit test suite for executeNgsiem operations.
  */
 describe('executeNgsiem', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

@@ -5,7 +5,7 @@ import { executeMessageCenter } from './MessageCenter.execution';
  * Unit test suite for executeMessageCenter operations.
  */
 describe('executeMessageCenter', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

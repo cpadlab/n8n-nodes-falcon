@@ -5,7 +5,7 @@ import { executeDeliverySettings } from './DeliverySettings.execution';
  * Unit test suite for executeDeliverySettings operations.
  */
 describe('executeDeliverySettings', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

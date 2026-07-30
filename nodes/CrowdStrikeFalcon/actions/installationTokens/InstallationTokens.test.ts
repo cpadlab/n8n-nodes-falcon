@@ -5,7 +5,7 @@ import { executeInstallationTokens } from './InstallationTokens.execution';
  * Unit test suite for executeInstallationTokens operations.
  */
 describe('executeInstallationTokens', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

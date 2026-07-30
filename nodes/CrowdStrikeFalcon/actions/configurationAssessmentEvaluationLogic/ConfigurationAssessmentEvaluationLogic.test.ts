@@ -5,7 +5,7 @@ import { executeConfigurationAssessmentEvaluationLogic } from './ConfigurationAs
  * Unit test suite for executeConfigurationAssessmentEvaluationLogic operations.
  */
 describe('executeConfigurationAssessmentEvaluationLogic', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

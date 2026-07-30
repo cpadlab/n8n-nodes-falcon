@@ -5,7 +5,7 @@ import { executeDeployments } from './Deployments.execution';
  * Unit test suite for executeDeployments operations.
  */
 describe('executeDeployments', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

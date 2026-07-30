@@ -5,7 +5,7 @@ import { executeDataProtectionConfiguration } from './DataProtectionConfiguratio
  * Unit test suite for executeDataProtectionConfiguration operations.
  */
 describe('executeDataProtectionConfiguration', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

@@ -5,7 +5,7 @@ import { executeCspgIacapi } from './CspgIacapi.execution';
  * Unit test suite for executeCspgIacapi operations.
  */
 describe('executeCspgIacapi', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

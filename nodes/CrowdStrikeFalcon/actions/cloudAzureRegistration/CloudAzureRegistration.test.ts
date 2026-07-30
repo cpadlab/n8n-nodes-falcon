@@ -5,7 +5,7 @@ import { executeCloudAzureRegistration } from './CloudAzureRegistration.executio
  * Unit test suite for executeCloudAzureRegistration operations.
  */
 describe('executeCloudAzureRegistration', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

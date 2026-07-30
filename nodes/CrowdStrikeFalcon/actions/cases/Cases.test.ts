@@ -5,7 +5,7 @@ import { executeCases } from './Cases.execution';
  * Unit test suite for executeCases operations.
  */
 describe('executeCases', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

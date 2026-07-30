@@ -5,7 +5,7 @@ import { executeCustomStorage } from './CustomStorage.execution';
  * Unit test suite for executeCustomStorage operations.
  */
 describe('executeCustomStorage', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

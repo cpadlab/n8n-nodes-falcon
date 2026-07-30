@@ -5,7 +5,7 @@ import { executeCloudSecurityRegistrationCombined } from './CloudSecurityRegistr
  * Unit test suite for executeCloudSecurityRegistrationCombined operations.
  */
 describe('executeCloudSecurityRegistrationCombined', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

@@ -5,7 +5,7 @@ import { executeCloudSecurityCompliance } from './CloudSecurityCompliance.execut
  * Unit test suite for executeCloudSecurityCompliance operations.
  */
 describe('executeCloudSecurityCompliance', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

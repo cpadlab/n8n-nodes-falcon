@@ -5,7 +5,7 @@ import { executeIntel } from './Intel.execution';
  * Unit test suite for executeIntel operations.
  */
 describe('executeIntel', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

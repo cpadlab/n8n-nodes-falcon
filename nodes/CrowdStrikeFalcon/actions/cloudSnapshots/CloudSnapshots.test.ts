@@ -5,7 +5,7 @@ import { executeCloudSnapshots } from './CloudSnapshots.execution';
  * Unit test suite for executeCloudSnapshots operations.
  */
 describe('executeCloudSnapshots', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

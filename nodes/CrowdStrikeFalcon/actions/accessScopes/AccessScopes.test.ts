@@ -5,7 +5,7 @@ import { executeAccessScopes } from './AccessScopes.execution';
  * Unit test suite for executeAccessScopes operations.
  */
 describe('executeAccessScopes', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

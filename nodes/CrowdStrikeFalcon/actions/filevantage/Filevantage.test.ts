@@ -5,7 +5,7 @@ import { executeFilevantage } from './Filevantage.execution';
  * Unit test suite for executeFilevantage operations.
  */
 describe('executeFilevantage', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

@@ -5,7 +5,7 @@ import { executeFoundryLookupFiles } from './FoundryLookupFiles.execution';
  * Unit test suite for executeFoundryLookupFiles operations.
  */
 describe('executeFoundryLookupFiles', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

@@ -5,7 +5,7 @@ import { executeDiscoverIot } from './DiscoverIot.execution';
  * Unit test suite for executeDiscoverIot operations.
  */
 describe('executeDiscoverIot', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

@@ -5,7 +5,7 @@ import { executeCloudConnectAws } from './CloudConnectAws.execution';
  * Unit test suite for executeCloudConnectAws operations.
  */
 describe('executeCloudConnectAws', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

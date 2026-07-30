@@ -5,7 +5,7 @@ import { executeDetects } from './Detects.execution';
  * Unit test suite for executeDetects operations.
  */
 describe('executeDetects', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

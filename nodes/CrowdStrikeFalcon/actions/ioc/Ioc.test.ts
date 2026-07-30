@@ -5,7 +5,7 @@ import { executeIoc } from './Ioc.execution';
  * Unit test suite for executeIoc operations.
  */
 describe('executeIoc', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

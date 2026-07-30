@@ -5,7 +5,7 @@ import { executeAdmissionControlPolicies } from './AdmissionControlPolicies.exec
  * Unit test suite for executeAdmissionControlPolicies operations.
  */
 describe('executeAdmissionControlPolicies', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

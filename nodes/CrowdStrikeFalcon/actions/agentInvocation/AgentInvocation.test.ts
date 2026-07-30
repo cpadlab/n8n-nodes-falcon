@@ -5,7 +5,7 @@ import { executeAgentInvocation } from './AgentInvocation.execution';
  * Unit test suite for executeAgentInvocation operations.
  */
 describe('executeAgentInvocation', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

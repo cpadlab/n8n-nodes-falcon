@@ -5,7 +5,7 @@ import { executeDeviceControlPolicies } from './DeviceControlPolicies.execution'
  * Unit test suite for executeDeviceControlPolicies operations.
  */
 describe('executeDeviceControlPolicies', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

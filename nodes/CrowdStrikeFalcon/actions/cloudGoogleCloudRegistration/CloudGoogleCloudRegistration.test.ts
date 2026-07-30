@@ -5,7 +5,7 @@ import { executeCloudGoogleCloudRegistration } from './CloudGoogleCloudRegistrat
  * Unit test suite for executeCloudGoogleCloudRegistration operations.
  */
 describe('executeCloudGoogleCloudRegistration', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

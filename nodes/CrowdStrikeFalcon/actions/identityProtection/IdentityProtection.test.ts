@@ -5,7 +5,7 @@ import { executeIdentityProtection } from './IdentityProtection.execution';
  * Unit test suite for executeIdentityProtection operations.
  */
 describe('executeIdentityProtection', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

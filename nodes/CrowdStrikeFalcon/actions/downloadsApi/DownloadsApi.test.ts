@@ -5,7 +5,7 @@ import { executeDownloadsApi } from './DownloadsApi.execution';
  * Unit test suite for executeDownloadsApi operations.
  */
 describe('executeDownloadsApi', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

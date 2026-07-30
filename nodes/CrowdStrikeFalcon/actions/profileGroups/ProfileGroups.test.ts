@@ -5,7 +5,7 @@ import { executeProfileGroups } from './ProfileGroups.execution';
  * Unit test suite for executeProfileGroups operations.
  */
 describe('executeProfileGroups', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

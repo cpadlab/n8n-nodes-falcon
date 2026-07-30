@@ -5,7 +5,7 @@ import { executeQuarantine } from './Quarantine.execution';
  * Unit test suite for executeQuarantine operations.
  */
 describe('executeQuarantine', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

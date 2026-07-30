@@ -5,7 +5,7 @@ import { executeApiIntegrations } from './ApiIntegrations.execution';
  * Unit test suite for executeApiIntegrations operations.
  */
 describe('executeApiIntegrations', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

@@ -5,7 +5,7 @@ import { executeDefault } from './Default.execution';
  * Unit test suite for executeDefault operations.
  */
 describe('executeDefault', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

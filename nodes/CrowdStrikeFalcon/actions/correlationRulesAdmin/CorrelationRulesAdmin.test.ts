@@ -5,7 +5,7 @@ import { executeCorrelationRulesAdmin } from './CorrelationRulesAdmin.execution'
  * Unit test suite for executeCorrelationRulesAdmin operations.
  */
 describe('executeCorrelationRulesAdmin', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

@@ -5,7 +5,7 @@ import { executeFalconxSandbox } from './FalconxSandbox.execution';
  * Unit test suite for executeFalconxSandbox operations.
  */
 describe('executeFalconxSandbox', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

@@ -5,7 +5,7 @@ import { executeKnowledgeBaseAuditEvents } from './KnowledgeBaseAuditEvents.exec
  * Unit test suite for executeKnowledgeBaseAuditEvents operations.
  */
 describe('executeKnowledgeBaseAuditEvents', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

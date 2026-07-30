@@ -5,7 +5,7 @@ import { executeContainerVulnerabilities } from './ContainerVulnerabilities.exec
  * Unit test suite for executeContainerVulnerabilities operations.
  */
 describe('executeContainerVulnerabilities', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

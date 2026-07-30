@@ -5,7 +5,7 @@ import { executeMssp } from './Mssp.execution';
  * Unit test suite for executeMssp operations.
  */
 describe('executeMssp', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

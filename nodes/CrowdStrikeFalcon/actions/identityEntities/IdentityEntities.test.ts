@@ -5,7 +5,7 @@ import { executeIdentityEntities } from './IdentityEntities.execution';
  * Unit test suite for executeIdentityEntities operations.
  */
 describe('executeIdentityEntities', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

@@ -5,7 +5,7 @@ import { executeMalquery } from './Malquery.execution';
  * Unit test suite for executeMalquery operations.
  */
 describe('executeMalquery', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

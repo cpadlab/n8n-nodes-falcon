@@ -5,7 +5,7 @@ import { executeAspm } from './Aspm.execution';
  * Unit test suite for executeAspm operations.
  */
 describe('executeAspm', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

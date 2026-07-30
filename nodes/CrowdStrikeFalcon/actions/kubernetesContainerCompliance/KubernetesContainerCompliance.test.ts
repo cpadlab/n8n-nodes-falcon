@@ -5,7 +5,7 @@ import { executeKubernetesContainerCompliance } from './KubernetesContainerCompl
  * Unit test suite for executeKubernetesContainerCompliance operations.
  */
 describe('executeKubernetesContainerCompliance', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

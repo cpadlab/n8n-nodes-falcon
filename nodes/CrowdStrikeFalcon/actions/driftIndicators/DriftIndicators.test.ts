@@ -5,7 +5,7 @@ import { executeDriftIndicators } from './DriftIndicators.execution';
  * Unit test suite for executeDriftIndicators operations.
  */
 describe('executeDriftIndicators', () => {
-	let mockFalconClient: any;
+	let mockFalconClient: FalconClient;
 
 	beforeEach(() => {
 		jest.clearAllMocks();
