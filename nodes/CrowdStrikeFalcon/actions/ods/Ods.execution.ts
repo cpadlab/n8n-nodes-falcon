@@ -21,40 +21,52 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles aggregateQueryScanHostMetadata */
+/**
+ * Handles the 'aggregateQueryScanHostMetadata' operation.
+ */
 async function handleAggregateQueryScanHostMetadata(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get aggregates on ODS scan-hosts data. */
 	const body = parseJsonParam(c, i);
 	return await fc.ods.aggregateQueryScanHostMetadata(Array.isArray(body) ? body : [body]);
 }
 
-/** Handles aggregateScans */
+/**
+ * Handles the 'aggregateScans' operation.
+ */
 async function handleAggregateScans(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get aggregates on ODS scan data. */
 	const body = parseJsonParam(c, i);
 	return await fc.ods.aggregateScans(Array.isArray(body) ? body : [body]);
 }
 
-/** Handles aggregateScheduledScans */
+/**
+ * Handles the 'aggregateScheduledScans' operation.
+ */
 async function handleAggregateScheduledScans(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get aggregates on ODS scheduled-scan data. */
 	const body = parseJsonParam(c, i);
 	return await fc.ods.aggregateScheduledScans(Array.isArray(body) ? body : [body]);
 }
 
-/** Handles cancelScans */
+/**
+ * Handles the 'cancelScans' operation.
+ */
 async function handleCancelScans(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Cancel ODS scans for the given scan ids. */
 	return await fc.ods.cancelScans(parseJsonParam(c, i));
 }
 
-/** Handles createScan */
+/**
+ * Handles the 'createScan' operation.
+ */
 async function handleCreateScan(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create ODS scan and start or schedule scan for the given scan request. */
 	return await fc.ods.createScan(parseJsonParam(c, i));
 }
 
-/** Handles deleteScheduledScans */
+/**
+ * Handles the 'deleteScheduledScans' operation.
+ */
 async function handleDeleteScheduledScans(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete ODS scheduled-scans for the given scheduled-scan ids. */
 	const ids = parseArrayParam(c, i, 'ids');
@@ -62,37 +74,49 @@ async function handleDeleteScheduledScans(c: IExecuteFunctions, i: number, fc: F
 	return await fc.ods.deleteScheduledScans(ids, filter || undefined);
 }
 
-/** Handles getMaliciousFilesByIds */
+/**
+ * Handles the 'getMaliciousFilesByIds' operation.
+ */
 async function handleGetMaliciousFilesByIds(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get malicious files by ids. */
 	return await fc.ods.getMaliciousFilesByIds(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getScanHostMetadataByIds */
+/**
+ * Handles the 'getScanHostMetadataByIds' operation.
+ */
 async function handleGetScanHostMetadataByIds(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get scan hosts by ids. */
 	return await fc.ods.getScanHostMetadataByIds(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getScansByScanIds */
+/**
+ * Handles the 'getScansByScanIds' operation.
+ */
 async function handleGetScansByScanIds(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get Scans by IDs. */
 	return await fc.ods.getScansByScanIds(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getScansByScanIdsV2 */
+/**
+ * Handles the 'getScansByScanIdsV2' operation.
+ */
 async function handleGetScansByScanIdsV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get Scans by IDs V2. */
 	return await fc.ods.getScansByScanIdsV2(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getScheduledScansByScanIds */
+/**
+ * Handles the 'getScheduledScansByScanIds' operation.
+ */
 async function handleGetScheduledScansByScanIds(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get ScheduledScans by IDs. */
 	return await fc.ods.getScheduledScansByScanIds(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles queryMaliciousFiles */
+/**
+ * Handles the 'queryMaliciousFiles' operation.
+ */
 async function handleQueryMaliciousFiles(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Query malicious files. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -102,7 +126,9 @@ async function handleQueryMaliciousFiles(c: IExecuteFunctions, i: number, fc: Fa
 	return await fc.ods.queryMaliciousFiles(filter || undefined, offset || undefined, limit || undefined, sort as any || undefined);
 }
 
-/** Handles queryScanHostMetadata */
+/**
+ * Handles the 'queryScanHostMetadata' operation.
+ */
 async function handleQueryScanHostMetadata(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Query scan hosts. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -112,7 +138,9 @@ async function handleQueryScanHostMetadata(c: IExecuteFunctions, i: number, fc: 
 	return await fc.ods.queryScanHostMetadata(filter || undefined, offset || undefined, limit || undefined, sort as any || undefined);
 }
 
-/** Handles queryScans */
+/**
+ * Handles the 'queryScans' operation.
+ */
 async function handleQueryScans(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Query Scans. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -122,7 +150,9 @@ async function handleQueryScans(c: IExecuteFunctions, i: number, fc: FalconClien
 	return await fc.ods.queryScans(filter || undefined, offset || undefined, limit || undefined, sort as any || undefined);
 }
 
-/** Handles queryScheduledScans */
+/**
+ * Handles the 'queryScheduledScans' operation.
+ */
 async function handleQueryScheduledScans(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Query ScheduledScans. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -132,7 +162,9 @@ async function handleQueryScheduledScans(c: IExecuteFunctions, i: number, fc: Fa
 	return await fc.ods.queryScheduledScans(filter || undefined, offset || undefined, limit || undefined, sort as any || undefined);
 }
 
-/** Handles scheduleScan */
+/**
+ * Handles the 'scheduleScan' operation.
+ */
 async function handleScheduleScan(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create ODS scan and start or schedule scan for the given scan request. */
 	return await fc.ods.scheduleScan(parseJsonParam(c, i));
