@@ -16,7 +16,9 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles combinedReleaseNotesV1 */
+/**
+ * Handles the 'combinedReleaseNotesV1' operation.
+ */
 async function handleCombinedReleaseNotesV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries for release-notes resources and returns details. */
 	const authorization = getStringParam(c, i, 'authorization', '');
@@ -27,21 +29,27 @@ async function handleCombinedReleaseNotesV1(c: IExecuteFunctions, i: number, fc:
 	return await fc.releaseNotes.combinedReleaseNotesV1(authorization, undefined, filter || undefined, limit || undefined, offset || undefined, sort || undefined);
 }
 
-/** Handles getEntityIDsByQueryPOST */
+/**
+ * Handles the 'getEntityIDsByQueryPOST' operation.
+ */
 async function handleGetEntityIDsByQueryPOST(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Returns the release notes for the IDs in the request. */
 	const authorization = getStringParam(c, i, 'authorization', '');
 	return await fc.releaseNotes.getEntityIDsByQueryPOST(authorization, parseJsonParam(c, i));
 }
 
-/** Handles getEntityIDsByQueryPOSTV2 */
+/**
+ * Handles the 'getEntityIDsByQueryPOSTV2' operation.
+ */
 async function handleGetEntityIDsByQueryPOSTV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Returns the release notes for the IDs in the request with EA and GA dates in ISO 8601 format. */
 	const authorization = getStringParam(c, i, 'authorization', '');
 	return await fc.releaseNotes.getEntityIDsByQueryPOSTV2(authorization, parseJsonParam(c, i));
 }
 
-/** Handles queryReleaseNotesV1 */
+/**
+ * Handles the 'queryReleaseNotesV1' operation.
+ */
 async function handleQueryReleaseNotesV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries for release-notes resources and returns ids. */
 	const authorization = getStringParam(c, i, 'authorization', '');
