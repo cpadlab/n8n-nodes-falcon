@@ -21,21 +21,27 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles createSchedules */
+/**
+ * Handles the 'createSchedules' operation.
+ */
 async function handleCreateSchedules(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create one or more scanning schedules. */
 	const authorization = getStringParam(c, i, 'authorization', '');
 	return await fc.scanningOrchestrator.createSchedules(authorization, parseJsonParam(c, i));
 }
 
-/** Handles deleteSchedules */
+/**
+ * Handles the 'deleteSchedules' operation.
+ */
 async function handleDeleteSchedules(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete one or more scanning schedules by ID. */
 	const authorization = getStringParam(c, i, 'authorization', '');
 	return await fc.scanningOrchestrator.deleteSchedules(authorization, parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getCombinedSchedules */
+/**
+ * Handles the 'getCombinedSchedules' operation.
+ */
 async function handleGetCombinedSchedules(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get schedules with pagination, sorting, and filtering. */
 	const authorization = getStringParam(c, i, 'authorization', '');
@@ -46,14 +52,18 @@ async function handleGetCombinedSchedules(c: IExecuteFunctions, i: number, fc: F
 	return await fc.scanningOrchestrator.getCombinedSchedules(authorization, limit || undefined, offset || undefined, sort || undefined, filter || undefined);
 }
 
-/** Handles getSchedules */
+/**
+ * Handles the 'getSchedules' operation.
+ */
 async function handleGetSchedules(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get scanning schedules by their IDs. */
 	const authorization = getStringParam(c, i, 'authorization', '');
 	return await fc.scanningOrchestrator.getSchedules(authorization, parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getServiceTypes */
+/**
+ * Handles the 'getServiceTypes' operation.
+ */
 async function handleGetServiceTypes(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Returns the list of service types available for scanning. */
 	const authorization = getStringParam(c, i, 'authorization', '');
@@ -61,7 +71,9 @@ async function handleGetServiceTypes(c: IExecuteFunctions, i: number, fc: Falcon
 	return await fc.scanningOrchestrator.getServiceTypes(authorization, scanProduct as any);
 }
 
-/** Handles searchSchedules */
+/**
+ * Handles the 'searchSchedules' operation.
+ */
 async function handleSearchSchedules(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Search schedules and return IDs with pagination, sorting, and filtering. */
 	const authorization = getStringParam(c, i, 'authorization', '');
@@ -72,14 +84,18 @@ async function handleSearchSchedules(c: IExecuteFunctions, i: number, fc: Falcon
 	return await fc.scanningOrchestrator.searchSchedules(authorization, limit || undefined, offset || undefined, sort || undefined, filter || undefined);
 }
 
-/** Handles triggerScanBySchedule */
+/**
+ * Handles the 'triggerScanBySchedule' operation.
+ */
 async function handleTriggerScanBySchedule(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Triggers an immediate scan for the given schedule IDs. */
 	const authorization = getStringParam(c, i, 'authorization', '');
 	return await fc.scanningOrchestrator.triggerScanBySchedule(authorization, parseJsonParam(c, i));
 }
 
-/** Handles updateSchedules */
+/**
+ * Handles the 'updateSchedules' operation.
+ */
 async function handleUpdateSchedules(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates one or more scanning schedules. */
 	const authorization = getStringParam(c, i, 'authorization', '');
