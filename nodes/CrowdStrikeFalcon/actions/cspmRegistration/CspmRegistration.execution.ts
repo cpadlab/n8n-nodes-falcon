@@ -213,7 +213,7 @@ async function handleGetCSPMGCPValidateAccountsExt(c: IExecuteFunctions, i: numb
 async function handleGetCSPMPoliciesDetails(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets CSPM policies details. */
 	const policyIdsString = c.getNodeParameter('policyIds', i, '') as string;
-	const ids = policyIdsString.split(',').map((id) => Number(id.trim())).filter((n) => !isNaN(n));
+	const ids = policyIdsString.split(',').map((id) => Number(id.trim())).filter((n) => !Number.isNaN(n));
 	return await fc.cspmRegistration.getCSPMPoliciesDetails(ids);
 }
 
