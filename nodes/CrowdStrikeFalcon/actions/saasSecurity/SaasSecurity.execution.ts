@@ -16,21 +16,27 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles dismissAffectedEntityV3 */
+/**
+ * Handles the 'dismissAffectedEntityV3' operation.
+ */
 async function handleDismissAffectedEntityV3(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Preform dismiss to an affected entity in a security check. */
 	const id = getStringParam(c, i, 'id', '');
 	return await fc.saasSecurity.dismissAffectedEntityV3(id, parseJsonParam(c, i));
 }
 
-/** Handles dismissSecurityCheckV3 */
+/**
+ * Handles the 'dismissSecurityCheckV3' operation.
+ */
 async function handleDismissSecurityCheckV3(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Perform dismiss to a security check. */
 	const id = getStringParam(c, i, 'id', '');
 	return await fc.saasSecurity.dismissSecurityCheckV3(id, parseJsonParam(c, i));
 }
 
-/** Handles getActivityMonitorV3 */
+/**
+ * Handles the 'getActivityMonitorV3' operation.
+ */
 async function handleGetActivityMonitorV3(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get a list of all events in monitor. */
 	const integrationId = getStringParam(c, i, 'integrationId', '');
@@ -38,7 +44,9 @@ async function handleGetActivityMonitorV3(c: IExecuteFunctions, i: number, fc: F
 	return await fc.saasSecurity.getActivityMonitorV3(integrationId || undefined, undefined, undefined, undefined, undefined, undefined, limit || undefined);
 }
 
-/** Handles getAlertsV3 */
+/**
+ * Handles the 'getAlertsV3' operation.
+ */
 async function handleGetAlertsV3(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get a data on a specific alert or get a list of all alerts. */
 	const limit = c.getNodeParameter('limit', i, 100) as number;
@@ -47,7 +55,9 @@ async function handleGetAlertsV3(c: IExecuteFunctions, i: number, fc: FalconClie
 	return await fc.saasSecurity.getAlertsV3(undefined, limit || undefined, offset || undefined, undefined, undefined, integrationId || undefined);
 }
 
-/** Handles getAppInventory */
+/**
+ * Handles the 'getAppInventory' operation.
+ */
 async function handleGetAppInventory(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get a list of all apps in the Applications inventory. */
 	const limit = c.getNodeParameter('limit', i, 100) as number;
@@ -56,14 +66,18 @@ async function handleGetAppInventory(c: IExecuteFunctions, i: number, fc: Falcon
 	return await fc.saasSecurity.getAppInventory(undefined, limit || undefined, offset || undefined, undefined, undefined, undefined, undefined, undefined, undefined, integrationId || undefined);
 }
 
-/** Handles getAppInventoryUsers */
+/**
+ * Handles the 'getAppInventoryUsers' operation.
+ */
 async function handleGetAppInventoryUsers(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get users associated with an app from the Applications Inventory. */
 	const itemId = getStringParam(c, i, 'itemId', '');
 	return await fc.saasSecurity.getAppInventoryUsers(itemId);
 }
 
-/** Handles getAssetInventoryV3 */
+/**
+ * Handles the 'getAssetInventoryV3' operation.
+ */
 async function handleGetAssetInventoryV3(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get a list of all assets in the Data Inventory. */
 	const integrationId = getStringParam(c, i, 'integrationId', '');
@@ -72,7 +86,9 @@ async function handleGetAssetInventoryV3(c: IExecuteFunctions, i: number, fc: Fa
 	return await fc.saasSecurity.getAssetInventoryV3(integrationId || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles getDeviceInventoryV3 */
+/**
+ * Handles the 'getDeviceInventoryV3' operation.
+ */
 async function handleGetDeviceInventoryV3(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get a list of all devices. */
 	const integrationId = getStringParam(c, i, 'integrationId', '');
@@ -81,13 +97,17 @@ async function handleGetDeviceInventoryV3(c: IExecuteFunctions, i: number, fc: F
 	return await fc.saasSecurity.getDeviceInventoryV3(integrationId || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles getIntegrationsV3 */
+/**
+ * Handles the 'getIntegrationsV3' operation.
+ */
 async function handleGetIntegrationsV3(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get a list of connected integrations in your account. */
 	return await fc.saasSecurity.getIntegrationsV3();
 }
 
-/** Handles getMetricsV3 */
+/**
+ * Handles the 'getMetricsV3' operation.
+ */
 async function handleGetMetricsV3(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get metrics on security checks. */
 	const limit = c.getNodeParameter('limit', i, 100) as number;
@@ -96,7 +116,9 @@ async function handleGetMetricsV3(c: IExecuteFunctions, i: number, fc: FalconCli
 	return await fc.saasSecurity.getMetricsV3(undefined, limit || undefined, offset || undefined, integrationId || undefined);
 }
 
-/** Handles getSecurityCheckAffectedV3 */
+/**
+ * Handles the 'getSecurityCheckAffectedV3' operation.
+ */
 async function handleGetSecurityCheckAffectedV3(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get a list of affected entities. */
 	const id = getStringParam(c, i, 'id', '');
@@ -105,14 +127,18 @@ async function handleGetSecurityCheckAffectedV3(c: IExecuteFunctions, i: number,
 	return await fc.saasSecurity.getSecurityCheckAffectedV3(id, limit || undefined, offset || undefined);
 }
 
-/** Handles getSecurityCheckComplianceV3 */
+/**
+ * Handles the 'getSecurityCheckComplianceV3' operation.
+ */
 async function handleGetSecurityCheckComplianceV3(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get a list of compliance standards attached to a check. */
 	const id = getStringParam(c, i, 'id', '');
 	return await fc.saasSecurity.getSecurityCheckComplianceV3(id);
 }
 
-/** Handles getSecurityChecksV3 */
+/**
+ * Handles the 'getSecurityChecksV3' operation.
+ */
 async function handleGetSecurityChecksV3(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get a specific security check by ID or Get all security checks. */
 	const limit = c.getNodeParameter('limit', i, 100) as number;
@@ -121,13 +147,17 @@ async function handleGetSecurityChecksV3(c: IExecuteFunctions, i: number, fc: Fa
 	return await fc.saasSecurity.getSecurityChecksV3(undefined, limit || undefined, offset || undefined, undefined, integrationId || undefined);
 }
 
-/** Handles getSupportedSaasV3 */
+/**
+ * Handles the 'getSupportedSaasV3' operation.
+ */
 async function handleGetSupportedSaasV3(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get a list of supported integrations. */
 	return await fc.saasSecurity.getSupportedSaasV3();
 }
 
-/** Handles getSystemLogsV3 */
+/**
+ * Handles the 'getSystemLogsV3' operation.
+ */
 async function handleGetSystemLogsV3(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get a list of all system logs. */
 	const limit = c.getNodeParameter('limit', i, 100) as number;
@@ -135,13 +165,17 @@ async function handleGetSystemLogsV3(c: IExecuteFunctions, i: number, fc: Falcon
 	return await fc.saasSecurity.getSystemLogsV3(undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles getSystemUsersV3 */
+/**
+ * Handles the 'getSystemUsersV3' operation.
+ */
 async function handleGetSystemUsersV3(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get a list of system users. */
 	return await fc.saasSecurity.getSystemUsersV3();
 }
 
-/** Handles getUserInventoryV3 */
+/**
+ * Handles the 'getUserInventoryV3' operation.
+ */
 async function handleGetUserInventoryV3(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get a list of all users. */
 	const integrationId = getStringParam(c, i, 'integrationId', '');
@@ -150,28 +184,36 @@ async function handleGetUserInventoryV3(c: IExecuteFunctions, i: number, fc: Fal
 	return await fc.saasSecurity.getUserInventoryV3(integrationId || undefined, limit || undefined, offset || undefined);
 }
 
-/** Handles integrationBuilderEndTransactionV3 */
+/**
+ * Handles the 'integrationBuilderEndTransactionV3' operation.
+ */
 async function handleIntegrationBuilderEndTransactionV3(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Make a close transaction call after uploading the data. */
 	const id = getStringParam(c, i, 'id', '');
 	return await fc.saasSecurity.integrationBuilderEndTransactionV3(id);
 }
 
-/** Handles integrationBuilderGetStatusV3 */
+/**
+ * Handles the 'integrationBuilderGetStatusV3' operation.
+ */
 async function handleIntegrationBuilderGetStatusV3(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get transaction status for a custom integration. */
 	const id = getStringParam(c, i, 'id', '');
 	return await fc.saasSecurity.integrationBuilderGetStatusV3(id);
 }
 
-/** Handles integrationBuilderResetV3 */
+/**
+ * Handles the 'integrationBuilderResetV3' operation.
+ */
 async function handleIntegrationBuilderResetV3(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Make a reset call to a custom integration. */
 	const id = getStringParam(c, i, 'id', '');
 	return await fc.saasSecurity.integrationBuilderResetV3(id);
 }
 
-/** Handles integrationBuilderUploadV3 */
+/**
+ * Handles the 'integrationBuilderUploadV3' operation.
+ */
 async function handleIntegrationBuilderUploadV3(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Send data to a specific source in a custom integration. */
 	const id = getStringParam(c, i, 'id', '');
