@@ -21,20 +21,26 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles reportExecutionsDownloadGet */
+/**
+ * Handles the 'reportExecutionsDownloadGet' operation.
+ */
 async function handleReportExecutionsDownloadGet(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get report entity download. */
 	const id = getStringParam(c, i, 'id', '');
 	return await fc.reportExecutions.reportExecutionsDownloadGet(id);
 }
 
-/** Handles reportExecutionsGet */
+/**
+ * Handles the 'reportExecutionsGet' operation.
+ */
 async function handleReportExecutionsGet(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve report details for the provided report IDs. */
 	return await fc.reportExecutions.reportExecutionsGet(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles reportExecutionsQuery */
+/**
+ * Handles the 'reportExecutionsQuery' operation.
+ */
 async function handleReportExecutionsQuery(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Find all report execution IDs matching the query with filter. */
 	const sort = getStringParam(c, i, 'sort', '');
@@ -45,7 +51,9 @@ async function handleReportExecutionsQuery(c: IExecuteFunctions, i: number, fc: 
 	return await fc.reportExecutions.reportExecutionsQuery(sort || undefined, filter || undefined, q || undefined, offset || undefined, limit || undefined);
 }
 
-/** Handles reportExecutionsRetry */
+/**
+ * Handles the 'reportExecutionsRetry' operation.
+ */
 async function handleReportExecutionsRetry(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retry report executions. */
 	const body = parseJsonParam(c, i);
