@@ -41,6 +41,7 @@ import { executeCspmRegistration } from './cspmRegistration/CspmRegistration.exe
 import { executeCustomIoa } from './customIoa/CustomIoa.execution';
 import { executeCustomStorage } from './customStorage/CustomStorage.execution';
 import { executeD4cRegistration } from './d4cRegistration/D4cRegistration.execution';
+import { executeDataProtectionConfiguration } from './dataProtectionConfiguration/DataProtectionConfiguration.execution';
 import { executeDefault } from './default/Default.execution';
 import { executeDeliverySettings } from './deliverySettings/DeliverySettings.execution';
 import { executeDeployments } from './deployments/Deployments.execution';
@@ -90,7 +91,12 @@ import { executeKnowledgeBaseFiles } from './knowledgeBaseFiles/KnowledgeBaseFil
 import { executeKnowledgeBases } from './knowledgeBases/KnowledgeBases.execution';
 import { executeKubernetesContainerCompliance } from './kubernetesContainerCompliance/KubernetesContainerCompliance.execution';
 import { executeKubernetesProtection } from './kubernetesProtection/KubernetesProtection.execution';
+import { executeMaintenanceToken } from './maintenanceToken/MaintenanceToken.execution';
+import { executeMalquery } from './malquery/Malquery.execution';
+import { executeMessageCenter } from './messageCenter/MessageCenter.execution';
+import { executeMlExclusions } from './mlExclusions/MlExclusions.execution';
 import { executeMssp } from './mssp/Mssp.execution';
+import { executeMobileEnrollment } from './mobileEnrollment/MobileEnrollment.execution';
 import { executeNetworkScanGlobalConfigs } from './networkScanGlobalConfigs/NetworkScanGlobalConfigs.execution';
 import { executeNetworkScanNetworks } from './networkScanNetworks/NetworkScanNetworks.execution';
 import { executeNetworkScanScanRunReports } from './networkScanScanRunReports/NetworkScanScanRunReports.execution';
@@ -119,6 +125,24 @@ import { executeRuntimeDetections } from './runtimeDetections/RuntimeDetections.
 import { executeSaasSecurity } from './saasSecurity/SaasSecurity.execution';
 import { executeSampleUploads } from './sampleUploads/SampleUploads.execution';
 import { executeScanningOrchestrator } from './scanningOrchestrator/ScanningOrchestrator.execution';
+import { executeScheduledReports } from './scheduledReports/ScheduledReports.execution';
+import { executeSensorDownload } from './sensorDownload/SensorDownload.execution';
+import { executeSensorUpdatePolicies } from './sensorUpdatePolicies/SensorUpdatePolicies.execution';
+import { executeSensorUsageApi } from './sensorUsageApi/SensorUsageApi.execution';
+import { executeSensorVisibilityExclusions } from './sensorVisibilityExclusions/SensorVisibilityExclusions.execution';
+import { executeServerlessExports } from './serverlessExports/ServerlessExports.execution';
+import { executeServerlessVulnerabilities } from './serverlessVulnerabilities/ServerlessVulnerabilities.execution';
+import { executeSpotlightEvaluationLogic } from './spotlightEvaluationLogic/SpotlightEvaluationLogic.execution';
+import { executeSpotlightSupportedEvaluation } from './spotlightSupportedEvaluation/SpotlightSupportedEvaluation.execution';
+import { executeSpotlightVulnerabilities } from './spotlightVulnerabilities/SpotlightVulnerabilities.execution';
+import { executeSpotlightVulnerabilityMetadata } from './spotlightVulnerabilityMetadata/SpotlightVulnerabilityMetadata.execution';
+import { executeStream } from './stream/Stream.execution';
+import { executeTailoredIntelligence } from './tailoredIntelligence/TailoredIntelligence.execution';
+import { executeThreatgraph } from './threatgraph/Threatgraph.execution';
+import { executeUnidentifiedContainers } from './unidentifiedContainers/UnidentifiedContainers.execution';
+import { executeUserManagement } from './userManagement/UserManagement.execution';
+import { executeWorkflows } from './workflows/Workflows.execution';
+import { executeZeroTrustAssessment } from './zeroTrustAssessment/ZeroTrustAssessment.execution';
 
 export async function router( this: IExecuteFunctions, index: number, falconClient: FalconClient ): Promise<any> {
 
@@ -207,6 +231,8 @@ export async function router( this: IExecuteFunctions, index: number, falconClie
 			return await executeCustomStorage.call(this, index, falconClient);
 		case 'd4cRegistration':
 			return await executeD4cRegistration.call(this, index, falconClient);
+		case 'dataProtectionConfiguration':
+			return await executeDataProtectionConfiguration.call(this, index, falconClient);
 		case 'default':
 			return await executeDefault.call(this, index, falconClient);
 		case 'deliverySettings':
@@ -305,8 +331,18 @@ export async function router( this: IExecuteFunctions, index: number, falconClie
 			return await executeKubernetesContainerCompliance.call(this, index, falconClient);
 		case 'kubernetesProtection':
 			return await executeKubernetesProtection.call(this, index, falconClient);
+		case 'maintenanceToken':
+			return await executeMaintenanceToken.call(this, index, falconClient);
+		case 'malquery':
+			return await executeMalquery.call(this, index, falconClient);
+		case 'messageCenter':
+			return await executeMessageCenter.call(this, index, falconClient);
+		case 'mlExclusions':
+			return await executeMlExclusions.call(this, index, falconClient);
 		case 'mssp':
 			return await executeMssp.call(this, index, falconClient);
+		case 'mobileEnrollment':
+			return await executeMobileEnrollment.call(this, index, falconClient);
 		case 'networkScanGlobalConfigs':
 			return await executeNetworkScanGlobalConfigs.call(this, index, falconClient);
 		case 'networkScanNetworks':
@@ -363,6 +399,42 @@ export async function router( this: IExecuteFunctions, index: number, falconClie
 			return await executeSampleUploads.call(this, index, falconClient);
 		case 'scanningOrchestrator':
 			return await executeScanningOrchestrator.call(this, index, falconClient);
+		case 'scheduledReports':
+			return await executeScheduledReports.call(this, index, falconClient);
+		case 'sensorDownload':
+			return await executeSensorDownload.call(this, index, falconClient);
+		case 'sensorUpdatePolicies':
+			return await executeSensorUpdatePolicies.call(this, index, falconClient);
+		case 'sensorUsageApi':
+			return await executeSensorUsageApi.call(this, index, falconClient);
+		case 'sensorVisibilityExclusions':
+			return await executeSensorVisibilityExclusions.call(this, index, falconClient);
+		case 'serverlessExports':
+			return await executeServerlessExports.call(this, index, falconClient);
+		case 'serverlessVulnerabilities':
+			return await executeServerlessVulnerabilities.call(this, index, falconClient);
+		case 'spotlightEvaluationLogic':
+			return await executeSpotlightEvaluationLogic.call(this, index, falconClient);
+		case 'spotlightSupportedEvaluation':
+			return await executeSpotlightSupportedEvaluation.call(this, index, falconClient);
+		case 'spotlightVulnerabilities':
+			return await executeSpotlightVulnerabilities.call(this, index, falconClient);
+		case 'spotlightVulnerabilityMetadata':
+			return await executeSpotlightVulnerabilityMetadata.call(this, index, falconClient);
+		case 'stream':
+			return await executeStream.call(this, index, falconClient);
+		case 'tailoredIntelligence':
+			return await executeTailoredIntelligence.call(this, index, falconClient);
+		case 'threatgraph':
+			return await executeThreatgraph.call(this, index, falconClient);
+		case 'unidentifiedContainers':
+			return await executeUnidentifiedContainers.call(this, index, falconClient);
+		case 'userManagement':
+			return await executeUserManagement.call(this, index, falconClient);
+		case 'workflows':
+			return await executeWorkflows.call(this, index, falconClient);
+		case 'zeroTrustAssessment':
+			return await executeZeroTrustAssessment.call(this, index, falconClient);
 		default:
 			throw new Error(`Resource ${resource} is not supported.`);
 	}
