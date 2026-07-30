@@ -38,5 +38,13 @@ export class CrowdStrikeFalconApi implements ICredentialType {
 			required: true,
 			description: 'API Client Secret associated with the Client ID',
 		},
+		{
+			displayName: 'Member CID',
+			name: 'memberCid',
+			type: 'string',
+			default: '',
+			required: false,
+			description: 'Optional Member CID for MSSP targeting if your key pair has access to multiple CIDs',
+		},
 	];
 }
