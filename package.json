@@ -41,9 +41,10 @@
 	},
 	"devDependencies": {
 		"@n8n/node-cli": "^0.41.2",
+		"@sonar/scan": "^5.0.0",
 		"@types/jest": "^29.5.14",
 		"@types/node": "^26.1.2",
-		"eslint": "^10.8.0",
+		"eslint": "^8.57.1",
 		"jest": "^29.7.0",
 		"n8n-workflow": "^2.16.0",
 		"prettier": "3.9.6",
@@ -56,5 +57,23 @@
 	},
 	"dependencies": {
 		"crowdstrike-falcon": "^0.7.0"
+	},
+	"overrides": {
+		"brace-expansion": "2.0.1",
+		"minimatch": "3.1.2",
+		"glob": "7.2.3",
+		"ejs": "3.1.10",
+		"uuid": "11.1.1",
+		"@n8n/node-cli": {
+			"minimatch": "3.1.2",
+			"brace-expansion": "2.0.1"
+		},
+		"eslint": {
+			"minimatch": "3.1.2",
+			"brace-expansion": "2.0.1"
+		},
+		"test-exclude": {
+			"minimatch": "3.1.2"
+		}
 	}
 }
