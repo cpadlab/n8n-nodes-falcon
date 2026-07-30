@@ -79,6 +79,46 @@ import { executeIncidents } from './incidents/Incidents.execution';
 import { executeInstallationTokens } from './installationTokens/InstallationTokens.execution';
 import { executeInstallationTokensSettings } from './installationTokensSettings/InstallationTokensSettings.execution';
 import { executeIntel } from './intel/Intel.execution';
+import { executeIntelligenceFeeds } from './intelligenceFeeds/IntelligenceFeeds.execution';
+import { executeIntelligenceIndicatorGraph } from './intelligenceIndicatorGraph/IntelligenceIndicatorGraph.execution';
+import { executeIoaExclusions } from './ioaExclusions/IoaExclusions.execution';
+import { executeIoc } from './ioc/Ioc.execution';
+import { executeIocs } from './iocs/Iocs.execution';
+import { executeItAutomation } from './itAutomation/ItAutomation.execution';
+import { executeKnowledgeBaseAuditEvents } from './knowledgeBaseAuditEvents/KnowledgeBaseAuditEvents.execution';
+import { executeKnowledgeBaseFiles } from './knowledgeBaseFiles/KnowledgeBaseFiles.execution';
+import { executeKnowledgeBases } from './knowledgeBases/KnowledgeBases.execution';
+import { executeKubernetesContainerCompliance } from './kubernetesContainerCompliance/KubernetesContainerCompliance.execution';
+import { executeKubernetesProtection } from './kubernetesProtection/KubernetesProtection.execution';
+import { executeMssp } from './mssp/Mssp.execution';
+import { executeNetworkScanGlobalConfigs } from './networkScanGlobalConfigs/NetworkScanGlobalConfigs.execution';
+import { executeNetworkScanNetworks } from './networkScanNetworks/NetworkScanNetworks.execution';
+import { executeNetworkScanScanRunReports } from './networkScanScanRunReports/NetworkScanScanRunReports.execution';
+import { executeNetworkScanScanRuns } from './networkScanScanRuns/NetworkScanScanRuns.execution';
+import { executeNetworkScanScanners } from './networkScanScanners/NetworkScanScanners.execution';
+import { executeNetworkScanScans } from './networkScanScans/NetworkScanScans.execution';
+import { executeNetworkScanTemplates } from './networkScanTemplates/NetworkScanTemplates.execution';
+import { executeNetworkScanZones } from './networkScanZones/NetworkScanZones.execution';
+import { executeNgsiem } from './ngsiem/Ngsiem.execution';
+import { executeOauth2 } from './oauth2/Oauth2.execution';
+import { executeOds } from './ods/Ods.execution';
+import { executePreventionPolicies } from './preventionPolicies/PreventionPolicies.execution';
+import { executeProfileGroups } from './profileGroups/ProfileGroups.execution';
+import { executeQuarantine } from './quarantine/Quarantine.execution';
+import { executeQuickScan } from './quickScan/QuickScan.execution';
+import { executeQuickScanPro } from './quickScanPro/QuickScanPro.execution';
+import { executeRealTimeResponse } from './realTimeResponse/RealTimeResponse.execution';
+import { executeRealTimeResponseAdmin } from './realTimeResponseAdmin/RealTimeResponseAdmin.execution';
+import { executeRealTimeResponseAudit } from './realTimeResponseAudit/RealTimeResponseAudit.execution';
+import { executeRecon } from './recon/Recon.execution';
+import { executeReleaseNotes } from './releaseNotes/ReleaseNotes.execution';
+import { executeReleases } from './releases/Releases.execution';
+import { executeReportExecutions } from './reportExecutions/ReportExecutions.execution';
+import { executeResponsePolicies } from './responsePolicies/ResponsePolicies.execution';
+import { executeRuntimeDetections } from './runtimeDetections/RuntimeDetections.execution';
+import { executeSaasSecurity } from './saasSecurity/SaasSecurity.execution';
+import { executeSampleUploads } from './sampleUploads/SampleUploads.execution';
+import { executeScanningOrchestrator } from './scanningOrchestrator/ScanningOrchestrator.execution';
 
 export async function router( this: IExecuteFunctions, index: number, falconClient: FalconClient ): Promise<any> {
 
@@ -243,6 +283,86 @@ export async function router( this: IExecuteFunctions, index: number, falconClie
 			return await executeInstallationTokensSettings.call(this, index, falconClient);
 		case 'intel':
 			return await executeIntel.call(this, index, falconClient);
+		case 'intelligenceFeeds':
+			return await executeIntelligenceFeeds.call(this, index, falconClient);
+		case 'intelligenceIndicatorGraph':
+			return await executeIntelligenceIndicatorGraph.call(this, index, falconClient);
+		case 'ioaExclusions':
+			return await executeIoaExclusions.call(this, index, falconClient);
+		case 'ioc':
+			return await executeIoc.call(this, index, falconClient);
+		case 'iocs':
+			return await executeIocs.call(this, index, falconClient);
+		case 'itAutomation':
+			return await executeItAutomation.call(this, index, falconClient);
+		case 'knowledgeBaseAuditEvents':
+			return await executeKnowledgeBaseAuditEvents.call(this, index, falconClient);
+		case 'knowledgeBaseFiles':
+			return await executeKnowledgeBaseFiles.call(this, index, falconClient);
+		case 'knowledgeBases':
+			return await executeKnowledgeBases.call(this, index, falconClient);
+		case 'kubernetesContainerCompliance':
+			return await executeKubernetesContainerCompliance.call(this, index, falconClient);
+		case 'kubernetesProtection':
+			return await executeKubernetesProtection.call(this, index, falconClient);
+		case 'mssp':
+			return await executeMssp.call(this, index, falconClient);
+		case 'networkScanGlobalConfigs':
+			return await executeNetworkScanGlobalConfigs.call(this, index, falconClient);
+		case 'networkScanNetworks':
+			return await executeNetworkScanNetworks.call(this, index, falconClient);
+		case 'networkScanScanRunReports':
+			return await executeNetworkScanScanRunReports.call(this, index, falconClient);
+		case 'networkScanScanRuns':
+			return await executeNetworkScanScanRuns.call(this, index, falconClient);
+		case 'networkScanScanners':
+			return await executeNetworkScanScanners.call(this, index, falconClient);
+		case 'networkScanScans':
+			return await executeNetworkScanScans.call(this, index, falconClient);
+		case 'networkScanTemplates':
+			return await executeNetworkScanTemplates.call(this, index, falconClient);
+		case 'networkScanZones':
+			return await executeNetworkScanZones.call(this, index, falconClient);
+		case 'ngsiem':
+			return await executeNgsiem.call(this, index, falconClient);
+		case 'oauth2':
+			return await executeOauth2.call(this, index, falconClient);
+		case 'ods':
+			return await executeOds.call(this, index, falconClient);
+		case 'preventionPolicies':
+			return await executePreventionPolicies.call(this, index, falconClient);
+		case 'profileGroups':
+			return await executeProfileGroups.call(this, index, falconClient);
+		case 'quarantine':
+			return await executeQuarantine.call(this, index, falconClient);
+		case 'quickScan':
+			return await executeQuickScan.call(this, index, falconClient);
+		case 'quickScanPro':
+			return await executeQuickScanPro.call(this, index, falconClient);
+		case 'realTimeResponseAdmin':
+			return await executeRealTimeResponseAdmin.call(this, index, falconClient);
+		case 'realTimeResponse':
+			return await executeRealTimeResponse.call(this, index, falconClient);
+		case 'realTimeResponseAudit':
+			return await executeRealTimeResponseAudit.call(this, index, falconClient);
+		case 'recon':
+			return await executeRecon.call(this, index, falconClient);
+		case 'releaseNotes':
+			return await executeReleaseNotes.call(this, index, falconClient);
+		case 'releases':
+			return await executeReleases.call(this, index, falconClient);
+		case 'reportExecutions':
+			return await executeReportExecutions.call(this, index, falconClient);
+		case 'responsePolicies':
+			return await executeResponsePolicies.call(this, index, falconClient);
+		case 'runtimeDetections':
+			return await executeRuntimeDetections.call(this, index, falconClient);
+		case 'saasSecurity':
+			return await executeSaasSecurity.call(this, index, falconClient);
+		case 'sampleUploads':
+			return await executeSampleUploads.call(this, index, falconClient);
+		case 'scanningOrchestrator':
+			return await executeScanningOrchestrator.call(this, index, falconClient);
 		default:
 			throw new Error(`Resource ${resource} is not supported.`);
 	}
