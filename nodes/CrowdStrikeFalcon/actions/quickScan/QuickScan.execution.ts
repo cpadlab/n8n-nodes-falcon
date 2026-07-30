@@ -21,19 +21,25 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles getScans */
+/**
+ * Handles the 'getScans' operation.
+ */
 async function handleGetScans(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Check the status of a volume scan. */
 	return await fc.quickScan.getScans(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getScansAggregates */
+/**
+ * Handles the 'getScansAggregates' operation.
+ */
 async function handleGetScansAggregates(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get scans aggregations as specified via json in request body. */
 	return await fc.quickScan.getScansAggregates(parseJsonParam(c, i));
 }
 
-/** Handles querySubmissionsMixin0 */
+/**
+ * Handles the 'querySubmissionsMixin0' operation.
+ */
 async function handleQuerySubmissionsMixin0(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Find IDs for submitted scans by providing an FQL filter and paging details. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -43,7 +49,9 @@ async function handleQuerySubmissionsMixin0(c: IExecuteFunctions, i: number, fc:
 	return await fc.quickScan.querySubmissionsMixin0(filter || undefined, offset || undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles scanSamples */
+/**
+ * Handles the 'scanSamples' operation.
+ */
 async function handleScanSamples(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Submit a volume of files for ml scanning. */
 	return await fc.quickScan.scanSamples(parseJsonParam(c, i));
