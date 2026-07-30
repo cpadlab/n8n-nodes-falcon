@@ -16,26 +16,34 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles actionUpdateCount */
+/**
+ * Handles the 'actionUpdateCount' operation.
+ */
 async function handleActionUpdateCount(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Returns count of potentially affected quarantined files for each action. */
 	const filter = getStringParam(c, i, 'filter', '');
 	return await fc.quarantine.actionUpdateCount(filter);
 }
 
-/** Handles getAggregateFiles */
+/**
+ * Handles the 'getAggregateFiles' operation.
+ */
 async function handleGetAggregateFiles(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get quarantine file aggregates as specified via json in request body. */
 	return await fc.quarantine.getAggregateFiles(parseJsonParam(c, i));
 }
 
-/** Handles getQuarantineFiles */
+/**
+ * Handles the 'getQuarantineFiles' operation.
+ */
 async function handleGetQuarantineFiles(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get quarantine file metadata for specified ids. */
 	return await fc.quarantine.getQuarantineFiles(parseJsonParam(c, i));
 }
 
-/** Handles queryQuarantineFiles */
+/**
+ * Handles the 'queryQuarantineFiles' operation.
+ */
 async function handleQueryQuarantineFiles(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get quarantine file ids that match the provided filter criteria. */
 	const offset = getStringParam(c, i, 'offset', '');
@@ -46,13 +54,17 @@ async function handleQueryQuarantineFiles(c: IExecuteFunctions, i: number, fc: F
 	return await fc.quarantine.queryQuarantineFiles(offset || undefined, limit || undefined, sort || undefined, filter || undefined, q || undefined);
 }
 
-/** Handles updateQfByQuery */
+/**
+ * Handles the 'updateQfByQuery' operation.
+ */
 async function handleUpdateQfByQuery(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Apply quarantine file actions by query. */
 	return await fc.quarantine.updateQfByQuery(parseJsonParam(c, i));
 }
 
-/** Handles updateQuarantinedDetectsByIds */
+/**
+ * Handles the 'updateQuarantinedDetectsByIds' operation.
+ */
 async function handleUpdateQuarantinedDetectsByIds(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Apply action by quarantine file ids. */
 	return await fc.quarantine.updateQuarantinedDetectsByIds(parseJsonParam(c, i));
