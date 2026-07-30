@@ -12,37 +12,76 @@ export const scanningOrchestratorOperations: INodeProperties[] = [
 			},
 		},
 		options: [
-			{ name: 'Create Orchestrator Deployment V1', value: 'createOrchestratorDeploymentV1', description: 'Create an orchestrator deployment', action: 'Create orchestrator deployment V1' },
-			{ name: 'Delete Orchestrator Deployment V1', value: 'deleteOrchestratorDeploymentV1', description: 'Delete orchestrator deployments by IDs', action: 'Delete orchestrator deployment V1' },
-			{ name: 'Get Orchestrator Deployment V1', value: 'getOrchestratorDeploymentV1', description: 'Get orchestrator deployments by IDs', action: 'Get orchestrator deployment V1' },
-			{ name: 'Get Orchestrator Deployment V2', value: 'getOrchestratorDeploymentV2', description: 'Get orchestrator deployments by IDs V2', action: 'Get orchestrator deployment V2' },
-			{ name: 'Query Orchestrator Deployment V1', value: 'queryOrchestratorDeploymentV1', description: 'Query orchestrator deployments', action: 'Query orchestrator deployment V1' },
-			{ name: 'Query Orchestrator Deployment V2', value: 'queryOrchestratorDeploymentV2', description: 'Query orchestrator deployments V2', action: 'Query orchestrator deployment V2' },
-			{ name: 'Update Orchestrator Deployment V1', value: 'updateOrchestratorDeploymentV1', description: 'Update an orchestrator deployment', action: 'Update orchestrator deployment V1' },
-			{ name: 'Update Orchestrator Deployment V2', value: 'updateOrchestratorDeploymentV2', description: 'Update an orchestrator deployment V2', action: 'Update orchestrator deployment V2' },
+			{ name: 'Create Schedules', value: 'createSchedules', description: 'Create one or more scanning schedules', action: 'Create schedules' },
+			{ name: 'Delete Schedules', value: 'deleteSchedules', description: 'Delete one or more scanning schedules by ID', action: 'Delete schedules' },
+			{ name: 'Get Combined Schedules', value: 'getCombinedSchedules', description: 'Get schedules with pagination, sorting, and filtering', action: 'Get combined schedules' },
+			{ name: 'Get Schedules', value: 'getSchedules', description: 'Get scanning schedules by their IDs', action: 'Get schedules' },
+			{ name: 'Get Service Types', value: 'getServiceTypes', description: 'Returns list of service types available for scanning', action: 'Get service types' },
+			{ name: 'Search Schedules', value: 'searchSchedules', description: 'Search schedules and return IDs with pagination, sorting, and filtering', action: 'Search schedules' },
+			{ name: 'Trigger Scan by Schedule', value: 'triggerScanBySchedule', description: 'Triggers an immediate scan for given schedule IDs', action: 'Trigger scan by schedule' },
+			{ name: 'Update Schedules', value: 'updateSchedules', description: 'Updates one or more scanning schedules', action: 'Update schedules' },
 		],
-		default: 'queryOrchestratorDeploymentV1',
+		default: 'searchSchedules',
 	},
 ];
 
 export const scanningOrchestratorFields: INodeProperties[] = [
 	{
-		displayName: 'Deployment IDs',
+		displayName: 'Authorization',
+		name: 'authorization',
+		type: 'string',
+		typeOptions: {
+			password: true,
+		},
+		displayOptions: {
+			show: {
+				resource: ['scanningOrchestrator'],
+				operation: [
+					'createSchedules',
+					'deleteSchedules',
+					'getCombinedSchedules',
+					'getSchedules',
+					'getServiceTypes',
+					'searchSchedules',
+					'triggerScanBySchedule',
+					'updateSchedules',
+				],
+			},
+		},
+		default: '',
+		description: 'Authorization token string',
+	},
+	{
+		displayName: 'IDs',
 		name: 'ids',
 		type: 'string',
 		displayOptions: {
 			show: {
 				resource: ['scanningOrchestrator'],
-				operation: [
-					'deleteOrchestratorDeploymentV1',
-					'getOrchestratorDeploymentV1',
-					'getOrchestratorDeploymentV2',
-				],
+				operation: ['deleteSchedules', 'getSchedules'],
 			},
 		},
 		default: '',
 		required: true,
-		description: 'Comma-separated list of Orchestrator Deployment IDs',
+		description: 'Comma-separated list of schedule IDs',
+	},
+	{
+		displayName: 'Scan Product',
+		name: 'scanProduct',
+		type: 'options',
+		options: [
+			{ name: 'DSPM Scanning', value: 'dspm_scanning' },
+			{ name: 'Vulnerability Scanning', value: 'vulnerability_scanning' },
+		],
+		displayOptions: {
+			show: {
+				resource: ['scanningOrchestrator'],
+				operation: ['getServiceTypes'],
+			},
+		},
+		default: 'vulnerability_scanning',
+		required: true,
+		description: 'Scan product type',
 	},
 	{
 		displayName: 'Body (JSON)',
@@ -51,11 +90,7 @@ export const scanningOrchestratorFields: INodeProperties[] = [
 		displayOptions: {
 			show: {
 				resource: ['scanningOrchestrator'],
-				operation: [
-					'createOrchestratorDeploymentV1',
-					'updateOrchestratorDeploymentV1',
-					'updateOrchestratorDeploymentV2',
-				],
+				operation: ['createSchedules', 'triggerScanBySchedule', 'updateSchedules'],
 			},
 		},
 		default: '',
@@ -69,7 +104,7 @@ export const scanningOrchestratorFields: INodeProperties[] = [
 		displayOptions: {
 			show: {
 				resource: ['scanningOrchestrator'],
-				operation: ['queryOrchestratorDeploymentV1', 'queryOrchestratorDeploymentV2'],
+				operation: ['getCombinedSchedules', 'searchSchedules'],
 			},
 		},
 		default: '',
@@ -86,7 +121,7 @@ export const scanningOrchestratorFields: INodeProperties[] = [
 		displayOptions: {
 			show: {
 				resource: ['scanningOrchestrator'],
-				operation: ['queryOrchestratorDeploymentV1', 'queryOrchestratorDeploymentV2'],
+				operation: ['getCombinedSchedules', 'searchSchedules'],
 			},
 		},
 		default: 100,
@@ -95,14 +130,17 @@ export const scanningOrchestratorFields: INodeProperties[] = [
 	{
 		displayName: 'Offset',
 		name: 'offset',
-		type: 'string',
+		type: 'number',
+		typeOptions: {
+			minValue: 0,
+		},
 		displayOptions: {
 			show: {
 				resource: ['scanningOrchestrator'],
-				operation: ['queryOrchestratorDeploymentV1', 'queryOrchestratorDeploymentV2'],
+				operation: ['getCombinedSchedules', 'searchSchedules'],
 			},
 		},
-		default: '',
+		default: 0,
 		description: 'Starting index for pagination',
 	},
 	{
@@ -112,7 +150,7 @@ export const scanningOrchestratorFields: INodeProperties[] = [
 		displayOptions: {
 			show: {
 				resource: ['scanningOrchestrator'],
-				operation: ['queryOrchestratorDeploymentV1', 'queryOrchestratorDeploymentV2'],
+				operation: ['getCombinedSchedules', 'searchSchedules'],
 			},
 		},
 		default: '',
