@@ -21,31 +21,41 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles deleteFile */
+/**
+ * Handles the 'deleteFile' operation.
+ */
 async function handleDeleteFile(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes file by its sha256 identifier. */
 	return await fc.quickScanPro.deleteFile(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles deleteScanResult */
+/**
+ * Handles the 'deleteScanResult' operation.
+ */
 async function handleDeleteScanResult(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Deletes the result of an QuickScan Pro scan. */
 	return await fc.quickScanPro.deleteScanResult(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getScanResult */
+/**
+ * Handles the 'getScanResult' operation.
+ */
 async function handleGetScanResult(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets the result of an QuickScan Pro scan. */
 	return await fc.quickScanPro.getScanResult(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles launchScan */
+/**
+ * Handles the 'launchScan' operation.
+ */
 async function handleLaunchScan(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Starts scanning a file uploaded through QuickScan Pro. */
 	return await fc.quickScanPro.launchScan(parseJsonParam(c, i));
 }
 
-/** Handles queryScanResults */
+/**
+ * Handles the 'queryScanResults' operation.
+ */
 async function handleQueryScanResults(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* FQL query specifying the filter parameters. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -55,7 +65,9 @@ async function handleQueryScanResults(c: IExecuteFunctions, i: number, fc: Falco
 	return await fc.quickScanPro.queryScanResults(filter, offset || undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles uploadFileQuickScanPro */
+/**
+ * Handles the 'uploadFileQuickScanPro' operation.
+ */
 async function handleUploadFileQuickScanPro(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Uploads a file to be further analyzed with QuickScan Pro. */
 	const fileBlob = new Blob([]);
