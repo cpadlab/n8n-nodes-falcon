@@ -42,6 +42,7 @@ import { cspmRegistrationFields, cspmRegistrationOperations } from './actions/cs
 import { customIoaFields, customIoaOperations } from './actions/customIoa/CustomIoa.resource';
 import { customStorageFields, customStorageOperations } from './actions/customStorage/CustomStorage.resource';
 import { d4cRegistrationFields, d4cRegistrationOperations } from './actions/d4cRegistration/D4cRegistration.resource';
+import { dataProtectionConfigurationFields, dataProtectionConfigurationOperations } from './actions/dataProtectionConfiguration/DataProtectionConfiguration.resource';
 import { defaultFields, defaultOperations } from './actions/default/Default.resource';
 import { deliverySettingsFields, deliverySettingsOperations } from './actions/deliverySettings/DeliverySettings.resource';
 import { deploymentsFields, deploymentsOperations } from './actions/deployments/Deployments.resource';
@@ -91,7 +92,12 @@ import { knowledgeBaseFilesFields, knowledgeBaseFilesOperations } from './action
 import { knowledgeBasesFields, knowledgeBasesOperations } from './actions/knowledgeBases/KnowledgeBases.resource';
 import { kubernetesContainerComplianceFields, kubernetesContainerComplianceOperations } from './actions/kubernetesContainerCompliance/KubernetesContainerCompliance.resource';
 import { kubernetesProtectionFields, kubernetesProtectionOperations } from './actions/kubernetesProtection/KubernetesProtection.resource';
+import { maintenanceTokenFields, maintenanceTokenOperations } from './actions/maintenanceToken/MaintenanceToken.resource';
+import { malqueryFields, malqueryOperations } from './actions/malquery/Malquery.resource';
+import { messageCenterFields, messageCenterOperations } from './actions/messageCenter/MessageCenter.resource';
+import { mlExclusionsFields, mlExclusionsOperations } from './actions/mlExclusions/MlExclusions.resource';
 import { msspFields, msspOperations } from './actions/mssp/Mssp.resource';
+import { mobileEnrollmentFields, mobileEnrollmentOperations } from './actions/mobileEnrollment/MobileEnrollment.resource';
 import { networkScanGlobalConfigsFields, networkScanGlobalConfigsOperations } from './actions/networkScanGlobalConfigs/NetworkScanGlobalConfigs.resource';
 import { networkScanNetworksFields, networkScanNetworksOperations } from './actions/networkScanNetworks/NetworkScanNetworks.resource';
 import { networkScanScanRunReportsFields, networkScanScanRunReportsOperations } from './actions/networkScanScanRunReports/NetworkScanScanRunReports.resource';
@@ -120,6 +126,24 @@ import { runtimeDetectionsFields, runtimeDetectionsOperations } from './actions/
 import { saasSecurityFields, saasSecurityOperations } from './actions/saasSecurity/SaasSecurity.resource';
 import { sampleUploadsFields, sampleUploadsOperations } from './actions/sampleUploads/SampleUploads.resource';
 import { scanningOrchestratorFields, scanningOrchestratorOperations } from './actions/scanningOrchestrator/ScanningOrchestrator.resource';
+import { scheduledReportsFields, scheduledReportsOperations } from './actions/scheduledReports/ScheduledReports.resource';
+import { sensorDownloadFields, sensorDownloadOperations } from './actions/sensorDownload/SensorDownload.resource';
+import { sensorUpdatePoliciesFields, sensorUpdatePoliciesOperations } from './actions/sensorUpdatePolicies/SensorUpdatePolicies.resource';
+import { sensorUsageApiFields, sensorUsageApiOperations } from './actions/sensorUsageApi/SensorUsageApi.resource';
+import { sensorVisibilityExclusionsFields, sensorVisibilityExclusionsOperations } from './actions/sensorVisibilityExclusions/SensorVisibilityExclusions.resource';
+import { serverlessExportsFields, serverlessExportsOperations } from './actions/serverlessExports/ServerlessExports.resource';
+import { serverlessVulnerabilitiesFields, serverlessVulnerabilitiesOperations } from './actions/serverlessVulnerabilities/ServerlessVulnerabilities.resource';
+import { spotlightEvaluationLogicFields, spotlightEvaluationLogicOperations } from './actions/spotlightEvaluationLogic/SpotlightEvaluationLogic.resource';
+import { spotlightSupportedEvaluationFields, spotlightSupportedEvaluationOperations } from './actions/spotlightSupportedEvaluation/SpotlightSupportedEvaluation.resource';
+import { spotlightVulnerabilitiesFields, spotlightVulnerabilitiesOperations } from './actions/spotlightVulnerabilities/SpotlightVulnerabilities.resource';
+import { spotlightVulnerabilityMetadataFields, spotlightVulnerabilityMetadataOperations } from './actions/spotlightVulnerabilityMetadata/SpotlightVulnerabilityMetadata.resource';
+import { streamFields, streamOperations } from './actions/stream/Stream.resource';
+import { tailoredIntelligenceFields, tailoredIntelligenceOperations } from './actions/tailoredIntelligence/TailoredIntelligence.resource';
+import { threatgraphFields, threatgraphOperations } from './actions/threatgraph/Threatgraph.resource';
+import { unidentifiedContainersFields, unidentifiedContainersOperations } from './actions/unidentifiedContainers/UnidentifiedContainers.resource';
+import { userManagementFields, userManagementOperations } from './actions/userManagement/UserManagement.resource';
+import { workflowsFields, workflowsOperations } from './actions/workflows/Workflows.resource';
+import { zeroTrustAssessmentFields, zeroTrustAssessmentOperations } from './actions/zeroTrustAssessment/ZeroTrustAssessment.resource';
 import { router } from './actions/router';
 
 export class CrowdStrikeFalcon implements INodeType {
@@ -311,6 +335,10 @@ export class CrowdStrikeFalcon implements INodeType {
 					{ 
 						name: 'D4C Registration', 
 						value: 'd4cRegistration' 
+					},
+					{ 
+						name: 'Data Protection Configuration', 
+						value: 'dataProtectionConfiguration' 
 					},
 					{ 
 						name: 'Default', 
@@ -509,8 +537,28 @@ export class CrowdStrikeFalcon implements INodeType {
 						value: 'kubernetesProtection' 
 					},
 					{ 
+						name: 'Maintenance Token', 
+						value: 'maintenanceToken' 
+					},
+					{ 
+						name: 'Malquery', 
+						value: 'malquery' 
+					},
+					{ 
+						name: 'Message Center', 
+						value: 'messageCenter' 
+					},
+					{ 
+						name: 'ML Exclusions', 
+						value: 'mlExclusions' 
+					},
+					{ 
 						name: 'MSSP', 
 						value: 'mssp' 
+					},
+					{ 
+						name: 'Mobile Enrollment', 
+						value: 'mobileEnrollment' 
 					},
 					{ 
 						name: 'Network Scan Global Configs', 
@@ -624,6 +672,78 @@ export class CrowdStrikeFalcon implements INodeType {
 						name: 'Scanning Orchestrator', 
 						value: 'scanningOrchestrator' 
 					},
+					{ 
+						name: 'Scheduled Reports', 
+						value: 'scheduledReports' 
+					},
+					{ 
+						name: 'Sensor Download', 
+						value: 'sensorDownload' 
+					},
+					{ 
+						name: 'Sensor Update Policies', 
+						value: 'sensorUpdatePolicies' 
+					},
+					{ 
+						name: 'Sensor Usage API', 
+						value: 'sensorUsageApi' 
+					},
+					{ 
+						name: 'Sensor Visibility Exclusions', 
+						value: 'sensorVisibilityExclusions' 
+					},
+					{ 
+						name: 'Serverless Exports', 
+						value: 'serverlessExports' 
+					},
+					{ 
+						name: 'Serverless Vulnerabilities', 
+						value: 'serverlessVulnerabilities' 
+					},
+					{ 
+						name: 'Spotlight Evaluation Logic', 
+						value: 'spotlightEvaluationLogic' 
+					},
+					{ 
+						name: 'Spotlight Supported Evaluation', 
+						value: 'spotlightSupportedEvaluation' 
+					},
+					{ 
+						name: 'Spotlight Vulnerabilities', 
+						value: 'spotlightVulnerabilities' 
+					},
+					{ 
+						name: 'Spotlight Vulnerability Metadata', 
+						value: 'spotlightVulnerabilityMetadata' 
+					},
+					{ 
+						name: 'Stream', 
+						value: 'stream' 
+					},
+					{ 
+						name: 'Tailored Intelligence', 
+						value: 'tailoredIntelligence' 
+					},
+					{ 
+						name: 'Threatgraph', 
+						value: 'threatgraph' 
+					},
+					{ 
+						name: 'Unidentified Containers', 
+						value: 'unidentifiedContainers' 
+					},
+					{ 
+						name: 'User Management', 
+						value: 'userManagement' 
+					},
+					{ 
+						name: 'Workflows', 
+						value: 'workflows' 
+					},
+					{ 
+						name: 'Zero Trust Assessment', 
+						value: 'zeroTrustAssessment' 
+					},
 				],
 				default: 'cases',
 			},
@@ -709,6 +829,8 @@ export class CrowdStrikeFalcon implements INodeType {
 			...customStorageFields,
 			...d4cRegistrationOperations,
 			...d4cRegistrationFields,
+			...dataProtectionConfigurationOperations,
+			...dataProtectionConfigurationFields,
 			...defaultOperations,
 			...defaultFields,
 			...deliverySettingsOperations,
@@ -807,8 +929,18 @@ export class CrowdStrikeFalcon implements INodeType {
 			...kubernetesContainerComplianceFields,
 			...kubernetesProtectionOperations,
 			...kubernetesProtectionFields,
+			...maintenanceTokenOperations,
+			...maintenanceTokenFields,
+			...malqueryOperations,
+			...malqueryFields,
+			...messageCenterOperations,
+			...messageCenterFields,
+			...mlExclusionsOperations,
+			...mlExclusionsFields,
 			...msspOperations,
 			...msspFields,
+			...mobileEnrollmentOperations,
+			...mobileEnrollmentFields,
 			...networkScanGlobalConfigsOperations,
 			...networkScanGlobalConfigsFields,
 			...networkScanNetworksOperations,
@@ -865,6 +997,42 @@ export class CrowdStrikeFalcon implements INodeType {
 			...sampleUploadsFields,
 			...scanningOrchestratorOperations,
 			...scanningOrchestratorFields,
+			...scheduledReportsOperations,
+			...scheduledReportsFields,
+			...sensorDownloadOperations,
+			...sensorDownloadFields,
+			...sensorUpdatePoliciesOperations,
+			...sensorUpdatePoliciesFields,
+			...sensorUsageApiOperations,
+			...sensorUsageApiFields,
+			...sensorVisibilityExclusionsOperations,
+			...sensorVisibilityExclusionsFields,
+			...serverlessExportsOperations,
+			...serverlessExportsFields,
+			...serverlessVulnerabilitiesOperations,
+			...serverlessVulnerabilitiesFields,
+			...spotlightEvaluationLogicOperations,
+			...spotlightEvaluationLogicFields,
+			...spotlightSupportedEvaluationOperations,
+			...spotlightSupportedEvaluationFields,
+			...spotlightVulnerabilitiesOperations,
+			...spotlightVulnerabilitiesFields,
+			...spotlightVulnerabilityMetadataOperations,
+			...spotlightVulnerabilityMetadataFields,
+			...streamOperations,
+			...streamFields,
+			...tailoredIntelligenceOperations,
+			...tailoredIntelligenceFields,
+			...threatgraphOperations,
+			...threatgraphFields,
+			...unidentifiedContainersOperations,
+			...unidentifiedContainersFields,
+			...userManagementOperations,
+			...userManagementFields,
+			...workflowsOperations,
+			...workflowsFields,
+			...zeroTrustAssessmentOperations,
+			...zeroTrustAssessmentFields,
 		],
 	};
 
