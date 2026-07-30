@@ -22,21 +22,27 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles aggregateNetworks */
+/**
+ * Handles the 'aggregateNetworks' operation.
+ */
 async function handleAggregateNetworks(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Returns networks aggregations. */
 	const xCSUSERUUID = getStringParam(c, i, 'xCSUSERUUID', '');
 	return await fc.networkScanNetworks.aggregateNetworks(parseJsonParam(c, i), xCSUSERUUID || undefined);
 }
 
-/** Handles createNetworks */
+/**
+ * Handles the 'createNetworks' operation.
+ */
 async function handleCreateNetworks(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create networks using provided specifications. */
 	const xCSUSERUUID = getStringParam(c, i, 'xCSUSERUUID', '');
 	return await fc.networkScanNetworks.createNetworks(parseJsonParam(c, i), xCSUSERUUID || undefined);
 }
 
-/** Handles deleteNetworks */
+/**
+ * Handles the 'deleteNetworks' operation.
+ */
 async function handleDeleteNetworks(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete networks by their IDs. */
 	const ids = parseArrayParam(c, i, 'ids');
@@ -44,7 +50,9 @@ async function handleDeleteNetworks(c: IExecuteFunctions, i: number, fc: FalconC
 	return await fc.networkScanNetworks.deleteNetworks(ids, xCSUSERUUID || undefined);
 }
 
-/** Handles getNetworks */
+/**
+ * Handles the 'getNetworks' operation.
+ */
 async function handleGetNetworks(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get networks by their IDs. */
 	const ids = parseArrayParam(c, i, 'ids');
@@ -52,7 +60,9 @@ async function handleGetNetworks(c: IExecuteFunctions, i: number, fc: FalconClie
 	return await fc.networkScanNetworks.getNetworks(ids, xCSUSERUUID || undefined);
 }
 
-/** Handles queryNetworks */
+/**
+ * Handles the 'queryNetworks' operation.
+ */
 async function handleQueryNetworks(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get networks IDs by filter. */
 	const xCSUSERUUID = getStringParam(c, i, 'xCSUSERUUID', '');
@@ -63,7 +73,9 @@ async function handleQueryNetworks(c: IExecuteFunctions, i: number, fc: FalconCl
 	return await fc.networkScanNetworks.queryNetworks(xCSUSERUUID || undefined, offset || undefined, limit || undefined, sort || undefined, filter || undefined);
 }
 
-/** Handles updateNetworks */
+/**
+ * Handles the 'updateNetworks' operation.
+ */
 async function handleUpdateNetworks(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update networks using provided specifications. */
 	const xCSUSERUUID = getStringParam(c, i, 'xCSUSERUUID', '');
