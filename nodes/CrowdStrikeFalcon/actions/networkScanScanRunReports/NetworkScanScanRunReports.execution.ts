@@ -6,7 +6,9 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles getScanRunReports */
+/**
+ * Handles the 'getScanRunReports' operation.
+ */
 async function handleGetScanRunReports(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Downloads scan run report in CSV format. */
 	const id = getStringParam(c, i, 'id', '');
