@@ -21,127 +21,167 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles aggregateNotificationsExposedDataRecordsV1 */
+/**
+ * Handles the 'aggregateNotificationsExposedDataRecordsV1' operation.
+ */
 async function handleAggregateNotificationsExposedDataRecordsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get notification exposed data record aggregates as specified via JSON in request body. */
 	const body = parseJsonParam(c, i);
 	return await fc.recon.aggregateNotificationsExposedDataRecordsV1(Array.isArray(body) ? body : [body]);
 }
 
-/** Handles aggregateNotificationsV1 */
+/**
+ * Handles the 'aggregateNotificationsV1' operation.
+ */
 async function handleAggregateNotificationsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get notification aggregates as specified via JSON in request body. */
 	const body = parseJsonParam(c, i);
 	return await fc.recon.aggregateNotificationsV1(Array.isArray(body) ? body : [body]);
 }
 
-/** Handles createActionsV1 */
+/**
+ * Handles the 'createActionsV1' operation.
+ */
 async function handleCreateActionsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create actions for a monitoring rule. */
 	return await fc.recon.createActionsV1(parseJsonParam(c, i));
 }
 
-/** Handles createExportJobsV1 */
+/**
+ * Handles the 'createExportJobsV1' operation.
+ */
 async function handleCreateExportJobsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Launch asynchronous export job. */
 	const body = parseJsonParam(c, i);
 	return await fc.recon.createExportJobsV1(Array.isArray(body) ? body : [body]);
 }
 
-/** Handles createRulesV1 */
+/**
+ * Handles the 'createRulesV1' operation.
+ */
 async function handleCreateRulesV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create monitoring rules. */
 	const body = parseJsonParam(c, i);
 	return await fc.recon.createRulesV1(Array.isArray(body) ? body : [body]);
 }
 
-/** Handles deleteActionV1 */
+/**
+ * Handles the 'deleteActionV1' operation.
+ */
 async function handleDeleteActionV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete an action from a monitoring rule based on the action ID. */
 	const id = getStringParam(c, i, 'id', '');
 	return await fc.recon.deleteActionV1(id);
 }
 
-/** Handles deleteExportJobsV1 */
+/**
+ * Handles the 'deleteExportJobsV1' operation.
+ */
 async function handleDeleteExportJobsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete export jobs based on their IDs. */
 	return await fc.recon.deleteExportJobsV1(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles deleteNotificationsV1 */
+/**
+ * Handles the 'deleteNotificationsV1' operation.
+ */
 async function handleDeleteNotificationsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete notifications based on IDs. */
 	return await fc.recon.deleteNotificationsV1(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles deleteRulesV1 */
+/**
+ * Handles the 'deleteRulesV1' operation.
+ */
 async function handleDeleteRulesV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete monitoring rules. */
 	return await fc.recon.deleteRulesV1(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getActionsV1 */
+/**
+ * Handles the 'getActionsV1' operation.
+ */
 async function handleGetActionsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get actions based on their IDs. */
 	return await fc.recon.getActionsV1(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getExportJobsV1 */
+/**
+ * Handles the 'getExportJobsV1' operation.
+ */
 async function handleGetExportJobsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get the status of export jobs based on their IDs. */
 	return await fc.recon.getExportJobsV1(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getFileContentForExportJobsV1 */
+/**
+ * Handles the 'getFileContentForExportJobsV1' operation.
+ */
 async function handleGetFileContentForExportJobsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Download the file associated with a job ID. */
 	const id = getStringParam(c, i, 'id', '');
 	return await fc.recon.getFileContentForExportJobsV1(id);
 }
 
-/** Handles getNotificationsDetailedTranslatedV1 */
+/**
+ * Handles the 'getNotificationsDetailedTranslatedV1' operation.
+ */
 async function handleGetNotificationsDetailedTranslatedV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get detailed translated notifications based on their IDs. */
 	return await fc.recon.getNotificationsDetailedTranslatedV1(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getNotificationsDetailedV1 */
+/**
+ * Handles the 'getNotificationsDetailedV1' operation.
+ */
 async function handleGetNotificationsDetailedV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get detailed notifications based on their IDs. */
 	return await fc.recon.getNotificationsDetailedV1(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getNotificationsExposedDataRecordsV1 */
+/**
+ * Handles the 'getNotificationsExposedDataRecordsV1' operation.
+ */
 async function handleGetNotificationsExposedDataRecordsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get notifications exposed data records based on their IDs. */
 	return await fc.recon.getNotificationsExposedDataRecordsV1(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getNotificationsTranslatedV1 */
+/**
+ * Handles the 'getNotificationsTranslatedV1' operation.
+ */
 async function handleGetNotificationsTranslatedV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get translated notifications based on their IDs. */
 	return await fc.recon.getNotificationsTranslatedV1(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getNotificationsV1 */
+/**
+ * Handles the 'getNotificationsV1' operation.
+ */
 async function handleGetNotificationsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get notifications based on their IDs. */
 	return await fc.recon.getNotificationsV1(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getRulesV1 */
+/**
+ * Handles the 'getRulesV1' operation.
+ */
 async function handleGetRulesV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get monitoring rules based on their IDs. */
 	return await fc.recon.getRulesV1(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles previewRuleV1 */
+/**
+ * Handles the 'previewRuleV1' operation.
+ */
 async function handlePreviewRuleV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Preview rules notification count and distribution. */
 	return await fc.recon.previewRuleV1(parseJsonParam(c, i));
 }
 
-/** Handles queryActionsV1 */
+/**
+ * Handles the 'queryActionsV1' operation.
+ */
 async function handleQueryActionsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Query actions based on provided criteria. */
 	const offset = c.getNodeParameter('offset', i, 0) as number;
@@ -152,7 +192,9 @@ async function handleQueryActionsV1(c: IExecuteFunctions, i: number, fc: FalconC
 	return await fc.recon.queryActionsV1(offset || undefined, limit || undefined, sort || undefined, filter || undefined, q || undefined);
 }
 
-/** Handles queryNotificationsExposedDataRecordsV1 */
+/**
+ * Handles the 'queryNotificationsExposedDataRecordsV1' operation.
+ */
 async function handleQueryNotificationsExposedDataRecordsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Query notifications exposed data records based on provided criteria. */
 	const offset = c.getNodeParameter('offset', i, 0) as number;
@@ -163,7 +205,9 @@ async function handleQueryNotificationsExposedDataRecordsV1(c: IExecuteFunctions
 	return await fc.recon.queryNotificationsExposedDataRecordsV1(offset || undefined, limit || undefined, sort || undefined, filter || undefined, q || undefined);
 }
 
-/** Handles queryNotificationsV1 */
+/**
+ * Handles the 'queryNotificationsV1' operation.
+ */
 async function handleQueryNotificationsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Query notifications based on provided criteria. */
 	const offset = c.getNodeParameter('offset', i, 0) as number;
@@ -174,7 +218,9 @@ async function handleQueryNotificationsV1(c: IExecuteFunctions, i: number, fc: F
 	return await fc.recon.queryNotificationsV1(offset || undefined, limit || undefined, sort || undefined, filter || undefined, q || undefined);
 }
 
-/** Handles queryRulesV1 */
+/**
+ * Handles the 'queryRulesV1' operation.
+ */
 async function handleQueryRulesV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Query monitoring rules based on provided criteria. */
 	const offset = c.getNodeParameter('offset', i, 0) as number;
@@ -185,20 +231,26 @@ async function handleQueryRulesV1(c: IExecuteFunctions, i: number, fc: FalconCli
 	return await fc.recon.queryRulesV1(offset || undefined, limit || undefined, sort || undefined, filter || undefined, q || undefined);
 }
 
-/** Handles updateActionV1 */
+/**
+ * Handles the 'updateActionV1' operation.
+ */
 async function handleUpdateActionV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update an action for a monitoring rule. */
 	return await fc.recon.updateActionV1(parseJsonParam(c, i));
 }
 
-/** Handles updateNotificationsV1 */
+/**
+ * Handles the 'updateNotificationsV1' operation.
+ */
 async function handleUpdateNotificationsV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update notification status or assignee. */
 	const body = parseJsonParam(c, i);
 	return await fc.recon.updateNotificationsV1(Array.isArray(body) ? body : [body]);
 }
 
-/** Handles updateRulesV1 */
+/**
+ * Handles the 'updateRulesV1' operation.
+ */
 async function handleUpdateRulesV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update monitoring rules. */
 	const body = parseJsonParam(c, i);
