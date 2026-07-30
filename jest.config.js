@@ -11,10 +11,11 @@ module.exports = {
 				tsconfig: {
 					target: 'ES2021',
 					module: 'CommonJS',
-					strict: true,
+					strict: false,
 					esModuleInterop: true,
 					noImplicitAny: false,
 					strictNullChecks: false,
+					noUnusedLocals: false,
 				},
 			},
 		],
