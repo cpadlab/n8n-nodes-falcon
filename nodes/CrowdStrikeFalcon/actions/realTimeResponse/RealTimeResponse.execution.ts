@@ -16,51 +16,67 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles batchActiveResponderCmd */
+/**
+ * Handles the 'batchActiveResponderCmd' operation.
+ */
 async function handleBatchActiveResponderCmd(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Batch executes a RTR active-responder command across the hosts mapped to the given batch ID. */
 	return await fc.realTimeResponse.batchActiveResponderCmd(parseJsonParam(c, i));
 }
 
-/** Handles batchCmd */
+/**
+ * Handles the 'batchCmd' operation.
+ */
 async function handleBatchCmd(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Batch executes a RTR read-only command across the hosts mapped to the given batch ID. */
 	return await fc.realTimeResponse.batchCmd(parseJsonParam(c, i));
 }
 
-/** Handles batchGetCmd */
+/**
+ * Handles the 'batchGetCmd' operation.
+ */
 async function handleBatchGetCmd(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Batch executes get command across hosts to retrieve files. */
 	return await fc.realTimeResponse.batchGetCmd(parseJsonParam(c, i));
 }
 
-/** Handles batchGetCmdStatus */
+/**
+ * Handles the 'batchGetCmdStatus' operation.
+ */
 async function handleBatchGetCmdStatus(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves the status of the specified batch get command. */
 	const reqId = getStringParam(c, i, 'batchGetCmdReqId', '');
 	return await fc.realTimeResponse.batchGetCmdStatus(reqId);
 }
 
-/** Handles batchInitSessions */
+/**
+ * Handles the 'batchInitSessions' operation.
+ */
 async function handleBatchInitSessions(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Batch initialize a RTR session on multiple hosts. */
 	return await fc.realTimeResponse.batchInitSessions(parseJsonParam(c, i));
 }
 
-/** Handles batchRefreshSessions */
+/**
+ * Handles the 'batchRefreshSessions' operation.
+ */
 async function handleBatchRefreshSessions(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Batch refresh a RTR session on multiple hosts. */
 	return await fc.realTimeResponse.batchRefreshSessions(parseJsonParam(c, i));
 }
 
-/** Handles rTRAggregateSessions */
+/**
+ * Handles the 'rTRAggregateSessions' operation.
+ */
 async function handleRTRAggregateSessions(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get aggregates on session data. */
 	const body = parseJsonParam(c, i);
 	return await fc.realTimeResponse.rTRAggregateSessions(Array.isArray(body) ? body : [body]);
 }
 
-/** Handles rTRCheckActiveResponderCommandStatus */
+/**
+ * Handles the 'rTRCheckActiveResponderCommandStatus' operation.
+ */
 async function handleRTRCheckActiveResponderCommandStatus(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get status of an executed active-responder command on a single host. */
 	const cloudRequestId = getStringParam(c, i, 'cloudRequestId', '');
@@ -68,7 +84,9 @@ async function handleRTRCheckActiveResponderCommandStatus(c: IExecuteFunctions, 
 	return await fc.realTimeResponse.rTRCheckActiveResponderCommandStatus(cloudRequestId, sequenceId);
 }
 
-/** Handles rTRCheckCommandStatus */
+/**
+ * Handles the 'rTRCheckCommandStatus' operation.
+ */
 async function handleRTRCheckCommandStatus(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get status of an executed command on a single host. */
 	const cloudRequestId = getStringParam(c, i, 'cloudRequestId', '');
@@ -76,7 +94,9 @@ async function handleRTRCheckCommandStatus(c: IExecuteFunctions, i: number, fc: 
 	return await fc.realTimeResponse.rTRCheckCommandStatus(cloudRequestId, sequenceId);
 }
 
-/** Handles rTRDeleteFile */
+/**
+ * Handles the 'rTRDeleteFile' operation.
+ */
 async function handleRTRDeleteFile(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete a RTR session file. */
 	const ids = getStringParam(c, i, 'id', '');
@@ -84,7 +104,9 @@ async function handleRTRDeleteFile(c: IExecuteFunctions, i: number, fc: FalconCl
 	return await fc.realTimeResponse.rTRDeleteFile(ids, sessionId);
 }
 
-/** Handles rTRDeleteFileV2 */
+/**
+ * Handles the 'rTRDeleteFileV2' operation.
+ */
 async function handleRTRDeleteFileV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete a RTR session file V2. */
 	const ids = getStringParam(c, i, 'id', '');
@@ -92,7 +114,9 @@ async function handleRTRDeleteFileV2(c: IExecuteFunctions, i: number, fc: Falcon
 	return await fc.realTimeResponse.rTRDeleteFileV2(ids, sessionId);
 }
 
-/** Handles rTRDeleteQueuedSession */
+/**
+ * Handles the 'rTRDeleteQueuedSession' operation.
+ */
 async function handleRTRDeleteQueuedSession(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete a queued session command. */
 	const sessionId = getStringParam(c, i, 'sessionId', '');
@@ -100,26 +124,34 @@ async function handleRTRDeleteQueuedSession(c: IExecuteFunctions, i: number, fc:
 	return await fc.realTimeResponse.rTRDeleteQueuedSession(sessionId, cloudRequestId);
 }
 
-/** Handles rTRDeleteSession */
+/**
+ * Handles the 'rTRDeleteSession' operation.
+ */
 async function handleRTRDeleteSession(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete a session. */
 	const sessionId = getStringParam(c, i, 'sessionId', '');
 	return await fc.realTimeResponse.rTRDeleteSession(sessionId);
 }
 
-/** Handles rTRExecuteActiveResponderCommand */
+/**
+ * Handles the 'rTRExecuteActiveResponderCommand' operation.
+ */
 async function handleRTRExecuteActiveResponderCommand(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Execute an active responder command on a single host. */
 	return await fc.realTimeResponse.rTRExecuteActiveResponderCommand(parseJsonParam(c, i));
 }
 
-/** Handles rTRExecuteCommand */
+/**
+ * Handles the 'rTRExecuteCommand' operation.
+ */
 async function handleRTRExecuteCommand(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Execute a command on a single host. */
 	return await fc.realTimeResponse.rTRExecuteCommand(parseJsonParam(c, i));
 }
 
-/** Handles rTRGetExtractedFileContents */
+/**
+ * Handles the 'rTRGetExtractedFileContents' operation.
+ */
 async function handleRTRGetExtractedFileContents(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get RTR extracted file contents for specified session and sha256. */
 	const sessionId = getStringParam(c, i, 'sessionId', '');
@@ -127,13 +159,17 @@ async function handleRTRGetExtractedFileContents(c: IExecuteFunctions, i: number
 	return await fc.realTimeResponse.rTRGetExtractedFileContents(sessionId, sha256);
 }
 
-/** Handles rTRInitSession */
+/**
+ * Handles the 'rTRInitSession' operation.
+ */
 async function handleRTRInitSession(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Initialize a new session with the RTR cloud. */
 	return await fc.realTimeResponse.rTRInitSession(parseJsonParam(c, i));
 }
 
-/** Handles rTRListAllSessions */
+/**
+ * Handles the 'rTRListAllSessions' operation.
+ */
 async function handleRTRListAllSessions(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get a list of session_ids. */
 	const offset = getStringParam(c, i, 'offset', '');
@@ -143,33 +179,43 @@ async function handleRTRListAllSessions(c: IExecuteFunctions, i: number, fc: Fal
 	return await fc.realTimeResponse.rTRListAllSessions(offset || undefined, limit || undefined, sort || undefined, filter || undefined);
 }
 
-/** Handles rTRListFiles */
+/**
+ * Handles the 'rTRListFiles' operation.
+ */
 async function handleRTRListFiles(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get a list of files for the specified RTR session. */
 	const sessionId = getStringParam(c, i, 'sessionId', '');
 	return await fc.realTimeResponse.rTRListFiles(sessionId);
 }
 
-/** Handles rTRListFilesV2 */
+/**
+ * Handles the 'rTRListFilesV2' operation.
+ */
 async function handleRTRListFilesV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get a list of files for the specified RTR session V2. */
 	const sessionId = getStringParam(c, i, 'sessionId', '');
 	return await fc.realTimeResponse.rTRListFilesV2(sessionId);
 }
 
-/** Handles rTRListQueuedSessions */
+/**
+ * Handles the 'rTRListQueuedSessions' operation.
+ */
 async function handleRTRListQueuedSessions(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get queued session metadata by session ID. */
 	return await fc.realTimeResponse.rTRListQueuedSessions(parseJsonParam(c, i));
 }
 
-/** Handles rTRListSessions */
+/**
+ * Handles the 'rTRListSessions' operation.
+ */
 async function handleRTRListSessions(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get session metadata by session id. */
 	return await fc.realTimeResponse.rTRListSessions(parseJsonParam(c, i));
 }
 
-/** Handles rTRPulseSession */
+/**
+ * Handles the 'rTRPulseSession' operation.
+ */
 async function handleRTRPulseSession(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Refresh a session timeout on a single host. */
 	return await fc.realTimeResponse.rTRPulseSession(parseJsonParam(c, i));
