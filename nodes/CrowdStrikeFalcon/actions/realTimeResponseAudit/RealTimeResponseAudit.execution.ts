@@ -6,7 +6,9 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles rTRAuditSessions */
+/**
+ * Handles the 'rTRAuditSessions' operation.
+ */
 async function handleRTRAuditSessions(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get all the RTR sessions created for a customer in a specified duration. */
 	const filter = getStringParam(c, i, 'filter', '');
