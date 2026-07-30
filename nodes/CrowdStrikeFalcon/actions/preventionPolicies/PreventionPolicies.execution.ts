@@ -21,32 +21,42 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles createPreventionPolicies */
+/**
+ * Handles the 'createPreventionPolicies' operation.
+ */
 async function handleCreatePreventionPolicies(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create Prevention Policies by specifying details about the policy to create. */
 	return await fc.preventionPolicies.createPreventionPolicies(parseJsonParam(c, i));
 }
 
-/** Handles deletePreventionPolicies */
+/**
+ * Handles the 'deletePreventionPolicies' operation.
+ */
 async function handleDeletePreventionPolicies(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete a set of Prevention Policies by specifying their IDs. */
 	return await fc.preventionPolicies.deletePreventionPolicies(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getPreventionPolicies */
+/**
+ * Handles the 'getPreventionPolicies' operation.
+ */
 async function handleGetPreventionPolicies(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve a set of Prevention Policies by specifying their IDs. */
 	return await fc.preventionPolicies.getPreventionPolicies(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles performPreventionPoliciesAction */
+/**
+ * Handles the 'performPreventionPoliciesAction' operation.
+ */
 async function handlePerformPreventionPoliciesAction(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Perform the specified action on the Prevention Policies specified in the request. */
 	const actionName = getStringParam(c, i, 'actionName', 'enable');
 	return await fc.preventionPolicies.performPreventionPoliciesAction(actionName as any, parseJsonParam(c, i));
 }
 
-/** Handles queryCombinedPreventionPolicies */
+/**
+ * Handles the 'queryCombinedPreventionPolicies' operation.
+ */
 async function handleQueryCombinedPreventionPolicies(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Search for Prevention Policies in your environment. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -56,7 +66,9 @@ async function handleQueryCombinedPreventionPolicies(c: IExecuteFunctions, i: nu
 	return await fc.preventionPolicies.queryCombinedPreventionPolicies(filter || undefined, offset || undefined, limit || undefined, sort as any || undefined);
 }
 
-/** Handles queryCombinedPreventionPolicyMembers */
+/**
+ * Handles the 'queryCombinedPreventionPolicyMembers' operation.
+ */
 async function handleQueryCombinedPreventionPolicyMembers(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Search for members of a Prevention Policy returning host details. */
 	const id = getStringParam(c, i, 'id', '');
@@ -67,7 +79,9 @@ async function handleQueryCombinedPreventionPolicyMembers(c: IExecuteFunctions, 
 	return await fc.preventionPolicies.queryCombinedPreventionPolicyMembers(id || undefined, filter || undefined, offset || undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles queryPreventionPolicies */
+/**
+ * Handles the 'queryPreventionPolicies' operation.
+ */
 async function handleQueryPreventionPolicies(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Search for Prevention Policies returning IDs. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -77,7 +91,9 @@ async function handleQueryPreventionPolicies(c: IExecuteFunctions, i: number, fc
 	return await fc.preventionPolicies.queryPreventionPolicies(filter || undefined, offset || undefined, limit || undefined, sort as any || undefined);
 }
 
-/** Handles queryPreventionPolicyMembers */
+/**
+ * Handles the 'queryPreventionPolicyMembers' operation.
+ */
 async function handleQueryPreventionPolicyMembers(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Search for members of a Prevention Policy returning Agent IDs. */
 	const id = getStringParam(c, i, 'id', '');
@@ -88,13 +104,17 @@ async function handleQueryPreventionPolicyMembers(c: IExecuteFunctions, i: numbe
 	return await fc.preventionPolicies.queryPreventionPolicyMembers(id || undefined, filter || undefined, offset || undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles setPreventionPoliciesPrecedence */
+/**
+ * Handles the 'setPreventionPoliciesPrecedence' operation.
+ */
 async function handleSetPreventionPoliciesPrecedence(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Sets the precedence of Prevention Policies based on order. */
 	return await fc.preventionPolicies.setPreventionPoliciesPrecedence(parseJsonParam(c, i));
 }
 
-/** Handles updatePreventionPolicies */
+/**
+ * Handles the 'updatePreventionPolicies' operation.
+ */
 async function handleUpdatePreventionPolicies(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update Prevention Policies by specifying ID and details to update. */
 	return await fc.preventionPolicies.updatePreventionPolicies(parseJsonParam(c, i));
