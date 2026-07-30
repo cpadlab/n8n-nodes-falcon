@@ -182,14 +182,14 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 <details>
 <summary>Case Files</summary>
 
-* **Get File Details Aggregates**: Get file details aggregates as specified via JSON.
-* **Query File Details**: Query file details.
+* **Aggregates File Details**: Get file details aggregates as specified via JSON.
+* **Combined File Details**: Query file details.
 * **Get File Details by ID**: Get file details by ID.
 * **Update File Details**: Update file details.
-* **Bulk Download Case Files**: Download multiple existing files from case as a ZIP.
+* **Bulk Download Files**: Download multiple existing files from case as a ZIP.
 * **Delete File Details by ID**: Delete file details by ID.
-* **Download Case File**: Download existing file from case.
-* **Download Case Files (Deprecated)**: Download existing files from case.
+* **Download File**: Download existing file from case.
+* **Download Files (Deprecated)**: Download existing files from case (deprecated).
 * **Upload File for Case**: Upload file for case.
 * **Get RTR File Metadata**: Gets metadata for a file via RTR without retrieving it.
 * **Retrieve RTR File**: Retrieves a file from host using RTR and adds it to a case.
@@ -201,19 +201,19 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 <details>
 <summary>Case Management</summary>
 
-* **Get Access Tag Aggregates**: Get access tag aggregates.
-* **Get Notification Groups Aggregations V1**: Get notification groups aggregations (deprecated).
-* **Get Notification Groups Aggregations V2**: Get notification groups aggregations V2.
-* **Get SLA Aggregations**: Get SLA aggregations.
-* **Get Templates Aggregations**: Get templates aggregations.
+* **Aggregates Access Tags**: Get access tag aggregates.
+* **Aggregates Notification Groups V1 (Deprecated)**: Get notification groups aggregations (deprecated).
+* **Aggregates Notification Groups V2**: Get notification groups aggregations V2.
+* **Aggregates SLAs**: Get SLA aggregations.
+* **Aggregates Templates**: Get templates aggregations.
 * **Get Fields by ID**: Get fields by ID.
-* **Delete Notification Groups V1**: Delete notification groups by ID (deprecated).
+* **Delete Notification Groups V1 (Deprecated)**: Delete notification groups by ID (deprecated).
 * **Delete Notification Groups V2**: Delete notification groups by ID V2.
-* **Get Notification Groups V1**: Get notification groups by ID (deprecated).
+* **Get Notification Groups V1 (Deprecated)**: Get notification groups by ID (deprecated).
 * **Get Notification Groups V2**: Get notification groups by ID V2.
-* **Update Notification Group V1**: Update notification group (deprecated).
+* **Update Notification Group V1 (Deprecated)**: Update notification group (deprecated).
 * **Update Notification Group V2**: Update notification group V2.
-* **Create Notification Group V1**: Create notification group (deprecated).
+* **Create Notification Group V1 (Deprecated)**: Create notification group (deprecated).
 * **Create Notification Group V2**: Create notification group V2.
 * **Delete SLAs**: Delete SLAs.
 * **Get SLAs by ID**: Get SLAs by ID.
@@ -228,7 +228,7 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 * **Create Template**: Create template.
 * **Query Access Tags**: Query access tags.
 * **Query Fields**: Query fields.
-* **Query Notification Groups V1**: Query notification groups (deprecated).
+* **Query Notification Groups V1 (Deprecated)**: Query notification groups (deprecated).
 * **Query Notification Groups V2**: Query notification groups V2.
 * **Query SLAs**: Query SLAs.
 * **Query Template Snapshots**: Query template snapshots.
@@ -306,7 +306,7 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 * **Delete Registration**: Deletes a Google Cloud Registration by ID.
 * **Get Entities**: Retrieve all GCP entities (orgs, folders, projects).
 * **Get Registration**: Retrieve a Google Cloud Registration by ID.
-* **Generate Terraform Script**: Generate Google Cloud Terraform deployment scripts.
+* **Post Terraform Script**: Generate Google Cloud Terraform deployment scripts.
 * **Put Registration**: Creates or updates a Google Cloud Registration.
 * **Trigger Health Check**: Trigger health check scan for GCP registrations.
 * **Update Registration**: Update a Google Cloud Registration.
@@ -350,7 +350,7 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 * **Get Suppression Rules**: Get Suppression Rules by ID.
 * **Query Compliance Controls**: Query for compliance controls.
 * **Query Compliance Frameworks**: Query for compliance frameworks.
-* **Query Rules**: Query for rules.
+* **Query Rule**: Query for rules.
 * **Query Suppression Rules**: Query suppression rules.
 * **Rename Section Compliance Framework**: Rename a section in a custom framework.
 * **Replace Control Rules**: Assign rules to a compliance control.
@@ -365,7 +365,7 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 <details>
 <summary>Cloud Security</summary>
 
-* **Get Combined Cloud Risks**: Gets cloud risks with full details based on filters and sort criteria.
+* **Combined Cloud Risks**: Gets cloud risks with full details based on filters and sort criteria.
 * **Create Cloud Group**: Create a Cloud Group.
 * **Delete Cloud Groups**: Delete Cloud Groups in batch.
 * **List Cloud Group IDs**: Query Cloud Groups and returns IDs.
@@ -700,9 +700,62 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 * **Get Discover Cloud Azure Tenant IDs**: Return available tenant IDs for Azure.
 * **Get Discover Cloud Azure User Scripts**: Return Azure setup script.
 * **Get Discover Cloud Azure User Scripts Attachment**: Return Azure setup script attachment.
-* **Get Horizon D4CScripts**: Returns static install scripts for Horizon.
+* **Get Horizon D4C Scripts**: Returns static install scripts for Horizon.
 * **Update D4C GCP Service Accounts Ext**: Patches service account key for GCP.
 * **Update Discover Cloud Azure Account Client ID**: Update Azure service account client ID.
+
+</details>
+
+<details>
+<summary>Data Protection Configuration</summary>
+
+* **Entities Classification Delete V2**: Deletes classifications matching IDs.
+* **Entities Classification Get V2**: Gets classifications matching IDs.
+* **Entities Classification Patch V2**: Update classifications.
+* **Entities Classification Post V2**: Create classifications.
+* **Entities Cloud Application Create**: Create cloud application.
+* **Entities Cloud Application Delete**: Delete cloud application.
+* **Entities Cloud Application Get**: Get cloud application by IDs.
+* **Entities Cloud Application Patch**: Update cloud application.
+* **Entities Content Pattern Create**: Create content pattern.
+* **Entities Content Pattern Delete**: Delete content pattern.
+* **Entities Content Pattern Get**: Get content pattern by IDs.
+* **Entities Content Pattern Patch**: Update content pattern.
+* **Entities Enterprise Account Create**: Create enterprise account.
+* **Entities Enterprise Account Delete**: Delete enterprise account.
+* **Entities Enterprise Account Get**: Get enterprise account by IDs.
+* **Entities Enterprise Account Patch**: Update enterprise account.
+* **Entities File Type Get**: Get file type by IDs.
+* **Entities Local Application Create**: Create local application.
+* **Entities Local Application Delete**: Soft delete local application.
+* **Entities Local Application Get**: Get local application by IDs.
+* **Entities Local Application Group Create**: Create local application group.
+* **Entities Local Application Group Delete**: Soft delete local application group.
+* **Entities Local Application Group Get**: Get local application group by IDs.
+* **Entities Local Application Group Patch**: Update local application group.
+* **Entities Local Application Patch**: Update local application.
+* **Entities Policy Delete V2**: Deletes policies matching IDs.
+* **Entities Policy Get V2**: Gets policies matching IDs.
+* **Entities Policy Patch V2**: Update policies.
+* **Entities Policy Post V2**: Create policies.
+* **Entities Policy Precedence Post V1**: Update policy precedence.
+* **Entities Sensitivity Label Create V2**: Create sensitivity label V2.
+* **Entities Sensitivity Label Delete V2**: Delete sensitivity labels V2.
+* **Entities Sensitivity Label Get V2**: Get sensitivity labels V2.
+* **Entities Web Location Create V2**: Create web location V2.
+* **Entities Web Location Delete V2**: Delete web location V2.
+* **Entities Web Location Get V2**: Get web location V2.
+* **Entities Web Location Patch V2**: Update web location V2.
+* **Queries Classification Get V2**: Search classifications matching criteria.
+* **Queries Cloud Application Get V2**: Get cloud application IDs with filter.
+* **Queries Content Pattern Get V2**: Get content pattern IDs with filter.
+* **Queries Enterprise Account Get V2**: Get enterprise account IDs with filter.
+* **Queries File Type Get V2**: Get file type IDs with filter.
+* **Queries Local Application Get**: Get local application IDs with filter.
+* **Queries Local Application Group Get**: Get local application group IDs with filter.
+* **Queries Policy Get V2**: Search policies matching criteria.
+* **Queries Sensitivity Label Get V2**: Get sensitivity label IDs with filter.
+* **Queries Web Location Get V2**: Get web location IDs with filter.
 
 </details>
 
@@ -933,7 +986,7 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 <summary>Falcon Container Image</summary>
 
 * **Create Registry Entities**: Create a registry entity using the provided details.
-* **Delete Registry Entities**: Delete the registry entity identified by the entity UUID.
+* **Delete Registry Entities**: Delete registry entity identified by entity UUID.
 * **Download Export File**: Download an export file.
 * **Get Report by Reference**: Get image assessment scan report by image reference (v2).
 * **Get Report by Scan ID**: Get image assessment scan report by scan UUID (v2).
@@ -964,7 +1017,7 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 
 * **Delete Report**: Delete report based on report ID.
 * **Delete Sample V2**: Removes a sample including file, meta and submissions.
-* **Get Artifacts**: Download IOC packs, PCAP files, memory dumps, and analysis artifacts.
+* **Get Artifacts**: Download IOC packs, PCAP files, memory dumps, and artifacts.
 * **Get Memory Dump**: Get memory dump content as binary.
 * **Get Memory Dump Extracted Strings**: Get extracted strings from a memory dump.
 * **Get Memory Dump Hex Dump**: Get hex view of a memory dump.
@@ -1184,7 +1237,7 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 * **API Preempt Proxy Delete Policy Rules**: Delete policy rules.
 * **API Preempt Proxy Get Policy Rules**: Get policy rules.
 * **API Preempt Proxy Get Policy Rules Query**: Query policy rule IDs.
-* **API Preempt Proxy Post GraphQL**: Identity Protection GraphQL API.
+* **API Preempt Proxy Post GraphQL**: Identity Protection GraphQL API (entities, timeline activities, etc.).
 * **API Preempt Proxy Post Policy Rules**: Create policy rule.
 
 </details>
@@ -1272,91 +1325,1020 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 
 </details>
 
----
+<details>
+<summary>Intelligence Feeds</summary>
 
-## 🚧 Pending Implementation
+* **Download Feed Archive**: Downloads the content as a zip archive for a given feed item ID.
+* **List Feed Types**: Lists the accessible feed types for a given customer.
+* **Query Feed Archives**: Queries the accessible feed types for a customer and returns feed item IDs.
 
-The following features, modules, and endpoints are currently pending integration into the project:
+</details>
 
-### 🔍 Intelligence & Threats (IOCs & Malquery)
+<details>
+<summary>Intelligence Indicator Graph</summary>
 
-* **Intelligence Indicator Graph** (`intelligenceIndicatorGraph`)
-* **Ioa Exclusions** (`ioaExclusions`)
-* **Ioc** (`ioc`)
-* **Iocs** (`iocs`)
-* **Malquery** (`malquery`)
-* **Tailored Intelligence** (`tailoredIntelligence`)
-* **Threatgraph** (`threatgraph`)
+* **Lookup Indicators**: Look up intelligence data for multiple indicators.
+* **Search Indicators**: Search indicators based on FQL filter or request body.
 
-### 🛡️ Security, Prevention & Vulnerabilities (Spotlight)
+</details>
 
-* **Prevention Policies** (`preventionPolicies`)
-* **Quarantine** (`quarantine`)
-* **Runtime Detections** (`runtimeDetections`)
-* **Saas Security** (`saasSecurity`)
-* **Serverless Exports** (`serverlessExports`)
-* **Serverless Vulnerabilities** (`serverlessVulnerabilities`)
-* **Spotlight Evaluation Logic** (`spotlightEvaluationLogic`)
-* **Spotlight Supported Evaluation** (`spotlightSupportedEvaluation`)
-* **Spotlight Vulnerabilities** (`spotlightVulnerabilities`)
-* **Spotlight Vulnerability Metadata** (`spotlightVulnerabilityMetadata`)
-* **Zero Trust Assessment** (`zeroTrustAssessment`)
+<details>
+<summary>IOA Exclusions</summary>
 
-### ☁️ Infrastructure & Containers (Kubernetes & Network)
+* **Create IOA Exclusions V1**: Create the IOA exclusions V1.
+* **Delete IOA Exclusions V1**: Delete the IOA exclusions by ID V1.
+* **Get IOA Exclusions V1**: Get a set of IOA Exclusions by specifying their IDs V1.
+* **Query IOA Exclusions V1**: Search for IOA exclusions V1.
+* **Self Service Aggregates V2**: Get Self Service IOA Exclusion aggregates as specified via JSON.
+* **Self Service Create V2**: Create new Self Service IOA Exclusions V2.
+* **Self Service Delete V2**: Delete Self Service IOA Exclusions rule by ID V2.
+* **Self Service Get Reports V2**: Create a report of Self Service IOA Exclusions.
+* **Self Service Get V2**: Get Self Service IOA Exclusions rules by ID V2.
+* **Self Service Matched Rule V2**: Get Self Service IOA Exclusions rules for matched IFN/CLI.
+* **Self Service New Rules V2**: Get defaults for Self Service IOA Exclusions based on IFN/CLI.
+* **Self Service Search V2**: Search for Self Service IOA Exclusions V2.
+* **Self Service Update V2**: Update Self Service IOA Exclusions rule by ID V2.
+* **Update IOA Exclusions V1**: Update the IOA exclusions V1.
 
-* **Kubernetes Container Compliance** (`kubernetesContainerCompliance`)
-* **Kubernetes Protection** (`kubernetesProtection`)
-* **Network Scan Global Configs** (`networkScanGlobalConfigs`)
-* **Network Scan Networks** (`networkScanNetworks`)
-* **Network Scan Scan Run Reports** (`networkScanScanRunReports`)
-* **Network Scan Scan Runs** (`networkScanScanRuns`)
-* **Network Scan Scanners** (`networkScanScanners`)
-* **Network Scan Scans** (`networkScanScans`)
-* **Network Scan Templates** (`networkScanTemplates`)
-* **Network Scan Zones** (`networkScanZones`)
-* **Unidentified Containers** (`unidentifiedContainers`)
+</details>
 
-### ⚙️ Automation, Alerts & Auditing
+<details>
+<summary>IOC</summary>
 
-* **It Automation** (`itAutomation`)
-* **Knowledge Base Audit Events** (`knowledgeBaseAuditEvents`)
-* **Knowledge Base Files** (`knowledgeBaseFiles`)
-* **Knowledge Bases** (`knowledgeBases`)
-* **Message Center** (`messageCenter`)
-* **Ngsiem** (`ngsiem`)
-* **Stream** (`stream`)
-* **Workflows** (`workflows`)
+* **Action Get V1**: Get Actions by IDs.
+* **Action Query V1**: Query Actions.
+* **Get Indicators Report**: Launch an indicators report creation job.
+* **Indicator Aggregate V1**: Get Indicators aggregates as specified via JSON.
+* **Indicator Combined V1**: Get Combined for Indicators.
+* **Indicator Create V1**: Create Indicators.
+* **Indicator Delete V1**: Delete Indicators by IDs.
+* **Indicator Get Device Count V1**: Get the number of devices the indicator has run on.
+* **Indicator Get Devices Ran On V1**: Get the IDs of devices the indicator has run on.
+* **Indicator Get Processes Ran On V1**: Get the number of processes the indicator has run on.
+* **Indicator Get V1**: Get Indicators by IDs.
+* **Indicator SDMF Query V1**: Executes an SDMF data frame query against IOC indicators.
+* **Indicator Search V1**: Search for Indicators.
+* **Indicator Update V1**: Update Indicators.
+* **IOC Type Query V1**: Query IOC Types.
+* **Platform Query V1**: Query Platforms.
+* **Severity Query V1**: Query Severities.
 
-### 📋 Device Management, Sensors & Policies
+</details>
 
-* **Ml Exclusions** (`mlExclusions`)
-* **Mobile Enrollment** (`mobileEnrollment`)
-* **Sensor Download** (`sensorDownload`)
-* **Sensor Update Policies** (`sensorUpdatePolicies`)
-* **Sensor Usage Api** (`sensorUsageApi`)
-* **Sensor Visibility Exclusions** (`sensorVisibilityExclusions`)
+<details>
+<summary>IOCs</summary>
 
-### 🛠️ Administration, Scans & Utilities
+* **Devices Count**: Number of hosts in your customer account that have observed a given custom IOC.
+* **Devices Ran On**: Find hosts that have observed a given custom IOC.
+* **Entities Processes**: For the provided ProcessID retrieve the process details.
+* **Processes Ran On**: Search for processes associated with a custom IOC.
 
-* **Maintenance Token** (`maintenanceToken`)
-* **Mssp** (`mssp`)
-* **Oauth2** (`oauth2`)
-* **Ods** (`ods`)
-* **Profile Groups** (`profileGroups`)
-* **Quick Scan** (`quickScan`)
-* **Quick Scan Pro** (`quickScanPro`)
-* **Real Time Response** (`realTimeResponse`)
-* **Real Time Response Admin** (`realTimeResponseAdmin`)
-* **Real Time Response Audit** (`realTimeResponseAudit`)
-* **Recon** (`recon`)
-* **Release Notes** (`releaseNotes`)
-* **Releases** (`releases`)
-* **Report Executions** (`reportExecutions`)
-* **Response Policies** (`responsePolicies`)
-* **Sample Uploads** (`sampleUploads`)
-* **Scanning Orchestrator** (`scanningOrchestrator`)
-* **Scheduled Reports** (`scheduledReports`)
-* **User Management** (`userManagement`)
+</details>
+
+<details>
+<summary>IT Automation</summary>
+
+* **Cancel Task Execution**: Cancel a task execution specified in the request.
+* **Combined Scheduled Tasks**: Returns full details of scheduled tasks matching filter.
+* **Create Policy**: Creates a new policy of the specified type.
+* **Create Scheduled Task**: Creates a scheduled task from the given request.
+* **Create Task**: Creates a task with details from the given request.
+* **Create Task Group**: Creates a task group from the given request.
+* **Create User Group**: Creates a user group from the given request.
+* **Delete Policy**: Deletes 1 or more disabled policies.
+* **Delete Scheduled Tasks**: Delete one or more scheduled tasks by ID.
+* **Delete Task**: Deletes tasks for each provided ID.
+* **Delete Task Groups**: Delete one or more task groups by ID.
+* **Delete User Group**: Deletes user groups for each provided ID.
+* **Get Associated Tasks**: Retrieve tasks associated with the provided file ID.
+* **Get Execution Results**: Get the task execution results from an async search.
+* **Get Execution Results Search Status**: Get the status of an async task execution results search.
+* **Get Policies**: Retrieves the configuration for 1 or more policies.
+* **Get Scheduled Tasks**: Returns scheduled tasks for each provided ID.
+* **Get Task Execution**: Get the task execution for provided task execution IDs.
+* **Get Task Execution Host Status**: Get the status of host executions by providing execution IDs.
+* **Get Task Executions by Query**: Returns list of task executions matching filter query.
+* **Get Task Groups**: Returns task groups for each provided ID.
+* **Get Task Groups by Query**: Returns full details of task groups matching filter.
+* **Get Tasks**: Returns tasks for each provided ID.
+* **Get Tasks by Query**: Returns full details of tasks matching filter.
+* **Get User Group**: Returns user groups for each provided ID.
+* **Query Policies**: Returns list of policy IDs matching filter query.
+* **Rerun Task Execution**: Rerun the task execution specified in the request.
+* **Run Live Query**: Starts a new task execution from provided query data.
+* **Search Scheduled Tasks**: Returns list of scheduled task IDs matching filter.
+* **Search Task Executions**: Returns list of task execution IDs matching filter.
+* **Search Task Groups**: Returns list of task group IDs matching filter.
+* **Search Tasks**: Returns list of task IDs matching filter query.
+* **Search User Group**: Returns list of user group IDs matching filter query.
+* **Start Execution Results Search**: Starts an async task execution results search.
+* **Start Task Execution**: Starts a new task execution from an existing task.
+* **Update Policies**: Updates multiple fields for a policy.
+* **Update Policies Precedence**: Updates policy precedence for all policies of a specific platform.
+* **Update Policy Host Groups**: Manage host groups assigned to a policy.
+* **Update Scheduled Task**: Update an existing scheduled task.
+* **Update Task**: Update a task with details from given request.
+* **Update Task Group**: Update a task group for a given ID.
+* **Update User Group**: Update a user group for a given ID.
+
+</details>
+
+<details>
+<summary>Knowledge Base Audit Events</summary>
+
+* **Aggregates Knowledge Base Audit Events V1**: Aggregate knowledge base audit events based on MSA criteria.
+* **Combined Knowledge Base Audit Events V1**: Get knowledge base audit events with full details and pagination.
+* **Entities Knowledge Base Audit Events V1**: Retrieve knowledge base audit event entities by their IDs.
+* **Queries Knowledge Base Audit Events V1**: Query knowledge base audit event IDs with pagination and filtering.
+
+</details>
+
+<details>
+<summary>Knowledge Base Files</summary>
+
+* **Entities Knowledge Base Files Create V1**: Upload a file to a knowledge base.
+* **Entities Knowledge Base Files Delete V1**: Delete document from knowledge base.
+* **Entities Knowledge Base Files Download V1**: Download knowledge base file entities for provided ID.
+* **Entities Knowledge Base Files Update V1**: Update an existing file in a knowledge base.
+* **Entities Knowledge Base Files V1**: Retrieve knowledge base file entities for provided IDs.
+* **Queries Knowledge Base Files V1**: Query knowledge base files based on provided filters.
+
+</details>
+
+<details>
+<summary>Knowledge Bases</summary>
+
+* **Aggregates Knowledge Bases V1**: Aggregate knowledge bases based on MSA criteria.
+* **Combined Knowledge Bases V1**: Search for knowledge bases returning full entity details.
+* **Entities Knowledge Bases Create V1**: Create a knowledge base.
+* **Entities Knowledge Bases Update V1**: Update an existing knowledge base.
+* **Entities Knowledge Bases V1**: Retrieve knowledge base entities for provided IDs.
+* **Queries Knowledge Bases V1**: Query knowledge bases based on provided filters.
+
+</details>
+
+<details>
+<summary>Kubernetes Container Compliance</summary>
+
+* **Aggregate Assessments Grouped by Clusters V2**: Returns cluster details along with aggregated assessment results organized by cluster.
+* **Aggregate Assessments Grouped by Rules V2**: Returns rule details along with aggregated assessment results organized by compliance rule.
+* **Aggregate Compliance by Asset Type**: Provides aggregated compliance assessment metrics organized by asset type.
+* **Aggregate Compliance by Cluster Type**: Provides aggregated compliance assessment metrics organized by cluster type.
+* **Aggregate Compliance by Framework**: Provides aggregated compliance assessment metrics organized by framework.
+* **Aggregate Failed Rules by Clusters V3**: Retrieves the most non-compliant clusters ranked by failed compliance rules.
+* **Aggregate Top Failed Images**: Retrieves the most non-compliant container images ranked by failed assessments.
+* **Combined Images Findings**: Returns detailed compliance assessment results for container images.
+* **Combined Nodes Findings**: Returns detailed compliance assessment results for kubernetes nodes.
+* **Get Rules Metadata by ID**: Retrieve detailed compliance rule information by specifying rule identifiers.
+
+</details>
+
+<details>
+<summary>Kubernetes Protection</summary>
+
+* **Cluster Combined**: Retrieve kubernetes clusters identified by filter criteria.
+* **Cluster Count**: Retrieve cluster counts.
+* **Cluster Enrichment**: Retrieve cluster enrichment data.
+* **Clusters by Date Range Count**: Retrieve clusters by date range counts.
+* **Clusters by Kubernetes Version Count**: Bucket clusters by kubernetes version.
+* **Clusters by Status Count**: Bucket clusters by status.
+* **Container Combined**: Retrieves a paginated list of containers identified by filter criteria.
+* **Container Count**: Retrieve container counts.
+* **Container Count by Registry**: Retrieves a list with the top container image registries.
+* **Container Enrichment**: Retrieve container enrichment data.
+* **Container Image Detections Count by Date**: Retrieve count of image assessment detections on running containers.
+* **Container Images by Most Used**: Bucket container by image-digest.
+* **Container Images by State**: Retrieve count of image states running on containers.
+* **Container Vulnerabilities by Severity Count**: Retrieve container vulnerabilities by severity counts.
+* **Containers by Date Range Count**: Retrieve containers by date range counts.
+* **Containers Sensor Coverage**: Bucket containers by agent type and calculate sensor coverage.
+* **Create AWS Account**: Creates a new AWS account in system and generates installation script.
+* **Create Azure Subscription**: Creates a new Azure Subscription in system.
+* **Delete AWS Accounts**: Delete AWS accounts.
+* **Delete Azure Subscription**: Deletes Azure Subscriptions in system.
+* **Deployment Combined**: Retrieve kubernetes deployments identified by filter criteria.
+* **Deployment Count**: Retrieve deployment counts.
+* **Deployment Enrichment**: Retrieve deployment enrichment data.
+* **Deployments by Date Range Count**: Retrieve deployments by date range counts.
+* **Distinct Container Image Count**: Retrieve count of distinct images running on containers.
+* **Find Containers by Container Runtime Version**: Retrieve containers by container_runtime_version.
+* **Find Containers Count Affected by Zero Day Vulnerabilities**: Retrieve containers count affected by zero day vulnerabilities.
+* **Get AWS Accounts**: Provides a list of AWS accounts.
+* **Get Azure Install Script**: Provides script to run for given tenant ID and subscription IDs.
+* **Get Azure Tenant Config**: Gets the Azure tenant Config.
+* **Get Azure Tenant IDs**: Provides all azure subscriptions and tenants.
+* **Get Clusters**: Provides clusters acknowledged by Kubernetes Protection service.
+* **Get Combined Cloud Clusters**: Returns combined list of provisioned cloud accounts and clusters.
+* **Get Helm Values YAML**: Provides sample Helm values.yaml file for agent Helm chart.
+* **Get Locations**: Provides cloud locations acknowledged by Kubernetes Protection.
+* **Get Static Scripts**: Gets static bash scripts used during registration.
+* **Group Containers by Managed**: Group the containers by Managed.
+* **Kubernetes IOM by Date Range**: Returns count of Kubernetes IOMs by date range.
+* **Kubernetes IOM Count**: Returns total count of Kubernetes IOMs.
+* **Kubernetes IOM Entities**: Retrieve Kubernetes IOM entities by IDs.
+* **Kubernetes IOM Entities Combined**: Retrieves list of Kubernetes IOMs by search criteria.
+* **List Azure Accounts**: Provides azure subscriptions registered to Kubernetes Protection.
+* **Node Combined**: Retrieve kubernetes nodes identified by filter criteria.
+* **Node Count**: Retrieve node counts.
+* **Node Enrichment**: Retrieve node enrichment data.
+* **Nodes by Cloud Count**: Bucket nodes by cloud providers.
+* **Nodes by Container Engine Version Count**: Bucket nodes by container engine version.
+* **Nodes by Date Range Count**: Retrieve nodes by date range counts.
+* **Patch Azure Service Principal**: Adds client ID for given tenant ID to system.
+* **Pod Combined**: Retrieve kubernetes pods identified by filter criteria.
+* **Pod Count**: Retrieve pod counts.
+* **Pod Enrichment**: Retrieve pod enrichment data.
+* **Pods by Date Range Count**: Retrieve pods by date range counts.
+* **Post Aggregates Pods**: Get aggregate query result for pods.
+* **Post Search Kubernetes IOM Entities**: Search for Kubernetes IOMs with filtering options.
+* **Query Kubernetes IOMs**: Search Kubernetes IOMs returning list of UUIDs.
+* **Read Cluster Combined V2**: Retrieve Kubernetes cluster data V2.
+* **Read Namespace Count**: Retrieve namespace counts.
+* **Read Namespaces by Date Range Count**: Retrieve namespaces by date range counts.
+* **Regenerate API Key**: Regenerate API key for docker registry integrations.
+* **Running Container Images**: Retrieve images on running containers.
+* **Trigger Scan**: Triggers dry run or full scan of kubernetes footprint.
+* **Update AWS Account**: Updates AWS account per query parameters.
+* **Vulnerable Container Image Count**: Retrieve count of vulnerable images running on containers.
+
+</details>
+
+<details>
+<summary>Maintenance Token</summary>
+
+* **Increment Uninstall Token**: Increments a bulk maintenance token.
+
+</details>
+
+<details>
+<summary>Malquery</summary>
+
+* **Get MalQuery Download V1**: Download a file indexed by MalQuery by SHA256.
+* **Get MalQuery Entities Samples Fetch V1**: Fetch a zip archive containing samples.
+* **Get MalQuery Metadata V1**: Retrieve indexed files metadata by hash.
+* **Get MalQuery Quotas V1**: Get search and download quota info.
+* **Get MalQuery Request V1**: Check status and results of async request.
+* **Post MalQuery Entities Samples Multidownload V1**: Schedule samples for download.
+* **Post MalQuery Exact Search V1**: Search MalQuery by hex patterns and strings.
+* **Post MalQuery Fuzzy Search V1**: Quick fuzzy search MalQuery for patterns.
+* **Post MalQuery Hunt V1**: Schedule YARA-based search execution.
+
+</details>
+
+<details>
+<summary>Message Center</summary>
+
+* **Aggregate Cases**: Retrieve aggregate case values.
+* **Case Add Activity**: Add activity comment to a case.
+* **Case Add Attachment**: Upload attachment to a case.
+* **Case Download Attachment**: Retrieve attachment by ID.
+* **Create Case V2**: Create a new case.
+* **Get Case Activity By IDs**: Retrieve activities for given IDs.
+* **Get Case Entities By IDs**: Retrieve message center cases.
+* **Query Activity By Case ID**: Retrieve activity IDs for a case.
+* **Query Cases IDs By Filter**: Retrieve case IDs matching filter.
+
+</details>
+
+<details>
+<summary>ML Exclusions</summary>
+
+* **Create ML Exclusions V1**: Create ML exclusions V1.
+* **Delete ML Exclusions V1**: Delete ML exclusions by ID.
+* **Exclusions Aggregates V2**: Get exclusion aggregates.
+* **Exclusions Create V2**: Create exclusions with ancestor fields.
+* **Exclusions Delete V2**: Delete exclusions with ancestor fields.
+* **Exclusions Get All V2**: Get all exclusions.
+* **Exclusions Get Reports V2**: Create report of ML exclusions.
+* **Exclusions Get V2**: Get exclusions by ID with ancestor fields.
+* **Exclusions Perform Action V2**: Manipulate exclusion content.
+* **Exclusions SDMF Query V1**: Execute SDMF data frame query.
+* **Exclusions Search V2**: Search for exclusions with ancestor fields.
+* **Exclusions Update V2**: Update exclusions with ancestor fields.
+* **Get ML Exclusions V1**: Get set of ML Exclusions by IDs.
+* **Query ML Exclusions V1**: Search for ML exclusions.
+* **Update ML Exclusions V1**: Update ML exclusions V1.
+
+</details>
+
+<details>
+<summary>Mobile Enrollment</summary>
+
+* **Request Device Enrollment V3**: Trigger onboarding process for mobile device V3.
+* **Request Device Enrollment V4**: Trigger onboarding process for mobile device V4.
+
+</details>
+
+<details>
+<summary>MSSP</summary>
+
+* **Add CID Group Members**: Add new CID group member.
+* **Add Role**: Create link between user group and CID group with roles.
+* **Add User Group Members**: Add new user group member.
+* **Create CID Groups**: Create new CID groups.
+* **Create User Groups**: Create new user groups.
+* **Delete CID Group Members**: Delete CID group members (Deprecated).
+* **Delete CID Group Members V2**: Delete CID group members V2.
+* **Delete CID Groups**: Delete CID groups by ID.
+* **Delete User Group Members**: Delete user group members entry.
+* **Delete User Groups**: Delete user groups by ID.
+* **Deleted Roles**: Delete links or additional roles between user groups and CID groups.
+* **Get CID Group by ID**: Get CID groups by ID (Deprecated).
+* **Get CID Group by ID V2**: Get CID Groups by ID V2.
+* **Get CID Group Members By**: Get CID group members by CID group ID (Deprecated).
+* **Get CID Group Members By V2**: Get CID group members by CID Group ID V2.
+* **Get Children**: Get link to child customer by child CID(s).
+* **Get Children V2**: Get link to child customer by child CID(s) V2.
+* **Get Roles by ID**: Get link between user group and CID group by ID.
+* **Get User Group Members by ID**: Get user group members by user group ID (Deprecated).
+* **Get User Group Members by ID V2**: Get user group members by user group ID V2.
+* **Get User Groups by ID**: Get user groups by ID (Deprecated).
+* **Get User Groups by ID V2**: Get user groups by ID V2.
+* **Query CID Group Members**: Query a CID groups members by associated CID.
+* **Query CID Groups**: Query CID groups.
+* **Query Children**: Query for customers linked as children.
+* **Query Roles**: Query links between user groups and CID groups.
+* **Query User Group Members**: Query user group member by user UUID.
+* **Query User Groups**: Query user groups.
+* **Update CID Groups**: Update existing CID groups.
+* **Update User Groups**: Update existing user group(s).
+
+</details>
+
+<details>
+<summary>Network Scan Global Configs</summary>
+
+* **Get Global Configs**: Get global configs for the CID.
+* **Update Global Configs**: Update global configs using provided specifications.
+
+</details>
+
+<details>
+<summary>Network Scan Networks</summary>
+
+* **Aggregate Networks**: Returns networks aggregations.
+* **Create Networks**: Create networks using provided specifications.
+* **Delete Networks**: Delete networks by their IDs.
+* **Get Networks**: Get networks by their IDs.
+* **Query Networks**: Get networks IDs by filter.
+* **Update Networks**: Update networks using provided specifications.
+
+</details>
+
+<details>
+<summary>Network Scan Scan Run Reports</summary>
+
+* **Get Scan Run Reports**: Downloads scan run report in CSV format.
+
+</details>
+
+<details>
+<summary>Network Scan Scan Runs</summary>
+
+* **Aggregate Scan Runs**: Returns scan-runs aggregations.
+* **Create Scan Runs**: Create scan-runs using provided specifications.
+* **Get Scan Runs**: Get scan-runs by their IDs.
+* **Query Scan Runs**: Get scan-runs IDs by filter.
+* **Update Scan Runs**: Update scan-runs using provided specifications.
+
+</details>
+
+<details>
+<summary>Network Scan Scanners</summary>
+
+* **Aggregate Scanners**: Returns scanners aggregations.
+* **Get Scanners**: Get scanners by their IDs.
+* **Query Scanners**: Get scanners IDs by filter.
+* **Update Scanners**: Update scanners using provided specifications.
+
+</details>
+
+<details>
+<summary>Network Scan Scans</summary>
+
+* **Aggregate Scans**: Returns scans aggregations.
+* **Create Scans**: Create scans using provided specifications.
+* **Delete Scans**: Delete scans by their IDs.
+* **Get Scans**: Get scans by their IDs.
+* **Query Scans**: Get scans IDs by filter.
+* **Update Scans**: Update scans using provided specifications.
+
+</details>
+
+<details>
+<summary>Network Scan Templates</summary>
+
+* **Create Templates**: Create templates using provided specifications.
+* **Delete Templates**: Delete templates by their IDs.
+* **Get Template Configs**: Get details on network scan template configurations.
+* **Get Templates**: Get templates by their IDs.
+* **Query Templates**: Get templates IDs by filter.
+* **Update Templates**: Update templates using provided specifications.
+
+</details>
+
+<details>
+<summary>Network Scan Zones</summary>
+
+* **Aggregate Zones**: Returns zones aggregations.
+* **Combined Zones**: Get zones by filter.
+* **Create Zones**: Create zones using provided specifications.
+* **Delete Zones**: Delete zones by their IDs.
+* **Get Zones**: Get zones by their IDs.
+* **Query Zones**: Get zones IDs by filter.
+* **Update Zones**: Update zones using provided specifications.
+
+</details>
+
+<details>
+<summary>NGSIEM</summary>
+
+* **Bulk Create Dashboards from Template**: Create Multiple Dashboards from YAML Templates.
+* **Bulk Create Lookup Files**: Create Multiple Lookup Files.
+* **Bulk Create Saved Queries from Template**: Create Multiple Saved Queries from LogScale YAML Templates.
+* **Bulk Get Lookup Files**: Retrieve Multiple Lookup Files by Filenames in NGSIEM.
+* **Bulk Install Parsers**: Installs multiple CrowdStrike-managed OOTB parsers.
+* **Bulk Update Dashboards from Template**: Update Multiple Dashboards from YAML Templates.
+* **Bulk Update Lookup Files**: Update Multiple Lookup Files.
+* **Bulk Update Saved Queries from Template**: Update Multiple Saved Queries from LogScale YAML Templates.
+* **Clone Parser**: Clone an existing parser with a new name.
+* **Create Dashboard from Template**: Create Dashboard from LogScale YAML Template in NGSIEM.
+* **Create Lookup File**: Create Lookup File in NGSIEM.
+* **Create Parser**: Create Parser in NGSIEM (Deprecated).
+* **Create Parser Extension**: Create a Parser extension in NGSIEM for provided base parser.
+* **Create Parser from Template**: Create Parser from LogScale YAML Template in NGSIEM.
+* **Create Saved Query**: Create Saved Query from LogScale YAML Template in NGSIEM.
+* **Delete Dashboard**: Delete Dashboard in NGSIEM.
+* **Delete Lookup File**: Delete Lookup File in NGSIEM.
+* **Delete Parser**: Delete Parser in NGSIEM.
+* **Delete Saved Query**: Delete Saved Query in NGSIEM.
+* **External Create Connector Config**: Create a new configuration for a data connector.
+* **External Create Data Connection**: Create a new data connection.
+* **External Delete Connector Configs**: Delete data connection config.
+* **External Delete Data Connection**: Delete a data connection.
+* **External Get Data Connection by ID**: Get data connection by ID.
+* **External Get Data Connection Status**: Get data connection provisioning status.
+* **External Get Data Connection Token**: Get Ingest token for data connection.
+* **External List Connector Configs**: List configurations for a data connector.
+* **External List Data Connections**: List and search data connections.
+* **External List Data Connectors**: List available data connectors.
+* **External Patch Connector Config**: Patch configurations for a data connector.
+* **External Regenerate Data Connection Token**: Regenerate Ingest token for data connection.
+* **External Update Data Connection**: Update a data connection.
+* **External Update Data Connection Status**: Update data connection status.
+* **Get Dashboard Template**: Retrieve Dashboard(s) in NGSIEM as LogScale YAML Template.
+* **Get Lookup File**: Retrieve Lookup File in NGSIEM.
+* **Get Lookup from Package V1**: Download lookup file in package from NGSIEM.
+* **Get Lookup from Package with Namespace V1**: Download lookup file in namespaced package from NGSIEM.
+* **Get Lookup V1**: Download lookup file from NGSIEM.
+* **Get Parser**: Retrieve Parser in NGSIEM (Deprecated).
+* **Get Parser Template**: Retrieve Parser in NGSIEM as LogScale YAML Template.
+* **Get Saved Query Template**: Retrieve Saved Quer(ies) in NGSIEM as LogScale YAML Template.
+* **Get Search Status V1**: Get status of search.
+* **Install Parser**: Installs a CrowdStrike-managed OOTB parser.
+* **List Dashboards**: List Dashboards in NGSIEM with Pagination and Filtering.
+* **List Lookup Files**: List Lookup Files in NGSIEM with Pagination and Filtering.
+* **List Parsers**: List Parsers in NGSIEM.
+* **List Saved Queries**: List Saved Queries in NGSIEM with Pagination and Filtering.
+* **Start Search V1**: Initiate search.
+* **Stop Search V1**: Stop search.
+* **Test Parser from Template**: Test Parser from LogScale YAML Template in NGSIEM.
+* **Update Dashboard from Template**: Update Dashboard from LogScale YAML Template in NGSIEM.
+* **Update Lookup File**: Update an entire Lookup File in NGSIEM.
+* **Update Lookup File Entries**: Update entries in an existing Lookup File in NGSIEM.
+* **Update Parser**: Update Parser in NGSIEM (Deprecated).
+* **Update Parser Auto Update Policy**: Updates a parser auto update policy.
+* **Update Parser Extension**: Update an existing Parser extension in NGSIEM.
+* **Update Parser from Template**: Update Parser in NGSIEM from YAML Template.
+* **Update Saved Query from Template**: Update Saved Query from LogScale YAML Template in NGSIEM.
+* **Upload Lookup V1**: Upload file to NGSIEM.
+
+</details>
+
+<details>
+<summary>OAuth2</summary>
+
+* **OAuth2 Access Token**: Generate an OAuth2 access token.
+* **OAuth2 Revoke Token**: Revoke a previously issued OAuth2 access token.
+
+</details>
+
+<details>
+<summary>ODS</summary>
+
+* **Aggregate Query Scan Host Metadata**: Get aggregates on ODS scan-hosts data.
+* **Aggregate Scans**: Get aggregates on ODS scan data.
+* **Aggregate Scheduled Scans**: Get aggregates on ODS scheduled-scan data.
+* **Cancel Scans**: Cancel ODS scans for given scan IDs.
+* **Create Scan**: Create ODS scan and start or schedule scan.
+* **Delete Scheduled Scans**: Delete ODS scheduled-scans for given scheduled-scan IDs.
+* **Get Malicious Files by IDs**: Get malicious files by IDs.
+* **Get Scan Host Metadata by IDs**: Get scan hosts by IDs.
+* **Get Scans by Scan IDs**: Get Scans by IDs.
+* **Get Scans by Scan IDs V2**: Get Scans by IDs V2.
+* **Get Scheduled Scans by Scan IDs**: Get ScheduledScans by IDs.
+* **Query Malicious Files**: Query malicious files.
+* **Query Scan Host Metadata**: Query scan hosts.
+* **Query Scans**: Query Scans.
+* **Query Scheduled Scans**: Query ScheduledScans.
+* **Schedule Scan**: Create ODS scan and start or schedule scan for given scan request.
+
+</details>
+
+<details>
+<summary>Prevention Policies</summary>
+
+* **Create Prevention Policies**: Create Prevention Policies by specifying details about policy to create.
+* **Delete Prevention Policies**: Delete a set of Prevention Policies by specifying their IDs.
+* **Get Prevention Policies**: Retrieve a set of Prevention Policies by specifying their IDs.
+* **Perform Prevention Policies Action**: Perform specified action on Prevention Policies.
+* **Query Combined Prevention Policies**: Search for Prevention Policies in environment matching filter criteria.
+* **Query Combined Prevention Policy Members**: Search for members of a Prevention Policy returning host details.
+* **Query Prevention Policies**: Search for Prevention Policies returning IDs matching filter criteria.
+* **Query Prevention Policy Members**: Search for members of a Prevention Policy returning Agent IDs.
+* **Set Prevention Policies Precedence**: Sets precedence of Prevention Policies based on order of IDs.
+* **Update Prevention Policies**: Update Prevention Policies by specifying ID and details to update.
+
+</details>
+
+<details>
+<summary>Profile Groups</summary>
+
+* **Create Group V1**: Creates a new profile group.
+* **Delete Groups V1**: Deletes profile groups by IDs.
+* **Get Group Users V1**: Returns information about a group\.
+* **Get Groups V1**: Returns profile groups with details by IDs.
+* **Get User Groups V1**: Returns information about a user\.
+* **Group Actions V1**: Perform actions on profile groups (roles, user groups, FGA objects).
+* **Group Users Actions V1**: Add or remove users from profile groups.
+* **Query Groups V1**: Returns list of profile group IDs available to actor.
+* **Update Group V1**: Updates existing profile group metadata.
+
+</details>
+
+<details>
+<summary>Quarantine</summary>
+
+* **Action Update Count**: Returns count of potentially affected quarantined files for each action.
+* **Get Aggregate Files**: Get quarantine file aggregates as specified via JSON in request body.
+* **Get Quarantine Files**: Get quarantine file metadata for specified IDs.
+* **Query Quarantine Files**: Get quarantine file IDs that match filter criteria.
+* **Update Qf by Query**: Apply quarantine file actions by query.
+* **Update Quarantined Detects by IDs**: Apply action by quarantine file IDs.
+
+</details>
+
+<details>
+<summary>Quick Scan</summary>
+
+* **Get Scans**: Check status of volume scan.
+* **Get Scans Aggregates**: Get scans aggregations as specified via JSON in request body.
+* **Query Submissions**: Find IDs for submitted scans by providing FQL filter.
+* **Scan Samples**: Submit a volume of files for ML scanning.
+
+</details>
+
+<details>
+<summary>Quick Scan Pro</summary>
+
+* **Delete File**: Deletes file by its SHA256 identifier.
+* **Delete Scan Result**: Deletes result of QuickScan Pro scan.
+* **Get Scan Result**: Gets result of QuickScan Pro scan.
+* **Launch Scan**: Starts scanning a file uploaded through QuickScan Pro.
+* **Query Scan Results**: FQL query specifying filter parameters.
+* **Upload File QuickScan Pro**: Uploads a file to be further analyzed with QuickScan Pro.
+
+</details>
+
+<details>
+<summary>Real-Time Response</summary>
+
+* **Batch Active Responder Cmd**: Batch executes RTR active-responder command across hosts.
+* **Batch Cmd**: Batch executes RTR read-only command across hosts.
+* **Batch Get Cmd**: Batch executes get command across hosts to retrieve files.
+* **Batch Get Cmd Status**: Retrieves status of specified batch get command.
+* **Batch Init Sessions**: Batch initialize a RTR session on multiple hosts.
+* **Batch Refresh Sessions**: Batch refresh a RTR session on multiple hosts.
+* **RTR Aggregate Sessions**: Get aggregates on session data.
+* **RTR Check Active Responder Command Status**: Get status of executed active-responder command on single host.
+* **RTR Check Command Status**: Get status of executed command on single host.
+* **RTR Delete File**: Delete a RTR session file.
+* **RTR Delete File V2**: Delete a RTR session file V2.
+* **RTR Delete Queued Session**: Delete a queued session command.
+* **RTR Delete Session**: Delete a session.
+* **RTR Execute Active Responder Command**: Execute an active responder command on single host.
+* **RTR Execute Command**: Execute a command on single host.
+* **RTR Get Extracted File Contents**: Get RTR extracted file contents for session and SHA256.
+* **RTR Init Session**: Initialize a new session with RTR cloud.
+* **RTR List All Sessions**: Get a list of session IDs.
+* **RTR List Files**: Get a list of files for specified RTR session.
+* **RTR List Files V2**: Get a list of files for specified RTR session V2.
+* **RTR List Queued Sessions**: Get queued session metadata by session ID.
+* **RTR List Sessions**: Get session metadata by session ID.
+* **RTR Pulse Session**: Refresh a session timeout on a single host.
+
+</details>
+
+<details>
+<summary>Real-Time Response Admin</summary>
+
+* **Batch Admin Cmd**: Batch executes RTR admin command across hosts.
+* **RTR Check Admin Command Status**: Get status of executed RTR admin command on host.
+* **RTR Create Put Files**: Upload a new put-file for RTR put command.
+* **RTR Create Put Files V2**: Upload a new put-file for RTR put command V2.
+* **RTR Create Scripts**: Upload a new custom-script for RTR runscript command.
+* **RTR Create Scripts V2**: Upload a new custom-script for RTR runscript command V2.
+* **RTR Delete Put Files**: Delete put-file based on ID.
+* **RTR Delete Scripts**: Delete custom-script based on ID.
+* **RTR Execute Admin Command**: Execute RTR admin command on single host.
+* **RTR Get Falcon Scripts**: Get Falcon scripts with metadata and content.
+* **RTR Get Put File Contents**: Get RTR put file contents for given file ID.
+* **RTR Get Put Files**: Get put-files based on IDs.
+* **RTR Get Put Files V2**: Get put-files based on IDs V2.
+* **RTR Get Scripts**: Get custom-scripts based on IDs.
+* **RTR Get Scripts V2**: Get custom-scripts based on IDs V2.
+* **RTR List Falcon Scripts**: Get list of Falcon script IDs available to user.
+* **RTR List Put Files**: Get list of put-file IDs available for put command.
+* **RTR List Scripts**: Get list of custom-script IDs available for runscript command.
+* **RTR Update Scripts**: Upload a new script to replace existing one.
+* **RTR Update Scripts V2**: Upload a new script to replace existing one V2.
+
+</details>
+
+<details>
+<summary>Real-Time Response Audit</summary>
+
+* **RTR Audit Sessions**: Get all RTR sessions created for customer in specified duration.
+
+</details>
+
+<details>
+<summary>Recon</summary>
+
+* **Aggregate Notifications Exposed Data Records V1**: Get notification exposed data record aggregates.
+* **Aggregate Notifications V1**: Get notification aggregates.
+* **Create Actions V1**: Create actions for a monitoring rule.
+* **Create Export Jobs V1**: Launch asynchronous export job.
+* **Create Rules V1**: Create monitoring rules.
+* **Delete Action V1**: Delete an action from a monitoring rule based on ID.
+* **Delete Export Jobs V1**: Delete export jobs based on IDs.
+* **Delete Notifications V1**: Delete notifications based on IDs.
+* **Delete Rules V1**: Delete monitoring rules.
+* **Get Actions V1**: Get actions based on their IDs.
+* **Get Export Jobs V1**: Get status of export jobs based on IDs.
+* **Get File Content for Export Jobs V1**: Download file associated with job ID.
+* **Get Notifications Detailed Translated V1**: Get detailed translated notifications based on IDs.
+* **Get Notifications Detailed V1**: Get detailed notifications based on IDs.
+* **Get Notifications Exposed Data Records V1**: Get notifications exposed data records based on IDs.
+* **Get Notifications Translated V1**: Get translated notifications based on IDs.
+* **Get Notifications V1**: Get notifications based on IDs.
+* **Get Rules V1**: Get monitoring rules based on IDs.
+* **Preview Rule V1**: Preview rules notification count and distribution.
+* **Query Actions V1**: Query actions based on provided criteria.
+* **Query Notifications Exposed Data Records V1**: Query notifications exposed data records based on criteria.
+* **Query Notifications V1**: Query notifications based on provided criteria.
+* **Query Rules V1**: Query monitoring rules based on provided criteria.
+* **Update Action V1**: Update an action for a monitoring rule.
+* **Update Notifications V1**: Update notification status or assignee.
+* **Update Rules V1**: Update monitoring rules.
+
+</details>
+
+<details>
+<summary>Release Notes</summary>
+
+* **Combined Release Notes V1**: Queries for release-notes resources and returns details.
+* **Get Entity IDs by Query POST**: Returns release notes for IDs in request.
+* **Get Entity IDs by Query POST V2**: Returns release notes for IDs with EA and GA dates in ISO 8601 format.
+* **Query Release Notes V1**: Queries for release-notes resources and returns IDs.
+
+</details>
+
+<details>
+<summary>Releases</summary>
+
+* **Combined Releases V1**: Queries for releases resources and returns details.
+
+</details>
+
+<details>
+<summary>Report Executions</summary>
+
+* **Report Executions Download Get**: Get report entity download.
+* **Report Executions Get**: Retrieve report details for provided report IDs.
+* **Report Executions Query**: Find all report execution IDs matching query with filter.
+* **Report Executions Retry**: Retry report executions.
+
+</details>
+
+<details>
+<summary>Response Policies</summary>
+
+* **Create RT Response Policies**: Create Response Policies by specifying details about policy to create.
+* **Delete RT Response Policies**: Delete a set of Response Policies by specifying their IDs.
+* **Get RT Response Policies**: Retrieve a set of Response Policies by specifying their IDs.
+* **Perform RT Response Policies Action**: Perform specified action on Response Policies.
+* **Query Combined RT Response Policies**: Search for Response Policies in environment matching filter criteria.
+* **Query Combined RT Response Policy Members**: Search for members of a Response policy returning host details.
+* **Query RT Response Policies**: Search for Response Policies returning IDs matching filter criteria.
+* **Query RT Response Policy Members**: Search for members of a Response policy returning Agent IDs.
+* **Set RT Response Policies Precedence**: Sets precedence of Response Policies based on order of IDs.
+* **Update RT Response Policies**: Update Response Policies by specifying ID and details to update.
+
+</details>
+
+<details>
+<summary>Runtime Detections</summary>
+
+* **Get Runtime Detections Combined V2**: Retrieve container runtime detections by search criteria.
+
+</details>
+
+<details>
+<summary>SaaS Security</summary>
+
+* **Dismiss Affected Entity V3**: Perform dismiss to an affected entity in a security check.
+* **Dismiss Security Check V3**: Perform dismiss to a security check by ID.
+* **Get Activity Monitor V3**: Get a list of all events in monitor.
+* **Get Alerts V3**: Get data on specific alert or list of all alerts.
+* **Get App Inventory**: Get a list of all apps in Applications inventory.
+* **Get App Inventory Users**: Get users associated with an app from Applications inventory.
+* **Get Asset Inventory V3**: Get a list of all assets in Data inventory.
+* **Get Device Inventory V3**: Get a list of all devices.
+* **Get Integrations V3**: Get a list of connected integrations in your account.
+* **Get Metrics V3**: Get metrics on security checks.
+* **Get Security Check Affected V3**: Get a list of affected entities.
+* **Get Security Check Compliance V3**: Get a list of compliance standards attached to a check.
+* **Get Security Checks V3**: Get specific security check by ID or list all security checks.
+* **Get Supported SaaS V3**: Get a list of supported integrations.
+* **Get System Logs V3**: Get a list of all system logs.
+* **Get System Users V3**: Get a list of system users.
+* **Get User Inventory V3**: Get a list of all users.
+* **Integration Builder End Transaction V3**: Make close transaction call after uploading data.
+* **Integration Builder Get Status V3**: Get transaction status for custom integration.
+* **Integration Builder Reset V3**: Make a reset call to custom integration.
+* **Integration Builder Upload V3**: Send data to specific source in custom integration.
+
+</details>
+
+<details>
+<summary>Sample Uploads</summary>
+
+* **Archive Delete V1**: Delete an archive that was uploaded previously.
+* **Archive Get V1**: Retrieves archive upload operation status.
+* **Archive List V1**: Retrieves archive files in chunks.
+* **Archive Upload V1**: Uploads an archive and extracts files list.
+* **Archive Upload V2**: Uploads an archive and extracts files list V2.
+* **Delete Sample V3**: Removes sample including file, meta and submissions.
+* **Extraction Create V1**: Extracts files from uploaded archive.
+* **Extraction Get V1**: Retrieves files extraction operation status.
+* **Extraction List V1**: Retrieves files extractions in chunks.
+* **Get Sample V3**: Retrieves file associated with given ID SHA256.
+* **Upload Sample V3**: Upload a file for further cloud analysis.
+
+</details>
+
+<details>
+<summary>Scanning Orchestrator</summary>
+
+* **Create Schedules**: Create one or more scanning schedules.
+* **Delete Schedules**: Delete one or more scanning schedules by ID.
+* **Get Combined Schedules**: Get schedules with pagination, sorting, and filtering.
+* **Get Schedules**: Get scanning schedules by their IDs.
+* **Get Service Types**: Returns list of service types available for scanning.
+* **Search Schedules**: Search schedules and return IDs with pagination, sorting, and filtering.
+* **Trigger Scan by Schedule**: Triggers an immediate scan for given schedule IDs.
+* **Update Schedules**: Updates one or more scanning schedules.
+
+</details>
+
+<details>
+<summary>Scheduled Reports</summary>
+
+* **Execute**: Launch scheduled report executions for report IDs.
+* **Query**: Find all report IDs matching query with filter.
+* **Query By ID**: Retrieve scheduled reports for provided report IDs.
+
+</details>
+
+<details>
+<summary>Sensor Download</summary>
+
+* **Download Sensor Installer By ID**: Download sensor installer by SHA256 ID.
+* **Download Sensor Installer By ID V2**: Download sensor installer by SHA256 ID V2.
+* **Download Sensor Installer By ID V3**: Download sensor installer by SHA256 ID V3.
+* **Get Combined Sensor Installers By Query**: Get sensor installer details by query.
+* **Get Combined Sensor Installers By Query V2**: Get sensor installer details by query V2.
+* **Get Combined Sensor Installers By Query V3**: Get sensor installer details by query V3.
+* **Get Sensor Installers By Query**: Get sensor installer IDs by query.
+* **Get Sensor Installers By Query V2**: Get sensor installer IDs by query V2.
+* **Get Sensor Installers By Query V3**: Get sensor installer IDs by query V3.
+* **Get Sensor Installers CCID By Query**: Get CCID to use with sensor installers.
+* **Get Sensor Installers Entities**: Get sensor installer details by SHA256 IDs.
+* **Get Sensor Installers Entities V2**: Get sensor installer details by SHA256 IDs V2.
+* **Get Sensor Installers Entities V3**: Get sensor installer details by SHA256 IDs V3.
+
+</details>
+
+<details>
+<summary>Sensor Update Policies</summary>
+
+* **Create Sensor Update Policies**: Create Sensor Update Policies.
+* **Create Sensor Update Policies V2**: Create Sensor Update Policies with uninstall protection.
+* **Delete Sensor Update Policies**: Delete Sensor Update Policies by IDs.
+* **Get Sensor Update Policies**: Retrieve Sensor Update Policies by IDs.
+* **Get Sensor Update Policies V2**: Retrieve Sensor Update Policies with uninstall protection by IDs.
+* **Perform Sensor Update Policies Action**: Perform action on Sensor Update Policies.
+* **Query Combined Sensor Update Builds**: Retrieve available builds for policies.
+* **Query Combined Sensor Update Kernels**: Retrieve kernel compatibility info.
+* **Query Combined Sensor Update Policies**: Search policies returning full entities.
+* **Query Combined Sensor Update Policies V2**: Search policies with uninstall protection returning full entities.
+* **Query Combined Sensor Update Policy Members**: Search members of a policy returning host details.
+* **Query Sensor Update Kernels Distinct**: Retrieve distinct kernel compatibility info.
+* **Query Sensor Update Policies**: Search policy IDs matching criteria.
+* **Query Sensor Update Policy Members**: Search member Agent IDs of a policy.
+* **Reveal Uninstall Token**: Reveals an uninstall token for a specific device.
+* **Set Sensor Update Policies Precedence**: Sets precedence of Sensor Update Policies.
+* **Update Sensor Update Policies**: Update Sensor Update Policies.
+* **Update Sensor Update Policies V2**: Update Sensor Update Policies with uninstall protection.
+
+</details>
+
+<details>
+<summary>Sensor Usage API</summary>
+
+* **Get Sensor Usage Hourly**: Fetches hourly average of unique AIDs for previous 28 days.
+* **Get Sensor Usage Weekly**: Fetches weekly average of unique AIDs for previous 28 days.
+
+</details>
+
+<details>
+<summary>Sensor Visibility Exclusions</summary>
+
+* **Create SV Exclusions V1**: Create sensor visibility exclusions V1.
+* **Delete Sensor Visibility Exclusions V1**: Delete sensor visibility exclusions by ID.
+* **Get Sensor Visibility Exclusions V1**: Get sensor visibility exclusions by IDs.
+* **Query Sensor Visibility Exclusions V1**: Search sensor visibility exclusions.
+* **Update Sensor Visibility Exclusions V1**: Update sensor visibility exclusions V1.
+
+</details>
+
+<details>
+<summary>Serverless Exports</summary>
+
+* **Download Export File**: Download an export file.
+* **Launch Export Job**: Launch export job of Lambda Security resource.
+* **Query Export Jobs**: Query export jobs entities.
+* **Read Export Jobs**: Read export jobs entities.
+
+</details>
+
+<details>
+<summary>Serverless Vulnerabilities</summary>
+
+* **Get Combined Vulnerabilities SARIF**: Retrieve all lambda vulnerabilities matching query in SARIF format.
+
+</details>
+
+<details>
+<summary>Spotlight Evaluation Logic</summary>
+
+* **Combined Query Evaluation Logic**: Search evaluation logic returning full entities.
+* **Get Evaluation Logic**: Get details on evaluation logic items by IDs.
+* **Query Evaluation Logic**: Search evaluation logic returning IDs.
+
+</details>
+
+<details>
+<summary>Spotlight Supported Evaluation</summary>
+
+* **Combined Supported Evaluation Ext**: Performs combined query for retrieving RiskSupportedEvaluation entities.
+
+</details>
+
+<details>
+<summary>Spotlight Vulnerabilities</summary>
+
+* **Combined Query Vulnerabilities**: Search vulnerabilities returning full entities.
+* **Get Remediations V2**: Get details on remediation by IDs.
+* **Get Vulnerabilities**: Get details on vulnerabilities by IDs.
+* **Query Vulnerabilities**: Search vulnerabilities returning IDs.
+
+</details>
+
+<details>
+<summary>Spotlight Vulnerability Metadata</summary>
+
+* **Combine Vuln Metadata Ext**: Performs combined query for retrieving Risk entities.
+
+</details>
+
+<details>
+<summary>Stream</summary>
+
+* **Stream Invocation Response V1**: Retrieves the stream of results for an invocation.
+
+</details>
+
+<details>
+<summary>Tailored Intelligence</summary>
+
+* **Get Events Body**: Get event body for event ID.
+* **Get Events Entities**: Get events entities for specified IDs.
+* **Get Rules Entities**: Get rules entities for specified IDs.
+* **Query Events**: Get events IDs matching filter criteria.
+* **Query Rules**: Get rules IDs matching filter criteria.
+
+</details>
+
+<details>
+<summary>Threatgraph</summary>
+
+* **Combined Edges Get**: Retrieve edges for a given vertex ID.
+* **Combined Ran On Get**: Look up instances of indicators seen on devices.
+* **Combined Summary Get**: Retrieve summary for a given vertex ID.
+* **Entities Vertices Get**: Retrieve metadata for a given vertex ID (Legacy).
+* **Entities Vertices Get V2**: Retrieve metadata for a given vertex ID V2.
+* **Queries Edgetypes Get**: Show all available edge types.
+
+</details>
+
+<details>
+<summary>Unidentified Containers</summary>
+
+* **Count**: Returns total count of Unidentified Containers over a time period.
+* **Count By Date Range**: Returns count of Unidentified Containers over last 7 days.
+* **Search**: Search Unidentified Containers by provided search criteria.
+
+</details>
+
+<details>
+<summary>User Management</summary>
+
+* **Aggregate Users V1**: Get user aggregates as specified in body.
+* **Combined User Roles V1**: Get user grant(s) between user and customer V1.
+* **Combined User Roles V2**: Get user grant(s) between user and customer V2.
+* **Create User**: Create a new user (Legacy).
+* **Create User V1**: Create a new user V1.
+* **Delete User**: Delete a user permanently (Legacy).
+* **Delete User V1**: Delete a user permanently V1.
+* **Entities Roles GET V2**: Get info about a role V2.
+* **Entities Roles V1**: Get info about a role V1.
+* **Get Available Role IDs**: Show role IDs available in customer account.
+* **Get Roles**: Get info about a role (Legacy).
+* **Get User Role IDs**: Show role IDs assigned to a user.
+* **Grant User Role IDs**: Assign roles to a user.
+* **Queries Roles V1**: Show role IDs for all roles available in customer account V1.
+* **Query User V1**: List user IDs for all users in customer account.
+* **Retrieve Emails By CID**: List usernames for all users in customer account.
+* **Retrieve User**: Get info about a user (Legacy).
+* **Retrieve User UUID**: Get user ID by username.
+* **Retrieve User UUIDs By CID**: List user IDs for all users in customer account (Legacy).
+* **Retrieve Users GET V1**: Get info about users by UUIDs.
+* **Revoke User Role IDs**: Revoke roles from a user.
+* **Update User**: Modify existing user name (Legacy).
+* **Update User V1**: Modify existing user name V1.
+* **User Action V1**: Apply actions (reset_2fa, reset_password) to users.
+* **User Roles Action V1**: Grant or revoke roles for a user against CID.
+
+</details>
+
+<details>
+<summary>Workflows</summary>
+
+* **Deprovision**: Deprovisions a system definition provisioned on target CID.
+* **Execute**: Executes an on-demand Workflow.
+* **Execution Action**: Resume, retry, cancel, or stop workflow execution.
+* **Execution Results**: Get execution result of a given execution.
+* **Promote**: Promotes a version of a system definition for a customer.
+* **Provision**: Provisions a system definition onto target CID.
+* **V1 Child Executions Query**: Search for child executions by FQL filter.
+* **Workflow Activities Combined**: Search for activities by name.
+* **Workflow Activities Content Combined**: Search for activities content by name.
+* **Workflow Definitions Action**: Enable or disable a workflow definition.
+* **Workflow Definitions Combined**: Search workflow definitions based on filter.
+* **Workflow Definitions Delete**: Delete workflow definitions and associated versions.
+* **Workflow Definitions Export**: Exports a workflow definition by ID.
+* **Workflow Definitions Import**: Imports a workflow definition based on model.
+* **Workflow Definitions Update**: Updates a workflow definition based on model.
+* **Workflow Execute Internal**: Executes an on-demand Workflow (Internal).
+* **Workflow Execute Single Node V1**: Executes a single activity node.
+* **Workflow Executions Combined**: Search workflow executions based on filter.
+* **Workflow Get Human Input V1**: Gets specific human inputs by IDs.
+* **Workflow Mock Execute**: Executes a workflow definition with mocks.
+* **Workflow Triggers Combined**: Search for triggers by namespaced identifier.
+* **Workflow Update Human Input V1**: Provides an input in response to a human input action.
+
+</details>
+
+<details>
+<summary>Zero Trust Assessment</summary>
+
+* **Get Assessment V1**: Get Zero Trust Assessment data for hosts by Agent IDs.
+* **Get Assessments By Score V1**: Get Zero Trust Assessment data by range of scores.
+* **Get Audit V1**: Get Zero Trust Assessment audit report for customer ID.
+
+</details>
 
 ## Credentials
 
@@ -1377,6 +2359,7 @@ To authenticate with CrowdStrike Falcon, you must create API client credentials 
 * **Client ID**: Paste your API Client ID.
 * **Client Secret**: Paste your API Client Secret.
 * **Cloud / Region**: Select your CrowdStrike cloud environment (e.g., `us-1`, `us-2`, `eu-1`, `us-gov-1`).
+* **Member CID**: (Optional) Provide Member CID for MSSP targeting if your key pair has access to multiple CID environments.
 
 The node handles OAuth2 token generation, caching, and transparent renewal automatically.
 
