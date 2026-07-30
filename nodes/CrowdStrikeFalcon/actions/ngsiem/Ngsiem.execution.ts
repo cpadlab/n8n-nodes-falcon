@@ -21,138 +21,182 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles bulkCreateDashboardsFromTemplate */
+/**
+ * Handles the 'bulkCreateDashboardsFromTemplate' operation.
+ */
 async function handleBulkCreateDashboardsFromTemplate(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create Multiple Dashboards from YAML Templates. */
 	return await fc.ngsiem.bulkCreateDashboardsFromTemplate(parseJsonParam(c, i));
 }
 
-/** Handles bulkCreateLookupFiles */
+/**
+ * Handles the 'bulkCreateLookupFiles' operation.
+ */
 async function handleBulkCreateLookupFiles(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create Multiple Lookup Files. */
 	return await fc.ngsiem.bulkCreateLookupFiles(parseJsonParam(c, i));
 }
 
-/** Handles bulkCreateSavedQueriesFromTemplate */
+/**
+ * Handles the 'bulkCreateSavedQueriesFromTemplate' operation.
+ */
 async function handleBulkCreateSavedQueriesFromTemplate(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create Multiple Saved Queries from LogScale YAML Templates. */
 	return await fc.ngsiem.bulkCreateSavedQueriesFromTemplate(parseJsonParam(c, i));
 }
 
-/** Handles bulkGetLookupFiles */
+/**
+ * Handles the 'bulkGetLookupFiles' operation.
+ */
 async function handleBulkGetLookupFiles(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve Multiple Lookup Files by Filenames in NGSIEM. */
 	const filename = parseArrayParam(c, i, 'filename');
 	return await fc.ngsiem.bulkGetLookupFiles(filename);
 }
 
-/** Handles bulkInstallParsers */
+/**
+ * Handles the 'bulkInstallParsers' operation.
+ */
 async function handleBulkInstallParsers(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Installs multiple CrowdStrike-managed OOTB parsers. */
 	return await fc.ngsiem.bulkInstallParsers(parseJsonParam(c, i));
 }
 
-/** Handles bulkUpdateDashboardsFromTemplate */
+/**
+ * Handles the 'bulkUpdateDashboardsFromTemplate' operation.
+ */
 async function handleBulkUpdateDashboardsFromTemplate(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update Multiple Dashboards from YAML Templates. */
 	return await fc.ngsiem.bulkUpdateDashboardsFromTemplate(parseJsonParam(c, i));
 }
 
-/** Handles bulkUpdateLookupFiles */
+/**
+ * Handles the 'bulkUpdateLookupFiles' operation.
+ */
 async function handleBulkUpdateLookupFiles(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update Multiple Lookup Files. */
 	return await fc.ngsiem.bulkUpdateLookupFiles(parseJsonParam(c, i));
 }
 
-/** Handles bulkUpdateSavedQueriesFromTemplate */
+/**
+ * Handles the 'bulkUpdateSavedQueriesFromTemplate' operation.
+ */
 async function handleBulkUpdateSavedQueriesFromTemplate(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update Multiple Saved Queries from LogScale YAML Templates. */
 	return await fc.ngsiem.bulkUpdateSavedQueriesFromTemplate(parseJsonParam(c, i));
 }
 
-/** Handles cloneParser */
+/**
+ * Handles the 'cloneParser' operation.
+ */
 async function handleCloneParser(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Clone an existing parser with a new name. */
 	return await fc.ngsiem.cloneParser(parseJsonParam(c, i));
 }
 
-/** Handles createDashboardFromTemplate */
+/**
+ * Handles the 'createDashboardFromTemplate' operation.
+ */
 async function handleCreateDashboardFromTemplate(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create Dashboard from LogScale YAML Template in NGSIEM. */
 	return await fc.ngsiem.createDashboardFromTemplate();
 }
 
-/** Handles createLookupFile */
+/**
+ * Handles the 'createLookupFile' operation.
+ */
 async function handleCreateLookupFile(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create Lookup File in NGSIEM. */
 	return await fc.ngsiem.createLookupFile();
 }
 
-/** Handles createParser */
+/**
+ * Handles the 'createParser' operation.
+ */
 async function handleCreateParser(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create Parser in NGSIEM (Deprecated). */
 	return await fc.ngsiem.createParser(parseJsonParam(c, i));
 }
 
-/** Handles createParserExtension */
+/**
+ * Handles the 'createParserExtension' operation.
+ */
 async function handleCreateParserExtension(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create a Parser extension in NGSIEM for provided base parser. */
 	return await fc.ngsiem.createParserExtension(parseJsonParam(c, i));
 }
 
-/** Handles createParserFromTemplate */
+/**
+ * Handles the 'createParserFromTemplate' operation.
+ */
 async function handleCreateParserFromTemplate(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create Parser from LogScale YAML Template in NGSIEM. */
 	return await fc.ngsiem.createParserFromTemplate();
 }
 
-/** Handles createSavedQuery */
+/**
+ * Handles the 'createSavedQuery' operation.
+ */
 async function handleCreateSavedQuery(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create Saved Query from LogScale YAML Template in NGSIEM. */
 	return await fc.ngsiem.createSavedQuery();
 }
 
-/** Handles deleteDashboard */
+/**
+ * Handles the 'deleteDashboard' operation.
+ */
 async function handleDeleteDashboard(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete Dashboard in NGSIEM. */
 	const ids = parseArrayParam(c, i, 'ids');
 	return await fc.ngsiem.deleteDashboard(ids.length ? ids : undefined);
 }
 
-/** Handles deleteLookupFile */
+/**
+ * Handles the 'deleteLookupFile' operation.
+ */
 async function handleDeleteLookupFile(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete Lookup File in NGSIEM. */
 	const filename = parseArrayParam(c, i, 'filename');
 	return await fc.ngsiem.deleteLookupFile(filename.length ? filename : undefined);
 }
 
-/** Handles deleteParser */
+/**
+ * Handles the 'deleteParser' operation.
+ */
 async function handleDeleteParser(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete Parser in NGSIEM. */
 	const ids = getStringParam(c, i, 'id', '');
 	return await fc.ngsiem.deleteParser(ids || undefined);
 }
 
-/** Handles deleteSavedQuery */
+/**
+ * Handles the 'deleteSavedQuery' operation.
+ */
 async function handleDeleteSavedQuery(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete Saved Query in NGSIEM. */
 	const ids = parseArrayParam(c, i, 'ids');
 	return await fc.ngsiem.deleteSavedQuery(ids.length ? ids : undefined);
 }
 
-/** Handles externalCreateConnectorConfig */
+/**
+ * Handles the 'externalCreateConnectorConfig' operation.
+ */
 async function handleExternalCreateConnectorConfig(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create a new configuration for a data connector. */
 	return await fc.ngsiem.externalCreateConnectorConfig(parseJsonParam(c, i));
 }
 
-/** Handles externalCreateDataConnection */
+/**
+ * Handles the 'externalCreateDataConnection' operation.
+ */
 async function handleExternalCreateDataConnection(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create a new data connection. */
 	return await fc.ngsiem.externalCreateDataConnection(parseJsonParam(c, i));
 }
 
-/** Handles externalDeleteConnectorConfigs */
+/**
+ * Handles the 'externalDeleteConnectorConfigs' operation.
+ */
 async function handleExternalDeleteConnectorConfigs(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete data connection config. */
 	const connectorId = getStringParam(c, i, 'id', '');
@@ -160,40 +204,52 @@ async function handleExternalDeleteConnectorConfigs(c: IExecuteFunctions, i: num
 	return await fc.ngsiem.externalDeleteConnectorConfigs(connectorId, ids);
 }
 
-/** Handles externalDeleteDataConnection */
+/**
+ * Handles the 'externalDeleteDataConnection' operation.
+ */
 async function handleExternalDeleteDataConnection(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete a data connection. */
 	const ids = getStringParam(c, i, 'id', '');
 	return await fc.ngsiem.externalDeleteDataConnection(ids);
 }
 
-/** Handles externalGetDataConnectionByID */
+/**
+ * Handles the 'externalGetDataConnectionByID' operation.
+ */
 async function handleExternalGetDataConnectionByID(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get data connection by ID. */
 	return await fc.ngsiem.externalGetDataConnectionByID(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles externalGetDataConnectionStatus */
+/**
+ * Handles the 'externalGetDataConnectionStatus' operation.
+ */
 async function handleExternalGetDataConnectionStatus(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get data connection provisioning status. */
 	return await fc.ngsiem.externalGetDataConnectionStatus(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles externalGetDataConnectionToken */
+/**
+ * Handles the 'externalGetDataConnectionToken' operation.
+ */
 async function handleExternalGetDataConnectionToken(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get Ingest token for data connection. */
 	const ids = getStringParam(c, i, 'id', '');
 	return await fc.ngsiem.externalGetDataConnectionToken(ids);
 }
 
-/** Handles externalListConnectorConfigs */
+/**
+ * Handles the 'externalListConnectorConfigs' operation.
+ */
 async function handleExternalListConnectorConfigs(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* List configurations for a data connector. */
 	const ids = getStringParam(c, i, 'id', '');
 	return await fc.ngsiem.externalListConnectorConfigs(ids);
 }
 
-/** Handles externalListDataConnections */
+/**
+ * Handles the 'externalListDataConnections' operation.
+ */
 async function handleExternalListDataConnections(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* List and search data connections. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -203,7 +259,9 @@ async function handleExternalListDataConnections(c: IExecuteFunctions, i: number
 	return await fc.ngsiem.externalListDataConnections(filter || undefined, offset || undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles externalListDataConnectors */
+/**
+ * Handles the 'externalListDataConnectors' operation.
+ */
 async function handleExternalListDataConnectors(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* List available data connectors. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -213,49 +271,63 @@ async function handleExternalListDataConnectors(c: IExecuteFunctions, i: number,
 	return await fc.ngsiem.externalListDataConnectors(filter || undefined, offset || undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles externalPatchConnectorConfig */
+/**
+ * Handles the 'externalPatchConnectorConfig' operation.
+ */
 async function handleExternalPatchConnectorConfig(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Patch configurations for a data connector. */
 	const ids = getStringParam(c, i, 'id', '');
 	return await fc.ngsiem.externalPatchConnectorConfig(ids, parseJsonParam(c, i));
 }
 
-/** Handles externalRegenerateDataConnectionToken */
+/**
+ * Handles the 'externalRegenerateDataConnectionToken' operation.
+ */
 async function handleExternalRegenerateDataConnectionToken(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Regenerate Ingest token for data connection. */
 	const ids = getStringParam(c, i, 'id', '');
 	return await fc.ngsiem.externalRegenerateDataConnectionToken(ids);
 }
 
-/** Handles externalUpdateDataConnection */
+/**
+ * Handles the 'externalUpdateDataConnection' operation.
+ */
 async function handleExternalUpdateDataConnection(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update a data connection. */
 	const ids = getStringParam(c, i, 'id', '');
 	return await fc.ngsiem.externalUpdateDataConnection(ids, parseJsonParam(c, i));
 }
 
-/** Handles externalUpdateDataConnectionStatus */
+/**
+ * Handles the 'externalUpdateDataConnectionStatus' operation.
+ */
 async function handleExternalUpdateDataConnectionStatus(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update data connection status. */
 	const ids = getStringParam(c, i, 'id', '');
 	return await fc.ngsiem.externalUpdateDataConnectionStatus(ids, parseJsonParam(c, i));
 }
 
-/** Handles getDashboardTemplate */
+/**
+ * Handles the 'getDashboardTemplate' operation.
+ */
 async function handleGetDashboardTemplate(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve Dashboard(s) in NGSIEM as LogScale YAML Template. */
 	const ids = parseArrayParam(c, i, 'ids');
 	return await fc.ngsiem.getDashboardTemplate(ids.length ? ids : undefined);
 }
 
-/** Handles getLookupFile */
+/**
+ * Handles the 'getLookupFile' operation.
+ */
 async function handleGetLookupFile(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve Lookup File in NGSIEM. */
 	const filename = getStringParam(c, i, 'filename', '');
 	return await fc.ngsiem.getLookupFile(filename || undefined);
 }
 
-/** Handles getLookupFromPackageV1 */
+/**
+ * Handles the 'getLookupFromPackageV1' operation.
+ */
 async function handleGetLookupFromPackageV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Download lookup file in package from NGSIEM. */
 	const repository = getStringParam(c, i, 'repository', '');
@@ -264,7 +336,9 @@ async function handleGetLookupFromPackageV1(c: IExecuteFunctions, i: number, fc:
 	return await fc.ngsiem.getLookupFromPackageV1(repository, _package, filename);
 }
 
-/** Handles getLookupFromPackageWithNamespaceV1 */
+/**
+ * Handles the 'getLookupFromPackageWithNamespaceV1' operation.
+ */
 async function handleGetLookupFromPackageWithNamespaceV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Download lookup file in namespaced package from NGSIEM. */
 	const repository = getStringParam(c, i, 'repository', '');
@@ -274,7 +348,9 @@ async function handleGetLookupFromPackageWithNamespaceV1(c: IExecuteFunctions, i
 	return await fc.ngsiem.getLookupFromPackageWithNamespaceV1(repository, namespace, _package, filename);
 }
 
-/** Handles getLookupV1 */
+/**
+ * Handles the 'getLookupV1' operation.
+ */
 async function handleGetLookupV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Download lookup file from NGSIEM. */
 	const repository = getStringParam(c, i, 'repository', '');
@@ -282,28 +358,36 @@ async function handleGetLookupV1(c: IExecuteFunctions, i: number, fc: FalconClie
 	return await fc.ngsiem.getLookupV1(repository, filename);
 }
 
-/** Handles getParser */
+/**
+ * Handles the 'getParser' operation.
+ */
 async function handleGetParser(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve Parser in NGSIEM (Deprecated). */
 	const ids = getStringParam(c, i, 'id', '');
 	return await fc.ngsiem.getParser(ids || undefined);
 }
 
-/** Handles getParserTemplate */
+/**
+ * Handles the 'getParserTemplate' operation.
+ */
 async function handleGetParserTemplate(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve Parser in NGSIEM as LogScale YAML Template. */
 	const ids = getStringParam(c, i, 'id', '');
 	return await fc.ngsiem.getParserTemplate(ids || undefined);
 }
 
-/** Handles getSavedQueryTemplate */
+/**
+ * Handles the 'getSavedQueryTemplate' operation.
+ */
 async function handleGetSavedQueryTemplate(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieve Saved Quer(ies) in NGSIEM as LogScale YAML Template. */
 	const ids = parseArrayParam(c, i, 'ids');
 	return await fc.ngsiem.getSavedQueryTemplate(ids.length ? ids : undefined);
 }
 
-/** Handles getSearchStatusV1 */
+/**
+ * Handles the 'getSearchStatusV1' operation.
+ */
 async function handleGetSearchStatusV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get status of search. */
 	const repository = getStringParam(c, i, 'repository', '');
@@ -311,13 +395,17 @@ async function handleGetSearchStatusV1(c: IExecuteFunctions, i: number, fc: Falc
 	return await fc.ngsiem.getSearchStatusV1(repository, id);
 }
 
-/** Handles installParser */
+/**
+ * Handles the 'installParser' operation.
+ */
 async function handleInstallParser(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Installs a CrowdStrike-managed OOTB parser. */
 	return await fc.ngsiem.installParser(parseJsonParam(c, i));
 }
 
-/** Handles listDashboards */
+/**
+ * Handles the 'listDashboards' operation.
+ */
 async function handleListDashboards(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* List Dashboards in NGSIEM with Pagination and Filtering. */
 	const limit = getStringParam(c, i, 'limit', '50');
@@ -326,7 +414,9 @@ async function handleListDashboards(c: IExecuteFunctions, i: number, fc: FalconC
 	return await fc.ngsiem.listDashboards(limit || undefined, offset || undefined, filter || undefined);
 }
 
-/** Handles listLookupFiles */
+/**
+ * Handles the 'listLookupFiles' operation.
+ */
 async function handleListLookupFiles(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* List Lookup Files in NGSIEM with Pagination and Filtering. */
 	const limit = getStringParam(c, i, 'limit', '50');
@@ -335,7 +425,9 @@ async function handleListLookupFiles(c: IExecuteFunctions, i: number, fc: Falcon
 	return await fc.ngsiem.listLookupFiles(limit || undefined, offset || undefined, filter || undefined);
 }
 
-/** Handles listParsers */
+/**
+ * Handles the 'listParsers' operation.
+ */
 async function handleListParsers(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* List Parsers in NGSIEM. */
 	const limit = getStringParam(c, i, 'limit', '50');
@@ -344,7 +436,9 @@ async function handleListParsers(c: IExecuteFunctions, i: number, fc: FalconClie
 	return await fc.ngsiem.listParsers(limit || undefined, offset || undefined, filter || undefined);
 }
 
-/** Handles listSavedQueries */
+/**
+ * Handles the 'listSavedQueries' operation.
+ */
 async function handleListSavedQueries(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* List Saved Queries in NGSIEM with Pagination and Filtering. */
 	const limit = getStringParam(c, i, 'limit', '50');
@@ -353,14 +447,18 @@ async function handleListSavedQueries(c: IExecuteFunctions, i: number, fc: Falco
 	return await fc.ngsiem.listSavedQueries(limit || undefined, offset || undefined, filter || undefined);
 }
 
-/** Handles startSearchV1 */
+/**
+ * Handles the 'startSearchV1' operation.
+ */
 async function handleStartSearchV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Initiate search. */
 	const repository = getStringParam(c, i, 'repository', '');
 	return await fc.ngsiem.startSearchV1(repository, parseJsonParam(c, i));
 }
 
-/** Handles stopSearchV1 */
+/**
+ * Handles the 'stopSearchV1' operation.
+ */
 async function handleStopSearchV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Stop search. */
 	const repository = getStringParam(c, i, 'repository', '');
@@ -368,66 +466,86 @@ async function handleStopSearchV1(c: IExecuteFunctions, i: number, fc: FalconCli
 	return await fc.ngsiem.stopSearchV1(repository, id);
 }
 
-/** Handles testParserFromTemplate */
+/**
+ * Handles the 'testParserFromTemplate' operation.
+ */
 async function handleTestParserFromTemplate(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Test Parser from LogScale YAML Template in NGSIEM. */
 	return await fc.ngsiem.testParserFromTemplate();
 }
 
-/** Handles updateDashboardFromTemplate */
+/**
+ * Handles the 'updateDashboardFromTemplate' operation.
+ */
 async function handleUpdateDashboardFromTemplate(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update Dashboard from LogScale YAML Template in NGSIEM. */
 	const ids = getStringParam(c, i, 'id', '');
 	return await fc.ngsiem.updateDashboardFromTemplate(undefined, ids || undefined);
 }
 
-/** Handles updateLookupFile */
+/**
+ * Handles the 'updateLookupFile' operation.
+ */
 async function handleUpdateLookupFile(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update an entire Lookup File in NGSIEM. */
 	const filename = getStringParam(c, i, 'filename', '');
 	return await fc.ngsiem.updateLookupFile(undefined, filename || undefined);
 }
 
-/** Handles updateLookupFileEntries */
+/**
+ * Handles the 'updateLookupFileEntries' operation.
+ */
 async function handleUpdateLookupFileEntries(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update entries in an existing Lookup File in NGSIEM. */
 	const filename = getStringParam(c, i, 'filename', '');
 	return await fc.ngsiem.updateLookupFileEntries(undefined, filename || undefined);
 }
 
-/** Handles updateParser */
+/**
+ * Handles the 'updateParser' operation.
+ */
 async function handleUpdateParser(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update Parser in NGSIEM (Deprecated). */
 	return await fc.ngsiem.updateParser(parseJsonParam(c, i));
 }
 
-/** Handles updateParserAutoUpdatePolicy */
+/**
+ * Handles the 'updateParserAutoUpdatePolicy' operation.
+ */
 async function handleUpdateParserAutoUpdatePolicy(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates a parser auto update policy. */
 	return await fc.ngsiem.updateParserAutoUpdatePolicy(parseJsonParam(c, i));
 }
 
-/** Handles updateParserExtension */
+/**
+ * Handles the 'updateParserExtension' operation.
+ */
 async function handleUpdateParserExtension(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update an existing Parser extension in NGSIEM. */
 	return await fc.ngsiem.updateParserExtension(parseJsonParam(c, i));
 }
 
-/** Handles updateParserFromTemplate */
+/**
+ * Handles the 'updateParserFromTemplate' operation.
+ */
 async function handleUpdateParserFromTemplate(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update Parser in NGSIEM from YAML Template. */
 	const ids = getStringParam(c, i, 'id', '');
 	return await fc.ngsiem.updateParserFromTemplate(undefined, ids || undefined);
 }
 
-/** Handles updateSavedQueryFromTemplate */
+/**
+ * Handles the 'updateSavedQueryFromTemplate' operation.
+ */
 async function handleUpdateSavedQueryFromTemplate(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update Saved Query from LogScale YAML Template in NGSIEM. */
 	const ids = getStringParam(c, i, 'id', '');
 	return await fc.ngsiem.updateSavedQueryFromTemplate(undefined, ids || undefined);
 }
 
-/** Handles uploadLookupV1 */
+/**
+ * Handles the 'uploadLookupV1' operation.
+ */
 async function handleUploadLookupV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Upload file to NGSIEM. */
 	const repository = getStringParam(c, i, 'repository', '');
