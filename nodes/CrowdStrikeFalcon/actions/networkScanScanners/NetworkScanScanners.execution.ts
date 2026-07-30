@@ -21,7 +21,9 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles aggregateScanners */
+/**
+ * Handles the 'aggregateScanners' operation.
+ */
 async function handleAggregateScanners(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Returns scanners aggregations. */
 	const xCSUSERUUID = getStringParam(c, i, 'xCSUSERUUID', '');
@@ -29,7 +31,9 @@ async function handleAggregateScanners(c: IExecuteFunctions, i: number, fc: Falc
 	return await fc.networkScanScanners.aggregateScanners(Array.isArray(body) ? body : [body], xCSUSERUUID || undefined);
 }
 
-/** Handles getScanners */
+/**
+ * Handles the 'getScanners' operation.
+ */
 async function handleGetScanners(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get scanners by their IDs. */
 	const ids = parseArrayParam(c, i, 'ids');
@@ -37,7 +41,9 @@ async function handleGetScanners(c: IExecuteFunctions, i: number, fc: FalconClie
 	return await fc.networkScanScanners.getScanners(ids, xCSUSERUUID || undefined);
 }
 
-/** Handles queryScanners */
+/**
+ * Handles the 'queryScanners' operation.
+ */
 async function handleQueryScanners(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get scanners IDs by filter. */
 	const xCSUSERUUID = getStringParam(c, i, 'xCSUSERUUID', '');
@@ -48,7 +54,9 @@ async function handleQueryScanners(c: IExecuteFunctions, i: number, fc: FalconCl
 	return await fc.networkScanScanners.queryScanners(xCSUSERUUID || undefined, offset || undefined, limit || undefined, sort || undefined, filter || undefined);
 }
 
-/** Handles updateScanners */
+/**
+ * Handles the 'updateScanners' operation.
+ */
 async function handleUpdateScanners(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update scanners using provided specifications. */
 	const xCSUSERUUID = getStringParam(c, i, 'xCSUSERUUID', '');
