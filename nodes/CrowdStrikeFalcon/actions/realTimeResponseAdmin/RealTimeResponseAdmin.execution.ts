@@ -21,13 +21,17 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles batchAdminCmd */
+/**
+ * Handles the 'batchAdminCmd' operation.
+ */
 async function handleBatchAdminCmd(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Batch executes a RTR administrator command across the hosts mapped to the given batch ID. */
 	return await fc.realTimeResponseAdmin.batchAdminCmd(parseJsonParam(c, i));
 }
 
-/** Handles rTRCheckAdminCommandStatus */
+/**
+ * Handles the 'rTRCheckAdminCommandStatus' operation.
+ */
 async function handleRTRCheckAdminCommandStatus(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get status of an executed RTR administrator command on a single host. */
 	const cloudRequestId = getStringParam(c, i, 'cloudRequestId', '');
@@ -35,90 +39,118 @@ async function handleRTRCheckAdminCommandStatus(c: IExecuteFunctions, i: number,
 	return await fc.realTimeResponseAdmin.rTRCheckAdminCommandStatus(cloudRequestId, sequenceId);
 }
 
-/** Handles rTRCreatePutFiles */
+/**
+ * Handles the 'rTRCreatePutFiles' operation.
+ */
 async function handleRTRCreatePutFiles(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Upload a new put-file to use for the RTR put command. */
 	const fileBlob = new Blob([]);
 	return await fc.realTimeResponseAdmin.rTRCreatePutFiles(fileBlob, 'Put File Upload');
 }
 
-/** Handles rTRCreatePutFilesV2 */
+/**
+ * Handles the 'rTRCreatePutFilesV2' operation.
+ */
 async function handleRTRCreatePutFilesV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Upload a new put-file to use for the RTR put command V2. */
 	const fileBlob = new Blob([]);
 	return await fc.realTimeResponseAdmin.rTRCreatePutFilesV2(fileBlob, 'Put File Upload V2');
 }
 
-/** Handles rTRCreateScripts */
+/**
+ * Handles the 'rTRCreateScripts' operation.
+ */
 async function handleRTRCreateScripts(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Upload a new custom-script to use for the RTR runscript command. */
 	return await fc.realTimeResponseAdmin.rTRCreateScripts('RTR Script', 'private');
 }
 
-/** Handles rTRCreateScriptsV2 */
+/**
+ * Handles the 'rTRCreateScriptsV2' operation.
+ */
 async function handleRTRCreateScriptsV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Upload a new custom-script to use for the RTR runscript command V2. */
 	return await fc.realTimeResponseAdmin.rTRCreateScriptsV2('RTR Script V2', 'private');
 }
 
-/** Handles rTRDeletePutFiles */
+/**
+ * Handles the 'rTRDeletePutFiles' operation.
+ */
 async function handleRTRDeletePutFiles(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete a put-file based on the ID given. */
 	const ids = getStringParam(c, i, 'id', '');
 	return await fc.realTimeResponseAdmin.rTRDeletePutFiles(ids);
 }
 
-/** Handles rTRDeleteScripts */
+/**
+ * Handles the 'rTRDeleteScripts' operation.
+ */
 async function handleRTRDeleteScripts(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Delete a custom-script based on the ID given. */
 	const ids = getStringParam(c, i, 'id', '');
 	return await fc.realTimeResponseAdmin.rTRDeleteScripts(ids);
 }
 
-/** Handles rTRExecuteAdminCommand */
+/**
+ * Handles the 'rTRExecuteAdminCommand' operation.
+ */
 async function handleRTRExecuteAdminCommand(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Execute a RTR administrator command on a single host. */
 	return await fc.realTimeResponseAdmin.rTRExecuteAdminCommand(parseJsonParam(c, i));
 }
 
-/** Handles rTRGetFalconScripts */
+/**
+ * Handles the 'rTRGetFalconScripts' operation.
+ */
 async function handleRTRGetFalconScripts(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get Falcon scripts with metadata and content of script. */
 	return await fc.realTimeResponseAdmin.rTRGetFalconScripts(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles rTRGetPutFileContents */
+/**
+ * Handles the 'rTRGetPutFileContents' operation.
+ */
 async function handleRTRGetPutFileContents(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get RTR put file contents for a given file ID. */
 	const id = getStringParam(c, i, 'id', '');
 	return await fc.realTimeResponseAdmin.rTRGetPutFileContents(id);
 }
 
-/** Handles rTRGetPutFiles */
+/**
+ * Handles the 'rTRGetPutFiles' operation.
+ */
 async function handleRTRGetPutFiles(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get put-files based on the ID's given. */
 	return await fc.realTimeResponseAdmin.rTRGetPutFiles(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles rTRGetPutFilesV2 */
+/**
+ * Handles the 'rTRGetPutFilesV2' operation.
+ */
 async function handleRTRGetPutFilesV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get put-files based on the ID's given V2. */
 	return await fc.realTimeResponseAdmin.rTRGetPutFilesV2(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles rTRGetScripts */
+/**
+ * Handles the 'rTRGetScripts' operation.
+ */
 async function handleRTRGetScripts(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get custom-scripts based on the ID's given. */
 	return await fc.realTimeResponseAdmin.rTRGetScripts(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles rTRGetScriptsV2 */
+/**
+ * Handles the 'rTRGetScriptsV2' operation.
+ */
 async function handleRTRGetScriptsV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get custom-scripts based on the ID's given V2. */
 	return await fc.realTimeResponseAdmin.rTRGetScriptsV2(parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles rTRListFalconScripts */
+/**
+ * Handles the 'rTRListFalconScripts' operation.
+ */
 async function handleRTRListFalconScripts(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get a list of Falcon script IDs available to the user to run. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -128,7 +160,9 @@ async function handleRTRListFalconScripts(c: IExecuteFunctions, i: number, fc: F
 	return await fc.realTimeResponseAdmin.rTRListFalconScripts(filter || undefined, offset || undefined, limit || undefined, sort as any || undefined);
 }
 
-/** Handles rTRListPutFiles */
+/**
+ * Handles the 'rTRListPutFiles' operation.
+ */
 async function handleRTRListPutFiles(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get a list of put-file ID's that are available to the user for the put command. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -138,7 +172,9 @@ async function handleRTRListPutFiles(c: IExecuteFunctions, i: number, fc: Falcon
 	return await fc.realTimeResponseAdmin.rTRListPutFiles(filter || undefined, offset || undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles rTRListScripts */
+/**
+ * Handles the 'rTRListScripts' operation.
+ */
 async function handleRTRListScripts(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get a list of custom-script ID's that are available to the user for the runscript command. */
 	const filter = getStringParam(c, i, 'filter', '');
@@ -148,14 +184,18 @@ async function handleRTRListScripts(c: IExecuteFunctions, i: number, fc: FalconC
 	return await fc.realTimeResponseAdmin.rTRListScripts(filter || undefined, offset || undefined, limit || undefined, sort || undefined);
 }
 
-/** Handles rTRUpdateScripts */
+/**
+ * Handles the 'rTRUpdateScripts' operation.
+ */
 async function handleRTRUpdateScripts(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Upload a new scripts to replace an existing one. */
 	const id = getStringParam(c, i, 'id', '');
 	return await fc.realTimeResponseAdmin.rTRUpdateScripts(id);
 }
 
-/** Handles rTRUpdateScriptsV2 */
+/**
+ * Handles the 'rTRUpdateScriptsV2' operation.
+ */
 async function handleRTRUpdateScriptsV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Upload a new scripts to replace an existing one V2. */
 	const id = getStringParam(c, i, 'id', '');
