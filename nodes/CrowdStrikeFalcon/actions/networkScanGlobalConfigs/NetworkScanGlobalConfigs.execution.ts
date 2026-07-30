@@ -16,14 +16,18 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles getGlobalConfigs */
+/**
+ * Handles the 'getGlobalConfigs' operation.
+ */
 async function handleGetGlobalConfigs(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get global configs for the CID. */
 	const xCSUSERUUID = getStringParam(c, i, 'xCSUSERUUID', '');
 	return await fc.networkScanGlobalConfigs.getGlobalConfigs(xCSUSERUUID || undefined);
 }
 
-/** Handles updateGlobalConfigs */
+/**
+ * Handles the 'updateGlobalConfigs' operation.
+ */
 async function handleUpdateGlobalConfigs(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update global configs using provided specifications. */
 	const xCSUSERUUID = getStringParam(c, i, 'xCSUSERUUID', '');
