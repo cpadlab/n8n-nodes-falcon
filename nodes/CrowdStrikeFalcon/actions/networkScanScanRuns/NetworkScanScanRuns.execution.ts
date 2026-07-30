@@ -22,21 +22,27 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles aggregateScanRuns */
+/**
+ * Handles the 'aggregateScanRuns' operation.
+ */
 async function handleAggregateScanRuns(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Returns scan-runs aggregations. */
 	const xCSUSERUUID = getStringParam(c, i, 'xCSUSERUUID', '');
 	return await fc.networkScanScanRuns.aggregateScanRuns(parseJsonParam(c, i), xCSUSERUUID || undefined);
 }
 
-/** Handles createScanRuns */
+/**
+ * Handles the 'createScanRuns' operation.
+ */
 async function handleCreateScanRuns(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Create scan-runs using provided specifications. */
 	const xCSUSERUUID = getStringParam(c, i, 'xCSUSERUUID', '');
 	return await fc.networkScanScanRuns.createScanRuns(parseJsonParam(c, i), xCSUSERUUID || undefined);
 }
 
-/** Handles getScanRuns */
+/**
+ * Handles the 'getScanRuns' operation.
+ */
 async function handleGetScanRuns(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get scan-runs by their IDs. */
 	const ids = parseArrayParam(c, i, 'ids');
@@ -44,7 +50,9 @@ async function handleGetScanRuns(c: IExecuteFunctions, i: number, fc: FalconClie
 	return await fc.networkScanScanRuns.getScanRuns(ids, xCSUSERUUID || undefined);
 }
 
-/** Handles queryScanRuns */
+/**
+ * Handles the 'queryScanRuns' operation.
+ */
 async function handleQueryScanRuns(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Get scan-runs IDs by filter. */
 	const xCSUSERUUID = getStringParam(c, i, 'xCSUSERUUID', '');
@@ -55,7 +63,9 @@ async function handleQueryScanRuns(c: IExecuteFunctions, i: number, fc: FalconCl
 	return await fc.networkScanScanRuns.queryScanRuns(xCSUSERUUID || undefined, offset || undefined, limit || undefined, sort || undefined, filter || undefined);
 }
 
-/** Handles updateScanRuns */
+/**
+ * Handles the 'updateScanRuns' operation.
+ */
 async function handleUpdateScanRuns(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Update scan-runs using provided specifications. */
 	const xCSUSERUUID = getStringParam(c, i, 'xCSUSERUUID', '');
