@@ -21,60 +21,69 @@ function getStringParam(context: IExecuteFunctions, index: number, paramName: st
 	return val !== undefined && val !== null ? String(val) : String(fallback);
 }
 
-/** Handles createOrchestratorDeploymentV1 */
-async function handleCreateOrchestratorDeploymentV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
-	/* Create an orchestrator deployment. */
-	return await fc.scanningOrchestrator.createOrchestratorDeploymentV1(parseJsonParam(c, i));
+/** Handles createSchedules */
+async function handleCreateSchedules(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
+	/* Create one or more scanning schedules. */
+	const authorization = getStringParam(c, i, 'authorization', '');
+	return await fc.scanningOrchestrator.createSchedules(authorization, parseJsonParam(c, i));
 }
 
-/** Handles deleteOrchestratorDeploymentV1 */
-async function handleDeleteOrchestratorDeploymentV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
-	/* Delete orchestrator deployments by IDs. */
-	return await fc.scanningOrchestrator.deleteOrchestratorDeploymentV1(parseArrayParam(c, i, 'ids'));
+/** Handles deleteSchedules */
+async function handleDeleteSchedules(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
+	/* Delete one or more scanning schedules by ID. */
+	const authorization = getStringParam(c, i, 'authorization', '');
+	return await fc.scanningOrchestrator.deleteSchedules(authorization, parseArrayParam(c, i, 'ids'));
 }
 
-/** Handles getOrchestratorDeploymentV1 */
-async function handleGetOrchestratorDeploymentV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
-	/* Get orchestrator deployments by IDs. */
-	return await fc.scanningOrchestrator.getOrchestratorDeploymentV1(parseArrayParam(c, i, 'ids'));
-}
-
-/** Handles getOrchestratorDeploymentV2 */
-async function handleGetOrchestratorDeploymentV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
-	/* Get orchestrator deployments by IDs V2. */
-	return await fc.scanningOrchestrator.getOrchestratorDeploymentV2(parseArrayParam(c, i, 'ids'));
-}
-
-/** Handles queryOrchestratorDeploymentV1 */
-async function handleQueryOrchestratorDeploymentV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
-	/* Query orchestrator deployments. */
-	const filter = getStringParam(c, i, 'filter', '');
-	const offset = getStringParam(c, i, 'offset', '');
+/** Handles getCombinedSchedules */
+async function handleGetCombinedSchedules(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
+	/* Get schedules with pagination, sorting, and filtering. */
+	const authorization = getStringParam(c, i, 'authorization', '');
 	const limit = c.getNodeParameter('limit', i, 100) as number;
+	const offset = c.getNodeParameter('offset', i, 0) as number;
 	const sort = getStringParam(c, i, 'sort', '');
-	return await fc.scanningOrchestrator.queryOrchestratorDeploymentV1(filter || undefined, offset || undefined, limit || undefined, sort || undefined);
-}
-
-/** Handles queryOrchestratorDeploymentV2 */
-async function handleQueryOrchestratorDeploymentV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
-	/* Query orchestrator deployments V2. */
 	const filter = getStringParam(c, i, 'filter', '');
-	const offset = getStringParam(c, i, 'offset', '');
+	return await fc.scanningOrchestrator.getCombinedSchedules(authorization, limit || undefined, offset || undefined, sort || undefined, filter || undefined);
+}
+
+/** Handles getSchedules */
+async function handleGetSchedules(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
+	/* Get scanning schedules by their IDs. */
+	const authorization = getStringParam(c, i, 'authorization', '');
+	return await fc.scanningOrchestrator.getSchedules(authorization, parseArrayParam(c, i, 'ids'));
+}
+
+/** Handles getServiceTypes */
+async function handleGetServiceTypes(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
+	/* Returns the list of service types available for scanning. */
+	const authorization = getStringParam(c, i, 'authorization', '');
+	const scanProduct = getStringParam(c, i, 'scanProduct', 'vulnerability_scanning');
+	return await fc.scanningOrchestrator.getServiceTypes(authorization, scanProduct as any);
+}
+
+/** Handles searchSchedules */
+async function handleSearchSchedules(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
+	/* Search schedules and return IDs with pagination, sorting, and filtering. */
+	const authorization = getStringParam(c, i, 'authorization', '');
 	const limit = c.getNodeParameter('limit', i, 100) as number;
+	const offset = c.getNodeParameter('offset', i, 0) as number;
 	const sort = getStringParam(c, i, 'sort', '');
-	return await fc.scanningOrchestrator.queryOrchestratorDeploymentV2(filter || undefined, offset || undefined, limit || undefined, sort || undefined);
+	const filter = getStringParam(c, i, 'filter', '');
+	return await fc.scanningOrchestrator.searchSchedules(authorization, limit || undefined, offset || undefined, sort || undefined, filter || undefined);
 }
 
-/** Handles updateOrchestratorDeploymentV1 */
-async function handleUpdateOrchestratorDeploymentV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
-	/* Update an orchestrator deployment. */
-	return await fc.scanningOrchestrator.updateOrchestratorDeploymentV1(parseJsonParam(c, i));
+/** Handles triggerScanBySchedule */
+async function handleTriggerScanBySchedule(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
+	/* Triggers an immediate scan for the given schedule IDs. */
+	const authorization = getStringParam(c, i, 'authorization', '');
+	return await fc.scanningOrchestrator.triggerScanBySchedule(authorization, parseJsonParam(c, i));
 }
 
-/** Handles updateOrchestratorDeploymentV2 */
-async function handleUpdateOrchestratorDeploymentV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
-	/* Update an orchestrator deployment V2. */
-	return await fc.scanningOrchestrator.updateOrchestratorDeploymentV2(parseJsonParam(c, i));
+/** Handles updateSchedules */
+async function handleUpdateSchedules(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
+	/* Updates one or more scanning schedules. */
+	const authorization = getStringParam(c, i, 'authorization', '');
+	return await fc.scanningOrchestrator.updateSchedules(authorization, parseJsonParam(c, i));
 }
 
 /**
@@ -89,14 +98,14 @@ export async function executeScanningOrchestrator(
 	const operation = this.getNodeParameter('operation', index) as string;
 
 	switch (operation) {
-		case 'createOrchestratorDeploymentV1': return await handleCreateOrchestratorDeploymentV1(this, index, falconClient);
-		case 'deleteOrchestratorDeploymentV1': return await handleDeleteOrchestratorDeploymentV1(this, index, falconClient);
-		case 'getOrchestratorDeploymentV1': return await handleGetOrchestratorDeploymentV1(this, index, falconClient);
-		case 'getOrchestratorDeploymentV2': return await handleGetOrchestratorDeploymentV2(this, index, falconClient);
-		case 'queryOrchestratorDeploymentV1': return await handleQueryOrchestratorDeploymentV1(this, index, falconClient);
-		case 'queryOrchestratorDeploymentV2': return await handleQueryOrchestratorDeploymentV2(this, index, falconClient);
-		case 'updateOrchestratorDeploymentV1': return await handleUpdateOrchestratorDeploymentV1(this, index, falconClient);
-		case 'updateOrchestratorDeploymentV2': return await handleUpdateOrchestratorDeploymentV2(this, index, falconClient);
+		case 'createSchedules': return await handleCreateSchedules(this, index, falconClient);
+		case 'deleteSchedules': return await handleDeleteSchedules(this, index, falconClient);
+		case 'getCombinedSchedules': return await handleGetCombinedSchedules(this, index, falconClient);
+		case 'getSchedules': return await handleGetSchedules(this, index, falconClient);
+		case 'getServiceTypes': return await handleGetServiceTypes(this, index, falconClient);
+		case 'searchSchedules': return await handleSearchSchedules(this, index, falconClient);
+		case 'triggerScanBySchedule': return await handleTriggerScanBySchedule(this, index, falconClient);
+		case 'updateSchedules': return await handleUpdateSchedules(this, index, falconClient);
 		default:
 			throw new Error(`Operation ${operation} is not supported for Scanning Orchestrator.`);
 	}
