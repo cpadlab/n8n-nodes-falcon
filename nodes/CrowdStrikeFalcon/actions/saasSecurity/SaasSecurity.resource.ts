@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createLimitField, createOffsetField, createOperationField } from '../common';
+
 export const saasSecurityOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['saasSecurity'],
-			},
-		},
-		options: [
+	createOperationField('saasSecurity', [
+
 			{ name: 'Dismiss Affected Entity V3', value: 'dismissAffectedEntityV3', description: 'Perform dismiss to an affected entity in a security check', action: 'Dismiss affected entity V3' },
 			{ name: 'Dismiss Security Check V3', value: 'dismissSecurityCheckV3', description: 'Perform dismiss to a security check by ID', action: 'Dismiss security check V3' },
 			{ name: 'Get Activity Monitor V3', value: 'getActivityMonitorV3', description: 'Get a list of all events in monitor', action: 'Get activity monitor V3' },
@@ -33,9 +26,8 @@ export const saasSecurityOperations: INodeProperties[] = [
 			{ name: 'Integration Builder Get Status V3', value: 'integrationBuilderGetStatusV3', description: 'Get transaction status for custom integration', action: 'Integration builder get status V3' },
 			{ name: 'Integration Builder Reset V3', value: 'integrationBuilderResetV3', description: 'Make a reset call to custom integration', action: 'Integration builder reset V3' },
 			{ name: 'Integration Builder Upload V3', value: 'integrationBuilderUploadV3', description: 'Send data to specific source in custom integration', action: 'Integration builder upload V3' },
-		],
-		default: 'getSecurityChecksV3',
-	},
+		
+	], 'getSecurityChecksV3'),
 ];
 
 export const saasSecurityFields: INodeProperties[] = [
@@ -90,24 +82,9 @@ export const saasSecurityFields: INodeProperties[] = [
 		required: true,
 		description: 'Custom integration source ID',
 	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['saasSecurity'],
-				operation: [
-					'dismissAffectedEntityV3',
+	createBodyJsonField('saasSecurity', ['dismissAffectedEntityV3',
 					'dismissSecurityCheckV3',
-					'integrationBuilderUploadV3',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
+					'integrationBuilderUploadV3',]),
 	{
 		displayName: 'Integration ID',
 		name: 'integrationId',
@@ -130,19 +107,7 @@ export const saasSecurityFields: INodeProperties[] = [
 		default: '',
 		description: 'Integration ID filter',
 	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['saasSecurity'],
-				operation: [
-					'getActivityMonitorV3',
+	createLimitField('saasSecurity', ['getActivityMonitorV3',
 					'getAlertsV3',
 					'getAppInventory',
 					'getAssetInventoryV3',
@@ -151,25 +116,8 @@ export const saasSecurityFields: INodeProperties[] = [
 					'getSecurityCheckAffectedV3',
 					'getSecurityChecksV3',
 					'getSystemLogsV3',
-					'getUserInventoryV3',
-				],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['saasSecurity'],
-				operation: [
-					'getAlertsV3',
+					'getUserInventoryV3',]),
+	createOffsetField('saasSecurity', ['getAlertsV3',
 					'getAppInventory',
 					'getAssetInventoryV3',
 					'getDeviceInventoryV3',
@@ -177,11 +125,5 @@ export const saasSecurityFields: INodeProperties[] = [
 					'getSecurityCheckAffectedV3',
 					'getSecurityChecksV3',
 					'getSystemLogsV3',
-					'getUserInventoryV3',
-				],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
+					'getUserInventoryV3',]),
 ];
