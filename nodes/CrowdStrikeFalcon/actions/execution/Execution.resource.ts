@@ -1,21 +1,13 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createOperationField } from '../common';
+
 export const executionOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['execution'],
-			},
-		},
-		options: [
+	createOperationField('execution', [
+
 			{ name: 'Read Request Body', value: 'readRequestBody', description: 'Retrieve a large request body spilled into object storage', action: 'Read request body' },
-		],
-		default: 'readRequestBody',
-	},
+		
+	], 'readRequestBody'),
 ];
 
 export const executionFields: INodeProperties[] = [
