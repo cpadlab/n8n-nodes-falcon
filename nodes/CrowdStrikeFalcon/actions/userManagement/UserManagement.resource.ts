@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createIdsField, createOperationField, createStandardPaginationFields } from '../common';
+
 export const userManagementOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['userManagement'],
-			},
-		},
-		options: [
+	createOperationField('userManagement', [
+
 			{ name: 'Aggregate Users V1', value: 'aggregateUsersV1', description: 'Get user aggregates as specified in body', action: 'Aggregate users V1' },
 			{ name: 'Combined User Roles V1', value: 'combinedUserRolesV1', description: 'Get user grant(s) between user and customer V1', action: 'Combined user roles V1' },
 			{ name: 'Combined User Roles V2', value: 'combinedUserRolesV2', description: 'Get user grant(s) between user and customer V2', action: 'Combined user roles V2' },
@@ -37,9 +30,8 @@ export const userManagementOperations: INodeProperties[] = [
 			{ name: 'Update User V1', value: 'updateUserV1', description: 'Modify existing user name V1', action: 'Update user V1' },
 			{ name: 'User Action V1', value: 'userActionV1', description: 'Apply actions (reset_2fa, reset_password) to users', action: 'User action V1' },
 			{ name: 'User Roles Action V1', value: 'userRolesActionV1', description: 'Grant or revoke roles for a user against CID', action: 'User roles action V1' },
-		],
-		default: 'queryUserV1',
-	},
+		
+	], 'queryUserV1'),
 ];
 
 export const userManagementFields: INodeProperties[] = [
@@ -107,20 +99,7 @@ export const userManagementFields: INodeProperties[] = [
 		default: false,
 		description: 'Whether to perform validation without creating',
 	},
-	{
-		displayName: 'IDs',
-		name: 'ids',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['userManagement'],
-				operation: ['entitiesRolesV1', 'getRoles', 'retrieveUser', 'revokeUserRoleIds'],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'Comma-separated list of IDs',
-	},
+	createIdsField('userManagement', ['entitiesRolesV1', 'getRoles', 'retrieveUser', 'revokeUserRoleIds']),
 	{
 		displayName: 'UIDs',
 		name: 'uid',
@@ -148,15 +127,7 @@ export const userManagementFields: INodeProperties[] = [
 		default: '',
 		description: 'Action string for roles query',
 	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['userManagement'],
-				operation: [
-					'aggregateUsersV1',
+	createBodyJsonField('userManagement', ['aggregateUsersV1',
 					'createUser',
 					'createUserV1',
 					'entitiesRolesGETV2',
@@ -165,71 +136,6 @@ export const userManagementFields: INodeProperties[] = [
 					'updateUser',
 					'updateUserV1',
 					'userActionV1',
-					'userRolesActionV1',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['userManagement'],
-				operation: ['combinedUserRolesV1', 'combinedUserRolesV2', 'queryUserV1'],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['userManagement'],
-				operation: ['combinedUserRolesV1', 'combinedUserRolesV2', 'queryUserV1'],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['userManagement'],
-				operation: ['combinedUserRolesV1', 'combinedUserRolesV2', 'queryUserV1'],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['userManagement'],
-				operation: ['combinedUserRolesV1', 'combinedUserRolesV2', 'queryUserV1'],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+					'userRolesActionV1',]),
+	...createStandardPaginationFields('userManagement', ['combinedUserRolesV1', 'combinedUserRolesV2', 'queryUserV1']),
 ];
