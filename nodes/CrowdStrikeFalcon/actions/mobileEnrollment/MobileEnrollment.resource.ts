@@ -1,22 +1,14 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createFilterField, createOperationField } from '../common';
+
 export const mobileEnrollmentOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['mobileEnrollment'],
-			},
-		},
-		options: [
+	createOperationField('mobileEnrollment', [
+
 			{ name: 'Request Device Enrollment V3', value: 'requestDeviceEnrollmentV3', description: 'Trigger onboarding process for mobile device V3', action: 'Request device enrollment V3' },
 			{ name: 'Request Device Enrollment V4', value: 'requestDeviceEnrollmentV4', description: 'Trigger onboarding process for mobile device V4', action: 'Request device enrollment V4' },
-		],
-		default: 'requestDeviceEnrollmentV4',
-	},
+		
+	], 'requestDeviceEnrollmentV4'),
 ];
 
 export const mobileEnrollmentFields: INodeProperties[] = [
@@ -37,31 +29,6 @@ export const mobileEnrollmentFields: INodeProperties[] = [
 		default: 'enroll',
 		description: 'Action name for enrollment request',
 	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['mobileEnrollment'],
-				operation: ['requestDeviceEnrollmentV3', 'requestDeviceEnrollmentV4'],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['mobileEnrollment'],
-				operation: ['requestDeviceEnrollmentV3', 'requestDeviceEnrollmentV4'],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
+	createFilterField('mobileEnrollment', ['requestDeviceEnrollmentV3', 'requestDeviceEnrollmentV4']),
+	createBodyJsonField('mobileEnrollment', ['requestDeviceEnrollmentV3', 'requestDeviceEnrollmentV4']),
 ];
