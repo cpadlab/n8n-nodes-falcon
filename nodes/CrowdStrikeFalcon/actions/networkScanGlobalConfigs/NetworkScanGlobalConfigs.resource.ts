@@ -1,22 +1,14 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createOperationField } from '../common';
+
 export const networkScanGlobalConfigsOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['networkScanGlobalConfigs'],
-			},
-		},
-		options: [
+	createOperationField('networkScanGlobalConfigs', [
+
 			{ name: 'Get Global Configs', value: 'getGlobalConfigs', description: 'Get global configs for the CID', action: 'Get global configs' },
 			{ name: 'Update Global Configs', value: 'updateGlobalConfigs', description: 'Update global configs using provided specifications', action: 'Update global configs' },
-		],
-		default: 'getGlobalConfigs',
-	},
+		
+	], 'getGlobalConfigs'),
 ];
 
 export const networkScanGlobalConfigsFields: INodeProperties[] = [
@@ -33,18 +25,5 @@ export const networkScanGlobalConfigsFields: INodeProperties[] = [
 		default: '',
 		description: 'User UUID header override',
 	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['networkScanGlobalConfigs'],
-				operation: ['updateGlobalConfigs'],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON global configuration specifications payload',
-	},
+	createBodyJsonField('networkScanGlobalConfigs', ['updateGlobalConfigs']),
 ];
