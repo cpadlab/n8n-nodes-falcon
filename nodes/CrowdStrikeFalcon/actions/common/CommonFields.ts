@@ -1,88 +1,174 @@
 import type { INodeProperties } from 'n8n-workflow';
 
 /**
- * Generates common filter parameter field property.
+ * Helper to construct displayOptions for resource and operations
  */
-export function getFilterField(displayOptions: INodeProperties['displayOptions']): INodeProperties {
+export function makeDisplayOptions(resource: string, operations: string[]): INodeProperties['displayOptions'] {
+	return {
+		show: {
+			resource: [resource],
+			operation: operations,
+		},
+	};
+}
+
+/**
+ * Generates an Operation selection dropdown field for a resource
+ */
+export function createOperationField(
+	resource: string,
+	options: Array<{ name: string; value: string; description?: string; action?: string }>,
+	defaultOp?: string,
+): INodeProperties {
+	return {
+		displayName: 'Operation',
+		name: 'operation',
+		type: 'options',
+		noDataExpression: true,
+		displayOptions: {
+			show: {
+				resource: [resource],
+			},
+		},
+		options,
+		default: defaultOp || (options[0] ? options[0].value : ''),
+	};
+}
+export const getOperationField = createOperationField;
+
+/**
+ * Generates a Filter field for specified resource and operations
+ */
+export function createFilterField(resource: string, operations: string[], description = 'FQL query to filter resources'): INodeProperties {
 	return {
 		displayName: 'Filter',
 		name: 'filter',
 		type: 'string',
 		default: '',
-		description: 'FQL query to filter resources',
-		displayOptions,
+		description,
+		displayOptions: makeDisplayOptions(resource, operations),
 	};
 }
+export const getFilterField = createFilterField;
 
 /**
- * Generates common pagination limit field property.
+ * Generates a Limit field for specified resource and operations
  */
-export function getLimitField(displayOptions: INodeProperties['displayOptions'], defaultLimit = 100): INodeProperties {
+export function createLimitField(resource: string, operations: string[], defaultLimit = 100, description = 'Maximum number of records to return'): INodeProperties {
 	return {
 		displayName: 'Limit',
 		name: 'limit',
 		type: 'number',
 		typeOptions: { minValue: 1 },
 		default: defaultLimit,
-		description: 'Maximum number of results to return',
-		displayOptions,
+		description,
+		displayOptions: makeDisplayOptions(resource, operations),
 	};
 }
+export const getLimitField = createLimitField;
 
 /**
- * Generates common pagination offset field property.
+ * Generates an Offset field for specified resource and operations
  */
-export function getOffsetField(displayOptions: INodeProperties['displayOptions']): INodeProperties {
+export function createOffsetField(resource: string, operations: string[], description = 'Starting index for pagination'): INodeProperties {
 	return {
 		displayName: 'Offset',
 		name: 'offset',
 		type: 'number',
 		typeOptions: { minValue: 0 },
 		default: 0,
-		description: 'Starting index for pagination',
-		displayOptions,
+		description,
+		displayOptions: makeDisplayOptions(resource, operations),
 	};
 }
+export const getOffsetField = createOffsetField;
 
 /**
- * Generates common sort parameter field property.
+ * Generates a Sort field for specified resource and operations
  */
-export function getSortField(displayOptions: INodeProperties['displayOptions']): INodeProperties {
+export function createSortField(resource: string, operations: string[], description = 'Property and direction to sort by (e.g. created_timestamp.desc)'): INodeProperties {
 	return {
 		displayName: 'Sort',
 		name: 'sort',
 		type: 'string',
 		default: '',
-		description: 'Property and direction to sort by (e.g. created_timestamp.desc)',
-		displayOptions,
+		description,
+		displayOptions: makeDisplayOptions(resource, operations),
 	};
 }
+export const getSortField = createSortField;
 
 /**
- * Generates common IDs parameter field property.
+ * Generates standard pagination fields (filter, limit, offset, sort) for a resource
  */
-export function getIdsField(displayOptions: INodeProperties['displayOptions'], description = 'Comma-separated IDs'): INodeProperties {
+export function createStandardPaginationFields(resource: string, operations: string[]): INodeProperties[] {
+	return [
+		createFilterField(resource, operations),
+		createLimitField(resource, operations),
+		createOffsetField(resource, operations),
+		createSortField(resource, operations),
+	];
+}
+export const getStandardPaginationFields = createStandardPaginationFields;
+
+/**
+ * Generates an IDs field for specified resource and operations
+ */
+export function createIdsField(resource: string, operations: string[], displayName = 'IDs', name = 'ids', description = 'Comma-separated list of IDs'): INodeProperties {
 	return {
-		displayName: 'IDs',
-		name: 'ids',
+		displayName,
+		name,
 		type: 'string',
 		default: '',
 		required: true,
 		description,
-		displayOptions,
+		displayOptions: makeDisplayOptions(resource, operations),
 	};
 }
+export const getIdsField = createIdsField;
 
 /**
- * Generates common JSON body parameter field property.
+ * Generates an ID field for specified resource and operations
  */
-export function getBodyJsonField(displayOptions: INodeProperties['displayOptions'], displayName = 'Body (JSON)', description = 'Raw JSON object'): INodeProperties {
+export function createIdField(resource: string, operations: string[], displayName = 'ID', name = 'id', description = 'Resource ID'): INodeProperties {
+	return {
+		displayName,
+		name,
+		type: 'string',
+		default: '',
+		required: true,
+		description,
+		displayOptions: makeDisplayOptions(resource, operations),
+	};
+}
+export const getIdField = createIdField;
+
+/**
+ * Generates a Body (JSON) field for specified resource and operations
+ */
+export function createBodyJsonField(resource: string, operations: string[], displayName = 'Body (JSON)', description = 'JSON request body payload'): INodeProperties {
 	return {
 		displayName,
 		name: 'bodyJson',
 		type: 'json',
 		default: '{}',
 		description,
-		displayOptions,
+		displayOptions: makeDisplayOptions(resource, operations),
 	};
 }
+export const getBodyJsonField = createBodyJsonField;
+
+/**
+ * Generates a Query (q) field for specified resource and operations
+ */
+export function createQueryField(resource: string, operations: string[], displayName = 'Query', name = 'q', description = 'Search query string'): INodeProperties {
+	return {
+		displayName,
+		name,
+		type: 'string',
+		default: '',
+		description,
+		displayOptions: makeDisplayOptions(resource, operations),
+	};
+}
+export const getQueryField = createQueryField;
