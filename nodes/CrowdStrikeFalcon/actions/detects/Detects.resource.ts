@@ -1,54 +1,21 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createFilterField, createLimitField, createOffsetField, createOperationField, createSortField } from '../common';
+
 export const detectsOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['detects'],
-			},
-		},
-		options: [
+	createOperationField('detects', [
+
 			{ name: 'Get Aggregate Detects (Deprecated)', value: 'getAggregateDetects', description: 'Get aggregate detects (deprecated)', action: 'Get aggregate detects' },
 			{ name: 'Get Detect Summaries (Deprecated)', value: 'getDetectSummaries', description: 'Get detect summaries by IDs (deprecated)', action: 'Get detect summaries' },
 			{ name: 'Query Detects (Deprecated)', value: 'queryDetects', description: 'Query detects matching filter criteria (deprecated)', action: 'Query detects' },
 			{ name: 'Update Detects by IDs V2 (Deprecated)', value: 'updateDetectsByIdsV2', description: 'Update detects by IDs (deprecated)', action: 'Update detects by ids v2' },
-		],
-		default: 'queryDetects',
-	},
+		
+	], 'queryDetects'),
 ];
 
 export const detectsFields: INodeProperties[] = [
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['detects'],
-				operation: ['getAggregateDetects', 'getDetectSummaries', 'updateDetectsByIdsV2'],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['detects'],
-				operation: ['queryDetects'],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
+	createBodyJsonField('detects', ['getAggregateDetects', 'getDetectSummaries', 'updateDetectsByIdsV2']),
+	createFilterField('detects', ['queryDetects']),
 	{
 		displayName: 'Search Query (q)',
 		name: 'q',
@@ -62,50 +29,7 @@ export const detectsFields: INodeProperties[] = [
 		default: '',
 		description: 'Search string',
 	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['detects'],
-				operation: ['queryDetects'],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['detects'],
-				operation: ['queryDetects'],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['detects'],
-				operation: ['queryDetects'],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+	createLimitField('detects', ['queryDetects']),
+	createOffsetField('detects', ['queryDetects']),
+	createSortField('detects', ['queryDetects']),
 ];
