@@ -1,10 +1,8 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
-function getStringParam(context: IExecuteFunctions, index: number, paramName: string, fallback = ''): string {
-	const val = context.getNodeParameter(paramName, index, fallback);
-	return val !== undefined && val !== null ? String(val) : String(fallback);
-}
+import { getStringParam } from '../common';
 
 /**
  * Handles the 'streamInvocationResponseV1' operation.
@@ -29,6 +27,6 @@ export async function executeStream(
 	switch (operation) {
 		case 'streamInvocationResponseV1': return await handleStreamInvocationResponseV1(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Stream.`);
+			throw new NodeOperationError(c.getNode(), `Operation ${operation} is not supported for Stream.`);
 	}
 }
