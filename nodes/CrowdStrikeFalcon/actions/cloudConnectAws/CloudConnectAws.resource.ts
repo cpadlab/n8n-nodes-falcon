@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createOperationField, createStandardPaginationFields } from '../common';
+
 export const cloudConnectAwsOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['cloudConnectAws'],
-			},
-		},
-		options: [
+	createOperationField('cloudConnectAws', [
+
 			{ name: 'Create or Update AWS Settings', value: 'createOrUpdateAWSSettings', description: 'Create or update Global Settings applicable to all provisioned AWS accounts', action: 'Create or update AWS settings' },
 			{ name: 'Delete AWS Accounts', value: 'deleteAWSAccounts', description: 'Delete a set of AWS Accounts by specifying their IDs', action: 'Delete AWS accounts' },
 			{ name: 'Get AWS Accounts', value: 'getAWSAccounts', description: 'Retrieve a set of AWS Accounts by specifying their IDs', action: 'Get AWS accounts' },
@@ -21,9 +14,8 @@ export const cloudConnectAwsOperations: INodeProperties[] = [
 			{ name: 'Query AWS Account IDs', value: 'queryAWSAccountsForIDs', description: 'Search for provisioned AWS Account IDs', action: 'Query AWS account IDs' },
 			{ name: 'Update AWS Accounts', value: 'updateAWSAccounts', description: 'Update AWS Accounts by specifying account ID and details', action: 'Update AWS accounts' },
 			{ name: 'Verify AWS Account Access', value: 'verifyAWSAccountAccess', description: 'Performs Access Verification check on specified AWS Account IDs', action: 'Verify AWS account access' },
-		],
-		default: 'queryAWSAccounts',
-	},
+		
+	], 'queryAWSAccounts'),
 ];
 
 export const cloudConnectAwsFields: INodeProperties[] = [
@@ -48,20 +40,7 @@ export const cloudConnectAwsFields: INodeProperties[] = [
 	/* -------------------------------------------------------------------------- */
 	/*                                Body JSON                                   */
 	/* -------------------------------------------------------------------------- */
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['cloudConnectAws'],
-				operation: ['createOrUpdateAWSSettings', 'provisionAWSAccounts', 'updateAWSAccounts'],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON body payload for AWS connection operation',
-	},
+	createBodyJsonField('cloudConnectAws', ['createOrUpdateAWSSettings', 'provisionAWSAccounts', 'updateAWSAccounts']),
 	{
 		displayName: 'Mode',
 		name: 'mode',
@@ -79,63 +58,5 @@ export const cloudConnectAwsFields: INodeProperties[] = [
 	/* -------------------------------------------------------------------------- */
 	/*                            Pagination & Filters                            */
 	/* -------------------------------------------------------------------------- */
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['cloudConnectAws'],
-				operation: ['queryAWSAccounts', 'queryAWSAccountsForIDs'],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['cloudConnectAws'],
-				operation: ['queryAWSAccounts', 'queryAWSAccountsForIDs'],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['cloudConnectAws'],
-				operation: ['queryAWSAccounts', 'queryAWSAccountsForIDs'],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['cloudConnectAws'],
-				operation: ['queryAWSAccounts', 'queryAWSAccountsForIDs'],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+	...createStandardPaginationFields('cloudConnectAws', ['queryAWSAccounts', 'queryAWSAccountsForIDs']),
 ];
