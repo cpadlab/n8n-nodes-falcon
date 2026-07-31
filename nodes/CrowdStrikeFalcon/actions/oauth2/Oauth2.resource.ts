@@ -1,22 +1,14 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createOperationField } from '../common';
+
 export const oauth2Operations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['oauth2'],
-			},
-		},
-		options: [
+	createOperationField('oauth2', [
+
 			{ name: 'OAuth2 Access Token', value: 'oauth2AccessToken', description: 'Generate an OAuth2 access token', action: 'OAuth2 access token' },
 			{ name: 'OAuth2 Revoke Token', value: 'oauth2RevokeToken', description: 'Revoke a previously issued OAuth2 access token', action: 'OAuth2 revoke token' },
-		],
-		default: 'oauth2AccessToken',
-	},
+		
+	], 'oauth2AccessToken'),
 ];
 
 export const oauth2Fields: INodeProperties[] = [

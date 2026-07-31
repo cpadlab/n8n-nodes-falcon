@@ -1,10 +1,8 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
-function getStringParam(context: IExecuteFunctions, index: number, paramName: string, fallback = ''): string {
-	const val = context.getNodeParameter(paramName, index, fallback);
-	return val !== undefined && val !== null ? String(val) : String(fallback);
-}
+import { getStringParam } from '../common';
 
 /**
  * Handles the 'oauth2AccessToken' operation.
@@ -42,6 +40,6 @@ export async function executeOauth2(
 		case 'oauth2AccessToken': return await handleOauth2AccessToken(this, index, falconClient);
 		case 'oauth2RevokeToken': return await handleOauth2RevokeToken(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for OAuth2.`);
+			throw new NodeOperationError(c.getNode(), `Operation ${operation} is not supported for OAuth2.`);
 	}
 }
