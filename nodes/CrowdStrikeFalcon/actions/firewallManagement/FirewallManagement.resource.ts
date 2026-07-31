@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createFilterField, createIdsField, createLimitField, createOffsetField, createOperationField, createSortField } from '../common';
+
 export const firewallManagementOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['firewallManagement'],
-			},
-		},
-		options: [
+	createOperationField('firewallManagement', [
+
 			{ name: 'Aggregate Events', value: 'aggregateEvents', description: 'Aggregate events for customer', action: 'Aggregate events' },
 			{ name: 'Aggregate Policy Rules', value: 'aggregatePolicyRules', description: 'Aggregate rules within a policy for customer', action: 'Aggregate policy rules' },
 			{ name: 'Aggregate Rule Groups', value: 'aggregateRuleGroups', description: 'Aggregate rule groups for customer', action: 'Aggregate rule groups' },
@@ -45,9 +38,8 @@ export const firewallManagementOperations: INodeProperties[] = [
 			{ name: 'Update Rule Group Validation', value: 'updateRuleGroupValidation', description: 'Validates request of updating rule group', action: 'Update rule group validation' },
 			{ name: 'Upsert Network Locations', value: 'upsertNetworkLocations', description: 'Updates network locations provided', action: 'Upsert network locations' },
 			{ name: 'Validate Filepath Pattern', value: 'validateFilepathPattern', description: 'Validates test pattern matches executable filepath glob', action: 'Validate filepath pattern' },
-		],
-		default: 'queryRules',
-	},
+		
+	], 'queryRules'),
 ];
 
 export const firewallManagementFields: INodeProperties[] = [
@@ -64,15 +56,7 @@ export const firewallManagementFields: INodeProperties[] = [
 		default: '',
 		description: 'Target policy or container ID',
 	},
-	{
-		displayName: 'IDs',
-		name: 'ids',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['firewallManagement'],
-				operation: [
-					'deleteNetworkLocations',
+	createIdsField('firewallManagement', ['deleteNetworkLocations',
 					'deleteRuleGroups',
 					'getEvents',
 					'getFirewallFields',
@@ -81,14 +65,7 @@ export const firewallManagementFields: INodeProperties[] = [
 					'getPlatforms',
 					'getPolicyContainers',
 					'getRuleGroups',
-					'getRules',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'Comma-separated list of IDs',
-	},
+					'getRules',]),
 	{
 		displayName: 'Platform ID',
 		name: 'platformId',
@@ -126,15 +103,7 @@ export const firewallManagementFields: INodeProperties[] = [
 		default: '',
 		description: 'Audit log comment string',
 	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['firewallManagement'],
-				operation: [
-					'aggregateEvents',
+	createBodyJsonField('firewallManagement', ['aggregateEvents',
 					'aggregatePolicyRules',
 					'aggregateRuleGroups',
 					'aggregateRules',
@@ -149,33 +118,12 @@ export const firewallManagementFields: INodeProperties[] = [
 					'updateRuleGroup',
 					'updateRuleGroupValidation',
 					'upsertNetworkLocations',
-					'validateFilepathPattern',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['firewallManagement'],
-				operation: [
-					'queryEvents',
+					'validateFilepathPattern',]),
+	createFilterField('firewallManagement', ['queryEvents',
 					'queryNetworkLocations',
 					'queryPolicyRules',
 					'queryRuleGroups',
-					'queryRules',
-				],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
+					'queryRules',]),
 	{
 		displayName: 'Search Query (q)',
 		name: 'q',
@@ -195,69 +143,23 @@ export const firewallManagementFields: INodeProperties[] = [
 		default: '',
 		description: 'Search string',
 	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['firewallManagement'],
-				operation: [
-					'queryEvents',
+	createLimitField('firewallManagement', ['queryEvents',
 					'queryFirewallFields',
 					'queryNetworkLocations',
 					'queryPlatforms',
 					'queryPolicyRules',
 					'queryRuleGroups',
-					'queryRules',
-				],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['firewallManagement'],
-				operation: [
-					'queryEvents',
+					'queryRules',]),
+	createOffsetField('firewallManagement', ['queryEvents',
 					'queryFirewallFields',
 					'queryNetworkLocations',
 					'queryPlatforms',
 					'queryPolicyRules',
 					'queryRuleGroups',
-					'queryRules',
-				],
-			},
-		},
-		default: '',
-		description: 'Starting index or pagination token',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['firewallManagement'],
-				operation: [
-					'queryEvents',
+					'queryRules',]),
+	createSortField('firewallManagement', ['queryEvents',
 					'queryNetworkLocations',
 					'queryPolicyRules',
 					'queryRuleGroups',
-					'queryRules',
-				],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+					'queryRules',]),
 ];
