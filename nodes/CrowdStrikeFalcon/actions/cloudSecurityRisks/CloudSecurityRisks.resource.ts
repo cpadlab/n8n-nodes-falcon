@@ -1,21 +1,13 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createOperationField } from '../common';
+
 export const cloudSecurityRisksOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['cloudSecurityRisks'],
-			},
-		},
-		options: [
+	createOperationField('cloudSecurityRisks', [
+
 			{ name: 'Get Enriched Timeline Risks', value: 'cloudSecurityTimelineRisksEnriched', description: 'Returns the enriched asset timeline', action: 'Get enriched timeline risks' },
-		],
-		default: 'cloudSecurityTimelineRisksEnriched',
-	},
+		
+	], 'cloudSecurityTimelineRisksEnriched'),
 ];
 
 export const cloudSecurityRisksFields: INodeProperties[] = [
