@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createFilterField, createLimitField, createOffsetField, createOperationField, createSortField } from '../common';
+
 export const accessScopesOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['accessScopes'],
-			},
-		},
-		options: [
+	createOperationField('accessScopes', [
+
 			{
 				name: 'Query Access Scopes',
 				value: 'queryAccessScopesExternal',
@@ -24,74 +17,18 @@ export const accessScopesOperations: INodeProperties[] = [
 				description: 'Retrieves full details for given Access Scope IDs',
 				action: 'Get access scopes by IDs',
 			},
-		],
-		default: 'queryAccessScopesExternal',
-	},
+		
+	], 'queryAccessScopesExternal'),
 ];
 
 export const accessScopesFields: INodeProperties[] = [
 	/* -------------------------------------------------------------------------- */
 	/*                        queryAccessScopesExternal                           */
 	/* -------------------------------------------------------------------------- */
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['accessScopes'],
-				operation: ['queryAccessScopesExternal'],
-			},
-		},
-		default: '',
-		description: 'FQL filter string to refine results',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['accessScopes'],
-				operation: ['queryAccessScopesExternal'],
-			},
-		},
-		default: '',
-		description: 'Sort criteria for returned Access Scope IDs',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['accessScopes'],
-				operation: ['queryAccessScopesExternal'],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['accessScopes'],
-				operation: ['queryAccessScopesExternal'],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
+	createFilterField('accessScopes', ['queryAccessScopesExternal']),
+	createSortField('accessScopes', ['queryAccessScopesExternal']),
+	createLimitField('accessScopes', ['queryAccessScopesExternal']),
+	createOffsetField('accessScopes', ['queryAccessScopesExternal']),
 
 	/* -------------------------------------------------------------------------- */
 	/*                         listAccessScopesExternal                           */
