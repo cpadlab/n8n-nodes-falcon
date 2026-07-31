@@ -41,8 +41,8 @@ async function handleListCloudGroupIDsExternal(c: IExecuteFunctions, i: number, 
 	/* Lists Cloud Group IDs. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
 	const sort = c.getNodeParameter('sort', i, '') as string;
-	const offset = String(c.getNodeParameter('offset', i, 0));
-	const limit = String(c.getNodeParameter('limit', i, 100));
+	const offset = (typeof c.getNodeParameter('offset', i, 0) === 'object' ? JSON.stringify(c.getNodeParameter('offset', i, 0)) : String(c.getNodeParameter('offset', i, 0)));
+	const limit = (typeof c.getNodeParameter('limit', i, 100) === 'object' ? JSON.stringify(c.getNodeParameter('limit', i, 100)) : String(c.getNodeParameter('limit', i, 100)));
 	return await fc.cloudSecurity.listCloudGroupIDsExternal(filter || undefined, sort || undefined, offset || undefined, limit || undefined);
 }
 
@@ -63,8 +63,8 @@ async function handleListCloudGroupsExternal(c: IExecuteFunctions, i: number, fc
 	/* Lists Cloud Groups entities. */
 	const filter = c.getNodeParameter('filter', i, '') as string;
 	const sort = c.getNodeParameter('sort', i, '') as string;
-	const offset = String(c.getNodeParameter('offset', i, 0));
-	const limit = String(c.getNodeParameter('limit', i, 100));
+	const offset = (typeof c.getNodeParameter('offset', i, 0) === 'object' ? JSON.stringify(c.getNodeParameter('offset', i, 0)) : String(c.getNodeParameter('offset', i, 0)));
+	const limit = (typeof c.getNodeParameter('limit', i, 100) === 'object' ? JSON.stringify(c.getNodeParameter('limit', i, 100)) : String(c.getNodeParameter('limit', i, 100)));
 	return await fc.cloudSecurity.listCloudGroupsExternal(filter || undefined, sort || undefined, offset || undefined, limit || undefined);
 }
 

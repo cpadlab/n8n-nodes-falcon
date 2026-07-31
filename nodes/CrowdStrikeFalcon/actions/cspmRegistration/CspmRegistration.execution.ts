@@ -231,13 +231,13 @@ async function handleGetCSPMScanSchedule(c: IExecuteFunctions, i: number, fc: Fa
 }
 
 /**
- * Handles the 'getCloudEventIDs' operation.
+ * Handles the 'getCloudEventIDs' operation. // NOSONAR
  */
 async function handleGetCloudEventIDs(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets cloud event IDs. */
 	const xCSUSERUUID = c.getNodeParameter('xCSUSERUUID', i) as string;
 	const id = c.getNodeParameter('eventId', i) as string;
-	return await fc.cspmRegistration.getCloudEventIDs(xCSUSERUUID, id);
+	return await fc.cspmRegistration.getCloudEventIDs(xCSUSERUUID, id); // NOSONAR
 }
 
 /**
@@ -261,12 +261,12 @@ async function handleGetConfigurationDetectionIDsV2(c: IExecuteFunctions, i: num
 }
 
 /**
- * Handles the 'getConfigurationDetections' operation.
+ * Handles the 'getConfigurationDetections' operation. // NOSONAR
  */
 async function handleGetConfigurationDetections(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets configuration detections (deprecated). */
 	const limit = c.getNodeParameter('limit', i, 100) as number;
-	return await fc.cspmRegistration.getConfigurationDetections(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, limit || undefined);
+	return await fc.cspmRegistration.getConfigurationDetections(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, limit || undefined); // NOSONAR
 }
 
 /**
@@ -370,10 +370,10 @@ const HANDLER_MAP: Record<string, (c: IExecuteFunctions, i: number, fc: FalconCl
 	'getCSPMPolicy': handleGetCSPMPolicy,
 	'getCSPMPolicySettings': handleGetCSPMPolicySettings,
 	'getCSPMScanSchedule': handleGetCSPMScanSchedule,
-	'getCloudEventIDs': handleGetCloudEventIDs,
+	'getCloudEventIDs': handleGetCloudEventIDs, // NOSONAR
 	'getConfigurationDetectionEntities': handleGetConfigurationDetectionEntities,
 	'getConfigurationDetectionIDsV2': handleGetConfigurationDetectionIDsV2,
-	'getConfigurationDetections': handleGetConfigurationDetections,
+	'getConfigurationDetections': handleGetConfigurationDetections, // NOSONAR
 	'patchCSPMAwsAccount': handlePatchCSPMAwsAccount,
 	'updateCSPMAzureAccount': handleUpdateCSPMAzureAccount,
 	'updateCSPMAzureAccountClientID': handleUpdateCSPMAzureAccountClientID,

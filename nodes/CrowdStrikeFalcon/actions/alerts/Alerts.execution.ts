@@ -103,7 +103,7 @@ async function handleGetAggregateV2(
 }
 
 /**
- * Handles the deprecated 'getQueriesAlertsV1' operation.
+ * Handles the deprecated 'getQueriesAlertsV1' operation. // NOSONAR
  */
 async function handleGetQueriesAlertsV1(
 	context: IExecuteFunctions,
@@ -119,7 +119,7 @@ async function handleGetQueriesAlertsV1(
 	const filter = context.getNodeParameter('filter', index, '') as string;
 	const q = context.getNodeParameter('q', index, '') as string;
 
-	return await falconClient.alerts.getQueriesAlertsV1(
+	return await falconClient.alerts.getQueriesAlertsV1( // NOSONAR
 		offset || undefined,
 		limit || undefined,
 		sort || undefined,
@@ -129,7 +129,7 @@ async function handleGetQueriesAlertsV1(
 }
 
 /**
- * Handles the deprecated 'patchEntitiesAlertsV2' operation.
+ * Handles the deprecated 'patchEntitiesAlertsV2' operation. // NOSONAR
  */
 async function handlePatchEntitiesAlertsV2(
 	context: IExecuteFunctions,
@@ -140,11 +140,11 @@ async function handlePatchEntitiesAlertsV2(
 	 * Patches alert entities using V2 endpoint.
 	 */
 	const body = parseJsonParam(context, index);
-	return await falconClient.alerts.patchEntitiesAlertsV2(body);
+	return await falconClient.alerts.patchEntitiesAlertsV2(body); // NOSONAR
 }
 
 /**
- * Handles the deprecated 'postAggregatesAlertsV1' operation.
+ * Handles the deprecated 'postAggregatesAlertsV1' operation. // NOSONAR
  */
 async function handlePostAggregatesAlertsV1(
 	context: IExecuteFunctions,
@@ -155,11 +155,11 @@ async function handlePostAggregatesAlertsV1(
 	 * Posts aggregate queries using V1 endpoint.
 	 */
 	const body = parseJsonParam(context, index);
-	return await falconClient.alerts.postAggregatesAlertsV1(body);
+	return await falconClient.alerts.postAggregatesAlertsV1(body); // NOSONAR
 }
 
 /**
- * Handles the deprecated 'postEntitiesAlertsV1' operation.
+ * Handles the deprecated 'postEntitiesAlertsV1' operation. // NOSONAR
  */
 async function handlePostEntitiesAlertsV1(
 	context: IExecuteFunctions,
@@ -170,7 +170,7 @@ async function handlePostEntitiesAlertsV1(
 	 * Retrieves alert entities using V1 endpoint.
 	 */
 	const body = parseJsonParam(context, index);
-	return await falconClient.alerts.postEntitiesAlertsV1(body);
+	return await falconClient.alerts.postEntitiesAlertsV1(body); // NOSONAR
 }
 
 /**
@@ -196,13 +196,13 @@ export async function executeAlerts(
 			return await handlePostCombinedAlertsV1(this, index, falconClient);
 		case 'getAggregateV2':
 			return await handleGetAggregateV2(this, index, falconClient);
-		case 'getQueriesAlertsV1':
+		case 'getQueriesAlertsV1': // NOSONAR
 			return await handleGetQueriesAlertsV1(this, index, falconClient);
-		case 'patchEntitiesAlertsV2':
+		case 'patchEntitiesAlertsV2': // NOSONAR
 			return await handlePatchEntitiesAlertsV2(this, index, falconClient);
-		case 'postAggregatesAlertsV1':
+		case 'postAggregatesAlertsV1': // NOSONAR
 			return await handlePostAggregatesAlertsV1(this, index, falconClient);
-		case 'postEntitiesAlertsV1':
+		case 'postEntitiesAlertsV1': // NOSONAR
 			return await handlePostEntitiesAlertsV1(this, index, falconClient);
 		default:
 			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Alerts.`);

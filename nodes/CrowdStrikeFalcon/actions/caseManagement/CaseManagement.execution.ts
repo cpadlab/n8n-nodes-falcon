@@ -80,11 +80,11 @@ async function handleEntitiesNotificationGroupsDeleteV2(c: IExecuteFunctions, i:
 }
 
 /**
- * Handles the 'entitiesNotificationGroupsGetV1' operation.
+ * Handles the 'entitiesNotificationGroupsGetV1' operation. // NOSONAR
  */
 async function handleEntitiesNotificationGroupsGetV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Retrieves notification groups V1. */
-	return await fc.caseManagement.entitiesNotificationGroupsGetV1(parseSetParam(c, i));
+	return await fc.caseManagement.entitiesNotificationGroupsGetV1(parseSetParam(c, i)); // NOSONAR
 }
 
 /**
@@ -96,11 +96,11 @@ async function handleEntitiesNotificationGroupsGetV2(c: IExecuteFunctions, i: nu
 }
 
 /**
- * Handles the 'entitiesNotificationGroupsPatchV1' operation.
+ * Handles the 'entitiesNotificationGroupsPatchV1' operation. // NOSONAR
  */
 async function handleEntitiesNotificationGroupsPatchV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates notification group V1. */
-	return await fc.caseManagement.entitiesNotificationGroupsPatchV1(parseJsonParam(c, i));
+	return await fc.caseManagement.entitiesNotificationGroupsPatchV1(parseJsonParam(c, i)); // NOSONAR
 }
 
 /**
@@ -112,11 +112,11 @@ async function handleEntitiesNotificationGroupsPatchV2(c: IExecuteFunctions, i: 
 }
 
 /**
- * Handles the 'entitiesNotificationGroupsPostV1' operation.
+ * Handles the 'entitiesNotificationGroupsPostV1' operation. // NOSONAR
  */
 async function handleEntitiesNotificationGroupsPostV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Creates notification group V1. */
-	return await fc.caseManagement.entitiesNotificationGroupsPostV1(parseJsonParam(c, i));
+	return await fc.caseManagement.entitiesNotificationGroupsPostV1(parseJsonParam(c, i)); // NOSONAR
 }
 
 /**
@@ -242,7 +242,7 @@ async function handleQueriesFieldsGetV1(c: IExecuteFunctions, i: number, fc: Fal
 }
 
 /**
- * Handles the 'queriesNotificationGroupsGetV1' operation.
+ * Handles the 'queriesNotificationGroupsGetV1' operation. // NOSONAR
  */
 async function handleQueriesNotificationGroupsGetV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries notification groups V1. */
@@ -250,7 +250,7 @@ async function handleQueriesNotificationGroupsGetV1(c: IExecuteFunctions, i: num
 	const sort = c.getNodeParameter('sort', i, '') as string;
 	const limit = c.getNodeParameter('limit', i, 100) as number;
 	const offset = c.getNodeParameter('offset', i, 0) as number;
-	return await fc.caseManagement.queriesNotificationGroupsGetV1(filter || undefined, sort || undefined, limit || undefined, offset || undefined);
+	return await fc.caseManagement.queriesNotificationGroupsGetV1(filter || undefined, sort || undefined, limit || undefined, offset || undefined); // NOSONAR
 }
 
 /**
@@ -310,11 +310,11 @@ const HANDLER_MAP: Record<string, (c: IExecuteFunctions, i: number, fc: FalconCl
 	'entitiesFieldsGetV1': handleEntitiesFieldsGetV1,
 	'entitiesNotificationGroupsDeleteV1': handleEntitiesNotificationGroupsDeleteV1,
 	'entitiesNotificationGroupsDeleteV2': handleEntitiesNotificationGroupsDeleteV2,
-	'entitiesNotificationGroupsGetV1': handleEntitiesNotificationGroupsGetV1,
+	'entitiesNotificationGroupsGetV1': handleEntitiesNotificationGroupsGetV1, // NOSONAR
 	'entitiesNotificationGroupsGetV2': handleEntitiesNotificationGroupsGetV2,
-	'entitiesNotificationGroupsPatchV1': handleEntitiesNotificationGroupsPatchV1,
+	'entitiesNotificationGroupsPatchV1': handleEntitiesNotificationGroupsPatchV1, // NOSONAR
 	'entitiesNotificationGroupsPatchV2': handleEntitiesNotificationGroupsPatchV2,
-	'entitiesNotificationGroupsPostV1': handleEntitiesNotificationGroupsPostV1,
+	'entitiesNotificationGroupsPostV1': handleEntitiesNotificationGroupsPostV1, // NOSONAR
 	'entitiesNotificationGroupsPostV2': handleEntitiesNotificationGroupsPostV2,
 	'entitiesSlasDeleteV1': handleEntitiesSlasDeleteV1,
 	'entitiesSlasGetV1': handleEntitiesSlasGetV1,
@@ -329,7 +329,7 @@ const HANDLER_MAP: Record<string, (c: IExecuteFunctions, i: number, fc: FalconCl
 	'entitiesTemplatesPostV1': handleEntitiesTemplatesPostV1,
 	'queriesAccessTagsGetV1': handleQueriesAccessTagsGetV1,
 	'queriesFieldsGetV1': handleQueriesFieldsGetV1,
-	'queriesNotificationGroupsGetV1': handleQueriesNotificationGroupsGetV1,
+	'queriesNotificationGroupsGetV1': handleQueriesNotificationGroupsGetV1, // NOSONAR
 	'queriesNotificationGroupsGetV2': handleQueriesNotificationGroupsGetV2,
 	'queriesSlasGetV1': handleQueriesSlasGetV1,
 	'queriesTemplateSnapshotsGetV1': handleQueriesTemplateSnapshotsGetV1,

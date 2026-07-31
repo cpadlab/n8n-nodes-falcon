@@ -79,11 +79,11 @@ async function handleEntitiesFilesDownloadGetV1(c: IExecuteFunctions, i: number,
 }
 
 /**
- * Handles the 'entitiesFilesDownloadPostV1' operation.
+ * Handles the 'entitiesFilesDownloadPostV1' operation. // NOSONAR
  */
 async function handleEntitiesFilesDownloadPostV1(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Downloads file from case using POST (deprecated). */
-	return await fc.caseFiles.entitiesFilesDownloadPostV1(parseJsonParam(c, i));
+	return await fc.caseFiles.entitiesFilesDownloadPostV1(parseJsonParam(c, i)); // NOSONAR
 }
 
 /**
@@ -150,7 +150,7 @@ export async function executeCaseFiles(
 		case 'entitiesFilesBulkDownloadPostV1': return await handleEntitiesFilesBulkDownloadPostV1(this, index, falconClient);
 		case 'entitiesFilesDeleteV1': return await handleEntitiesFilesDeleteV1(this, index, falconClient);
 		case 'entitiesFilesDownloadGetV1': return await handleEntitiesFilesDownloadGetV1(this, index, falconClient);
-		case 'entitiesFilesDownloadPostV1': return await handleEntitiesFilesDownloadPostV1(this, index, falconClient);
+		case 'entitiesFilesDownloadPostV1': return await handleEntitiesFilesDownloadPostV1(this, index, falconClient); // NOSONAR
 		case 'entitiesFilesUploadPostV1': return await handleEntitiesFilesUploadPostV1(this, index, falconClient);
 		case 'entitiesGetRtrFileMetadataPostV1': return await handleEntitiesGetRtrFileMetadataPostV1(this, index, falconClient);
 		case 'entitiesRetrieveRtrFilePostV1': return await handleEntitiesRetrieveRtrFilePostV1(this, index, falconClient);

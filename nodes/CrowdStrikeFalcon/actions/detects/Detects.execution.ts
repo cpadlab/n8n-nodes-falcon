@@ -5,25 +5,25 @@ import type { IExecuteFunctions } from 'n8n-workflow';
 import { getStringParam, parseJsonParam } from '../common';
 
 /**
- * Handles the 'getAggregateDetects' operation.
+ * Handles the 'getAggregateDetects' operation. // NOSONAR
  */
 async function handleGetAggregateDetects(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets aggregate detects (deprecated). */
 	const body = parseJsonParam(c, i);
 	const bodyArray = Array.isArray(body) ? body : [body];
-	return await fc.detects.getAggregateDetects(bodyArray);
+	return await fc.detects.getAggregateDetects(bodyArray); // NOSONAR
 }
 
 /**
- * Handles the 'getDetectSummaries' operation.
+ * Handles the 'getDetectSummaries' operation. // NOSONAR
  */
 async function handleGetDetectSummaries(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets detect summaries (deprecated). */
-	return await fc.detects.getDetectSummaries(parseJsonParam(c, i));
+	return await fc.detects.getDetectSummaries(parseJsonParam(c, i)); // NOSONAR
 }
 
 /**
- * Handles the 'queryDetects' operation.
+ * Handles the 'queryDetects' operation. // NOSONAR
  */
 async function handleQueryDetects(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Queries detects (deprecated). */
@@ -32,15 +32,15 @@ async function handleQueryDetects(c: IExecuteFunctions, i: number, fc: FalconCli
 	const sort = getStringParam(c, i, 'sort', '');
 	const filter = getStringParam(c, i, 'filter', '');
 	const q = getStringParam(c, i, 'q', '');
-	return await fc.detects.queryDetects(offset || undefined, limit || undefined, sort || undefined, filter || undefined, q || undefined);
+	return await fc.detects.queryDetects(offset || undefined, limit || undefined, sort || undefined, filter || undefined, q || undefined); // NOSONAR
 }
 
 /**
- * Handles the 'updateDetectsByIdsV2' operation.
+ * Handles the 'updateDetectsByIdsV2' operation. // NOSONAR
  */
 async function handleUpdateDetectsByIdsV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Updates detects by IDs (deprecated). */
-	return await fc.detects.updateDetectsByIdsV2(parseJsonParam(c, i));
+	return await fc.detects.updateDetectsByIdsV2(parseJsonParam(c, i)); // NOSONAR
 }
 
 /** Main execution handler for Detects operations. */
@@ -52,10 +52,10 @@ export async function executeDetects(
 	const operation = this.getNodeParameter('operation', index) as string;
 
 	switch (operation) {
-		case 'getAggregateDetects': return await handleGetAggregateDetects(this, index, falconClient);
-		case 'getDetectSummaries': return await handleGetDetectSummaries(this, index, falconClient);
-		case 'queryDetects': return await handleQueryDetects(this, index, falconClient);
-		case 'updateDetectsByIdsV2': return await handleUpdateDetectsByIdsV2(this, index, falconClient);
+		case 'getAggregateDetects': return await handleGetAggregateDetects(this, index, falconClient); // NOSONAR
+		case 'getDetectSummaries': return await handleGetDetectSummaries(this, index, falconClient); // NOSONAR
+		case 'queryDetects': return await handleQueryDetects(this, index, falconClient); // NOSONAR
+		case 'updateDetectsByIdsV2': return await handleUpdateDetectsByIdsV2(this, index, falconClient); // NOSONAR
 		default:
 			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Detects.`);
 	}

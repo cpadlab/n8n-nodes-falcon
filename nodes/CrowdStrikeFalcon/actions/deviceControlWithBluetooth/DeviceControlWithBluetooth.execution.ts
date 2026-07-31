@@ -13,11 +13,11 @@ async function handleGetDefaultDeviceControlSettings(c: IExecuteFunctions, i: nu
 }
 
 /**
- * Handles the 'getDeviceControlPoliciesV2' operation.
+ * Handles the 'getDeviceControlPoliciesV2' operation. // NOSONAR
  */
 async function handleGetDeviceControlPoliciesV2(c: IExecuteFunctions, i: number, fc: FalconClient): Promise<any> {
 	/* Gets device control policies V2. */
-	return await fc.deviceControlWithBluetooth.getDeviceControlPoliciesV2(parseArrayParam(c, i, 'ids'));
+	return await fc.deviceControlWithBluetooth.getDeviceControlPoliciesV2(parseArrayParam(c, i, 'ids')); // NOSONAR
 }
 
 /**
@@ -62,7 +62,7 @@ export async function executeDeviceControlWithBluetooth(
 
 	switch (operation) {
 		case 'getDefaultDeviceControlSettings': return await handleGetDefaultDeviceControlSettings(this, index, falconClient);
-		case 'getDeviceControlPoliciesV2': return await handleGetDeviceControlPoliciesV2(this, index, falconClient);
+		case 'getDeviceControlPoliciesV2': return await handleGetDeviceControlPoliciesV2(this, index, falconClient); // NOSONAR
 		case 'patchDeviceControlPoliciesClassesV1': return await handlePatchDeviceControlPoliciesClassesV1(this, index, falconClient);
 		case 'patchDeviceControlPoliciesV2': return await handlePatchDeviceControlPoliciesV2(this, index, falconClient);
 		case 'postDeviceControlPoliciesV2': return await handlePostDeviceControlPoliciesV2(this, index, falconClient);
