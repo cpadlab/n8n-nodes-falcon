@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createOperationField, createStandardPaginationFields } from '../common';
+
 export const containerImagesOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['containerImages'],
-			},
-		},
-		options: [
+	createOperationField('containerImages', [
+
 			{ name: 'Aggregate Image Assessment History', value: 'aggregateImageAssessmentHistory', description: 'Image assessment history', action: 'Aggregate image assessment history' },
 			{ name: 'Aggregate Image Count', value: 'aggregateImageCount', description: 'Aggregate count of images', action: 'Aggregate image count' },
 			{ name: 'Aggregate Image Count by Base OS', value: 'aggregateImageCountByBaseOS', description: 'Aggregate count of images grouped by Base OS', action: 'Aggregate image count by base OS' },
@@ -25,9 +18,8 @@ export const containerImagesOperations: INodeProperties[] = [
 			{ name: 'Delete Base Images', value: 'deleteBaseImages', description: 'Delete base images by UUID', action: 'Delete base images' },
 			{ name: 'Get Combined Images', value: 'getCombinedImages', description: 'Get image assessment results with FQL filter', action: 'Get combined images' },
 			{ name: 'Read Combined Images Export', value: 'readCombinedImagesExport', description: 'Retrieves paginated list of images for export', action: 'Read combined images export' },
-		],
-		default: 'getCombinedImages',
-	},
+		
+	], 'getCombinedImages'),
 ];
 
 export const containerImagesFields: INodeProperties[] = [
@@ -101,29 +93,8 @@ export const containerImagesFields: INodeProperties[] = [
 		required: true,
 		description: 'Comma-separated list of base image UUIDs',
 	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['containerImages'],
-				operation: ['createBaseImagesEntities'],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON body payload for base image creation',
-	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['containerImages'],
-				operation: [
-					'aggregateImageAssessmentHistory',
+	createBodyJsonField('containerImages', ['createBaseImagesEntities']),
+	...createStandardPaginationFields('containerImages', ['aggregateImageAssessmentHistory',
 					'aggregateImageCount',
 					'aggregateImageCountByBaseOS',
 					'aggregateImageCountByState',
@@ -131,57 +102,5 @@ export const containerImagesFields: INodeProperties[] = [
 					'combinedImageByVulnerabilityCount',
 					'combinedImageDetail',
 					'getCombinedImages',
-					'readCombinedImagesExport',
-				],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['containerImages'],
-				operation: ['combinedImageByVulnerabilityCount', 'combinedImageDetail', 'getCombinedImages', 'readCombinedImagesExport'],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['containerImages'],
-				operation: ['combinedImageByVulnerabilityCount', 'combinedImageDetail', 'getCombinedImages', 'readCombinedImagesExport'],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['containerImages'],
-				operation: ['combinedImageDetail', 'getCombinedImages', 'readCombinedImagesExport'],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+					'readCombinedImagesExport',]),
 ];
