@@ -1,26 +1,8 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
-function parseJsonParam(context: IExecuteFunctions, index: number, paramName = 'bodyJson'): any {
-	const rawJson = context.getNodeParameter(paramName, index, '') as string;
-	if (!rawJson) return [];
-	try {
-		const parsed = typeof rawJson === 'string' ? JSON.parse(rawJson) : rawJson;
-		return Array.isArray(parsed) ? parsed : [parsed];
-	} catch (e) {
-		throw new Error(`Invalid JSON in ${paramName}: ${(e as Error).message}`);
-	}
-}
-
-function parseArrayParam(context: IExecuteFunctions, index: number, paramName = 'ids'): string[] {
-	const str = (context.getNodeParameter(paramName, index, '') as string) || '';
-	return str.split(',').map((id) => id.trim()).filter(Boolean);
-}
-
-function getStringParam(context: IExecuteFunctions, index: number, paramName: string, fallback = ''): string {
-	const val = context.getNodeParameter(paramName, index, fallback);
-	return val !== undefined && val !== null ? String(val) : String(fallback);
-}
+import { getStringParam, parseArrayParam, parseJsonParam } from '../common';
 
 /**
  * Handles the 'createTemplates' operation.
@@ -101,6 +83,6 @@ export async function executeNetworkScanTemplates(
 		case 'queryTemplates': return await handleQueryTemplates(this, index, falconClient);
 		case 'updateTemplates': return await handleUpdateTemplates(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Network Scan Templates.`);
+			throw new NodeOperationError(c.getNode(), `Operation ${operation} is not supported for Network Scan Templates.`);
 	}
 }
