@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createOperationField, createStandardPaginationFields } from '../common';
+
 export const responsePoliciesOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['responsePolicies'],
-			},
-		},
-		options: [
+	createOperationField('responsePolicies', [
+
 			{ name: 'Create RT Response Policies', value: 'createRTResponsePolicies', description: 'Create Response Policies by specifying details about policy to create', action: 'Create RT response policies' },
 			{ name: 'Delete RT Response Policies', value: 'deleteRTResponsePolicies', description: 'Delete a set of Response Policies by specifying their IDs', action: 'Delete RT response policies' },
 			{ name: 'Get RT Response Policies', value: 'getRTResponsePolicies', description: 'Retrieve a set of Response Policies by specifying their IDs', action: 'Get RT response policies' },
@@ -22,9 +15,8 @@ export const responsePoliciesOperations: INodeProperties[] = [
 			{ name: 'Query RT Response Policy Members', value: 'queryRTResponsePolicyMembers', description: 'Search for members of a Response policy returning Agent IDs', action: 'Query RT response policy members' },
 			{ name: 'Set RT Response Policies Precedence', value: 'setRTResponsePoliciesPrecedence', description: 'Sets precedence of Response Policies based on order of IDs', action: 'Set RT response policies precedence' },
 			{ name: 'Update RT Response Policies', value: 'updateRTResponsePolicies', description: 'Update Response Policies by specifying ID and details to update', action: 'Update RT response policies' },
-		],
-		default: 'queryRTResponsePolicies',
-	},
+		
+	], 'queryRTResponsePolicies'),
 ];
 
 export const responsePoliciesFields: INodeProperties[] = [
@@ -77,102 +69,12 @@ export const responsePoliciesFields: INodeProperties[] = [
 		required: true,
 		description: 'Action to perform on response policy',
 	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['responsePolicies'],
-				operation: [
-					'createRTResponsePolicies',
+	createBodyJsonField('responsePolicies', ['createRTResponsePolicies',
 					'performRTResponsePoliciesAction',
 					'setRTResponsePoliciesPrecedence',
-					'updateRTResponsePolicies',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['responsePolicies'],
-				operation: [
-					'queryCombinedRTResponsePolicies',
+					'updateRTResponsePolicies',]),
+	...createStandardPaginationFields('responsePolicies', ['queryCombinedRTResponsePolicies',
 					'queryCombinedRTResponsePolicyMembers',
 					'queryRTResponsePolicies',
-					'queryRTResponsePolicyMembers',
-				],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['responsePolicies'],
-				operation: [
-					'queryCombinedRTResponsePolicies',
-					'queryCombinedRTResponsePolicyMembers',
-					'queryRTResponsePolicies',
-					'queryRTResponsePolicyMembers',
-				],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['responsePolicies'],
-				operation: [
-					'queryCombinedRTResponsePolicies',
-					'queryCombinedRTResponsePolicyMembers',
-					'queryRTResponsePolicies',
-					'queryRTResponsePolicyMembers',
-				],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['responsePolicies'],
-				operation: [
-					'queryCombinedRTResponsePolicies',
-					'queryCombinedRTResponsePolicyMembers',
-					'queryRTResponsePolicies',
-					'queryRTResponsePolicyMembers',
-				],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+					'queryRTResponsePolicyMembers',]),
 ];
