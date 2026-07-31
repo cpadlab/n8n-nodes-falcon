@@ -1,20 +1,7 @@
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
-function parseJsonParam(context: IExecuteFunctions, index: number, paramName = 'bodyJson'): any {
-	const rawJson = context.getNodeParameter(paramName, index, '') as string;
-	if (!rawJson) return {};
-	try {
-		return typeof rawJson === 'string' ? JSON.parse(rawJson) : rawJson;
-	} catch (e) {
-		throw new Error(`Invalid JSON in ${paramName}: ${(e as Error).message}`);
-	}
-}
-
-function parseArrayParam(context: IExecuteFunctions, index: number, paramName = 'ids'): string[] {
-	const str = (context.getNodeParameter(paramName, index, '') as string) || '';
-	return str.split(',').map((id) => id.trim()).filter(Boolean);
-}
+import { parseArrayParam, parseJsonParam } from '../common';
 
 /**
  * Handles the 'getDefaultDeviceControlSettings' operation.
