@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createFilterField, createIdsField, createLimitField, createOffsetField, createOperationField } from '../common';
+
 export const caseFilesOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['caseFiles'],
-			},
-		},
-		options: [
+	createOperationField('caseFiles', [
+
 			{ name: 'Aggregates File Details', value: 'aggregatesFileDetailsPostV1', description: 'Get file details aggregates as specified via JSON', action: 'Get file details aggregates' },
 			{ name: 'Combined File Details', value: 'combinedFileDetailsGetV1', description: 'Query file details', action: 'Query file details' },
 			{ name: 'Get File Details by ID', value: 'entitiesFileDetailsGetV1', description: 'Get file details by ID', action: 'Get file details by ID' },
@@ -25,29 +18,15 @@ export const caseFilesOperations: INodeProperties[] = [
 			{ name: 'Retrieve RTR File', value: 'entitiesRetrieveRtrFilePostV1', description: 'Retrieves a file from host using RTR and adds it to a case', action: 'Retrieve RTR file' },
 			{ name: 'Retrieve Recent RTR File', value: 'entitiesRetrieveRtrRecentFilePostV1', description: 'Retrieves a recently fetched RTR file and adds it to a case', action: 'Retrieve recent RTR file' },
 			{ name: 'Query File Details IDs', value: 'queriesFileDetailsGetV1', description: 'Query for IDs of file details', action: 'Query file details IDs' },
-		],
-		default: 'combinedFileDetailsGetV1',
-	},
+		
+	], 'combinedFileDetailsGetV1'),
 ];
 
 export const caseFilesFields: INodeProperties[] = [
 	/* -------------------------------------------------------------------------- */
 	/*                                   IDs                                      */
 	/* -------------------------------------------------------------------------- */
-	{
-		displayName: 'IDs',
-		name: 'ids',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['caseFiles'],
-				operation: ['aggregatesFileDetailsPostV1', 'entitiesFileDetailsGetV1', 'entitiesFilesDeleteV1'],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'Comma-separated list of IDs',
-	},
+	createIdsField('caseFiles', ['aggregatesFileDetailsPostV1', 'entitiesFileDetailsGetV1', 'entitiesFilesDeleteV1']),
 	{
 		displayName: 'ID',
 		name: 'id',
@@ -97,76 +76,18 @@ export const caseFilesFields: INodeProperties[] = [
 	/* -------------------------------------------------------------------------- */
 	/*                                 Body JSON                                  */
 	/* -------------------------------------------------------------------------- */
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['caseFiles'],
-				operation: [
-					'aggregatesFileDetailsPostV1',
+	createBodyJsonField('caseFiles', ['aggregatesFileDetailsPostV1',
 					'entitiesFileDetailsPatchV1',
 					'entitiesFilesBulkDownloadPostV1',
 					'entitiesFilesDownloadPostV1',
 					'entitiesGetRtrFileMetadataPostV1',
 					'entitiesRetrieveRtrFilePostV1',
-					'entitiesRetrieveRtrRecentFilePostV1',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON body payload',
-	},
+					'entitiesRetrieveRtrRecentFilePostV1',]),
 
 	/* -------------------------------------------------------------------------- */
 	/*                            Pagination & Filters                            */
 	/* -------------------------------------------------------------------------- */
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['caseFiles'],
-				operation: ['aggregatesFileDetailsPostV1', 'combinedFileDetailsGetV1', 'queriesFileDetailsGetV1'],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['caseFiles'],
-				operation: ['combinedFileDetailsGetV1', 'queriesFileDetailsGetV1'],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['caseFiles'],
-				operation: ['combinedFileDetailsGetV1', 'queriesFileDetailsGetV1'],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
+	createFilterField('caseFiles', ['aggregatesFileDetailsPostV1', 'combinedFileDetailsGetV1', 'queriesFileDetailsGetV1']),
+	createLimitField('caseFiles', ['combinedFileDetailsGetV1', 'queriesFileDetailsGetV1']),
+	createOffsetField('caseFiles', ['combinedFileDetailsGetV1', 'queriesFileDetailsGetV1']),
 ];
