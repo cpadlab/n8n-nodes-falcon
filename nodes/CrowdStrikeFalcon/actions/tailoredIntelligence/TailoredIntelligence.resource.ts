@@ -1,25 +1,17 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createFilterField, createLimitField, createOffsetField, createOperationField, createSortField } from '../common';
+
 export const tailoredIntelligenceOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['tailoredIntelligence'],
-			},
-		},
-		options: [
+	createOperationField('tailoredIntelligence', [
+
 			{ name: 'Get Events Body', value: 'getEventsBody', description: 'Get event body for event ID', action: 'Get events body' },
 			{ name: 'Get Events Entities', value: 'getEventsEntities', description: 'Get events entities for specified IDs', action: 'Get events entities' },
 			{ name: 'Get Rules Entities', value: 'getRulesEntities', description: 'Get rules entities for specified IDs', action: 'Get rules entities' },
 			{ name: 'Query Events', value: 'queryEvents', description: 'Get events IDs matching filter criteria', action: 'Query events' },
 			{ name: 'Query Rules', value: 'queryRules', description: 'Get rules IDs matching filter criteria', action: 'Query rules' },
-		],
-		default: 'queryEvents',
-	},
+		
+	], 'queryEvents'),
 ];
 
 export const tailoredIntelligenceFields: INodeProperties[] = [
@@ -53,33 +45,8 @@ export const tailoredIntelligenceFields: INodeProperties[] = [
 		default: '',
 		description: 'Authorization header string if required',
 	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['tailoredIntelligence'],
-				operation: ['getEventsEntities', 'getRulesEntities'],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['tailoredIntelligence'],
-				operation: ['queryEvents', 'queryRules'],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
+	createBodyJsonField('tailoredIntelligence', ['getEventsEntities', 'getRulesEntities']),
+	createFilterField('tailoredIntelligence', ['queryEvents', 'queryRules']),
 	{
 		displayName: 'Query',
 		name: 'q',
@@ -93,47 +60,7 @@ export const tailoredIntelligenceFields: INodeProperties[] = [
 		default: '',
 		description: 'Search query string',
 	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['tailoredIntelligence'],
-				operation: ['queryEvents', 'queryRules'],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['tailoredIntelligence'],
-				operation: ['queryEvents', 'queryRules'],
-			},
-		},
-		default: '',
-		description: 'Offset string for pagination',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['tailoredIntelligence'],
-				operation: ['queryEvents', 'queryRules'],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+	createLimitField('tailoredIntelligence', ['queryEvents', 'queryRules']),
+	createOffsetField('tailoredIntelligence', ['queryEvents', 'queryRules']),
+	createSortField('tailoredIntelligence', ['queryEvents', 'queryRules']),
 ];
