@@ -1,22 +1,14 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createOperationField } from '../common';
+
 export const foundryLookupFilesOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['foundryLookupFiles'],
-			},
-		},
-		options: [
+	createOperationField('foundryLookupFiles', [
+
 			{ name: 'Create File V1', value: 'createFileV1', description: 'Creates a lookup file within a foundry app', action: 'Create file v1' },
 			{ name: 'Update File V1', value: 'updateFileV1', description: 'Updates a lookup file within a Foundry app', action: 'Update file v1' },
-		],
-		default: 'createFileV1',
-	},
+		
+	], 'createFileV1'),
 ];
 
 export const foundryLookupFilesFields: INodeProperties[] = [
