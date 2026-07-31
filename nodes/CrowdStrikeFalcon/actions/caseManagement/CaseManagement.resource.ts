@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createFilterField, createIdsField, createLimitField, createOffsetField, createOperationField, createSortField } from '../common';
+
 export const caseManagementOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['caseManagement'],
-			},
-		},
-		options: [
+	createOperationField('caseManagement', [
+
 			{ name: 'Aggregates Access Tags', value: 'aggregatesAccessTagsPostV1', description: 'Get access tag aggregates', action: 'Get access tag aggregates' },
 			{ name: 'Aggregates Notification Groups V1 (Deprecated)', value: 'aggregatesNotificationGroupsPostV1', description: 'Get notification groups aggregations (deprecated)', action: 'Get notification groups aggregations v1' },
 			{ name: 'Aggregates Notification Groups V2', value: 'aggregatesNotificationGroupsPostV2', description: 'Get notification groups aggregations V2', action: 'Get notification groups aggregations v2' },
@@ -44,24 +37,15 @@ export const caseManagementOperations: INodeProperties[] = [
 			{ name: 'Query SLAs', value: 'queriesSlasGetV1', description: 'Query SLAs', action: 'Query SLAs' },
 			{ name: 'Query Template Snapshots', value: 'queriesTemplateSnapshotsGetV1', description: 'Query template snapshots', action: 'Query template snapshots' },
 			{ name: 'Query Templates', value: 'queriesTemplatesGetV1', description: 'Query templates', action: 'Query templates' },
-		],
-		default: 'queriesTemplatesGetV1',
-	},
+		
+	], 'queriesTemplatesGetV1'),
 ];
 
 export const caseManagementFields: INodeProperties[] = [
 	/* -------------------------------------------------------------------------- */
 	/*                                   IDs                                      */
 	/* -------------------------------------------------------------------------- */
-	{
-		displayName: 'IDs',
-		name: 'ids',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['caseManagement'],
-				operation: [
-					'entitiesFieldsGetV1',
+	createIdsField('caseManagement', ['entitiesFieldsGetV1',
 					'entitiesNotificationGroupsDeleteV1',
 					'entitiesNotificationGroupsDeleteV2',
 					'entitiesNotificationGroupsGetV1',
@@ -71,26 +55,12 @@ export const caseManagementFields: INodeProperties[] = [
 					'entitiesTemplatesDeleteV1',
 					'entitiesTemplatesGetV1',
 					'entitiesTemplatesExportGetV1',
-					'entitiesTemplateSnapshotsGetV1',
-				],
-			},
-		},
-		default: '',
-		description: 'Comma-separated list of IDs',
-	},
+					'entitiesTemplateSnapshotsGetV1',]),
 
 	/* -------------------------------------------------------------------------- */
 	/*                                Body JSON                                   */
 	/* -------------------------------------------------------------------------- */
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['caseManagement'],
-				operation: [
-					'aggregatesAccessTagsPostV1',
+	createBodyJsonField('caseManagement', ['aggregatesAccessTagsPostV1',
 					'aggregatesNotificationGroupsPostV1',
 					'aggregatesNotificationGroupsPostV2',
 					'aggregatesSlasPostV1',
@@ -103,105 +73,35 @@ export const caseManagementFields: INodeProperties[] = [
 					'entitiesSlasPostV1',
 					'entitiesTemplatesImportPostV1',
 					'entitiesTemplatesPatchV1',
-					'entitiesTemplatesPostV1',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON body payload for request',
-	},
+					'entitiesTemplatesPostV1',]),
 
 	/* -------------------------------------------------------------------------- */
 	/*                             Pagination & Filters                           */
 	/* -------------------------------------------------------------------------- */
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['caseManagement'],
-				operation: [
-					'entitiesTemplatesExportGetV1',
+	createFilterField('caseManagement', ['entitiesTemplatesExportGetV1',
 					'queriesAccessTagsGetV1',
 					'queriesFieldsGetV1',
 					'queriesNotificationGroupsGetV1',
 					'queriesNotificationGroupsGetV2',
 					'queriesSlasGetV1',
 					'queriesTemplateSnapshotsGetV1',
-					'queriesTemplatesGetV1',
-				],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['caseManagement'],
-				operation: [
-					'queriesAccessTagsGetV1',
+					'queriesTemplatesGetV1',]),
+	createSortField('caseManagement', ['queriesAccessTagsGetV1',
 					'queriesNotificationGroupsGetV1',
 					'queriesNotificationGroupsGetV2',
 					'queriesSlasGetV1',
-					'queriesTemplatesGetV1',
-				],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['caseManagement'],
-				operation: [
-					'queriesAccessTagsGetV1',
+					'queriesTemplatesGetV1',]),
+	createLimitField('caseManagement', ['queriesAccessTagsGetV1',
 					'queriesFieldsGetV1',
 					'queriesNotificationGroupsGetV1',
 					'queriesNotificationGroupsGetV2',
 					'queriesSlasGetV1',
 					'queriesTemplateSnapshotsGetV1',
-					'queriesTemplatesGetV1',
-				],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['caseManagement'],
-				operation: [
-					'queriesFieldsGetV1',
+					'queriesTemplatesGetV1',]),
+	createOffsetField('caseManagement', ['queriesFieldsGetV1',
 					'queriesNotificationGroupsGetV1',
 					'queriesNotificationGroupsGetV2',
 					'queriesSlasGetV1',
 					'queriesTemplateSnapshotsGetV1',
-					'queriesTemplatesGetV1',
-				],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
+					'queriesTemplatesGetV1',]),
 ];
