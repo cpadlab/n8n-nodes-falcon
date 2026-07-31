@@ -1,9 +1,16 @@
-import type { ICredentialType, INodeProperties } from 'n8n-workflow';
+import type { ICredentialTestRequest, ICredentialType, INodeProperties, Icon } from 'n8n-workflow';
 
 export class CrowdStrikeFalconApi implements ICredentialType {
 	name = 'crowdStrikeFalconApi';
 	displayName = 'CrowdStrike Falcon API';
+	icon: Icon = 'file:falcon.svg';
 	documentationUrl = 'https://developer.crowdstrike.com/sdks/typescript/';
+	test: ICredentialTestRequest = {
+		request: {
+			baseURL: '={{$credentials.cloud === "us-1" ? "https://api.crowdstrike.com" : $credentials.cloud === "us-2" ? "https://api.us-2.crowdstrike.com" : $credentials.cloud === "us-gov-1" ? "https://api.laggar.gcw.crowdstrike.com" : "https://api.eu-1.crowdstrike.com"}}',
+			url: '/sensors/queries/installers/ccid/v1',
+		},
+	};
 	properties: INodeProperties[] = [
 		{
 			displayName: 'Cloud Region',
