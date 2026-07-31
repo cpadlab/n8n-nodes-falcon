@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createFilterField, createIdsField, createLimitField, createOffsetField, createOperationField, createSortField } from '../common';
+
 export const dataProtectionConfigurationOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['dataProtectionConfiguration'],
-			},
-		},
-		options: [
+	createOperationField('dataProtectionConfiguration', [
+
 			{ name: 'Entities Classification Delete V2', value: 'entitiesClassificationDeleteV2', description: 'Deletes classifications matching IDs', action: 'Entities classification delete V2' },
 			{ name: 'Entities Classification Get V2', value: 'entitiesClassificationGetV2', description: 'Gets classifications matching IDs', action: 'Entities classification get V2' },
 			{ name: 'Entities Classification Patch V2', value: 'entitiesClassificationPatchV2', description: 'Update classifications', action: 'Entities classification patch V2' },
@@ -59,9 +52,8 @@ export const dataProtectionConfigurationOperations: INodeProperties[] = [
 			{ name: 'Queries Policy Get V2', value: 'queriesPolicyGetV2', description: 'Search policies matching criteria', action: 'Queries policy get V2' },
 			{ name: 'Queries Sensitivity Label Get V2', value: 'queriesSensitivityLabelGetV2', description: 'Get sensitivity label IDs with filter', action: 'Queries sensitivity label get V2' },
 			{ name: 'Queries Web Location Get V2', value: 'queriesWebLocationGetV2', description: 'Get web location IDs with filter', action: 'Queries web location get V2' },
-		],
-		default: 'queriesPolicyGetV2',
-	},
+		
+	], 'queriesPolicyGetV2'),
 ];
 
 export const dataProtectionConfigurationFields: INodeProperties[] = [
@@ -86,15 +78,7 @@ export const dataProtectionConfigurationFields: INodeProperties[] = [
 		required: true,
 		description: 'Target ID',
 	},
-	{
-		displayName: 'IDs',
-		name: 'ids',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['dataProtectionConfiguration'],
-				operation: [
-					'entitiesClassificationDeleteV2',
+	createIdsField('dataProtectionConfiguration', ['entitiesClassificationDeleteV2',
 					'entitiesClassificationGetV2',
 					'entitiesCloudApplicationDelete',
 					'entitiesCloudApplicationGet',
@@ -112,14 +96,7 @@ export const dataProtectionConfigurationFields: INodeProperties[] = [
 					'entitiesSensitivityLabelDeleteV2',
 					'entitiesSensitivityLabelGetV2',
 					'entitiesWebLocationDeleteV2',
-					'entitiesWebLocationGetV2',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'Comma-separated list of IDs',
-	},
+					'entitiesWebLocationGetV2',]),
 	{
 		displayName: 'Platform Name',
 		name: 'platformName',
@@ -153,15 +130,7 @@ export const dataProtectionConfigurationFields: INodeProperties[] = [
 		required: true,
 		description: 'User UUID string',
 	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['dataProtectionConfiguration'],
-				operation: [
-					'entitiesClassificationPatchV2',
+	createBodyJsonField('dataProtectionConfiguration', ['entitiesClassificationPatchV2',
 					'entitiesClassificationPostV2',
 					'entitiesCloudApplicationCreate',
 					'entitiesCloudApplicationPatch',
@@ -178,23 +147,8 @@ export const dataProtectionConfigurationFields: INodeProperties[] = [
 					'entitiesPolicyPrecedencePostV1',
 					'entitiesSensitivityLabelCreateV2',
 					'entitiesWebLocationCreateV2',
-					'entitiesWebLocationPatchV2',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['dataProtectionConfiguration'],
-				operation: [
-					'queriesClassificationGetV2',
+					'entitiesWebLocationPatchV2',]),
+	createFilterField('dataProtectionConfiguration', ['queriesClassificationGetV2',
 					'queriesCloudApplicationGetV2',
 					'queriesContentPatternGetV2',
 					'queriesEnterpriseAccountGetV2',
@@ -203,13 +157,7 @@ export const dataProtectionConfigurationFields: INodeProperties[] = [
 					'queriesLocalApplicationGroupGet',
 					'queriesPolicyGetV2',
 					'queriesSensitivityLabelGetV2',
-					'queriesWebLocationGetV2',
-				],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
+					'queriesWebLocationGetV2',]),
 	{
 		displayName: 'Type',
 		name: 'type',
@@ -223,19 +171,7 @@ export const dataProtectionConfigurationFields: INodeProperties[] = [
 		default: '',
 		description: 'Location type filter',
 	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['dataProtectionConfiguration'],
-				operation: [
-					'queriesClassificationGetV2',
+	createLimitField('dataProtectionConfiguration', ['queriesClassificationGetV2',
 					'queriesCloudApplicationGetV2',
 					'queriesContentPatternGetV2',
 					'queriesEnterpriseAccountGetV2',
@@ -244,25 +180,8 @@ export const dataProtectionConfigurationFields: INodeProperties[] = [
 					'queriesLocalApplicationGroupGet',
 					'queriesPolicyGetV2',
 					'queriesSensitivityLabelGetV2',
-					'queriesWebLocationGetV2',
-				],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['dataProtectionConfiguration'],
-				operation: [
-					'queriesClassificationGetV2',
+					'queriesWebLocationGetV2',]),
+	createOffsetField('dataProtectionConfiguration', ['queriesClassificationGetV2',
 					'queriesCloudApplicationGetV2',
 					'queriesContentPatternGetV2',
 					'queriesEnterpriseAccountGetV2',
@@ -271,32 +190,12 @@ export const dataProtectionConfigurationFields: INodeProperties[] = [
 					'queriesLocalApplicationGroupGet',
 					'queriesPolicyGetV2',
 					'queriesSensitivityLabelGetV2',
-					'queriesWebLocationGetV2',
-				],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['dataProtectionConfiguration'],
-				operation: [
-					'queriesClassificationGetV2',
+					'queriesWebLocationGetV2',]),
+	createSortField('dataProtectionConfiguration', ['queriesClassificationGetV2',
 					'queriesCloudApplicationGetV2',
 					'queriesContentPatternGetV2',
 					'queriesEnterpriseAccountGetV2',
 					'queriesFileTypeGetV2',
 					'queriesPolicyGetV2',
-					'queriesSensitivityLabelGetV2',
-				],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+					'queriesSensitivityLabelGetV2',]),
 ];
