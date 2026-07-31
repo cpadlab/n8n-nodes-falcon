@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createIdsField, createOperationField, createStandardPaginationFields } from '../common';
+
 export const hostGroupOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['hostGroup'],
-			},
-		},
-		options: [
+	createOperationField('hostGroup', [
+
 			{ name: 'Create Host Groups', value: 'createHostGroups', description: 'Create Host Groups by specifying details about the group to create', action: 'Create host groups' },
 			{ name: 'Delete Host Groups', value: 'deleteHostGroups', description: 'Delete a set of Host Groups by specifying their IDs', action: 'Delete host groups' },
 			{ name: 'Get Host Groups', value: 'getHostGroups', description: 'Retrieve a set of Host Groups by specifying their IDs', action: 'Get host groups' },
@@ -21,9 +14,8 @@ export const hostGroupOperations: INodeProperties[] = [
 			{ name: 'Query Group Members', value: 'queryGroupMembers', description: 'Search for members of a Host Group returning Agent IDs', action: 'Query group members' },
 			{ name: 'Query Host Groups', value: 'queryHostGroups', description: 'Search for Host Groups returning Host Group IDs', action: 'Query host groups' },
 			{ name: 'Update Host Groups', value: 'updateHostGroups', description: 'Update Host Groups by specifying ID and details', action: 'Update host groups' },
-		],
-		default: 'queryHostGroups',
-	},
+		
+	], 'queryHostGroups'),
 ];
 
 export const hostGroupFields: INodeProperties[] = [
@@ -40,20 +32,7 @@ export const hostGroupFields: INodeProperties[] = [
 		default: '',
 		description: 'Unique host group ID',
 	},
-	{
-		displayName: 'IDs',
-		name: 'ids',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['hostGroup'],
-				operation: ['deleteHostGroups', 'getHostGroups'],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'Comma-separated list of host group IDs',
-	},
+	createIdsField('hostGroup', ['deleteHostGroups', 'getHostGroups']),
 	{
 		displayName: 'Action Name',
 		name: 'actionName',
@@ -85,97 +64,9 @@ export const hostGroupFields: INodeProperties[] = [
 		default: false,
 		description: 'Whether to disable hostname checking',
 	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['hostGroup'],
-				operation: ['createHostGroups', 'performGroupAction', 'updateHostGroups'],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['hostGroup'],
-				operation: [
-					'queryCombinedGroupMembers',
+	createBodyJsonField('hostGroup', ['createHostGroups', 'performGroupAction', 'updateHostGroups']),
+	...createStandardPaginationFields('hostGroup', ['queryCombinedGroupMembers',
 					'queryCombinedHostGroups',
 					'queryGroupMembers',
-					'queryHostGroups',
-				],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['hostGroup'],
-				operation: [
-					'queryCombinedGroupMembers',
-					'queryCombinedHostGroups',
-					'queryGroupMembers',
-					'queryHostGroups',
-				],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['hostGroup'],
-				operation: [
-					'queryCombinedGroupMembers',
-					'queryCombinedHostGroups',
-					'queryGroupMembers',
-					'queryHostGroups',
-				],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['hostGroup'],
-				operation: [
-					'queryCombinedGroupMembers',
-					'queryCombinedHostGroups',
-					'queryGroupMembers',
-					'queryHostGroups',
-				],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+					'queryHostGroups',]),
 ];
