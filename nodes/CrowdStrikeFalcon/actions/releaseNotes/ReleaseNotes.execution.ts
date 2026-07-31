@@ -1,20 +1,8 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
-function parseJsonParam(context: IExecuteFunctions, index: number, paramName = 'bodyJson'): any {
-	const rawJson = context.getNodeParameter(paramName, index, '') as string;
-	if (!rawJson) return {};
-	try {
-		return typeof rawJson === 'string' ? JSON.parse(rawJson) : rawJson;
-	} catch (e) {
-		throw new Error(`Invalid JSON in ${paramName}: ${(e as Error).message}`);
-	}
-}
-
-function getStringParam(context: IExecuteFunctions, index: number, paramName: string, fallback = ''): string {
-	const val = context.getNodeParameter(paramName, index, fallback);
-	return val !== undefined && val !== null ? String(val) : String(fallback);
-}
+import { getStringParam, parseJsonParam } from '../common';
 
 /**
  * Handles the 'combinedReleaseNotesV1' operation.
@@ -77,6 +65,6 @@ export async function executeReleaseNotes(
 		case 'getEntityIDsByQueryPOSTV2': return await handleGetEntityIDsByQueryPOSTV2(this, index, falconClient);
 		case 'queryReleaseNotesV1': return await handleQueryReleaseNotesV1(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Release Notes.`);
+			throw new NodeOperationError(c.getNode(), `Operation ${operation} is not supported for Release Notes.`);
 	}
 }
