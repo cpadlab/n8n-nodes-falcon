@@ -1,22 +1,14 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createOperationField } from '../common';
+
 export const eventStreamsOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['eventStreams'],
-			},
-		},
-		options: [
+	createOperationField('eventStreams', [
+
 			{ name: 'List Available Streams OAuth2', value: 'listAvailableStreamsOAuth2', description: 'Discover all event streams in your environment', action: 'List available streams OAuth2' },
 			{ name: 'Refresh Active Stream Session', value: 'refreshActiveStreamSession', description: 'Refresh an active event stream session', action: 'Refresh active stream session' },
-		],
-		default: 'listAvailableStreamsOAuth2',
-	},
+		
+	], 'listAvailableStreamsOAuth2'),
 ];
 
 export const eventStreamsFields: INodeProperties[] = [
