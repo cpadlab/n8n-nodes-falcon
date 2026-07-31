@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createOperationField } from '../common';
+
 export const agentInvocationOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['agentInvocation'],
-			},
-		},
-		options: [
+	createOperationField('agentInvocation', [
+
 			{
 				name: 'Get Agent Invocation',
 				value: 'getAgentInvocationV3',
@@ -24,9 +17,8 @@ export const agentInvocationOperations: INodeProperties[] = [
 				description: 'Invoke a published agent by ID with specified input',
 				action: 'Invoke published agent',
 			},
-		],
-		default: 'getAgentInvocationV3',
-	},
+		
+	], 'getAgentInvocationV3'),
 ];
 
 export const agentInvocationFields: INodeProperties[] = [
@@ -51,18 +43,5 @@ export const agentInvocationFields: INodeProperties[] = [
 	/* -------------------------------------------------------------------------- */
 	/*                    invokePublishedAgentExternalV1                          */
 	/* -------------------------------------------------------------------------- */
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['agentInvocation'],
-				operation: ['invokePublishedAgentExternalV1'],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON payload containing input parameters to invoke the published agent',
-	},
+	createBodyJsonField('agentInvocation', ['invokePublishedAgentExternalV1']),
 ];
