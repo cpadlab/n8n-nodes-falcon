@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createOperationField, createStandardPaginationFields } from '../common';
+
 export const cloudGoogleCloudRegistrationOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['cloudGoogleCloudRegistration'],
-			},
-		},
-		options: [
+	createOperationField('cloudGoogleCloudRegistration', [
+
 			{ name: 'Create Registration', value: 'cloudRegistrationGcpCreateRegistration', description: 'Create a Google Cloud Registration', action: 'Create GCP registration' },
 			{ name: 'Delete Registration', value: 'cloudRegistrationGcpDeleteRegistration', description: 'Deletes a Google Cloud Registration by ID', action: 'Delete GCP registration' },
 			{ name: 'Get Entities', value: 'cloudRegistrationGcpGetEntities', description: 'Retrieve all GCP entities (orgs, folders, projects)', action: 'Get GCP entities' },
@@ -20,9 +13,8 @@ export const cloudGoogleCloudRegistrationOperations: INodeProperties[] = [
 			{ name: 'Put Registration', value: 'cloudRegistrationGcpPutRegistration', description: 'Creates or updates a Google Cloud Registration', action: 'Put GCP registration' },
 			{ name: 'Trigger Health Check', value: 'cloudRegistrationGcpTriggerHealthCheck', description: 'Trigger health check scan for GCP registrations', action: 'Trigger GCP health check' },
 			{ name: 'Update Registration', value: 'cloudRegistrationGcpUpdateRegistration', description: 'Update a Google Cloud Registration', action: 'Update GCP registration' },
-		],
-		default: 'cloudRegistrationGcpGetEntities',
-	},
+		
+	], 'cloudRegistrationGcpGetEntities'),
 ];
 
 export const cloudGoogleCloudRegistrationFields: INodeProperties[] = [
@@ -60,81 +52,10 @@ export const cloudGoogleCloudRegistrationFields: INodeProperties[] = [
 	/* -------------------------------------------------------------------------- */
 	/*                                Body JSON                                   */
 	/* -------------------------------------------------------------------------- */
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['cloudGoogleCloudRegistration'],
-				operation: ['cloudRegistrationGcpCreateRegistration', 'cloudRegistrationGcpPostTerraformScript', 'cloudRegistrationGcpPutRegistration', 'cloudRegistrationGcpUpdateRegistration'],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON body payload for GCP registration operation',
-	},
+	createBodyJsonField('cloudGoogleCloudRegistration', ['cloudRegistrationGcpCreateRegistration', 'cloudRegistrationGcpPostTerraformScript', 'cloudRegistrationGcpPutRegistration', 'cloudRegistrationGcpUpdateRegistration']),
 
 	/* -------------------------------------------------------------------------- */
 	/*                            Pagination & Filters                            */
 	/* -------------------------------------------------------------------------- */
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['cloudGoogleCloudRegistration'],
-				operation: ['cloudRegistrationGcpGetEntities'],
-			},
-		},
-		default: '',
-		description: 'FQL filter string (e.g. entity_type:\'project\')',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['cloudGoogleCloudRegistration'],
-				operation: ['cloudRegistrationGcpGetEntities'],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['cloudGoogleCloudRegistration'],
-				operation: ['cloudRegistrationGcpGetEntities'],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['cloudGoogleCloudRegistration'],
-				operation: ['cloudRegistrationGcpGetEntities'],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+	...createStandardPaginationFields('cloudGoogleCloudRegistration', ['cloudRegistrationGcpGetEntities']),
 ];
