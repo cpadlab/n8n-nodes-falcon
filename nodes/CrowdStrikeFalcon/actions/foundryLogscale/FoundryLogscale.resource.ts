@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createOperationField } from '../common';
+
 export const foundryLogscaleOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['foundryLogscale'],
-			},
-		},
-		options: [
+	createOperationField('foundryLogscale', [
+
 			{ name: 'Create Saved Searches Dynamic Execute Alt V1', value: 'createSavedSearchesDynamicExecuteAltV1', description: 'Execute a dynamic saved search', action: 'Create saved searches dynamic execute alt v1' },
 			{ name: 'Create Saved Searches Execute Alt V1', value: 'createSavedSearchesExecuteAltV1', description: 'Execute a saved search', action: 'Create saved searches execute alt v1' },
 			{ name: 'Create Saved Searches Ingest Alt V1', value: 'createSavedSearchesIngestAltV1', description: 'Populate a saved search', action: 'Create saved searches ingest alt v1' },
@@ -26,9 +19,8 @@ export const foundryLogscaleOperations: INodeProperties[] = [
 			{ name: 'List Repos', value: 'listRepos', description: 'Lists available repositories', action: 'List repos' },
 			{ name: 'List Views', value: 'listViews', description: 'List available views', action: 'List views' },
 			{ name: 'Populate', value: 'populate', description: 'Populate a saved search', action: 'Populate' },
-		],
-		default: 'listRepos',
-	},
+		
+	], 'listRepos'),
 ];
 
 export const foundryLogscaleFields: INodeProperties[] = [
@@ -73,25 +65,10 @@ export const foundryLogscaleFields: INodeProperties[] = [
 		default: '',
 		description: 'Foundry App ID',
 	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['foundryLogscale'],
-				operation: [
-					'createSavedSearchesDynamicExecuteAltV1',
+	createBodyJsonField('foundryLogscale', ['createSavedSearchesDynamicExecuteAltV1',
 					'createSavedSearchesExecuteAltV1',
 					'execute',
-					'executeDynamic',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
+					'executeDynamic',]),
 	{
 		displayName: 'Data Content',
 		name: 'dataContent',
