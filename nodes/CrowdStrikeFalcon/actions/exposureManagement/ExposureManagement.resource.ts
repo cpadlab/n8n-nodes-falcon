@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createIdsField, createOperationField, createStandardPaginationFields } from '../common';
+
 export const exposureManagementOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['exposureManagement'],
-			},
-		},
-		options: [
+	createOperationField('exposureManagement', [
+
 			{ name: 'Aggregate External Assets', value: 'aggregateExternalAssets', description: 'Returns external assets aggregates', action: 'Aggregate external assets' },
 			{ name: 'Blob Download External Assets', value: 'blobDownloadExternalAssets', description: 'Download the entire contents of the blob', action: 'Blob download external assets' },
 			{ name: 'Blob Preview External Assets', value: 'blobPreviewExternalAssets', description: 'Download a preview of the blob', action: 'Blob preview external assets' },
@@ -24,9 +17,8 @@ export const exposureManagementOperations: INodeProperties[] = [
 			{ name: 'Query Ecosystem Subsidiaries', value: 'queryEcosystemSubsidiaries', description: 'Retrieves a list of IDs for ecosystem subsidiaries', action: 'Query ecosystem subsidiaries' },
 			{ name: 'Query External Assets', value: 'queryExternalAssets', description: 'Get a list of external asset IDs matching filter', action: 'Query external assets' },
 			{ name: 'Query External Assets V2', value: 'queryExternalAssetsV2', description: 'Get a list of external asset IDs matching filter V2', action: 'Query external assets v2' },
-		],
-		default: 'queryExternalAssets',
-	},
+		
+	], 'queryExternalAssets'),
 ];
 
 export const exposureManagementFields: INodeProperties[] = [
@@ -58,110 +50,15 @@ export const exposureManagementFields: INodeProperties[] = [
 		required: true,
 		description: 'Blob hash string',
 	},
-	{
-		displayName: 'IDs',
-		name: 'ids',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['exposureManagement'],
-				operation: ['deleteExternalAssets', 'getEcosystemSubsidiaries', 'getExternalAssets'],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'Comma-separated list of IDs',
-	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['exposureManagement'],
-				operation: [
-					'aggregateExternalAssets',
+	createIdsField('exposureManagement', ['deleteExternalAssets', 'getEcosystemSubsidiaries', 'getExternalAssets']),
+	createBodyJsonField('exposureManagement', ['aggregateExternalAssets',
 					'deleteExternalAssets',
 					'patchExternalAssets',
-					'postExternalAssetsInventoryV1',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['exposureManagement'],
-				operation: [
-					'combinedEcosystemSubsidiaries',
+					'postExternalAssetsInventoryV1',]),
+	...createStandardPaginationFields('exposureManagement', ['combinedEcosystemSubsidiaries',
 					'queryEcosystemSubsidiaries',
 					'queryExternalAssets',
-					'queryExternalAssetsV2',
-				],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['exposureManagement'],
-				operation: [
-					'combinedEcosystemSubsidiaries',
-					'queryEcosystemSubsidiaries',
-					'queryExternalAssets',
-					'queryExternalAssetsV2',
-				],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['exposureManagement'],
-				operation: ['combinedEcosystemSubsidiaries', 'queryEcosystemSubsidiaries', 'queryExternalAssets'],
-			},
-		},
-		default: '',
-		description: 'Starting index or token for pagination',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['exposureManagement'],
-				operation: [
-					'combinedEcosystemSubsidiaries',
-					'queryEcosystemSubsidiaries',
-					'queryExternalAssets',
-					'queryExternalAssetsV2',
-				],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+					'queryExternalAssetsV2',]),
 	{
 		displayName: 'Version ID',
 		name: 'versionId',
