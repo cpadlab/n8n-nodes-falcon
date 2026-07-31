@@ -146,6 +146,152 @@ import { workflowsFields, workflowsOperations } from './actions/workflows/Workfl
 import { zeroTrustAssessmentFields, zeroTrustAssessmentOperations } from './actions/zeroTrustAssessment/ZeroTrustAssessment.resource';
 import { router } from './actions/router';
 
+const RESOURCE_OPTIONS: Array<[string, string]> = [
+	['Access Scope', 'accessScopes'],
+	['Admission Control Policy', 'admissionControlPolicies'],
+	['Agent Invocation', 'agentInvocation'],
+	['Alerts', 'alerts'],
+	['API Clients', 'apiClients'],
+	['API Integrations', 'apiIntegrations'],
+	['ASPM', 'aspm'],
+	['CAO Hunting', 'caoHunting'],
+	['Case', 'cases'],
+	['Case Files', 'caseFiles'],
+	['Case Management', 'caseManagement'],
+	['Certificate Based Exclusions', 'certificateBasedExclusions'],
+	['Cloud AWS Registration', 'cloudAwsRegistration'],
+	['Cloud Azure Registration', 'cloudAzureRegistration'],
+	['Cloud Connect AWS', 'cloudConnectAws'],
+	['Cloud Google Cloud Registration', 'cloudGoogleCloudRegistration'],
+	['Cloud OCI Registration', 'cloudOciRegistration'],
+	['Cloud Policies', 'cloudPolicies'],
+	['Cloud Security', 'cloudSecurity'],
+	['Cloud Security Assets', 'cloudSecurityAssets'],
+	['Cloud Security Compliance', 'cloudSecurityCompliance'],
+	['Cloud Security Detections', 'cloudSecurityDetections'],
+	['Cloud Security Registration Combined', 'cloudSecurityRegistrationCombined'],
+	['Cloud Security Risks', 'cloudSecurityRisks'],
+	['Cloud Snapshots', 'cloudSnapshots'],
+	['Configuration Assessment', 'configurationAssessment'],
+	['Configuration Assessment Evaluation Logic', 'configurationAssessmentEvaluationLogic'],
+	['Container Alerts', 'containerAlerts'],
+	['Container Detections', 'containerDetections'],
+	['Container Image Compliance', 'containerImageCompliance'],
+	['Container Images', 'containerImages'],
+	['Container Packages', 'containerPackages'],
+	['Container Vulnerabilities', 'containerVulnerabilities'],
+	['Content Update Policies', 'contentUpdatePolicies'],
+	['Correlation Rules', 'correlationRules'],
+	['Correlation Rules Admin', 'correlationRulesAdmin'],
+	['CSPG IaC API', 'cspgIacapi'],
+	['CSPM Registration', 'cspmRegistration'],
+	['Custom IOA', 'customIoa'],
+	['Custom Storage', 'customStorage'],
+	['D4C Registration', 'd4cRegistration'],
+	['Data Protection Configuration', 'dataProtectionConfiguration'],
+	['Default', 'default'],
+	['Delivery Settings', 'deliverySettings'],
+	['Deployments', 'deployments'],
+	['Detects', 'detects'],
+	['Device Content', 'deviceContent'],
+	['Device Control Policies', 'deviceControlPolicies'],
+	['Device Control with Bluetooth', 'deviceControlWithBluetooth'],
+	['Discover', 'discover'],
+	['Discover IoT', 'discoverIot'],
+	['Downloads API', 'downloadsApi'],
+	['Drift Indicators', 'driftIndicators'],
+	['Event Schema', 'eventSchema'],
+	['Event Streams', 'eventStreams'],
+	['Execution', 'execution'],
+	['Exposure Management', 'exposureManagement'],
+	['Falcon Complete Dashboard', 'falconCompleteDashboard'],
+	['Falcon Container', 'falconContainer'],
+	['Falcon Container CLI', 'falconContainerCli'],
+	['Falcon Container Image', 'falconContainerImage'],
+	['Falcon ID', 'falconId'],
+	['FalconX Sandbox', 'falconxSandbox'],
+	['Federated Connections', 'federatedConnections'],
+	['Field Schema', 'fieldSchema'],
+	['Filevantage', 'filevantage'],
+	['Firewall Management', 'firewallManagement'],
+	['Firewall Policies', 'firewallPolicies'],
+	['Foundry Logscale', 'foundryLogscale'],
+	['Foundry Lookup Files', 'foundryLookupFiles'],
+	['Host Group', 'hostGroup'],
+	['Host Migration', 'hostMigration'],
+	['Hosts', 'hosts'],
+	['Identity Entities', 'identityEntities'],
+	['Identity Protection', 'identityProtection'],
+	['Image Assessment Policies', 'imageAssessmentPolicies'],
+	['Incidents', 'incidents'],
+	['Installation Tokens', 'installationTokens'],
+	['Installation Tokens Settings', 'installationTokensSettings'],
+	['Intel', 'intel'],
+	['Intelligence Feeds', 'intelligenceFeeds'],
+	['Intelligence Indicator Graph', 'intelligenceIndicatorGraph'],
+	['IOA Exclusions', 'ioaExclusions'],
+	['IOC', 'ioc'],
+	['IOCs', 'iocs'],
+	['IT Automation', 'itAutomation'],
+	['Knowledge Base Audit Events', 'knowledgeBaseAuditEvents'],
+	['Knowledge Base Files', 'knowledgeBaseFiles'],
+	['Knowledge Bases', 'knowledgeBases'],
+	['Kubernetes Container Compliance', 'kubernetesContainerCompliance'],
+	['Kubernetes Protection', 'kubernetesProtection'],
+	['Maintenance Token', 'maintenanceToken'],
+	['Malquery', 'malquery'],
+	['Message Center', 'messageCenter'],
+	['ML Exclusions', 'mlExclusions'],
+	['MSSP', 'mssp'],
+	['Mobile Enrollment', 'mobileEnrollment'],
+	['Network Scan Global Configs', 'networkScanGlobalConfigs'],
+	['Network Scan Networks', 'networkScanNetworks'],
+	['Network Scan Scan Run Reports', 'networkScanScanRunReports'],
+	['Network Scan Scan Runs', 'networkScanScanRuns'],
+	['Network Scan Scanners', 'networkScanScanners'],
+	['Network Scan Scans', 'networkScanScans'],
+	['Network Scan Templates', 'networkScanTemplates'],
+	['Network Scan Zones', 'networkScanZones'],
+	['NGSIEM', 'ngsiem'],
+	['OAuth2', 'oauth2'],
+	['ODS', 'ods'],
+	['Prevention Policies', 'preventionPolicies'],
+	['Profile Groups', 'profileGroups'],
+	['Quarantine', 'quarantine'],
+	['Quick Scan', 'quickScan'],
+	['Quick Scan Pro', 'quickScanPro'],
+	['Real-Time Response', 'realTimeResponse'],
+	['Real-Time Response Admin', 'realTimeResponseAdmin'],
+	['Real-Time Response Audit', 'realTimeResponseAudit'],
+	['Recon', 'recon'],
+	['Release Notes', 'releaseNotes'],
+	['Releases', 'releases'],
+	['Report Executions', 'reportExecutions'],
+	['Response Policies', 'responsePolicies'],
+	['Runtime Detections', 'runtimeDetections'],
+	['SaaS Security', 'saasSecurity'],
+	['Sample Uploads', 'sampleUploads'],
+	['Scanning Orchestrator', 'scanningOrchestrator'],
+	['Scheduled Reports', 'scheduledReports'],
+	['Sensor Download', 'sensorDownload'],
+	['Sensor Update Policies', 'sensorUpdatePolicies'],
+	['Sensor Usage API', 'sensorUsageApi'],
+	['Sensor Visibility Exclusions', 'sensorVisibilityExclusions'],
+	['Serverless Exports', 'serverlessExports'],
+	['Serverless Vulnerabilities', 'serverlessVulnerabilities'],
+	['Spotlight Evaluation Logic', 'spotlightEvaluationLogic'],
+	['Spotlight Supported Evaluation', 'spotlightSupportedEvaluation'],
+	['Spotlight Vulnerabilities', 'spotlightVulnerabilities'],
+	['Spotlight Vulnerability Metadata', 'spotlightVulnerabilityMetadata'],
+	['Stream', 'stream'],
+	['Tailored Intelligence', 'tailoredIntelligence'],
+	['Threatgraph', 'threatgraph'],
+	['Unidentified Containers', 'unidentifiedContainers'],
+	['User Management', 'userManagement'],
+	['Workflows', 'workflows'],
+	['Zero Trust Assessment', 'zeroTrustAssessment']
+];
+
 export class CrowdStrikeFalcon implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'CrowdStrike Falcon',
@@ -171,580 +317,7 @@ export class CrowdStrikeFalcon implements INodeType {
 				name: 'resource',
 				type: 'options',
 				noDataExpression: true,
-				options: [
-					{ 
-						name: 'Access Scope', 
-						value: 'accessScopes' 
-					},
-					{ 
-						name: 'Admission Control Policy', 
-						value: 'admissionControlPolicies' 
-					},
-					{ 
-						name: 'Agent Invocation', 
-						value: 'agentInvocation' 
-					},
-					{ 
-						name: 'Alerts', 
-						value: 'alerts' 
-					},
-					{ 
-						name: 'API Clients', 
-						value: 'apiClients' 
-					},
-					{ 
-						name: 'API Integrations', 
-						value: 'apiIntegrations' 
-					},
-					{ 
-						name: 'ASPM', 
-						value: 'aspm' 
-					},
-					{ 
-						name: 'CAO Hunting', 
-						value: 'caoHunting' 
-					},
-					{ 
-						name: 'Case', 
-						value: 'cases' 
-					},
-					{ 
-						name: 'Case Files', 
-						value: 'caseFiles' 
-					},
-					{ 
-						name: 'Case Management', 
-						value: 'caseManagement' 
-					},
-					{ 
-						name: 'Certificate Based Exclusions', 
-						value: 'certificateBasedExclusions' 
-					},
-					{ 
-						name: 'Cloud AWS Registration', 
-						value: 'cloudAwsRegistration' 
-					},
-					{ 
-						name: 'Cloud Azure Registration', 
-						value: 'cloudAzureRegistration' 
-					},
-					{ 
-						name: 'Cloud Connect AWS', 
-						value: 'cloudConnectAws' 
-					},
-					{ 
-						name: 'Cloud Google Cloud Registration', 
-						value: 'cloudGoogleCloudRegistration' 
-					},
-					{ 
-						name: 'Cloud OCI Registration', 
-						value: 'cloudOciRegistration' 
-					},
-					{ 
-						name: 'Cloud Policies', 
-						value: 'cloudPolicies' 
-					},
-					{ 
-						name: 'Cloud Security', 
-						value: 'cloudSecurity' 
-					},
-					{ 
-						name: 'Cloud Security Assets', 
-						value: 'cloudSecurityAssets' 
-					},
-					{ 
-						name: 'Cloud Security Compliance', 
-						value: 'cloudSecurityCompliance' 
-					},
-					{ 
-						name: 'Cloud Security Detections', 
-						value: 'cloudSecurityDetections' 
-					},
-					{ 
-						name: 'Cloud Security Registration Combined', 
-						value: 'cloudSecurityRegistrationCombined' 
-					},
-					{ 
-						name: 'Cloud Security Risks', 
-						value: 'cloudSecurityRisks' 
-					},
-					{ 
-						name: 'Cloud Snapshots', 
-						value: 'cloudSnapshots' 
-					},
-					{ 
-						name: 'Configuration Assessment', 
-						value: 'configurationAssessment' 
-					},
-					{ 
-						name: 'Configuration Assessment Evaluation Logic', 
-						value: 'configurationAssessmentEvaluationLogic' 
-					},
-					{ 
-						name: 'Container Alerts', 
-						value: 'containerAlerts' 
-					},
-					{ 
-						name: 'Container Detections', 
-						value: 'containerDetections' 
-					},
-					{ 
-						name: 'Container Image Compliance', 
-						value: 'containerImageCompliance' 
-					},
-					{ 
-						name: 'Container Images', 
-						value: 'containerImages' 
-					},
-					{ 
-						name: 'Container Packages', 
-						value: 'containerPackages' 
-					},
-					{ 
-						name: 'Container Vulnerabilities', 
-						value: 'containerVulnerabilities' 
-					},
-					{ 
-						name: 'Content Update Policies', 
-						value: 'contentUpdatePolicies' 
-					},
-					{ 
-						name: 'Correlation Rules', 
-						value: 'correlationRules' 
-					},
-					{ 
-						name: 'Correlation Rules Admin', 
-						value: 'correlationRulesAdmin' 
-					},
-					{ 
-						name: 'CSPG IaC API', 
-						value: 'cspgIacapi' 
-					},
-					{ 
-						name: 'CSPM Registration', 
-						value: 'cspmRegistration' 
-					},
-					{ 
-						name: 'Custom IOA', 
-						value: 'customIoa' 
-					},
-					{ 
-						name: 'Custom Storage', 
-						value: 'customStorage' 
-					},
-					{ 
-						name: 'D4C Registration', 
-						value: 'd4cRegistration' 
-					},
-					{ 
-						name: 'Data Protection Configuration', 
-						value: 'dataProtectionConfiguration' 
-					},
-					{ 
-						name: 'Default', 
-						value: 'default' 
-					},
-					{ 
-						name: 'Delivery Settings', 
-						value: 'deliverySettings' 
-					},
-					{ 
-						name: 'Deployments', 
-						value: 'deployments' 
-					},
-					{ 
-						name: 'Detects', 
-						value: 'detects' 
-					},
-					{ 
-						name: 'Device Content', 
-						value: 'deviceContent' 
-					},
-					{ 
-						name: 'Device Control Policies', 
-						value: 'deviceControlPolicies' 
-					},
-					{ 
-						name: 'Device Control with Bluetooth', 
-						value: 'deviceControlWithBluetooth' 
-					},
-					{ 
-						name: 'Discover', 
-						value: 'discover' 
-					},
-					{ 
-						name: 'Discover IoT', 
-						value: 'discoverIot' 
-					},
-					{ 
-						name: 'Downloads API', 
-						value: 'downloadsApi' 
-					},
-					{ 
-						name: 'Drift Indicators', 
-						value: 'driftIndicators' 
-					},
-					{ 
-						name: 'Event Schema', 
-						value: 'eventSchema' 
-					},
-					{ 
-						name: 'Event Streams', 
-						value: 'eventStreams' 
-					},
-					{ 
-						name: 'Execution', 
-						value: 'execution' 
-					},
-					{ 
-						name: 'Exposure Management', 
-						value: 'exposureManagement' 
-					},
-					{ 
-						name: 'Falcon Complete Dashboard', 
-						value: 'falconCompleteDashboard' 
-					},
-					{ 
-						name: 'Falcon Container', 
-						value: 'falconContainer' 
-					},
-					{ 
-						name: 'Falcon Container CLI', 
-						value: 'falconContainerCli' 
-					},
-					{ 
-						name: 'Falcon Container Image', 
-						value: 'falconContainerImage' 
-					},
-					{ 
-						name: 'Falcon ID', 
-						value: 'falconId' 
-					},
-					{ 
-						name: 'FalconX Sandbox', 
-						value: 'falconxSandbox' 
-					},
-					{ 
-						name: 'Federated Connections', 
-						value: 'federatedConnections' 
-					},
-					{ 
-						name: 'Field Schema', 
-						value: 'fieldSchema' 
-					},
-					{ 
-						name: 'Filevantage', 
-						value: 'filevantage' 
-					},
-					{ 
-						name: 'Firewall Management', 
-						value: 'firewallManagement' 
-					},
-					{ 
-						name: 'Firewall Policies', 
-						value: 'firewallPolicies' 
-					},
-					{ 
-						name: 'Foundry Logscale', 
-						value: 'foundryLogscale' 
-					},
-					{ 
-						name: 'Foundry Lookup Files', 
-						value: 'foundryLookupFiles' 
-					},
-					{ 
-						name: 'Host Group', 
-						value: 'hostGroup' 
-					},
-					{ 
-						name: 'Host Migration', 
-						value: 'hostMigration' 
-					},
-					{ 
-						name: 'Hosts', 
-						value: 'hosts' 
-					},
-					{ 
-						name: 'Identity Entities', 
-						value: 'identityEntities' 
-					},
-					{ 
-						name: 'Identity Protection', 
-						value: 'identityProtection' 
-					},
-					{ 
-						name: 'Image Assessment Policies', 
-						value: 'imageAssessmentPolicies' 
-					},
-					{ 
-						name: 'Incidents', 
-						value: 'incidents' 
-					},
-					{ 
-						name: 'Installation Tokens', 
-						value: 'installationTokens' 
-					},
-					{ 
-						name: 'Installation Tokens Settings', 
-						value: 'installationTokensSettings' 
-					},
-					{ 
-						name: 'Intel', 
-						value: 'intel' 
-					},
-					{ 
-						name: 'Intelligence Feeds', 
-						value: 'intelligenceFeeds' 
-					},
-					{ 
-						name: 'Intelligence Indicator Graph', 
-						value: 'intelligenceIndicatorGraph' 
-					},
-					{ 
-						name: 'IOA Exclusions', 
-						value: 'ioaExclusions' 
-					},
-					{ 
-						name: 'IOC', 
-						value: 'ioc' 
-					},
-					{ 
-						name: 'IOCs', 
-						value: 'iocs' 
-					},
-					{ 
-						name: 'IT Automation', 
-						value: 'itAutomation' 
-					},
-					{ 
-						name: 'Knowledge Base Audit Events', 
-						value: 'knowledgeBaseAuditEvents' 
-					},
-					{ 
-						name: 'Knowledge Base Files', 
-						value: 'knowledgeBaseFiles' 
-					},
-					{ 
-						name: 'Knowledge Bases', 
-						value: 'knowledgeBases' 
-					},
-					{ 
-						name: 'Kubernetes Container Compliance', 
-						value: 'kubernetesContainerCompliance' 
-					},
-					{ 
-						name: 'Kubernetes Protection', 
-						value: 'kubernetesProtection' 
-					},
-					{ 
-						name: 'Maintenance Token', 
-						value: 'maintenanceToken' 
-					},
-					{ 
-						name: 'Malquery', 
-						value: 'malquery' 
-					},
-					{ 
-						name: 'Message Center', 
-						value: 'messageCenter' 
-					},
-					{ 
-						name: 'ML Exclusions', 
-						value: 'mlExclusions' 
-					},
-					{ 
-						name: 'MSSP', 
-						value: 'mssp' 
-					},
-					{ 
-						name: 'Mobile Enrollment', 
-						value: 'mobileEnrollment' 
-					},
-					{ 
-						name: 'Network Scan Global Configs', 
-						value: 'networkScanGlobalConfigs' 
-					},
-					{ 
-						name: 'Network Scan Networks', 
-						value: 'networkScanNetworks' 
-					},
-					{ 
-						name: 'Network Scan Scan Run Reports', 
-						value: 'networkScanScanRunReports' 
-					},
-					{ 
-						name: 'Network Scan Scan Runs', 
-						value: 'networkScanScanRuns' 
-					},
-					{ 
-						name: 'Network Scan Scanners', 
-						value: 'networkScanScanners' 
-					},
-					{ 
-						name: 'Network Scan Scans', 
-						value: 'networkScanScans' 
-					},
-					{ 
-						name: 'Network Scan Templates', 
-						value: 'networkScanTemplates' 
-					},
-					{ 
-						name: 'Network Scan Zones', 
-						value: 'networkScanZones' 
-					},
-					{ 
-						name: 'NGSIEM', 
-						value: 'ngsiem' 
-					},
-					{ 
-						name: 'OAuth2', 
-						value: 'oauth2' 
-					},
-					{ 
-						name: 'ODS', 
-						value: 'ods' 
-					},
-					{ 
-						name: 'Prevention Policies', 
-						value: 'preventionPolicies' 
-					},
-					{ 
-						name: 'Profile Groups', 
-						value: 'profileGroups' 
-					},
-					{ 
-						name: 'Quarantine', 
-						value: 'quarantine' 
-					},
-					{ 
-						name: 'Quick Scan', 
-						value: 'quickScan' 
-					},
-					{ 
-						name: 'Quick Scan Pro', 
-						value: 'quickScanPro' 
-					},
-					{ 
-						name: 'Real-Time Response', 
-						value: 'realTimeResponse' 
-					},
-					{ 
-						name: 'Real-Time Response Admin', 
-						value: 'realTimeResponseAdmin' 
-					},
-					{ 
-						name: 'Real-Time Response Audit', 
-						value: 'realTimeResponseAudit' 
-					},
-					{ 
-						name: 'Recon', 
-						value: 'recon' 
-					},
-					{ 
-						name: 'Release Notes', 
-						value: 'releaseNotes' 
-					},
-					{ 
-						name: 'Releases', 
-						value: 'releases' 
-					},
-					{ 
-						name: 'Report Executions', 
-						value: 'reportExecutions' 
-					},
-					{ 
-						name: 'Response Policies', 
-						value: 'responsePolicies' 
-					},
-					{ 
-						name: 'Runtime Detections', 
-						value: 'runtimeDetections' 
-					},
-					{ 
-						name: 'SaaS Security', 
-						value: 'saasSecurity' 
-					},
-					{ 
-						name: 'Sample Uploads', 
-						value: 'sampleUploads' 
-					},
-					{ 
-						name: 'Scanning Orchestrator', 
-						value: 'scanningOrchestrator' 
-					},
-					{ 
-						name: 'Scheduled Reports', 
-						value: 'scheduledReports' 
-					},
-					{ 
-						name: 'Sensor Download', 
-						value: 'sensorDownload' 
-					},
-					{ 
-						name: 'Sensor Update Policies', 
-						value: 'sensorUpdatePolicies' 
-					},
-					{ 
-						name: 'Sensor Usage API', 
-						value: 'sensorUsageApi' 
-					},
-					{ 
-						name: 'Sensor Visibility Exclusions', 
-						value: 'sensorVisibilityExclusions' 
-					},
-					{ 
-						name: 'Serverless Exports', 
-						value: 'serverlessExports' 
-					},
-					{ 
-						name: 'Serverless Vulnerabilities', 
-						value: 'serverlessVulnerabilities' 
-					},
-					{ 
-						name: 'Spotlight Evaluation Logic', 
-						value: 'spotlightEvaluationLogic' 
-					},
-					{ 
-						name: 'Spotlight Supported Evaluation', 
-						value: 'spotlightSupportedEvaluation' 
-					},
-					{ 
-						name: 'Spotlight Vulnerabilities', 
-						value: 'spotlightVulnerabilities' 
-					},
-					{ 
-						name: 'Spotlight Vulnerability Metadata', 
-						value: 'spotlightVulnerabilityMetadata' 
-					},
-					{ 
-						name: 'Stream', 
-						value: 'stream' 
-					},
-					{ 
-						name: 'Tailored Intelligence', 
-						value: 'tailoredIntelligence' 
-					},
-					{ 
-						name: 'Threatgraph', 
-						value: 'threatgraph' 
-					},
-					{ 
-						name: 'Unidentified Containers', 
-						value: 'unidentifiedContainers' 
-					},
-					{ 
-						name: 'User Management', 
-						value: 'userManagement' 
-					},
-					{ 
-						name: 'Workflows', 
-						value: 'workflows' 
-					},
-					{ 
-						name: 'Zero Trust Assessment', 
-						value: 'zeroTrustAssessment' 
-					},
-				],
+				options: RESOURCE_OPTIONS.map(([name, value]) => ({ name, value })),
 				default: 'cases',
 			},
 			...accessScopesOperations,
