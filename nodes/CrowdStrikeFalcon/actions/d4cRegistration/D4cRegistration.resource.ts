@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createIdsField, createLimitField, createOffsetField, createOperationField, createSortField } from '../common';
+
 export const d4cRegistrationOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['d4cRegistration'],
-			},
-		},
-		options: [
+	createOperationField('d4cRegistration', [
+
 			{ name: 'Connect D4C GCP Account', value: 'connectD4CGCPAccount', description: 'Creates GCP account or connects existing service account', action: 'Connect D4C GCP account' },
 			{ name: 'Create D4C AWS Account', value: 'createD4CAwsAccount', description: 'Creates AWS account in D4C', action: 'Create D4C AWS account' },
 			{ name: 'Create D4C GCP Account', value: 'createD4CGcpAccount', description: 'Creates GCP account in D4C', action: 'Create D4C GCP account' },
@@ -32,9 +25,8 @@ export const d4cRegistrationOperations: INodeProperties[] = [
 			{ name: 'Get Horizon D4C Scripts', value: 'getHorizonD4CScripts', description: 'Returns static install scripts for Horizon', action: 'Get horizon D4C scripts' },
 			{ name: 'Update D4C GCP Service Accounts Ext', value: 'updateD4CGCPServiceAccountsExt', description: 'Patches service account key for GCP', action: 'Update D4C GCP service accounts ext' },
 			{ name: 'Update Discover Cloud Azure Account Client ID', value: 'updateDiscoverCloudAzureAccountClientID', description: 'Update Azure service account client ID', action: 'Update discover cloud Azure account client ID' },
-		],
-		default: 'getD4CAwsAccount',
-	},
+		
+	], 'getD4CAwsAccount'),
 ];
 
 export const d4cRegistrationFields: INodeProperties[] = [
@@ -51,27 +43,13 @@ export const d4cRegistrationFields: INodeProperties[] = [
 		default: '',
 		description: 'Comma-separated list of Azure tenant IDs',
 	},
-	{
-		displayName: 'IDs',
-		name: 'ids',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['d4cRegistration'],
-				operation: [
-					'deleteD4CAwsAccount',
+	createIdsField('d4cRegistration', ['deleteD4CAwsAccount',
 					'deleteD4CGCPAccount',
 					'getD4CAWSAccountScriptsAttachment',
 					'getD4CAwsAccount',
 					'getD4CGCPUserScriptsAttachment',
 					'getD4CGcpAccount',
-					'getDiscoverCloudAzureAccount',
-				],
-			},
-		},
-		default: '',
-		description: 'Comma-separated list of account IDs',
-	},
+					'getDiscoverCloudAzureAccount',]),
 	{
 		displayName: 'ID',
 		name: 'idSingle',
@@ -85,70 +63,12 @@ export const d4cRegistrationFields: INodeProperties[] = [
 		default: '',
 		description: 'Single ID string',
 	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['d4cRegistration'],
-				operation: [
-					'connectD4CGCPAccount',
+	createBodyJsonField('d4cRegistration', ['connectD4CGCPAccount',
 					'createD4CAwsAccount',
 					'createD4CGcpAccount',
 					'createDiscoverCloudAzureAccount',
-					'updateD4CGCPServiceAccountsExt',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['d4cRegistration'],
-				operation: ['getD4CAwsAccount', 'getD4CGcpAccount', 'getDiscoverCloudAzureAccount'],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['d4cRegistration'],
-				operation: ['getD4CAwsAccount', 'getD4CGcpAccount', 'getDiscoverCloudAzureAccount'],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['d4cRegistration'],
-				operation: ['getD4CGcpAccount'],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+					'updateD4CGCPServiceAccountsExt',]),
+	createLimitField('d4cRegistration', ['getD4CAwsAccount', 'getD4CGcpAccount', 'getDiscoverCloudAzureAccount']),
+	createOffsetField('d4cRegistration', ['getD4CAwsAccount', 'getD4CGcpAccount', 'getDiscoverCloudAzureAccount']),
+	createSortField('d4cRegistration', ['getD4CGcpAccount']),
 ];
