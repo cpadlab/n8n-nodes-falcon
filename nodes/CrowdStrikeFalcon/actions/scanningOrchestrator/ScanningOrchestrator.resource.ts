@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createIdsField, createOperationField, createStandardPaginationFields } from '../common';
+
 export const scanningOrchestratorOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['scanningOrchestrator'],
-			},
-		},
-		options: [
+	createOperationField('scanningOrchestrator', [
+
 			{ name: 'Create Schedules', value: 'createSchedules', description: 'Create one or more scanning schedules', action: 'Create schedules' },
 			{ name: 'Delete Schedules', value: 'deleteSchedules', description: 'Delete one or more scanning schedules by ID', action: 'Delete schedules' },
 			{ name: 'Get Combined Schedules', value: 'getCombinedSchedules', description: 'Get schedules with pagination, sorting, and filtering', action: 'Get combined schedules' },
@@ -20,9 +13,8 @@ export const scanningOrchestratorOperations: INodeProperties[] = [
 			{ name: 'Search Schedules', value: 'searchSchedules', description: 'Search schedules and return IDs with pagination, sorting, and filtering', action: 'Search schedules' },
 			{ name: 'Trigger Scan by Schedule', value: 'triggerScanBySchedule', description: 'Triggers an immediate scan for given schedule IDs', action: 'Trigger scan by schedule' },
 			{ name: 'Update Schedules', value: 'updateSchedules', description: 'Updates one or more scanning schedules', action: 'Update schedules' },
-		],
-		default: 'searchSchedules',
-	},
+		
+	], 'searchSchedules'),
 ];
 
 export const scanningOrchestratorFields: INodeProperties[] = [
@@ -51,20 +43,7 @@ export const scanningOrchestratorFields: INodeProperties[] = [
 		default: '',
 		description: 'Authorization token string',
 	},
-	{
-		displayName: 'IDs',
-		name: 'ids',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['scanningOrchestrator'],
-				operation: ['deleteSchedules', 'getSchedules'],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'Comma-separated list of schedule IDs',
-	},
+	createIdsField('scanningOrchestrator', ['deleteSchedules', 'getSchedules']),
 	{
 		displayName: 'Scan Product',
 		name: 'scanProduct',
@@ -83,77 +62,6 @@ export const scanningOrchestratorFields: INodeProperties[] = [
 		required: true,
 		description: 'Scan product type',
 	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['scanningOrchestrator'],
-				operation: ['createSchedules', 'triggerScanBySchedule', 'updateSchedules'],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['scanningOrchestrator'],
-				operation: ['getCombinedSchedules', 'searchSchedules'],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['scanningOrchestrator'],
-				operation: ['getCombinedSchedules', 'searchSchedules'],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['scanningOrchestrator'],
-				operation: ['getCombinedSchedules', 'searchSchedules'],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['scanningOrchestrator'],
-				operation: ['getCombinedSchedules', 'searchSchedules'],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+	createBodyJsonField('scanningOrchestrator', ['createSchedules', 'triggerScanBySchedule', 'updateSchedules']),
+	...createStandardPaginationFields('scanningOrchestrator', ['getCombinedSchedules', 'searchSchedules']),
 ];
