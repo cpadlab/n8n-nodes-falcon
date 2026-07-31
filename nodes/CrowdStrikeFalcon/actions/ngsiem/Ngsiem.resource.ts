@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createIdsField, createOperationField, createStandardPaginationFields } from '../common';
+
 export const ngsiemOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['ngsiem'],
-			},
-		},
-		options: [
+	createOperationField('ngsiem', [
+
 			{ name: 'Bulk Create Dashboards from Template', value: 'bulkCreateDashboardsFromTemplate', description: 'Create Multiple Dashboards from YAML Templates', action: 'Bulk create dashboards from template' },
 			{ name: 'Bulk Create Lookup Files', value: 'bulkCreateLookupFiles', description: 'Create Multiple Lookup Files', action: 'Bulk create lookup files' },
 			{ name: 'Bulk Create Saved Queries from Template', value: 'bulkCreateSavedQueriesFromTemplate', description: 'Create Multiple Saved Queries from LogScale YAML Templates', action: 'Bulk create saved queries from template' },
@@ -71,9 +64,8 @@ export const ngsiemOperations: INodeProperties[] = [
 			{ name: 'Update Parser from Template', value: 'updateParserFromTemplate', description: 'Update Parser in NGSIEM from YAML Template', action: 'Update parser from template' },
 			{ name: 'Update Saved Query from Template', value: 'updateSavedQueryFromTemplate', description: 'Update Saved Query from LogScale YAML Template in NGSIEM', action: 'Update saved query from template' },
 			{ name: 'Upload Lookup V1', value: 'uploadLookupV1', description: 'Upload file to NGSIEM', action: 'Upload lookup V1' },
-		],
-		default: 'listDashboards',
-	},
+		
+	], 'listDashboards'),
 ];
 
 export const ngsiemFields: INodeProperties[] = [
@@ -100,15 +92,7 @@ export const ngsiemFields: INodeProperties[] = [
 		default: '',
 		description: 'Unique ID string',
 	},
-	{
-		displayName: 'IDs',
-		name: 'ids',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['ngsiem'],
-				operation: [
-					'deleteDashboard',
+	createIdsField('ngsiem', ['deleteDashboard',
 					'deleteParser',
 					'deleteSavedQuery',
 					'externalDeleteConnectorConfigs',
@@ -120,13 +104,7 @@ export const ngsiemFields: INodeProperties[] = [
 					'getSavedQueryTemplate',
 					'updateDashboardFromTemplate',
 					'updateParserFromTemplate',
-					'updateSavedQueryFromTemplate',
-				],
-			},
-		},
-		default: '',
-		description: 'Comma-separated list of IDs',
-	},
+					'updateSavedQueryFromTemplate',]),
 	{
 		displayName: 'Repository',
 		name: 'repository',
@@ -168,15 +146,7 @@ export const ngsiemFields: INodeProperties[] = [
 		default: '',
 		description: 'Filename string or comma-separated list of filenames',
 	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['ngsiem'],
-				operation: [
-					'bulkCreateDashboardsFromTemplate',
+	createBodyJsonField('ngsiem', ['bulkCreateDashboardsFromTemplate',
 					'bulkCreateLookupFiles',
 					'bulkCreateSavedQueriesFromTemplate',
 					'bulkInstallParsers',
@@ -192,92 +162,11 @@ export const ngsiemFields: INodeProperties[] = [
 					'startSearchV1',
 					'updateParser',
 					'updateParserAutoUpdatePolicy',
-					'updateParserExtension',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['ngsiem'],
-				operation: [
-					'externalListDataConnections',
+					'updateParserExtension',]),
+	...createStandardPaginationFields('ngsiem', ['externalListDataConnections',
 					'externalListDataConnectors',
 					'listDashboards',
 					'listLookupFiles',
 					'listParsers',
-					'listSavedQueries',
-				],
-			},
-		},
-		default: '',
-		description: 'Filter string',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['ngsiem'],
-				operation: [
-					'externalListDataConnections',
-					'externalListDataConnectors',
-					'listDashboards',
-					'listLookupFiles',
-					'listParsers',
-					'listSavedQueries',
-				],
-			},
-		},
-		default: 50,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['ngsiem'],
-				operation: [
-					'externalListDataConnections',
-					'externalListDataConnectors',
-					'listDashboards',
-					'listLookupFiles',
-					'listParsers',
-					'listSavedQueries',
-				],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['ngsiem'],
-				operation: ['externalListDataConnections', 'externalListDataConnectors'],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+					'listSavedQueries',]),
 ];
