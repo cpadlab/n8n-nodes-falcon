@@ -1,21 +1,13 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createOperationField } from '../common';
+
 export const networkScanScanRunReportsOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['networkScanScanRunReports'],
-			},
-		},
-		options: [
+	createOperationField('networkScanScanRunReports', [
+
 			{ name: 'Get Scan Run Reports', value: 'getScanRunReports', description: 'Downloads scan run report in CSV format', action: 'Get scan run reports' },
-		],
-		default: 'getScanRunReports',
-	},
+		
+	], 'getScanRunReports'),
 ];
 
 export const networkScanScanRunReportsFields: INodeProperties[] = [
