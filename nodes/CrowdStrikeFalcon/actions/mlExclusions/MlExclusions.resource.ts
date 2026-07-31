@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createIdsField, createOperationField, createStandardPaginationFields } from '../common';
+
 export const mlExclusionsOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['mlExclusions'],
-			},
-		},
-		options: [
+	createOperationField('mlExclusions', [
+
 			{ name: 'Create ML Exclusions V1', value: 'createMLExclusionsV1', description: 'Create ML exclusions V1', action: 'Create ML exclusions V1' },
 			{ name: 'Delete ML Exclusions V1', value: 'deleteMLExclusionsV1', description: 'Delete ML exclusions by ID', action: 'Delete ML exclusions V1' },
 			{ name: 'Exclusions Aggregates V2', value: 'exclusionsAggregatesV2', description: 'Get exclusion aggregates', action: 'Exclusions aggregates V2' },
@@ -27,31 +20,15 @@ export const mlExclusionsOperations: INodeProperties[] = [
 			{ name: 'Get ML Exclusions V1', value: 'getMLExclusionsV1', description: 'Get set of ML Exclusions by IDs', action: 'Get ML exclusions V1' },
 			{ name: 'Query ML Exclusions V1', value: 'queryMLExclusionsV1', description: 'Search for ML exclusions', action: 'Query ML exclusions V1' },
 			{ name: 'Update ML Exclusions V1', value: 'updateMLExclusionsV1', description: 'Update ML exclusions V1', action: 'Update ML exclusions V1' },
-		],
-		default: 'queryMLExclusionsV1',
-	},
+		
+	], 'queryMLExclusionsV1'),
 ];
 
 export const mlExclusionsFields: INodeProperties[] = [
-	{
-		displayName: 'IDs',
-		name: 'ids',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['mlExclusions'],
-				operation: [
-					'deleteMLExclusionsV1',
+	createIdsField('mlExclusions', ['deleteMLExclusionsV1',
 					'exclusionsDeleteV2',
 					'exclusionsGetV2',
-					'getMLExclusionsV1',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'Comma-separated list of IDs',
-	},
+					'getMLExclusionsV1',]),
 	{
 		displayName: 'Comment',
 		name: 'comment',
@@ -84,86 +61,13 @@ export const mlExclusionsFields: INodeProperties[] = [
 		required: true,
 		description: 'Action name to perform',
 	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['mlExclusions'],
-				operation: [
-					'createMLExclusionsV1',
+	createBodyJsonField('mlExclusions', ['createMLExclusionsV1',
 					'exclusionsAggregatesV2',
 					'exclusionsCreateV2',
 					'exclusionsGetReportsV2',
 					'exclusionsPerformActionV2',
 					'exclusionsSdmfQueryV1',
 					'exclusionsUpdateV2',
-					'updateMLExclusionsV1',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['mlExclusions'],
-				operation: ['exclusionsSearchV2', 'queryMLExclusionsV1'],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['mlExclusions'],
-				operation: ['exclusionsSearchV2', 'queryMLExclusionsV1'],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['mlExclusions'],
-				operation: ['exclusionsSearchV2', 'queryMLExclusionsV1'],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['mlExclusions'],
-				operation: ['exclusionsSearchV2', 'queryMLExclusionsV1'],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+					'updateMLExclusionsV1',]),
+	...createStandardPaginationFields('mlExclusions', ['exclusionsSearchV2', 'queryMLExclusionsV1']),
 ];
