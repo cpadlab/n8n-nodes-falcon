@@ -1,15 +1,8 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
-function parseArrayParam(context: IExecuteFunctions, index: number, paramName = 'ids'): string[] {
-	const str = (context.getNodeParameter(paramName, index, '') as string) || '';
-	return str.split(',').map((id) => id.trim()).filter(Boolean);
-}
-
-function getStringParam(context: IExecuteFunctions, index: number, paramName: string, fallback = ''): string {
-	const val = context.getNodeParameter(paramName, index, fallback);
-	return val !== undefined && val !== null ? String(val) : String(fallback);
-}
+import { getStringParam, parseArrayParam } from '../common';
 
 /**
  * Handles the 'combinedQueryEvaluationLogic' operation.
@@ -59,6 +52,6 @@ export async function executeSpotlightEvaluationLogic(
 		case 'getEvaluationLogic': return await handleGetEvaluationLogic(this, index, falconClient);
 		case 'queryEvaluationLogic': return await handleQueryEvaluationLogic(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Spotlight Evaluation Logic.`);
+			throw new NodeOperationError(c.getNode(), `Operation ${operation} is not supported for Spotlight Evaluation Logic.`);
 	}
 }
