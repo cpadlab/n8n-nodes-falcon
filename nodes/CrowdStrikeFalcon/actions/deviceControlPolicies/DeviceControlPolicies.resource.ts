@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createOperationField, createStandardPaginationFields } from '../common';
+
 export const deviceControlPoliciesOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['deviceControlPolicies'],
-			},
-		},
-		options: [
+	createOperationField('deviceControlPolicies', [
+
 			{ name: 'Create Policies (Deprecated)', value: 'createDeviceControlPolicies', description: 'Create Device Control Policies (deprecated)', action: 'Create device control policies' },
 			{ name: 'Delete Policies', value: 'deleteDeviceControlPolicies', description: 'Delete Device Control Policies by IDs', action: 'Delete device control policies' },
 			{ name: 'Get Default Policy (Deprecated)', value: 'getDefaultDeviceControlPolicies', description: 'Retrieve Default Device Control Policy configuration (deprecated)', action: 'Get default device control policies' },
@@ -24,9 +17,8 @@ export const deviceControlPoliciesOperations: INodeProperties[] = [
 			{ name: 'Set Policies Precedence', value: 'setDeviceControlPoliciesPrecedence', description: 'Sets precedence of Device Control Policies', action: 'Set device control policies precedence' },
 			{ name: 'Update Default Policy (Deprecated)', value: 'updateDefaultDeviceControlPolicies', description: 'Update Default Device Control Policy configuration (deprecated)', action: 'Update default device control policies' },
 			{ name: 'Update Policies (Deprecated)', value: 'updateDeviceControlPolicies', description: 'Update Device Control Policies (deprecated)', action: 'Update device control policies' },
-		],
-		default: 'queryCombinedDeviceControlPolicies',
-	},
+		
+	], 'queryCombinedDeviceControlPolicies'),
 ];
 
 export const deviceControlPoliciesFields: INodeProperties[] = [
@@ -79,103 +71,13 @@ export const deviceControlPoliciesFields: INodeProperties[] = [
 		required: true,
 		description: 'Action to perform',
 	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['deviceControlPolicies'],
-				operation: [
-					'createDeviceControlPolicies',
+	createBodyJsonField('deviceControlPolicies', ['createDeviceControlPolicies',
 					'performDeviceControlPoliciesAction',
 					'setDeviceControlPoliciesPrecedence',
 					'updateDefaultDeviceControlPolicies',
-					'updateDeviceControlPolicies',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['deviceControlPolicies'],
-				operation: [
-					'queryCombinedDeviceControlPolicies',
+					'updateDeviceControlPolicies',]),
+	...createStandardPaginationFields('deviceControlPolicies', ['queryCombinedDeviceControlPolicies',
 					'queryCombinedDeviceControlPolicyMembers',
 					'queryDeviceControlPolicies',
-					'queryDeviceControlPolicyMembers',
-				],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['deviceControlPolicies'],
-				operation: [
-					'queryCombinedDeviceControlPolicies',
-					'queryCombinedDeviceControlPolicyMembers',
-					'queryDeviceControlPolicies',
-					'queryDeviceControlPolicyMembers',
-				],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['deviceControlPolicies'],
-				operation: [
-					'queryCombinedDeviceControlPolicies',
-					'queryCombinedDeviceControlPolicyMembers',
-					'queryDeviceControlPolicies',
-					'queryDeviceControlPolicyMembers',
-				],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['deviceControlPolicies'],
-				operation: [
-					'queryCombinedDeviceControlPolicies',
-					'queryCombinedDeviceControlPolicyMembers',
-					'queryDeviceControlPolicies',
-					'queryDeviceControlPolicyMembers',
-				],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+					'queryDeviceControlPolicyMembers',]),
 ];
