@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createOperationField, createStandardPaginationFields } from '../common';
+
 export const profileGroupsOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['profileGroups'],
-			},
-		},
-		options: [
+	createOperationField('profileGroups', [
+
 			{ name: 'Create Group V1', value: 'createGroupV1Mixin0', description: 'Creates a new profile group', action: 'Create group V1' },
 			{ name: 'Delete Groups V1', value: 'deleteGroupsV1', description: 'Deletes profile groups by IDs', action: 'Delete groups V1' },
 			{ name: 'Get Group Users V1', value: 'getGroupUsersV1', description: 'Returns information about a group\'s users in a profile group', action: 'Get group users V1' },
@@ -21,9 +14,8 @@ export const profileGroupsOperations: INodeProperties[] = [
 			{ name: 'Group Users Actions V1', value: 'groupUsersActionsV1Mixin0', description: 'Add or remove users from profile groups', action: 'Group users actions V1' },
 			{ name: 'Query Groups V1', value: 'queryGroupsV1Mixin0', description: 'Returns list of profile group IDs available to actor', action: 'Query groups V1' },
 			{ name: 'Update Group V1', value: 'updateGroupV1Mixin0', description: 'Updates existing profile group metadata', action: 'Update group V1' },
-		],
-		default: 'queryGroupsV1Mixin0',
-	},
+		
+	], 'queryGroupsV1Mixin0'),
 ];
 
 export const profileGroupsFields: INodeProperties[] = [
@@ -95,85 +87,12 @@ export const profileGroupsFields: INodeProperties[] = [
 		required: true,
 		description: 'User action to perform on profile groups',
 	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['profileGroups'],
-				operation: [
-					'createGroupV1Mixin0',
+	createBodyJsonField('profileGroups', ['createGroupV1Mixin0',
 					'getGroupUsersV1',
 					'getGroupsV1Mixin0',
 					'getUserGroupsV1',
 					'groupActionsV1Mixin0',
 					'groupUsersActionsV1Mixin0',
-					'updateGroupV1Mixin0',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['profileGroups'],
-				operation: ['queryGroupsV1Mixin0'],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['profileGroups'],
-				operation: ['queryGroupsV1Mixin0'],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['profileGroups'],
-				operation: ['queryGroupsV1Mixin0'],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['profileGroups'],
-				operation: ['queryGroupsV1Mixin0'],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+					'updateGroupV1Mixin0',]),
+	...createStandardPaginationFields('profileGroups', ['queryGroupsV1Mixin0']),
 ];
