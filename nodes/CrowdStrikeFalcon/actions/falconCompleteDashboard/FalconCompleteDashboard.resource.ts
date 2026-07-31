@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createOperationField, createStandardPaginationFields } from '../common';
+
 export const falconCompleteDashboardOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['falconCompleteDashboard'],
-			},
-		},
-		options: [
+	createOperationField('falconCompleteDashboard', [
+
 			{ name: 'Aggregate Alerts', value: 'aggregateAlerts', description: 'Retrieve aggregate EPP alerts values based on filter', action: 'Aggregate alerts' },
 			{ name: 'Aggregate Allow List', value: 'aggregateAllowList', description: 'Retrieve aggregate allowlist ticket values based on filter', action: 'Aggregate allow list' },
 			{ name: 'Aggregate Block List', value: 'aggregateBlockList', description: 'Retrieve aggregate blocklist ticket values based on filter', action: 'Aggregate block list' },
@@ -29,21 +22,12 @@ export const falconCompleteDashboardOperations: INodeProperties[] = [
 			{ name: 'Query Block List Filter', value: 'queryBlockListFilter', description: 'Retrieve block list tickets matching filter', action: 'Query block list filter' },
 			{ name: 'Query Escalations Filter', value: 'queryEscalationsFilter', description: 'Retrieve escalation tickets matching filter', action: 'Query escalations filter' },
 			{ name: 'Query Remediations Filter', value: 'queryRemediationsFilter', description: 'Retrieve remediation tickets matching filter', action: 'Query remediations filter' },
-		],
-		default: 'queryAlertIdsByFilterV2',
-	},
+		
+	], 'queryAlertIdsByFilterV2'),
 ];
 
 export const falconCompleteDashboardFields: INodeProperties[] = [
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['falconCompleteDashboard'],
-				operation: [
-					'aggregateAlerts',
+	createBodyJsonField('falconCompleteDashboard', ['aggregateAlerts',
 					'aggregateAllowList',
 					'aggregateBlockList',
 					'aggregateDeviceCountCollection',
@@ -52,100 +36,12 @@ export const falconCompleteDashboardFields: INodeProperties[] = [
 					'aggregateRemediations',
 					'aggregateSensorUpdatePolicy',
 					'aggregateSupportIssues',
-					'aggregateTotalDeviceCounts',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['falconCompleteDashboard'],
-				operation: [
-					'getDeviceCountCollectionQueriesByFilter',
+					'aggregateTotalDeviceCounts',]),
+	...createStandardPaginationFields('falconCompleteDashboard', ['getDeviceCountCollectionQueriesByFilter',
 					'queryAlertIdsByFilter',
 					'queryAlertIdsByFilterV2',
 					'queryAllowListFilter',
 					'queryBlockListFilter',
 					'queryEscalationsFilter',
-					'queryRemediationsFilter',
-				],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['falconCompleteDashboard'],
-				operation: [
-					'getDeviceCountCollectionQueriesByFilter',
-					'queryAlertIdsByFilter',
-					'queryAlertIdsByFilterV2',
-					'queryAllowListFilter',
-					'queryBlockListFilter',
-					'queryEscalationsFilter',
-					'queryRemediationsFilter',
-				],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['falconCompleteDashboard'],
-				operation: [
-					'getDeviceCountCollectionQueriesByFilter',
-					'queryAlertIdsByFilter',
-					'queryAlertIdsByFilterV2',
-					'queryAllowListFilter',
-					'queryBlockListFilter',
-					'queryEscalationsFilter',
-					'queryRemediationsFilter',
-				],
-			},
-		},
-		default: '',
-		description: 'Starting index or pagination token',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['falconCompleteDashboard'],
-				operation: [
-					'getDeviceCountCollectionQueriesByFilter',
-					'queryAlertIdsByFilter',
-					'queryAlertIdsByFilterV2',
-					'queryAllowListFilter',
-					'queryBlockListFilter',
-					'queryEscalationsFilter',
-					'queryRemediationsFilter',
-				],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+					'queryRemediationsFilter',]),
 ];
