@@ -301,6 +301,41 @@ async function handleQueriesTemplatesGetV1(c: IExecuteFunctions, i: number, fc: 
 }
 
 /** Main execution handler for Case Management operations. */
+const HANDLER_MAP: Record<string, (c: IExecuteFunctions, i: number, fc: FalconClient) => Promise<any>> = {
+	'aggregatesAccessTagsPostV1': handleAggregatesAccessTagsPostV1,
+	'aggregatesNotificationGroupsPostV1': handleAggregatesNotificationGroupsPostV1,
+	'aggregatesNotificationGroupsPostV2': handleAggregatesNotificationGroupsPostV2,
+	'aggregatesSlasPostV1': handleAggregatesSlasPostV1,
+	'aggregatesTemplatesPostV1': handleAggregatesTemplatesPostV1,
+	'entitiesFieldsGetV1': handleEntitiesFieldsGetV1,
+	'entitiesNotificationGroupsDeleteV1': handleEntitiesNotificationGroupsDeleteV1,
+	'entitiesNotificationGroupsDeleteV2': handleEntitiesNotificationGroupsDeleteV2,
+	'entitiesNotificationGroupsGetV1': handleEntitiesNotificationGroupsGetV1,
+	'entitiesNotificationGroupsGetV2': handleEntitiesNotificationGroupsGetV2,
+	'entitiesNotificationGroupsPatchV1': handleEntitiesNotificationGroupsPatchV1,
+	'entitiesNotificationGroupsPatchV2': handleEntitiesNotificationGroupsPatchV2,
+	'entitiesNotificationGroupsPostV1': handleEntitiesNotificationGroupsPostV1,
+	'entitiesNotificationGroupsPostV2': handleEntitiesNotificationGroupsPostV2,
+	'entitiesSlasDeleteV1': handleEntitiesSlasDeleteV1,
+	'entitiesSlasGetV1': handleEntitiesSlasGetV1,
+	'entitiesSlasPatchV1': handleEntitiesSlasPatchV1,
+	'entitiesSlasPostV1': handleEntitiesSlasPostV1,
+	'entitiesTemplateSnapshotsGetV1': handleEntitiesTemplateSnapshotsGetV1,
+	'entitiesTemplatesDeleteV1': handleEntitiesTemplatesDeleteV1,
+	'entitiesTemplatesExportGetV1': handleEntitiesTemplatesExportGetV1,
+	'entitiesTemplatesGetV1': handleEntitiesTemplatesGetV1,
+	'entitiesTemplatesImportPostV1': handleEntitiesTemplatesImportPostV1,
+	'entitiesTemplatesPatchV1': handleEntitiesTemplatesPatchV1,
+	'entitiesTemplatesPostV1': handleEntitiesTemplatesPostV1,
+	'queriesAccessTagsGetV1': handleQueriesAccessTagsGetV1,
+	'queriesFieldsGetV1': handleQueriesFieldsGetV1,
+	'queriesNotificationGroupsGetV1': handleQueriesNotificationGroupsGetV1,
+	'queriesNotificationGroupsGetV2': handleQueriesNotificationGroupsGetV2,
+	'queriesSlasGetV1': handleQueriesSlasGetV1,
+	'queriesTemplateSnapshotsGetV1': handleQueriesTemplateSnapshotsGetV1,
+	'queriesTemplatesGetV1': handleQueriesTemplatesGetV1,
+};
+
 export async function executeCaseManagement(
 	this: IExecuteFunctions,
 	index: number,
@@ -308,40 +343,10 @@ export async function executeCaseManagement(
 ): Promise<any> {
 	const operation = this.getNodeParameter('operation', index) as string;
 
-	switch (operation) {
-		case 'aggregatesAccessTagsPostV1': return await handleAggregatesAccessTagsPostV1(this, index, falconClient);
-		case 'aggregatesNotificationGroupsPostV1': return await handleAggregatesNotificationGroupsPostV1(this, index, falconClient);
-		case 'aggregatesNotificationGroupsPostV2': return await handleAggregatesNotificationGroupsPostV2(this, index, falconClient);
-		case 'aggregatesSlasPostV1': return await handleAggregatesSlasPostV1(this, index, falconClient);
-		case 'aggregatesTemplatesPostV1': return await handleAggregatesTemplatesPostV1(this, index, falconClient);
-		case 'entitiesFieldsGetV1': return await handleEntitiesFieldsGetV1(this, index, falconClient);
-		case 'entitiesNotificationGroupsDeleteV1': return await handleEntitiesNotificationGroupsDeleteV1(this, index, falconClient);
-		case 'entitiesNotificationGroupsDeleteV2': return await handleEntitiesNotificationGroupsDeleteV2(this, index, falconClient);
-		case 'entitiesNotificationGroupsGetV1': return await handleEntitiesNotificationGroupsGetV1(this, index, falconClient);
-		case 'entitiesNotificationGroupsGetV2': return await handleEntitiesNotificationGroupsGetV2(this, index, falconClient);
-		case 'entitiesNotificationGroupsPatchV1': return await handleEntitiesNotificationGroupsPatchV1(this, index, falconClient);
-		case 'entitiesNotificationGroupsPatchV2': return await handleEntitiesNotificationGroupsPatchV2(this, index, falconClient);
-		case 'entitiesNotificationGroupsPostV1': return await handleEntitiesNotificationGroupsPostV1(this, index, falconClient);
-		case 'entitiesNotificationGroupsPostV2': return await handleEntitiesNotificationGroupsPostV2(this, index, falconClient);
-		case 'entitiesSlasDeleteV1': return await handleEntitiesSlasDeleteV1(this, index, falconClient);
-		case 'entitiesSlasGetV1': return await handleEntitiesSlasGetV1(this, index, falconClient);
-		case 'entitiesSlasPatchV1': return await handleEntitiesSlasPatchV1(this, index, falconClient);
-		case 'entitiesSlasPostV1': return await handleEntitiesSlasPostV1(this, index, falconClient);
-		case 'entitiesTemplateSnapshotsGetV1': return await handleEntitiesTemplateSnapshotsGetV1(this, index, falconClient);
-		case 'entitiesTemplatesDeleteV1': return await handleEntitiesTemplatesDeleteV1(this, index, falconClient);
-		case 'entitiesTemplatesExportGetV1': return await handleEntitiesTemplatesExportGetV1(this, index, falconClient);
-		case 'entitiesTemplatesGetV1': return await handleEntitiesTemplatesGetV1(this, index, falconClient);
-		case 'entitiesTemplatesImportPostV1': return await handleEntitiesTemplatesImportPostV1(this, index, falconClient);
-		case 'entitiesTemplatesPatchV1': return await handleEntitiesTemplatesPatchV1(this, index, falconClient);
-		case 'entitiesTemplatesPostV1': return await handleEntitiesTemplatesPostV1(this, index, falconClient);
-		case 'queriesAccessTagsGetV1': return await handleQueriesAccessTagsGetV1(this, index, falconClient);
-		case 'queriesFieldsGetV1': return await handleQueriesFieldsGetV1(this, index, falconClient);
-		case 'queriesNotificationGroupsGetV1': return await handleQueriesNotificationGroupsGetV1(this, index, falconClient);
-		case 'queriesNotificationGroupsGetV2': return await handleQueriesNotificationGroupsGetV2(this, index, falconClient);
-		case 'queriesSlasGetV1': return await handleQueriesSlasGetV1(this, index, falconClient);
-		case 'queriesTemplateSnapshotsGetV1': return await handleQueriesTemplateSnapshotsGetV1(this, index, falconClient);
-		case 'queriesTemplatesGetV1': return await handleQueriesTemplatesGetV1(this, index, falconClient);
-		default:
-			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Case Management.`);
+	const handler = HANDLER_MAP[operation];
+	if (handler) {
+		return await handler(this, index, falconClient);
+	}
+	throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for CaseManagement.`); as any)), `Operation ${operation} is not supported for Case Management.`);
 	}
 }

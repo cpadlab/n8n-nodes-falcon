@@ -625,6 +625,73 @@ async function handleVulnerableContainerImageCount(c: IExecuteFunctions, i: numb
  * Main execution handler for CrowdStrike Falcon Kubernetes Protection operations.
  * Delegates execution to internal helper functions to maintain low Cognitive Complexity.
  */
+const HANDLER_MAP: Record<string, (c: IExecuteFunctions, i: number, fc: FalconClient) => Promise<any>> = {
+	'clusterCombined': handleClusterCombined,
+	'clusterCount': handleClusterCount,
+	'clusterEnrichment': handleClusterEnrichment,
+	'clustersByDateRangeCount': handleClustersByDateRangeCount,
+	'clustersByKubernetesVersionCount': handleClustersByKubernetesVersionCount,
+	'clustersByStatusCount': handleClustersByStatusCount,
+	'containerCombined': handleContainerCombined,
+	'containerCount': handleContainerCount,
+	'containerCountByRegistry': handleContainerCountByRegistry,
+	'containerEnrichment': handleContainerEnrichment,
+	'containerImageDetectionsCountByDate': handleContainerImageDetectionsCountByDate,
+	'containerImagesByMostUsed': handleContainerImagesByMostUsed,
+	'containerImagesByState': handleContainerImagesByState,
+	'containerVulnerabilitiesBySeverityCount': handleContainerVulnerabilitiesBySeverityCount,
+	'containersByDateRangeCount': handleContainersByDateRangeCount,
+	'containersSensorCoverage': handleContainersSensorCoverage,
+	'createAWSAccount': handleCreateAWSAccount,
+	'createAzureSubscription': handleCreateAzureSubscription,
+	'deleteAWSAccountsMixin0': handleDeleteAWSAccountsMixin0,
+	'deleteAzureSubscription': handleDeleteAzureSubscription,
+	'deploymentCombined': handleDeploymentCombined,
+	'deploymentCount': handleDeploymentCount,
+	'deploymentEnrichment': handleDeploymentEnrichment,
+	'deploymentsByDateRangeCount': handleDeploymentsByDateRangeCount,
+	'distinctContainerImageCount': handleDistinctContainerImageCount,
+	'findContainersByContainerRunTimeVersion': handleFindContainersByContainerRunTimeVersion,
+	'findContainersCountAffectedByZeroDayVulnerabilities': handleFindContainersCountAffectedByZeroDayVulnerabilities,
+	'getAWSAccountsMixin0': handleGetAWSAccountsMixin0,
+	'getAzureInstallScript': handleGetAzureInstallScript,
+	'getAzureTenantConfig': handleGetAzureTenantConfig,
+	'getAzureTenantIDs': handleGetAzureTenantIDs,
+	'getClusters': handleGetClusters,
+	'getCombinedCloudClusters': handleGetCombinedCloudClusters,
+	'getHelmValuesYaml': handleGetHelmValuesYaml,
+	'getLocations': handleGetLocations,
+	'getStaticScripts': handleGetStaticScripts,
+	'groupContainersByManaged': handleGroupContainersByManaged,
+	'kubernetesIomByDateRange': handleKubernetesIomByDateRange,
+	'kubernetesIomCount': handleKubernetesIomCount,
+	'kubernetesIomEntities': handleKubernetesIomEntities,
+	'kubernetesIomEntitiesCombined': handleKubernetesIomEntitiesCombined,
+	'listAzureAccounts': handleListAzureAccounts,
+	'nodeCombined': handleNodeCombined,
+	'nodeCount': handleNodeCount,
+	'nodeEnrichment': handleNodeEnrichment,
+	'nodesByCloudCount': handleNodesByCloudCount,
+	'nodesByContainerEngineVersionCount': handleNodesByContainerEngineVersionCount,
+	'nodesByDateRangeCount': handleNodesByDateRangeCount,
+	'patchAzureServicePrincipal': handlePatchAzureServicePrincipal,
+	'podCombined': handlePodCombined,
+	'podCount': handlePodCount,
+	'podEnrichment': handlePodEnrichment,
+	'podsByDateRangeCount': handlePodsByDateRangeCount,
+	'postAggregatesPods': handlePostAggregatesPods,
+	'postSearchKubernetesIOMEntities': handlePostSearchKubernetesIOMEntities,
+	'queryKubernetesIoms': handleQueryKubernetesIoms,
+	'readClusterCombinedV2': handleReadClusterCombinedV2,
+	'readNamespaceCount': handleReadNamespaceCount,
+	'readNamespacesByDateRangeCount': handleReadNamespacesByDateRangeCount,
+	'regenerateAPIKey': handleRegenerateAPIKey,
+	'runningContainerImages': handleRunningContainerImages,
+	'triggerScan': handleTriggerScan,
+	'updateAWSAccount': handleUpdateAWSAccount,
+	'vulnerableContainerImageCount': handleVulnerableContainerImageCount,
+};
+
 export async function executeKubernetesProtection(
 	this: IExecuteFunctions,
 	index: number,
@@ -632,72 +699,10 @@ export async function executeKubernetesProtection(
 ): Promise<any> {
 	const operation = this.getNodeParameter('operation', index) as string;
 
-	switch (operation) {
-		case 'clusterCombined': return await handleClusterCombined(this, index, falconClient);
-		case 'clusterCount': return await handleClusterCount(this, index, falconClient);
-		case 'clusterEnrichment': return await handleClusterEnrichment(this, index, falconClient);
-		case 'clustersByDateRangeCount': return await handleClustersByDateRangeCount(this, index, falconClient);
-		case 'clustersByKubernetesVersionCount': return await handleClustersByKubernetesVersionCount(this, index, falconClient);
-		case 'clustersByStatusCount': return await handleClustersByStatusCount(this, index, falconClient);
-		case 'containerCombined': return await handleContainerCombined(this, index, falconClient);
-		case 'containerCount': return await handleContainerCount(this, index, falconClient);
-		case 'containerCountByRegistry': return await handleContainerCountByRegistry(this, index, falconClient);
-		case 'containerEnrichment': return await handleContainerEnrichment(this, index, falconClient);
-		case 'containerImageDetectionsCountByDate': return await handleContainerImageDetectionsCountByDate(this, index, falconClient);
-		case 'containerImagesByMostUsed': return await handleContainerImagesByMostUsed(this, index, falconClient);
-		case 'containerImagesByState': return await handleContainerImagesByState(this, index, falconClient);
-		case 'containerVulnerabilitiesBySeverityCount': return await handleContainerVulnerabilitiesBySeverityCount(this, index, falconClient);
-		case 'containersByDateRangeCount': return await handleContainersByDateRangeCount(this, index, falconClient);
-		case 'containersSensorCoverage': return await handleContainersSensorCoverage(this, index, falconClient);
-		case 'createAWSAccount': return await handleCreateAWSAccount(this, index, falconClient);
-		case 'createAzureSubscription': return await handleCreateAzureSubscription(this, index, falconClient);
-		case 'deleteAWSAccountsMixin0': return await handleDeleteAWSAccountsMixin0(this, index, falconClient);
-		case 'deleteAzureSubscription': return await handleDeleteAzureSubscription(this, index, falconClient);
-		case 'deploymentCombined': return await handleDeploymentCombined(this, index, falconClient);
-		case 'deploymentCount': return await handleDeploymentCount(this, index, falconClient);
-		case 'deploymentEnrichment': return await handleDeploymentEnrichment(this, index, falconClient);
-		case 'deploymentsByDateRangeCount': return await handleDeploymentsByDateRangeCount(this, index, falconClient);
-		case 'distinctContainerImageCount': return await handleDistinctContainerImageCount(this, index, falconClient);
-		case 'findContainersByContainerRunTimeVersion': return await handleFindContainersByContainerRunTimeVersion(this, index, falconClient);
-		case 'findContainersCountAffectedByZeroDayVulnerabilities': return await handleFindContainersCountAffectedByZeroDayVulnerabilities(this, index, falconClient);
-		case 'getAWSAccountsMixin0': return await handleGetAWSAccountsMixin0(this, index, falconClient);
-		case 'getAzureInstallScript': return await handleGetAzureInstallScript(this, index, falconClient);
-		case 'getAzureTenantConfig': return await handleGetAzureTenantConfig(this, index, falconClient);
-		case 'getAzureTenantIDs': return await handleGetAzureTenantIDs(this, index, falconClient);
-		case 'getClusters': return await handleGetClusters(this, index, falconClient);
-		case 'getCombinedCloudClusters': return await handleGetCombinedCloudClusters(this, index, falconClient);
-		case 'getHelmValuesYaml': return await handleGetHelmValuesYaml(this, index, falconClient);
-		case 'getLocations': return await handleGetLocations(this, index, falconClient);
-		case 'getStaticScripts': return await handleGetStaticScripts(this, index, falconClient);
-		case 'groupContainersByManaged': return await handleGroupContainersByManaged(this, index, falconClient);
-		case 'kubernetesIomByDateRange': return await handleKubernetesIomByDateRange(this, index, falconClient);
-		case 'kubernetesIomCount': return await handleKubernetesIomCount(this, index, falconClient);
-		case 'kubernetesIomEntities': return await handleKubernetesIomEntities(this, index, falconClient);
-		case 'kubernetesIomEntitiesCombined': return await handleKubernetesIomEntitiesCombined(this, index, falconClient);
-		case 'listAzureAccounts': return await handleListAzureAccounts(this, index, falconClient);
-		case 'nodeCombined': return await handleNodeCombined(this, index, falconClient);
-		case 'nodeCount': return await handleNodeCount(this, index, falconClient);
-		case 'nodeEnrichment': return await handleNodeEnrichment(this, index, falconClient);
-		case 'nodesByCloudCount': return await handleNodesByCloudCount(this, index, falconClient);
-		case 'nodesByContainerEngineVersionCount': return await handleNodesByContainerEngineVersionCount(this, index, falconClient);
-		case 'nodesByDateRangeCount': return await handleNodesByDateRangeCount(this, index, falconClient);
-		case 'patchAzureServicePrincipal': return await handlePatchAzureServicePrincipal(this, index, falconClient);
-		case 'podCombined': return await handlePodCombined(this, index, falconClient);
-		case 'podCount': return await handlePodCount(this, index, falconClient);
-		case 'podEnrichment': return await handlePodEnrichment(this, index, falconClient);
-		case 'podsByDateRangeCount': return await handlePodsByDateRangeCount(this, index, falconClient);
-		case 'postAggregatesPods': return await handlePostAggregatesPods(this, index, falconClient);
-		case 'postSearchKubernetesIOMEntities': return await handlePostSearchKubernetesIOMEntities(this, index, falconClient);
-		case 'queryKubernetesIoms': return await handleQueryKubernetesIoms(this, index, falconClient);
-		case 'readClusterCombinedV2': return await handleReadClusterCombinedV2(this, index, falconClient);
-		case 'readNamespaceCount': return await handleReadNamespaceCount(this, index, falconClient);
-		case 'readNamespacesByDateRangeCount': return await handleReadNamespacesByDateRangeCount(this, index, falconClient);
-		case 'regenerateAPIKey': return await handleRegenerateAPIKey(this, index, falconClient);
-		case 'runningContainerImages': return await handleRunningContainerImages(this, index, falconClient);
-		case 'triggerScan': return await handleTriggerScan(this, index, falconClient);
-		case 'updateAWSAccount': return await handleUpdateAWSAccount(this, index, falconClient);
-		case 'vulnerableContainerImageCount': return await handleVulnerableContainerImageCount(this, index, falconClient);
-		default:
-			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Kubernetes Protection.`);
+	const handler = HANDLER_MAP[operation];
+	if (handler) {
+		return await handler(this, index, falconClient);
+	}
+	throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for KubernetesProtection.`); as any)), `Operation ${operation} is not supported for Kubernetes Protection.`);
 	}
 }

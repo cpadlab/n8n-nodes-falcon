@@ -326,6 +326,42 @@ async function handleValidateFilepathPattern(c: IExecuteFunctions, i: number, fc
  * Main execution handler for CrowdStrike Falcon Firewall Management operations.
  * Delegates execution to internal helper functions to maintain low Cognitive Complexity.
  */
+const HANDLER_MAP: Record<string, (c: IExecuteFunctions, i: number, fc: FalconClient) => Promise<any>> = {
+	'aggregateEvents': handleAggregateEvents,
+	'aggregatePolicyRules': handleAggregatePolicyRules,
+	'aggregateRuleGroups': handleAggregateRuleGroups,
+	'aggregateRules': handleAggregateRules,
+	'createNetworkLocations': handleCreateNetworkLocations,
+	'createRuleGroup': handleCreateRuleGroup,
+	'createRuleGroupValidation': handleCreateRuleGroupValidation,
+	'deleteNetworkLocations': handleDeleteNetworkLocations,
+	'deleteRuleGroups': handleDeleteRuleGroups,
+	'getEvents': handleGetEvents,
+	'getFirewallFields': handleGetFirewallFields,
+	'getNetworkLocations': handleGetNetworkLocations,
+	'getNetworkLocationsDetails': handleGetNetworkLocationsDetails,
+	'getPlatforms': handleGetPlatforms,
+	'getPolicyContainers': handleGetPolicyContainers,
+	'getRuleGroups': handleGetRuleGroups,
+	'getRules': handleGetRules,
+	'queryEvents': handleQueryEvents,
+	'queryFirewallFields': handleQueryFirewallFields,
+	'queryNetworkLocations': handleQueryNetworkLocations,
+	'queryPlatforms': handleQueryPlatforms,
+	'queryPolicyRules': handleQueryPolicyRules,
+	'queryRuleGroups': handleQueryRuleGroups,
+	'queryRules': handleQueryRules,
+	'updateNetworkLocations': handleUpdateNetworkLocations,
+	'updateNetworkLocationsMetadata': handleUpdateNetworkLocationsMetadata,
+	'updateNetworkLocationsPrecedence': handleUpdateNetworkLocationsPrecedence,
+	'updatePolicyContainer': handleUpdatePolicyContainer,
+	'updatePolicyContainerV1': handleUpdatePolicyContainerV1,
+	'updateRuleGroup': handleUpdateRuleGroup,
+	'updateRuleGroupValidation': handleUpdateRuleGroupValidation,
+	'upsertNetworkLocations': handleUpsertNetworkLocations,
+	'validateFilepathPattern': handleValidateFilepathPattern,
+};
+
 export async function executeFirewallManagement(
 	this: IExecuteFunctions,
 	index: number,
@@ -333,41 +369,10 @@ export async function executeFirewallManagement(
 ): Promise<any> {
 	const operation = this.getNodeParameter('operation', index) as string;
 
-	switch (operation) {
-		case 'aggregateEvents': return await handleAggregateEvents(this, index, falconClient);
-		case 'aggregatePolicyRules': return await handleAggregatePolicyRules(this, index, falconClient);
-		case 'aggregateRuleGroups': return await handleAggregateRuleGroups(this, index, falconClient);
-		case 'aggregateRules': return await handleAggregateRules(this, index, falconClient);
-		case 'createNetworkLocations': return await handleCreateNetworkLocations(this, index, falconClient);
-		case 'createRuleGroup': return await handleCreateRuleGroup(this, index, falconClient);
-		case 'createRuleGroupValidation': return await handleCreateRuleGroupValidation(this, index, falconClient);
-		case 'deleteNetworkLocations': return await handleDeleteNetworkLocations(this, index, falconClient);
-		case 'deleteRuleGroups': return await handleDeleteRuleGroups(this, index, falconClient);
-		case 'getEvents': return await handleGetEvents(this, index, falconClient);
-		case 'getFirewallFields': return await handleGetFirewallFields(this, index, falconClient);
-		case 'getNetworkLocations': return await handleGetNetworkLocations(this, index, falconClient);
-		case 'getNetworkLocationsDetails': return await handleGetNetworkLocationsDetails(this, index, falconClient);
-		case 'getPlatforms': return await handleGetPlatforms(this, index, falconClient);
-		case 'getPolicyContainers': return await handleGetPolicyContainers(this, index, falconClient);
-		case 'getRuleGroups': return await handleGetRuleGroups(this, index, falconClient);
-		case 'getRules': return await handleGetRules(this, index, falconClient);
-		case 'queryEvents': return await handleQueryEvents(this, index, falconClient);
-		case 'queryFirewallFields': return await handleQueryFirewallFields(this, index, falconClient);
-		case 'queryNetworkLocations': return await handleQueryNetworkLocations(this, index, falconClient);
-		case 'queryPlatforms': return await handleQueryPlatforms(this, index, falconClient);
-		case 'queryPolicyRules': return await handleQueryPolicyRules(this, index, falconClient);
-		case 'queryRuleGroups': return await handleQueryRuleGroups(this, index, falconClient);
-		case 'queryRules': return await handleQueryRules(this, index, falconClient);
-		case 'updateNetworkLocations': return await handleUpdateNetworkLocations(this, index, falconClient);
-		case 'updateNetworkLocationsMetadata': return await handleUpdateNetworkLocationsMetadata(this, index, falconClient);
-		case 'updateNetworkLocationsPrecedence': return await handleUpdateNetworkLocationsPrecedence(this, index, falconClient);
-		case 'updatePolicyContainer': return await handleUpdatePolicyContainer(this, index, falconClient);
-		case 'updatePolicyContainerV1': return await handleUpdatePolicyContainerV1(this, index, falconClient);
-		case 'updateRuleGroup': return await handleUpdateRuleGroup(this, index, falconClient);
-		case 'updateRuleGroupValidation': return await handleUpdateRuleGroupValidation(this, index, falconClient);
-		case 'upsertNetworkLocations': return await handleUpsertNetworkLocations(this, index, falconClient);
-		case 'validateFilepathPattern': return await handleValidateFilepathPattern(this, index, falconClient);
-		default:
-			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Firewall Management.`);
+	const handler = HANDLER_MAP[operation];
+	if (handler) {
+		return await handler(this, index, falconClient);
+	}
+	throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for FirewallManagement.`); as any)), `Operation ${operation} is not supported for Firewall Management.`);
 	}
 }

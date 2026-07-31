@@ -486,6 +486,61 @@ async function handleUpsertTags(c: IExecuteFunctions, i: number, fc: FalconClien
 /**
  * Main execution handler for CrowdStrike Falcon ASPM operations.
  */
+const HANDLER_MAP: Record<string, (c: IExecuteFunctions, i: number, fc: FalconClient) => Promise<any>> = {
+	'createExecutorNode': handleCreateExecutorNode,
+	'createIntegration': handleCreateIntegration,
+	'createIntegrationTask': handleCreateIntegrationTask,
+	'deleteExecutorNode': handleDeleteExecutorNode,
+	'deleteGroupID09': handleDeleteGroupID09,
+	'deleteIntegration': handleDeleteIntegration,
+	'deleteIntegrationTask': handleDeleteIntegrationTask,
+	'deleteTags': handleDeleteTags,
+	'executeFunctionData': handleExecuteFunctionData,
+	'executeFunctionDataCount': handleExecuteFunctionDataCount,
+	'executeFunctionDataQuery': handleExecuteFunctionDataQuery,
+	'executeFunctionDataQueryCount': handleExecuteFunctionDataQueryCount,
+	'executeFunctions': handleExecuteFunctions,
+	'executeFunctionsCount': handleExecuteFunctionsCount,
+	'executeFunctionsOvertime': handleExecuteFunctionsOvertime,
+	'executeFunctionsQuery': handleExecuteFunctionsQuery,
+	'executeFunctionsQueryCount': handleExecuteFunctionsQueryCount,
+	'executeFunctionsQueryOvertime': handleExecuteFunctionsQueryOvertime,
+	'executeQuery': handleExecuteQuery,
+	'getCloudSecurityIntegrationState': handleGetCloudSecurityIntegrationState,
+	'getExecutorNodes': handleGetExecutorNodes,
+	'getExecutorNodesID09InstancesCsv': handleGetExecutorNodesID09InstancesCsv,
+	'getExecutorNodesMetadata': handleGetExecutorNodesMetadata,
+	'getGroupID09V2': handleGetGroupID09V2,
+	'getGroupsHierV2': handleGetGroupsHierV2,
+	'getGroupsListV2': handleGetGroupsListV2,
+	'getIntegrationTasks': handleGetIntegrationTasks,
+	'getIntegrationTasksAdmin': handleGetIntegrationTasksAdmin,
+	'getIntegrationTasksMetadata': handleGetIntegrationTasksMetadata,
+	'getIntegrationTasksV2': handleGetIntegrationTasksV2,
+	'getIntegrationTypes': handleGetIntegrationTypes,
+	'getIntegrations': handleGetIntegrations,
+	'getIntegrationsV2': handleGetIntegrationsV2,
+	'getServiceArtifacts': handleGetServiceArtifacts,
+	'getServiceViolationTypes': handleGetServiceViolationTypes,
+	'getServicesCount': handleGetServicesCount,
+	'getTags': handleGetTags,
+	'getUsersV2': handleGetUsersV2,
+	'postGroupID09UpdateDefault': handlePostGroupID09UpdateDefault,
+	'postGroupID09V2': handlePostGroupID09V2,
+	'postGroupV2': handlePostGroupV2,
+	'runIntegrationTask': handleRunIntegrationTask,
+	'runIntegrationTaskAdmin': handleRunIntegrationTaskAdmin,
+	'runIntegrationTaskV2': handleRunIntegrationTaskV2,
+	'serviceNowGetDeployments': handleServiceNowGetDeployments,
+	'serviceNowGetServices': handleServiceNowGetServices,
+	'setCloudSecurityIntegrationState': handleSetCloudSecurityIntegrationState,
+	'updateExecutorNode': handleUpdateExecutorNode,
+	'updateIntegration': handleUpdateIntegration,
+	'updateIntegrationTask': handleUpdateIntegrationTask,
+	'upsertBusinessApplications': handleUpsertBusinessApplications,
+	'upsertTags': handleUpsertTags,
+};
+
 export async function executeAspm(
 	this: IExecuteFunctions,
 	index: number,
@@ -493,60 +548,10 @@ export async function executeAspm(
 ): Promise<any> {
 	const operation = this.getNodeParameter('operation', index) as string;
 
-	switch (operation) {
-		case 'createExecutorNode': return await handleCreateExecutorNode(this, index, falconClient);
-		case 'createIntegration': return await handleCreateIntegration(this, index, falconClient);
-		case 'createIntegrationTask': return await handleCreateIntegrationTask(this, index, falconClient);
-		case 'deleteExecutorNode': return await handleDeleteExecutorNode(this, index, falconClient);
-		case 'deleteGroupID09': return await handleDeleteGroupID09(this, index, falconClient);
-		case 'deleteIntegration': return await handleDeleteIntegration(this, index, falconClient);
-		case 'deleteIntegrationTask': return await handleDeleteIntegrationTask(this, index, falconClient);
-		case 'deleteTags': return await handleDeleteTags(this, index, falconClient);
-		case 'executeFunctionData': return await handleExecuteFunctionData(this, index, falconClient);
-		case 'executeFunctionDataCount': return await handleExecuteFunctionDataCount(this, index, falconClient);
-		case 'executeFunctionDataQuery': return await handleExecuteFunctionDataQuery(this, index, falconClient);
-		case 'executeFunctionDataQueryCount': return await handleExecuteFunctionDataQueryCount(this, index, falconClient);
-		case 'executeFunctions': return await handleExecuteFunctions(this, index, falconClient);
-		case 'executeFunctionsCount': return await handleExecuteFunctionsCount(this, index, falconClient);
-		case 'executeFunctionsOvertime': return await handleExecuteFunctionsOvertime(this, index, falconClient);
-		case 'executeFunctionsQuery': return await handleExecuteFunctionsQuery(this, index, falconClient);
-		case 'executeFunctionsQueryCount': return await handleExecuteFunctionsQueryCount(this, index, falconClient);
-		case 'executeFunctionsQueryOvertime': return await handleExecuteFunctionsQueryOvertime(this, index, falconClient);
-		case 'executeQuery': return await handleExecuteQuery(this, index, falconClient);
-		case 'getCloudSecurityIntegrationState': return await handleGetCloudSecurityIntegrationState(this, index, falconClient);
-		case 'getExecutorNodes': return await handleGetExecutorNodes(this, index, falconClient);
-		case 'getExecutorNodesID09InstancesCsv': return await handleGetExecutorNodesID09InstancesCsv(this, index, falconClient);
-		case 'getExecutorNodesMetadata': return await handleGetExecutorNodesMetadata(this, index, falconClient);
-		case 'getGroupID09V2': return await handleGetGroupID09V2(this, index, falconClient);
-		case 'getGroupsHierV2': return await handleGetGroupsHierV2(this, index, falconClient);
-		case 'getGroupsListV2': return await handleGetGroupsListV2(this, index, falconClient);
-		case 'getIntegrationTasks': return await handleGetIntegrationTasks(this, index, falconClient);
-		case 'getIntegrationTasksAdmin': return await handleGetIntegrationTasksAdmin(this, index, falconClient);
-		case 'getIntegrationTasksMetadata': return await handleGetIntegrationTasksMetadata(this, index, falconClient);
-		case 'getIntegrationTasksV2': return await handleGetIntegrationTasksV2(this, index, falconClient);
-		case 'getIntegrationTypes': return await handleGetIntegrationTypes(this, index, falconClient);
-		case 'getIntegrations': return await handleGetIntegrations(this, index, falconClient);
-		case 'getIntegrationsV2': return await handleGetIntegrationsV2(this, index, falconClient);
-		case 'getServiceArtifacts': return await handleGetServiceArtifacts(this, index, falconClient);
-		case 'getServiceViolationTypes': return await handleGetServiceViolationTypes(this, index, falconClient);
-		case 'getServicesCount': return await handleGetServicesCount(this, index, falconClient);
-		case 'getTags': return await handleGetTags(this, index, falconClient);
-		case 'getUsersV2': return await handleGetUsersV2(this, index, falconClient);
-		case 'postGroupID09UpdateDefault': return await handlePostGroupID09UpdateDefault(this, index, falconClient);
-		case 'postGroupID09V2': return await handlePostGroupID09V2(this, index, falconClient);
-		case 'postGroupV2': return await handlePostGroupV2(this, index, falconClient);
-		case 'runIntegrationTask': return await handleRunIntegrationTask(this, index, falconClient);
-		case 'runIntegrationTaskAdmin': return await handleRunIntegrationTaskAdmin(this, index, falconClient);
-		case 'runIntegrationTaskV2': return await handleRunIntegrationTaskV2(this, index, falconClient);
-		case 'serviceNowGetDeployments': return await handleServiceNowGetDeployments(this, index, falconClient);
-		case 'serviceNowGetServices': return await handleServiceNowGetServices(this, index, falconClient);
-		case 'setCloudSecurityIntegrationState': return await handleSetCloudSecurityIntegrationState(this, index, falconClient);
-		case 'updateExecutorNode': return await handleUpdateExecutorNode(this, index, falconClient);
-		case 'updateIntegration': return await handleUpdateIntegration(this, index, falconClient);
-		case 'updateIntegrationTask': return await handleUpdateIntegrationTask(this, index, falconClient);
-		case 'upsertBusinessApplications': return await handleUpsertBusinessApplications(this, index, falconClient);
-		case 'upsertTags': return await handleUpsertTags(this, index, falconClient);
-		default:
-			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for ASPM.`);
+	const handler = HANDLER_MAP[operation];
+	if (handler) {
+		return await handler(this, index, falconClient);
+	}
+	throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Aspm.`); as any)), `Operation ${operation} is not supported for ASPM.`);
 	}
 }

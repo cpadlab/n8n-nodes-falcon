@@ -540,6 +540,68 @@ async function handleUploadLookupV1(c: IExecuteFunctions, i: number, fc: FalconC
  * Main execution handler for CrowdStrike Falcon NGSIEM operations.
  * Delegates execution to internal helper functions to maintain low Cognitive Complexity.
  */
+const HANDLER_MAP: Record<string, (c: IExecuteFunctions, i: number, fc: FalconClient) => Promise<any>> = {
+	'bulkCreateDashboardsFromTemplate': handleBulkCreateDashboardsFromTemplate,
+	'bulkCreateLookupFiles': handleBulkCreateLookupFiles,
+	'bulkCreateSavedQueriesFromTemplate': handleBulkCreateSavedQueriesFromTemplate,
+	'bulkGetLookupFiles': handleBulkGetLookupFiles,
+	'bulkInstallParsers': handleBulkInstallParsers,
+	'bulkUpdateDashboardsFromTemplate': handleBulkUpdateDashboardsFromTemplate,
+	'bulkUpdateLookupFiles': handleBulkUpdateLookupFiles,
+	'bulkUpdateSavedQueriesFromTemplate': handleBulkUpdateSavedQueriesFromTemplate,
+	'cloneParser': handleCloneParser,
+	'createDashboardFromTemplate': handleCreateDashboardFromTemplate,
+	'createLookupFile': handleCreateLookupFile,
+	'createParser': handleCreateParser,
+	'createParserExtension': handleCreateParserExtension,
+	'createParserFromTemplate': handleCreateParserFromTemplate,
+	'createSavedQuery': handleCreateSavedQuery,
+	'deleteDashboard': handleDeleteDashboard,
+	'deleteLookupFile': handleDeleteLookupFile,
+	'deleteParser': handleDeleteParser,
+	'deleteSavedQuery': handleDeleteSavedQuery,
+	'externalCreateConnectorConfig': handleExternalCreateConnectorConfig,
+	'externalCreateDataConnection': handleExternalCreateDataConnection,
+	'externalDeleteConnectorConfigs': handleExternalDeleteConnectorConfigs,
+	'externalDeleteDataConnection': handleExternalDeleteDataConnection,
+	'externalGetDataConnectionByID': handleExternalGetDataConnectionByID,
+	'externalGetDataConnectionStatus': handleExternalGetDataConnectionStatus,
+	'externalGetDataConnectionToken': handleExternalGetDataConnectionToken,
+	'externalListConnectorConfigs': handleExternalListConnectorConfigs,
+	'externalListDataConnections': handleExternalListDataConnections,
+	'externalListDataConnectors': handleExternalListDataConnectors,
+	'externalPatchConnectorConfig': handleExternalPatchConnectorConfig,
+	'externalRegenerateDataConnectionToken': handleExternalRegenerateDataConnectionToken,
+	'externalUpdateDataConnection': handleExternalUpdateDataConnection,
+	'externalUpdateDataConnectionStatus': handleExternalUpdateDataConnectionStatus,
+	'getDashboardTemplate': handleGetDashboardTemplate,
+	'getLookupFile': handleGetLookupFile,
+	'getLookupFromPackageV1': handleGetLookupFromPackageV1,
+	'getLookupFromPackageWithNamespaceV1': handleGetLookupFromPackageWithNamespaceV1,
+	'getLookupV1': handleGetLookupV1,
+	'getParser': handleGetParser,
+	'getParserTemplate': handleGetParserTemplate,
+	'getSavedQueryTemplate': handleGetSavedQueryTemplate,
+	'getSearchStatusV1': handleGetSearchStatusV1,
+	'installParser': handleInstallParser,
+	'listDashboards': handleListDashboards,
+	'listLookupFiles': handleListLookupFiles,
+	'listParsers': handleListParsers,
+	'listSavedQueries': handleListSavedQueries,
+	'startSearchV1': handleStartSearchV1,
+	'stopSearchV1': handleStopSearchV1,
+	'testParserFromTemplate': handleTestParserFromTemplate,
+	'updateDashboardFromTemplate': handleUpdateDashboardFromTemplate,
+	'updateLookupFile': handleUpdateLookupFile,
+	'updateLookupFileEntries': handleUpdateLookupFileEntries,
+	'updateParser': handleUpdateParser,
+	'updateParserAutoUpdatePolicy': handleUpdateParserAutoUpdatePolicy,
+	'updateParserExtension': handleUpdateParserExtension,
+	'updateParserFromTemplate': handleUpdateParserFromTemplate,
+	'updateSavedQueryFromTemplate': handleUpdateSavedQueryFromTemplate,
+	'uploadLookupV1': handleUploadLookupV1,
+};
+
 export async function executeNgsiem(
 	this: IExecuteFunctions,
 	index: number,
@@ -547,67 +609,10 @@ export async function executeNgsiem(
 ): Promise<any> {
 	const operation = this.getNodeParameter('operation', index) as string;
 
-	switch (operation) {
-		case 'bulkCreateDashboardsFromTemplate': return await handleBulkCreateDashboardsFromTemplate(this, index, falconClient);
-		case 'bulkCreateLookupFiles': return await handleBulkCreateLookupFiles(this, index, falconClient);
-		case 'bulkCreateSavedQueriesFromTemplate': return await handleBulkCreateSavedQueriesFromTemplate(this, index, falconClient);
-		case 'bulkGetLookupFiles': return await handleBulkGetLookupFiles(this, index, falconClient);
-		case 'bulkInstallParsers': return await handleBulkInstallParsers(this, index, falconClient);
-		case 'bulkUpdateDashboardsFromTemplate': return await handleBulkUpdateDashboardsFromTemplate(this, index, falconClient);
-		case 'bulkUpdateLookupFiles': return await handleBulkUpdateLookupFiles(this, index, falconClient);
-		case 'bulkUpdateSavedQueriesFromTemplate': return await handleBulkUpdateSavedQueriesFromTemplate(this, index, falconClient);
-		case 'cloneParser': return await handleCloneParser(this, index, falconClient);
-		case 'createDashboardFromTemplate': return await handleCreateDashboardFromTemplate(this, index, falconClient);
-		case 'createLookupFile': return await handleCreateLookupFile(this, index, falconClient);
-		case 'createParser': return await handleCreateParser(this, index, falconClient);
-		case 'createParserExtension': return await handleCreateParserExtension(this, index, falconClient);
-		case 'createParserFromTemplate': return await handleCreateParserFromTemplate(this, index, falconClient);
-		case 'createSavedQuery': return await handleCreateSavedQuery(this, index, falconClient);
-		case 'deleteDashboard': return await handleDeleteDashboard(this, index, falconClient);
-		case 'deleteLookupFile': return await handleDeleteLookupFile(this, index, falconClient);
-		case 'deleteParser': return await handleDeleteParser(this, index, falconClient);
-		case 'deleteSavedQuery': return await handleDeleteSavedQuery(this, index, falconClient);
-		case 'externalCreateConnectorConfig': return await handleExternalCreateConnectorConfig(this, index, falconClient);
-		case 'externalCreateDataConnection': return await handleExternalCreateDataConnection(this, index, falconClient);
-		case 'externalDeleteConnectorConfigs': return await handleExternalDeleteConnectorConfigs(this, index, falconClient);
-		case 'externalDeleteDataConnection': return await handleExternalDeleteDataConnection(this, index, falconClient);
-		case 'externalGetDataConnectionByID': return await handleExternalGetDataConnectionByID(this, index, falconClient);
-		case 'externalGetDataConnectionStatus': return await handleExternalGetDataConnectionStatus(this, index, falconClient);
-		case 'externalGetDataConnectionToken': return await handleExternalGetDataConnectionToken(this, index, falconClient);
-		case 'externalListConnectorConfigs': return await handleExternalListConnectorConfigs(this, index, falconClient);
-		case 'externalListDataConnections': return await handleExternalListDataConnections(this, index, falconClient);
-		case 'externalListDataConnectors': return await handleExternalListDataConnectors(this, index, falconClient);
-		case 'externalPatchConnectorConfig': return await handleExternalPatchConnectorConfig(this, index, falconClient);
-		case 'externalRegenerateDataConnectionToken': return await handleExternalRegenerateDataConnectionToken(this, index, falconClient);
-		case 'externalUpdateDataConnection': return await handleExternalUpdateDataConnection(this, index, falconClient);
-		case 'externalUpdateDataConnectionStatus': return await handleExternalUpdateDataConnectionStatus(this, index, falconClient);
-		case 'getDashboardTemplate': return await handleGetDashboardTemplate(this, index, falconClient);
-		case 'getLookupFile': return await handleGetLookupFile(this, index, falconClient);
-		case 'getLookupFromPackageV1': return await handleGetLookupFromPackageV1(this, index, falconClient);
-		case 'getLookupFromPackageWithNamespaceV1': return await handleGetLookupFromPackageWithNamespaceV1(this, index, falconClient);
-		case 'getLookupV1': return await handleGetLookupV1(this, index, falconClient);
-		case 'getParser': return await handleGetParser(this, index, falconClient);
-		case 'getParserTemplate': return await handleGetParserTemplate(this, index, falconClient);
-		case 'getSavedQueryTemplate': return await handleGetSavedQueryTemplate(this, index, falconClient);
-		case 'getSearchStatusV1': return await handleGetSearchStatusV1(this, index, falconClient);
-		case 'installParser': return await handleInstallParser(this, index, falconClient);
-		case 'listDashboards': return await handleListDashboards(this, index, falconClient);
-		case 'listLookupFiles': return await handleListLookupFiles(this, index, falconClient);
-		case 'listParsers': return await handleListParsers(this, index, falconClient);
-		case 'listSavedQueries': return await handleListSavedQueries(this, index, falconClient);
-		case 'startSearchV1': return await handleStartSearchV1(this, index, falconClient);
-		case 'stopSearchV1': return await handleStopSearchV1(this, index, falconClient);
-		case 'testParserFromTemplate': return await handleTestParserFromTemplate(this, index, falconClient);
-		case 'updateDashboardFromTemplate': return await handleUpdateDashboardFromTemplate(this, index, falconClient);
-		case 'updateLookupFile': return await handleUpdateLookupFile(this, index, falconClient);
-		case 'updateLookupFileEntries': return await handleUpdateLookupFileEntries(this, index, falconClient);
-		case 'updateParser': return await handleUpdateParser(this, index, falconClient);
-		case 'updateParserAutoUpdatePolicy': return await handleUpdateParserAutoUpdatePolicy(this, index, falconClient);
-		case 'updateParserExtension': return await handleUpdateParserExtension(this, index, falconClient);
-		case 'updateParserFromTemplate': return await handleUpdateParserFromTemplate(this, index, falconClient);
-		case 'updateSavedQueryFromTemplate': return await handleUpdateSavedQueryFromTemplate(this, index, falconClient);
-		case 'uploadLookupV1': return await handleUploadLookupV1(this, index, falconClient);
-		default:
-			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for NGSIEM.`);
+	const handler = HANDLER_MAP[operation];
+	if (handler) {
+		return await handler(this, index, falconClient);
+	}
+	throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Ngsiem.`); as any)), `Operation ${operation} is not supported for NGSIEM.`);
 	}
 }

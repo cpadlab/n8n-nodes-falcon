@@ -434,6 +434,56 @@ async function handleQueriesWebLocationGetV2(c: IExecuteFunctions, i: number, fc
  * Main execution handler for CrowdStrike Falcon Data Protection Configuration operations.
  * Delegates execution to internal helper functions to maintain low Cognitive Complexity.
  */
+const HANDLER_MAP: Record<string, (c: IExecuteFunctions, i: number, fc: FalconClient) => Promise<any>> = {
+	'entitiesClassificationDeleteV2': handleEntitiesClassificationDeleteV2,
+	'entitiesClassificationGetV2': handleEntitiesClassificationGetV2,
+	'entitiesClassificationPatchV2': handleEntitiesClassificationPatchV2,
+	'entitiesClassificationPostV2': handleEntitiesClassificationPostV2,
+	'entitiesCloudApplicationCreate': handleEntitiesCloudApplicationCreate,
+	'entitiesCloudApplicationDelete': handleEntitiesCloudApplicationDelete,
+	'entitiesCloudApplicationGet': handleEntitiesCloudApplicationGet,
+	'entitiesCloudApplicationPatch': handleEntitiesCloudApplicationPatch,
+	'entitiesContentPatternCreate': handleEntitiesContentPatternCreate,
+	'entitiesContentPatternDelete': handleEntitiesContentPatternDelete,
+	'entitiesContentPatternGet': handleEntitiesContentPatternGet,
+	'entitiesContentPatternPatch': handleEntitiesContentPatternPatch,
+	'entitiesEnterpriseAccountCreate': handleEntitiesEnterpriseAccountCreate,
+	'entitiesEnterpriseAccountDelete': handleEntitiesEnterpriseAccountDelete,
+	'entitiesEnterpriseAccountGet': handleEntitiesEnterpriseAccountGet,
+	'entitiesEnterpriseAccountPatch': handleEntitiesEnterpriseAccountPatch,
+	'entitiesFileTypeGet': handleEntitiesFileTypeGet,
+	'entitiesLocalApplicationCreate': handleEntitiesLocalApplicationCreate,
+	'entitiesLocalApplicationDelete': handleEntitiesLocalApplicationDelete,
+	'entitiesLocalApplicationGet': handleEntitiesLocalApplicationGet,
+	'entitiesLocalApplicationGroupCreate': handleEntitiesLocalApplicationGroupCreate,
+	'entitiesLocalApplicationGroupDelete': handleEntitiesLocalApplicationGroupDelete,
+	'entitiesLocalApplicationGroupGet': handleEntitiesLocalApplicationGroupGet,
+	'entitiesLocalApplicationGroupPatch': handleEntitiesLocalApplicationGroupPatch,
+	'entitiesLocalApplicationPatch': handleEntitiesLocalApplicationPatch,
+	'entitiesPolicyDeleteV2': handleEntitiesPolicyDeleteV2,
+	'entitiesPolicyGetV2': handleEntitiesPolicyGetV2,
+	'entitiesPolicyPatchV2': handleEntitiesPolicyPatchV2,
+	'entitiesPolicyPostV2': handleEntitiesPolicyPostV2,
+	'entitiesPolicyPrecedencePostV1': handleEntitiesPolicyPrecedencePostV1,
+	'entitiesSensitivityLabelCreateV2': handleEntitiesSensitivityLabelCreateV2,
+	'entitiesSensitivityLabelDeleteV2': handleEntitiesSensitivityLabelDeleteV2,
+	'entitiesSensitivityLabelGetV2': handleEntitiesSensitivityLabelGetV2,
+	'entitiesWebLocationCreateV2': handleEntitiesWebLocationCreateV2,
+	'entitiesWebLocationDeleteV2': handleEntitiesWebLocationDeleteV2,
+	'entitiesWebLocationGetV2': handleEntitiesWebLocationGetV2,
+	'entitiesWebLocationPatchV2': handleEntitiesWebLocationPatchV2,
+	'queriesClassificationGetV2': handleQueriesClassificationGetV2,
+	'queriesCloudApplicationGetV2': handleQueriesCloudApplicationGetV2,
+	'queriesContentPatternGetV2': handleQueriesContentPatternGetV2,
+	'queriesEnterpriseAccountGetV2': handleQueriesEnterpriseAccountGetV2,
+	'queriesFileTypeGetV2': handleQueriesFileTypeGetV2,
+	'queriesLocalApplicationGet': handleQueriesLocalApplicationGet,
+	'queriesLocalApplicationGroupGet': handleQueriesLocalApplicationGroupGet,
+	'queriesPolicyGetV2': handleQueriesPolicyGetV2,
+	'queriesSensitivityLabelGetV2': handleQueriesSensitivityLabelGetV2,
+	'queriesWebLocationGetV2': handleQueriesWebLocationGetV2,
+};
+
 export async function executeDataProtectionConfiguration(
 	this: IExecuteFunctions,
 	index: number,
@@ -441,55 +491,10 @@ export async function executeDataProtectionConfiguration(
 ): Promise<any> {
 	const operation = this.getNodeParameter('operation', index) as string;
 
-	switch (operation) {
-		case 'entitiesClassificationDeleteV2': return await handleEntitiesClassificationDeleteV2(this, index, falconClient);
-		case 'entitiesClassificationGetV2': return await handleEntitiesClassificationGetV2(this, index, falconClient);
-		case 'entitiesClassificationPatchV2': return await handleEntitiesClassificationPatchV2(this, index, falconClient);
-		case 'entitiesClassificationPostV2': return await handleEntitiesClassificationPostV2(this, index, falconClient);
-		case 'entitiesCloudApplicationCreate': return await handleEntitiesCloudApplicationCreate(this, index, falconClient);
-		case 'entitiesCloudApplicationDelete': return await handleEntitiesCloudApplicationDelete(this, index, falconClient);
-		case 'entitiesCloudApplicationGet': return await handleEntitiesCloudApplicationGet(this, index, falconClient);
-		case 'entitiesCloudApplicationPatch': return await handleEntitiesCloudApplicationPatch(this, index, falconClient);
-		case 'entitiesContentPatternCreate': return await handleEntitiesContentPatternCreate(this, index, falconClient);
-		case 'entitiesContentPatternDelete': return await handleEntitiesContentPatternDelete(this, index, falconClient);
-		case 'entitiesContentPatternGet': return await handleEntitiesContentPatternGet(this, index, falconClient);
-		case 'entitiesContentPatternPatch': return await handleEntitiesContentPatternPatch(this, index, falconClient);
-		case 'entitiesEnterpriseAccountCreate': return await handleEntitiesEnterpriseAccountCreate(this, index, falconClient);
-		case 'entitiesEnterpriseAccountDelete': return await handleEntitiesEnterpriseAccountDelete(this, index, falconClient);
-		case 'entitiesEnterpriseAccountGet': return await handleEntitiesEnterpriseAccountGet(this, index, falconClient);
-		case 'entitiesEnterpriseAccountPatch': return await handleEntitiesEnterpriseAccountPatch(this, index, falconClient);
-		case 'entitiesFileTypeGet': return await handleEntitiesFileTypeGet(this, index, falconClient);
-		case 'entitiesLocalApplicationCreate': return await handleEntitiesLocalApplicationCreate(this, index, falconClient);
-		case 'entitiesLocalApplicationDelete': return await handleEntitiesLocalApplicationDelete(this, index, falconClient);
-		case 'entitiesLocalApplicationGet': return await handleEntitiesLocalApplicationGet(this, index, falconClient);
-		case 'entitiesLocalApplicationGroupCreate': return await handleEntitiesLocalApplicationGroupCreate(this, index, falconClient);
-		case 'entitiesLocalApplicationGroupDelete': return await handleEntitiesLocalApplicationGroupDelete(this, index, falconClient);
-		case 'entitiesLocalApplicationGroupGet': return await handleEntitiesLocalApplicationGroupGet(this, index, falconClient);
-		case 'entitiesLocalApplicationGroupPatch': return await handleEntitiesLocalApplicationGroupPatch(this, index, falconClient);
-		case 'entitiesLocalApplicationPatch': return await handleEntitiesLocalApplicationPatch(this, index, falconClient);
-		case 'entitiesPolicyDeleteV2': return await handleEntitiesPolicyDeleteV2(this, index, falconClient);
-		case 'entitiesPolicyGetV2': return await handleEntitiesPolicyGetV2(this, index, falconClient);
-		case 'entitiesPolicyPatchV2': return await handleEntitiesPolicyPatchV2(this, index, falconClient);
-		case 'entitiesPolicyPostV2': return await handleEntitiesPolicyPostV2(this, index, falconClient);
-		case 'entitiesPolicyPrecedencePostV1': return await handleEntitiesPolicyPrecedencePostV1(this, index, falconClient);
-		case 'entitiesSensitivityLabelCreateV2': return await handleEntitiesSensitivityLabelCreateV2(this, index, falconClient);
-		case 'entitiesSensitivityLabelDeleteV2': return await handleEntitiesSensitivityLabelDeleteV2(this, index, falconClient);
-		case 'entitiesSensitivityLabelGetV2': return await handleEntitiesSensitivityLabelGetV2(this, index, falconClient);
-		case 'entitiesWebLocationCreateV2': return await handleEntitiesWebLocationCreateV2(this, index, falconClient);
-		case 'entitiesWebLocationDeleteV2': return await handleEntitiesWebLocationDeleteV2(this, index, falconClient);
-		case 'entitiesWebLocationGetV2': return await handleEntitiesWebLocationGetV2(this, index, falconClient);
-		case 'entitiesWebLocationPatchV2': return await handleEntitiesWebLocationPatchV2(this, index, falconClient);
-		case 'queriesClassificationGetV2': return await handleQueriesClassificationGetV2(this, index, falconClient);
-		case 'queriesCloudApplicationGetV2': return await handleQueriesCloudApplicationGetV2(this, index, falconClient);
-		case 'queriesContentPatternGetV2': return await handleQueriesContentPatternGetV2(this, index, falconClient);
-		case 'queriesEnterpriseAccountGetV2': return await handleQueriesEnterpriseAccountGetV2(this, index, falconClient);
-		case 'queriesFileTypeGetV2': return await handleQueriesFileTypeGetV2(this, index, falconClient);
-		case 'queriesLocalApplicationGet': return await handleQueriesLocalApplicationGet(this, index, falconClient);
-		case 'queriesLocalApplicationGroupGet': return await handleQueriesLocalApplicationGroupGet(this, index, falconClient);
-		case 'queriesPolicyGetV2': return await handleQueriesPolicyGetV2(this, index, falconClient);
-		case 'queriesSensitivityLabelGetV2': return await handleQueriesSensitivityLabelGetV2(this, index, falconClient);
-		case 'queriesWebLocationGetV2': return await handleQueriesWebLocationGetV2(this, index, falconClient);
-		default:
-			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Data Protection Configuration.`);
+	const handler = HANDLER_MAP[operation];
+	if (handler) {
+		return await handler(this, index, falconClient);
+	}
+	throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for DataProtectionConfiguration.`); as any)), `Operation ${operation} is not supported for Data Protection Configuration.`);
 	}
 }

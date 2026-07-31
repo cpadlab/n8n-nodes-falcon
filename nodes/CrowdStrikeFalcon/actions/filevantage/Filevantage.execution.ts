@@ -287,6 +287,40 @@ async function handleUpdateScheduledExclusions(c: IExecuteFunctions, i: number, 
  * Main execution handler for CrowdStrike Falcon Filevantage operations.
  * Delegates execution to internal helper functions to maintain low Cognitive Complexity.
  */
+const HANDLER_MAP: Record<string, (c: IExecuteFunctions, i: number, fc: FalconClient) => Promise<any>> = {
+	'createPolicies': handleCreatePolicies,
+	'createRuleGroups': handleCreateRuleGroups,
+	'createRules': handleCreateRules,
+	'createScheduledExclusions': handleCreateScheduledExclusions,
+	'deletePolicies': handleDeletePolicies,
+	'deleteRuleGroups': handleDeleteRuleGroups,
+	'deleteRules': handleDeleteRules,
+	'deleteScheduledExclusions': handleDeleteScheduledExclusions,
+	'getActionsMixin0': handleGetActionsMixin0,
+	'getChanges': handleGetChanges,
+	'getContents': handleGetContents,
+	'getPolicies': handleGetPolicies,
+	'getRuleGroups': handleGetRuleGroups,
+	'getRules': handleGetRules,
+	'getScheduledExclusions': handleGetScheduledExclusions,
+	'highVolumeQueryChanges': handleHighVolumeQueryChanges,
+	'queryActionsMixin0': handleQueryActionsMixin0,
+	'queryChanges': handleQueryChanges,
+	'queryPolicies': handleQueryPolicies,
+	'queryRuleGroups': handleQueryRuleGroups,
+	'queryScheduledExclusions': handleQueryScheduledExclusions,
+	'signalChangesExternal': handleSignalChangesExternal,
+	'startActions': handleStartActions,
+	'updatePolicies': handleUpdatePolicies,
+	'updatePolicyHostGroups': handleUpdatePolicyHostGroups,
+	'updatePolicyPrecedence': handleUpdatePolicyPrecedence,
+	'updatePolicyRuleGroups': handleUpdatePolicyRuleGroups,
+	'updateRuleGroupPrecedence': handleUpdateRuleGroupPrecedence,
+	'updateRuleGroups': handleUpdateRuleGroups,
+	'updateRules': handleUpdateRules,
+	'updateScheduledExclusions': handleUpdateScheduledExclusions,
+};
+
 export async function executeFilevantage(
 	this: IExecuteFunctions,
 	index: number,
@@ -294,39 +328,10 @@ export async function executeFilevantage(
 ): Promise<any> {
 	const operation = this.getNodeParameter('operation', index) as string;
 
-	switch (operation) {
-		case 'createPolicies': return await handleCreatePolicies(this, index, falconClient);
-		case 'createRuleGroups': return await handleCreateRuleGroups(this, index, falconClient);
-		case 'createRules': return await handleCreateRules(this, index, falconClient);
-		case 'createScheduledExclusions': return await handleCreateScheduledExclusions(this, index, falconClient);
-		case 'deletePolicies': return await handleDeletePolicies(this, index, falconClient);
-		case 'deleteRuleGroups': return await handleDeleteRuleGroups(this, index, falconClient);
-		case 'deleteRules': return await handleDeleteRules(this, index, falconClient);
-		case 'deleteScheduledExclusions': return await handleDeleteScheduledExclusions(this, index, falconClient);
-		case 'getActionsMixin0': return await handleGetActionsMixin0(this, index, falconClient);
-		case 'getChanges': return await handleGetChanges(this, index, falconClient);
-		case 'getContents': return await handleGetContents(this, index, falconClient);
-		case 'getPolicies': return await handleGetPolicies(this, index, falconClient);
-		case 'getRuleGroups': return await handleGetRuleGroups(this, index, falconClient);
-		case 'getRules': return await handleGetRules(this, index, falconClient);
-		case 'getScheduledExclusions': return await handleGetScheduledExclusions(this, index, falconClient);
-		case 'highVolumeQueryChanges': return await handleHighVolumeQueryChanges(this, index, falconClient);
-		case 'queryActionsMixin0': return await handleQueryActionsMixin0(this, index, falconClient);
-		case 'queryChanges': return await handleQueryChanges(this, index, falconClient);
-		case 'queryPolicies': return await handleQueryPolicies(this, index, falconClient);
-		case 'queryRuleGroups': return await handleQueryRuleGroups(this, index, falconClient);
-		case 'queryScheduledExclusions': return await handleQueryScheduledExclusions(this, index, falconClient);
-		case 'signalChangesExternal': return await handleSignalChangesExternal(this, index, falconClient);
-		case 'startActions': return await handleStartActions(this, index, falconClient);
-		case 'updatePolicies': return await handleUpdatePolicies(this, index, falconClient);
-		case 'updatePolicyHostGroups': return await handleUpdatePolicyHostGroups(this, index, falconClient);
-		case 'updatePolicyPrecedence': return await handleUpdatePolicyPrecedence(this, index, falconClient);
-		case 'updatePolicyRuleGroups': return await handleUpdatePolicyRuleGroups(this, index, falconClient);
-		case 'updateRuleGroupPrecedence': return await handleUpdateRuleGroupPrecedence(this, index, falconClient);
-		case 'updateRuleGroups': return await handleUpdateRuleGroups(this, index, falconClient);
-		case 'updateRules': return await handleUpdateRules(this, index, falconClient);
-		case 'updateScheduledExclusions': return await handleUpdateScheduledExclusions(this, index, falconClient);
-		default:
-			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Filevantage.`);
+	const handler = HANDLER_MAP[operation];
+	if (handler) {
+		return await handler(this, index, falconClient);
+	}
+	throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Filevantage.`); as any)), `Operation ${operation} is not supported for Filevantage.`);
 	}
 }

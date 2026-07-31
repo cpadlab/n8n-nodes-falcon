@@ -344,6 +344,47 @@ async function handleValidateCSPMGCPServiceAccountExt(c: IExecuteFunctions, i: n
 }
 
 /** Main execution handler for CSPM Registration operations. */
+const HANDLER_MAP: Record<string, (c: IExecuteFunctions, i: number, fc: FalconClient) => Promise<any>> = {
+	'azureDownloadCertificate': handleAzureDownloadCertificate,
+	'azureRefreshCertificate': handleAzureRefreshCertificate,
+	'connectCSPMGCPAccount': handleConnectCSPMGCPAccount,
+	'createCSPMAwsAccount': handleCreateCSPMAwsAccount,
+	'createCSPMAzureAccount': handleCreateCSPMAzureAccount,
+	'createCSPMAzureManagementGroup': handleCreateCSPMAzureManagementGroup,
+	'createCSPMGCPAccount': handleCreateCSPMGCPAccount,
+	'deleteCSPMAwsAccount': handleDeleteCSPMAwsAccount,
+	'deleteCSPMAzureAccount': handleDeleteCSPMAzureAccount,
+	'deleteCSPMAzureManagementGroup': handleDeleteCSPMAzureManagementGroup,
+	'deleteCSPMGCPAccount': handleDeleteCSPMGCPAccount,
+	'getBehaviorDetections': handleGetBehaviorDetections,
+	'getCSPMAwsAccount': handleGetCSPMAwsAccount,
+	'getCSPMAwsConsoleSetupURLs': handleGetCSPMAwsConsoleSetupURLs,
+	'getCSPMAzureAccount': handleGetCSPMAzureAccount,
+	'getCSPMAzureManagementGroup': handleGetCSPMAzureManagementGroup,
+	'getCSPMAzureUserScriptsAttachment': handleGetCSPMAzureUserScriptsAttachment,
+	'getCSPMGCPAccount': handleGetCSPMGCPAccount,
+	'getCSPMGCPServiceAccountsExt': handleGetCSPMGCPServiceAccountsExt,
+	'getCSPMGCPUserScriptsAttachment': handleGetCSPMGCPUserScriptsAttachment,
+	'getCSPMGCPValidateAccountsExt': handleGetCSPMGCPValidateAccountsExt,
+	'getCSPMPoliciesDetails': handleGetCSPMPoliciesDetails,
+	'getCSPMPolicy': handleGetCSPMPolicy,
+	'getCSPMPolicySettings': handleGetCSPMPolicySettings,
+	'getCSPMScanSchedule': handleGetCSPMScanSchedule,
+	'getCloudEventIDs': handleGetCloudEventIDs,
+	'getConfigurationDetectionEntities': handleGetConfigurationDetectionEntities,
+	'getConfigurationDetectionIDsV2': handleGetConfigurationDetectionIDsV2,
+	'getConfigurationDetections': handleGetConfigurationDetections,
+	'patchCSPMAwsAccount': handlePatchCSPMAwsAccount,
+	'updateCSPMAzureAccount': handleUpdateCSPMAzureAccount,
+	'updateCSPMAzureAccountClientID': handleUpdateCSPMAzureAccountClientID,
+	'updateCSPMAzureTenantDefaultSubscriptionID': handleUpdateCSPMAzureTenantDefaultSubscriptionID,
+	'updateCSPMGCPAccount': handleUpdateCSPMGCPAccount,
+	'updateCSPMGCPServiceAccountsExt': handleUpdateCSPMGCPServiceAccountsExt,
+	'updateCSPMPolicySettings': handleUpdateCSPMPolicySettings,
+	'updateCSPMScanSchedule': handleUpdateCSPMScanSchedule,
+	'validateCSPMGCPServiceAccountExt': handleValidateCSPMGCPServiceAccountExt,
+};
+
 export async function executeCspmRegistration(
 	this: IExecuteFunctions,
 	index: number,
@@ -351,46 +392,10 @@ export async function executeCspmRegistration(
 ): Promise<any> {
 	const operation = this.getNodeParameter('operation', index) as string;
 
-	switch (operation) {
-		case 'azureDownloadCertificate': return await handleAzureDownloadCertificate(this, index, falconClient);
-		case 'azureRefreshCertificate': return await handleAzureRefreshCertificate(this, index, falconClient);
-		case 'connectCSPMGCPAccount': return await handleConnectCSPMGCPAccount(this, index, falconClient);
-		case 'createCSPMAwsAccount': return await handleCreateCSPMAwsAccount(this, index, falconClient);
-		case 'createCSPMAzureAccount': return await handleCreateCSPMAzureAccount(this, index, falconClient);
-		case 'createCSPMAzureManagementGroup': return await handleCreateCSPMAzureManagementGroup(this, index, falconClient);
-		case 'createCSPMGCPAccount': return await handleCreateCSPMGCPAccount(this, index, falconClient);
-		case 'deleteCSPMAwsAccount': return await handleDeleteCSPMAwsAccount(this, index, falconClient);
-		case 'deleteCSPMAzureAccount': return await handleDeleteCSPMAzureAccount(this, index, falconClient);
-		case 'deleteCSPMAzureManagementGroup': return await handleDeleteCSPMAzureManagementGroup(this, index, falconClient);
-		case 'deleteCSPMGCPAccount': return await handleDeleteCSPMGCPAccount(this, index, falconClient);
-		case 'getBehaviorDetections': return await handleGetBehaviorDetections(this, index, falconClient);
-		case 'getCSPMAwsAccount': return await handleGetCSPMAwsAccount(this, index, falconClient);
-		case 'getCSPMAwsConsoleSetupURLs': return await handleGetCSPMAwsConsoleSetupURLs(this, index, falconClient);
-		case 'getCSPMAzureAccount': return await handleGetCSPMAzureAccount(this, index, falconClient);
-		case 'getCSPMAzureManagementGroup': return await handleGetCSPMAzureManagementGroup(this, index, falconClient);
-		case 'getCSPMAzureUserScriptsAttachment': return await handleGetCSPMAzureUserScriptsAttachment(this, index, falconClient);
-		case 'getCSPMGCPAccount': return await handleGetCSPMGCPAccount(this, index, falconClient);
-		case 'getCSPMGCPServiceAccountsExt': return await handleGetCSPMGCPServiceAccountsExt(this, index, falconClient);
-		case 'getCSPMGCPUserScriptsAttachment': return await handleGetCSPMGCPUserScriptsAttachment(this, index, falconClient);
-		case 'getCSPMGCPValidateAccountsExt': return await handleGetCSPMGCPValidateAccountsExt(this, index, falconClient);
-		case 'getCSPMPoliciesDetails': return await handleGetCSPMPoliciesDetails(this, index, falconClient);
-		case 'getCSPMPolicy': return await handleGetCSPMPolicy(this, index, falconClient);
-		case 'getCSPMPolicySettings': return await handleGetCSPMPolicySettings(this, index, falconClient);
-		case 'getCSPMScanSchedule': return await handleGetCSPMScanSchedule(this, index, falconClient);
-		case 'getCloudEventIDs': return await handleGetCloudEventIDs(this, index, falconClient);
-		case 'getConfigurationDetectionEntities': return await handleGetConfigurationDetectionEntities(this, index, falconClient);
-		case 'getConfigurationDetectionIDsV2': return await handleGetConfigurationDetectionIDsV2(this, index, falconClient);
-		case 'getConfigurationDetections': return await handleGetConfigurationDetections(this, index, falconClient);
-		case 'patchCSPMAwsAccount': return await handlePatchCSPMAwsAccount(this, index, falconClient);
-		case 'updateCSPMAzureAccount': return await handleUpdateCSPMAzureAccount(this, index, falconClient);
-		case 'updateCSPMAzureAccountClientID': return await handleUpdateCSPMAzureAccountClientID(this, index, falconClient);
-		case 'updateCSPMAzureTenantDefaultSubscriptionID': return await handleUpdateCSPMAzureTenantDefaultSubscriptionID(this, index, falconClient);
-		case 'updateCSPMGCPAccount': return await handleUpdateCSPMGCPAccount(this, index, falconClient);
-		case 'updateCSPMGCPServiceAccountsExt': return await handleUpdateCSPMGCPServiceAccountsExt(this, index, falconClient);
-		case 'updateCSPMPolicySettings': return await handleUpdateCSPMPolicySettings(this, index, falconClient);
-		case 'updateCSPMScanSchedule': return await handleUpdateCSPMScanSchedule(this, index, falconClient);
-		case 'validateCSPMGCPServiceAccountExt': return await handleValidateCSPMGCPServiceAccountExt(this, index, falconClient);
-		default:
-			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for CSPM Registration.`);
+	const handler = HANDLER_MAP[operation];
+	if (handler) {
+		return await handler(this, index, falconClient);
+	}
+	throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for CspmRegistration.`); as any)), `Operation ${operation} is not supported for CSPM Registration.`);
 	}
 }

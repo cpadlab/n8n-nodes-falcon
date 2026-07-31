@@ -404,6 +404,51 @@ async function handleITAutomationUpdateUserGroup(c: IExecuteFunctions, i: number
  * Main execution handler for CrowdStrike Falcon IT Automation operations.
  * Delegates execution to internal helper functions to maintain low Cognitive Complexity.
  */
+const HANDLER_MAP: Record<string, (c: IExecuteFunctions, i: number, fc: FalconClient) => Promise<any>> = {
+	'iTAutomationCancelTaskExecution': handleITAutomationCancelTaskExecution,
+	'iTAutomationCombinedScheduledTasks': handleITAutomationCombinedScheduledTasks,
+	'iTAutomationCreatePolicy': handleITAutomationCreatePolicy,
+	'iTAutomationCreateScheduledTask': handleITAutomationCreateScheduledTask,
+	'iTAutomationCreateTask': handleITAutomationCreateTask,
+	'iTAutomationCreateTaskGroup': handleITAutomationCreateTaskGroup,
+	'iTAutomationCreateUserGroup': handleITAutomationCreateUserGroup,
+	'iTAutomationDeletePolicy': handleITAutomationDeletePolicy,
+	'iTAutomationDeleteScheduledTasks': handleITAutomationDeleteScheduledTasks,
+	'iTAutomationDeleteTask': handleITAutomationDeleteTask,
+	'iTAutomationDeleteTaskGroups': handleITAutomationDeleteTaskGroups,
+	'iTAutomationDeleteUserGroup': handleITAutomationDeleteUserGroup,
+	'iTAutomationGetAssociatedTasks': handleITAutomationGetAssociatedTasks,
+	'iTAutomationGetExecutionResults': handleITAutomationGetExecutionResults,
+	'iTAutomationGetExecutionResultsSearchStatus': handleITAutomationGetExecutionResultsSearchStatus,
+	'iTAutomationGetPolicies': handleITAutomationGetPolicies,
+	'iTAutomationGetScheduledTasks': handleITAutomationGetScheduledTasks,
+	'iTAutomationGetTaskExecution': handleITAutomationGetTaskExecution,
+	'iTAutomationGetTaskExecutionHostStatus': handleITAutomationGetTaskExecutionHostStatus,
+	'iTAutomationGetTaskExecutionsByQuery': handleITAutomationGetTaskExecutionsByQuery,
+	'iTAutomationGetTaskGroups': handleITAutomationGetTaskGroups,
+	'iTAutomationGetTaskGroupsByQuery': handleITAutomationGetTaskGroupsByQuery,
+	'iTAutomationGetTasks': handleITAutomationGetTasks,
+	'iTAutomationGetTasksByQuery': handleITAutomationGetTasksByQuery,
+	'iTAutomationGetUserGroup': handleITAutomationGetUserGroup,
+	'iTAutomationQueryPolicies': handleITAutomationQueryPolicies,
+	'iTAutomationRerunTaskExecution': handleITAutomationRerunTaskExecution,
+	'iTAutomationRunLiveQuery': handleITAutomationRunLiveQuery,
+	'iTAutomationSearchScheduledTasks': handleITAutomationSearchScheduledTasks,
+	'iTAutomationSearchTaskExecutions': handleITAutomationSearchTaskExecutions,
+	'iTAutomationSearchTaskGroups': handleITAutomationSearchTaskGroups,
+	'iTAutomationSearchTasks': handleITAutomationSearchTasks,
+	'iTAutomationSearchUserGroup': handleITAutomationSearchUserGroup,
+	'iTAutomationStartExecutionResultsSearch': handleITAutomationStartExecutionResultsSearch,
+	'iTAutomationStartTaskExecution': handleITAutomationStartTaskExecution,
+	'iTAutomationUpdatePolicies': handleITAutomationUpdatePolicies,
+	'iTAutomationUpdatePoliciesPrecedence': handleITAutomationUpdatePoliciesPrecedence,
+	'iTAutomationUpdatePolicyHostGroups': handleITAutomationUpdatePolicyHostGroups,
+	'iTAutomationUpdateScheduledTask': handleITAutomationUpdateScheduledTask,
+	'iTAutomationUpdateTask': handleITAutomationUpdateTask,
+	'iTAutomationUpdateTaskGroup': handleITAutomationUpdateTaskGroup,
+	'iTAutomationUpdateUserGroup': handleITAutomationUpdateUserGroup,
+};
+
 export async function executeItAutomation(
 	this: IExecuteFunctions,
 	index: number,
@@ -411,50 +456,10 @@ export async function executeItAutomation(
 ): Promise<any> {
 	const operation = this.getNodeParameter('operation', index) as string;
 
-	switch (operation) {
-		case 'iTAutomationCancelTaskExecution': return await handleITAutomationCancelTaskExecution(this, index, falconClient);
-		case 'iTAutomationCombinedScheduledTasks': return await handleITAutomationCombinedScheduledTasks(this, index, falconClient);
-		case 'iTAutomationCreatePolicy': return await handleITAutomationCreatePolicy(this, index, falconClient);
-		case 'iTAutomationCreateScheduledTask': return await handleITAutomationCreateScheduledTask(this, index, falconClient);
-		case 'iTAutomationCreateTask': return await handleITAutomationCreateTask(this, index, falconClient);
-		case 'iTAutomationCreateTaskGroup': return await handleITAutomationCreateTaskGroup(this, index, falconClient);
-		case 'iTAutomationCreateUserGroup': return await handleITAutomationCreateUserGroup(this, index, falconClient);
-		case 'iTAutomationDeletePolicy': return await handleITAutomationDeletePolicy(this, index, falconClient);
-		case 'iTAutomationDeleteScheduledTasks': return await handleITAutomationDeleteScheduledTasks(this, index, falconClient);
-		case 'iTAutomationDeleteTask': return await handleITAutomationDeleteTask(this, index, falconClient);
-		case 'iTAutomationDeleteTaskGroups': return await handleITAutomationDeleteTaskGroups(this, index, falconClient);
-		case 'iTAutomationDeleteUserGroup': return await handleITAutomationDeleteUserGroup(this, index, falconClient);
-		case 'iTAutomationGetAssociatedTasks': return await handleITAutomationGetAssociatedTasks(this, index, falconClient);
-		case 'iTAutomationGetExecutionResults': return await handleITAutomationGetExecutionResults(this, index, falconClient);
-		case 'iTAutomationGetExecutionResultsSearchStatus': return await handleITAutomationGetExecutionResultsSearchStatus(this, index, falconClient);
-		case 'iTAutomationGetPolicies': return await handleITAutomationGetPolicies(this, index, falconClient);
-		case 'iTAutomationGetScheduledTasks': return await handleITAutomationGetScheduledTasks(this, index, falconClient);
-		case 'iTAutomationGetTaskExecution': return await handleITAutomationGetTaskExecution(this, index, falconClient);
-		case 'iTAutomationGetTaskExecutionHostStatus': return await handleITAutomationGetTaskExecutionHostStatus(this, index, falconClient);
-		case 'iTAutomationGetTaskExecutionsByQuery': return await handleITAutomationGetTaskExecutionsByQuery(this, index, falconClient);
-		case 'iTAutomationGetTaskGroups': return await handleITAutomationGetTaskGroups(this, index, falconClient);
-		case 'iTAutomationGetTaskGroupsByQuery': return await handleITAutomationGetTaskGroupsByQuery(this, index, falconClient);
-		case 'iTAutomationGetTasks': return await handleITAutomationGetTasks(this, index, falconClient);
-		case 'iTAutomationGetTasksByQuery': return await handleITAutomationGetTasksByQuery(this, index, falconClient);
-		case 'iTAutomationGetUserGroup': return await handleITAutomationGetUserGroup(this, index, falconClient);
-		case 'iTAutomationQueryPolicies': return await handleITAutomationQueryPolicies(this, index, falconClient);
-		case 'iTAutomationRerunTaskExecution': return await handleITAutomationRerunTaskExecution(this, index, falconClient);
-		case 'iTAutomationRunLiveQuery': return await handleITAutomationRunLiveQuery(this, index, falconClient);
-		case 'iTAutomationSearchScheduledTasks': return await handleITAutomationSearchScheduledTasks(this, index, falconClient);
-		case 'iTAutomationSearchTaskExecutions': return await handleITAutomationSearchTaskExecutions(this, index, falconClient);
-		case 'iTAutomationSearchTaskGroups': return await handleITAutomationSearchTaskGroups(this, index, falconClient);
-		case 'iTAutomationSearchTasks': return await handleITAutomationSearchTasks(this, index, falconClient);
-		case 'iTAutomationSearchUserGroup': return await handleITAutomationSearchUserGroup(this, index, falconClient);
-		case 'iTAutomationStartExecutionResultsSearch': return await handleITAutomationStartExecutionResultsSearch(this, index, falconClient);
-		case 'iTAutomationStartTaskExecution': return await handleITAutomationStartTaskExecution(this, index, falconClient);
-		case 'iTAutomationUpdatePolicies': return await handleITAutomationUpdatePolicies(this, index, falconClient);
-		case 'iTAutomationUpdatePoliciesPrecedence': return await handleITAutomationUpdatePoliciesPrecedence(this, index, falconClient);
-		case 'iTAutomationUpdatePolicyHostGroups': return await handleITAutomationUpdatePolicyHostGroups(this, index, falconClient);
-		case 'iTAutomationUpdateScheduledTask': return await handleITAutomationUpdateScheduledTask(this, index, falconClient);
-		case 'iTAutomationUpdateTask': return await handleITAutomationUpdateTask(this, index, falconClient);
-		case 'iTAutomationUpdateTaskGroup': return await handleITAutomationUpdateTaskGroup(this, index, falconClient);
-		case 'iTAutomationUpdateUserGroup': return await handleITAutomationUpdateUserGroup(this, index, falconClient);
-		default:
-			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for IT Automation.`);
+	const handler = HANDLER_MAP[operation];
+	if (handler) {
+		return await handler(this, index, falconClient);
+	}
+	throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for ItAutomation.`); as any)), `Operation ${operation} is not supported for IT Automation.`);
 	}
 }
