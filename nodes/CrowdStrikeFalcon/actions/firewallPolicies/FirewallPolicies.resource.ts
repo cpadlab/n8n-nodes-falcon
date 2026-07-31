@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createIdsField, createOperationField, createStandardPaginationFields } from '../common';
+
 export const firewallPoliciesOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['firewallPolicies'],
-			},
-		},
-		options: [
+	createOperationField('firewallPolicies', [
+
 			{ name: 'Create Firewall Policies', value: 'createFirewallPolicies', description: 'Create Firewall Policies by specifying details about the policy to create', action: 'Create firewall policies' },
 			{ name: 'Delete Firewall Policies', value: 'deleteFirewallPolicies', description: 'Delete a set of Firewall Policies by specifying their IDs', action: 'Delete firewall policies' },
 			{ name: 'Get Firewall Policies', value: 'getFirewallPolicies', description: 'Retrieve a set of Firewall Policies by specifying their IDs', action: 'Get firewall policies' },
@@ -22,9 +15,8 @@ export const firewallPoliciesOperations: INodeProperties[] = [
 			{ name: 'Query Firewall Policy Members', value: 'queryFirewallPolicyMembers', description: 'Search for members of Firewall Policy returning Agent IDs', action: 'Query firewall policy members' },
 			{ name: 'Set Firewall Policies Precedence', value: 'setFirewallPoliciesPrecedence', description: 'Sets precedence of Firewall Policies based on order of IDs', action: 'Set firewall policies precedence' },
 			{ name: 'Update Firewall Policies', value: 'updateFirewallPolicies', description: 'Update Firewall Policies by specifying policy ID and details', action: 'Update firewall policies' },
-		],
-		default: 'queryFirewallPolicies',
-	},
+		
+	], 'queryFirewallPolicies'),
 ];
 
 export const firewallPoliciesFields: INodeProperties[] = [
@@ -41,20 +33,7 @@ export const firewallPoliciesFields: INodeProperties[] = [
 		default: '',
 		description: 'Unique firewall policy ID',
 	},
-	{
-		displayName: 'IDs',
-		name: 'ids',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['firewallPolicies'],
-				operation: ['deleteFirewallPolicies', 'getFirewallPolicies'],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'Comma-separated list of policy IDs',
-	},
+	createIdsField('firewallPolicies', ['deleteFirewallPolicies', 'getFirewallPolicies']),
 	{
 		displayName: 'Action Name',
 		name: 'actionName',
@@ -90,102 +69,12 @@ export const firewallPoliciesFields: INodeProperties[] = [
 		default: '',
 		description: 'ID of policy to clone from',
 	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['firewallPolicies'],
-				operation: [
-					'createFirewallPolicies',
+	createBodyJsonField('firewallPolicies', ['createFirewallPolicies',
 					'performFirewallPoliciesAction',
 					'setFirewallPoliciesPrecedence',
-					'updateFirewallPolicies',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['firewallPolicies'],
-				operation: [
-					'queryCombinedFirewallPolicies',
+					'updateFirewallPolicies',]),
+	...createStandardPaginationFields('firewallPolicies', ['queryCombinedFirewallPolicies',
 					'queryCombinedFirewallPolicyMembers',
 					'queryFirewallPolicies',
-					'queryFirewallPolicyMembers',
-				],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['firewallPolicies'],
-				operation: [
-					'queryCombinedFirewallPolicies',
-					'queryCombinedFirewallPolicyMembers',
-					'queryFirewallPolicies',
-					'queryFirewallPolicyMembers',
-				],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['firewallPolicies'],
-				operation: [
-					'queryCombinedFirewallPolicies',
-					'queryCombinedFirewallPolicyMembers',
-					'queryFirewallPolicies',
-					'queryFirewallPolicyMembers',
-				],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['firewallPolicies'],
-				operation: [
-					'queryCombinedFirewallPolicies',
-					'queryCombinedFirewallPolicyMembers',
-					'queryFirewallPolicies',
-					'queryFirewallPolicyMembers',
-				],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+					'queryFirewallPolicyMembers',]),
 ];
