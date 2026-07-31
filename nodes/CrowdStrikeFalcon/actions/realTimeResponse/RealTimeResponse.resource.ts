@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createOperationField, createStandardPaginationFields } from '../common';
+
 export const realTimeResponseOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['realTimeResponse'],
-			},
-		},
-		options: [
+	createOperationField('realTimeResponse', [
+
 			{ name: 'Batch Active Responder Cmd', value: 'batchActiveResponderCmd', description: 'Batch executes RTR active-responder command across hosts', action: 'Batch active responder cmd' },
 			{ name: 'Batch Cmd', value: 'batchCmd', description: 'Batch executes RTR read-only command across hosts', action: 'Batch cmd' },
 			{ name: 'Batch Get Cmd', value: 'batchGetCmd', description: 'Batch executes get command across hosts to retrieve files', action: 'Batch get cmd' },
@@ -35,9 +28,8 @@ export const realTimeResponseOperations: INodeProperties[] = [
 			{ name: 'RTR List Queued Sessions', value: 'rTRListQueuedSessions', description: 'Get queued session metadata by session ID', action: 'RTR list queued sessions' },
 			{ name: 'RTR List Sessions', value: 'rTRListSessions', description: 'Get session metadata by session ID', action: 'RTR list sessions' },
 			{ name: 'RTR Pulse Session', value: 'rTRPulseSession', description: 'Refresh a session timeout on a single host', action: 'RTR pulse session' },
-		],
-		default: 'rTRListAllSessions',
-	},
+		
+	], 'rTRListAllSessions'),
 ];
 
 export const realTimeResponseFields: INodeProperties[] = [
@@ -137,15 +129,7 @@ export const realTimeResponseFields: INodeProperties[] = [
 		required: true,
 		description: 'Sequence ID',
 	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['realTimeResponse'],
-				operation: [
-					'batchActiveResponderCmd',
+	createBodyJsonField('realTimeResponse', ['batchActiveResponderCmd',
 					'batchCmd',
 					'batchGetCmd',
 					'batchInitSessions',
@@ -156,68 +140,6 @@ export const realTimeResponseFields: INodeProperties[] = [
 					'rTRInitSession',
 					'rTRListQueuedSessions',
 					'rTRListSessions',
-					'rTRPulseSession',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['realTimeResponse'],
-				operation: ['rTRListAllSessions'],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['realTimeResponse'],
-				operation: ['rTRListAllSessions'],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['realTimeResponse'],
-				operation: ['rTRListAllSessions'],
-			},
-		},
-		default: '',
-		description: 'Starting index for pagination',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['realTimeResponse'],
-				operation: ['rTRListAllSessions'],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+					'rTRPulseSession',]),
+	...createStandardPaginationFields('realTimeResponse', ['rTRListAllSessions']),
 ];
