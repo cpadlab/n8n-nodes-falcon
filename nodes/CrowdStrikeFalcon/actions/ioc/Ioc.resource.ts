@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createFilterField, createIdsField, createLimitField, createOffsetField, createOperationField, createSortField } from '../common';
+
 export const iocOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['ioc'],
-			},
-		},
-		options: [
+	createOperationField('ioc', [
+
 			{ name: 'Action Get V1', value: 'actionGetV1', description: 'Get Actions by IDs', action: 'Action get V1' },
 			{ name: 'Action Query V1', value: 'actionQueryV1', description: 'Query Actions', action: 'Action query V1' },
 			{ name: 'Get Indicators Report', value: 'getIndicatorsReport', description: 'Launch an indicators report creation job', action: 'Get indicators report' },
@@ -29,25 +22,12 @@ export const iocOperations: INodeProperties[] = [
 			{ name: 'IOC Type Query V1', value: 'iocTypeQueryV1', description: 'Query IOC Types', action: 'IOC type query V1' },
 			{ name: 'Platform Query V1', value: 'platformQueryV1', description: 'Query Platforms', action: 'Platform query V1' },
 			{ name: 'Severity Query V1', value: 'severityQueryV1', description: 'Query Severities', action: 'Severity query V1' },
-		],
-		default: 'indicatorSearchV1',
-	},
+		
+	], 'indicatorSearchV1'),
 ];
 
 export const iocFields: INodeProperties[] = [
-	{
-		displayName: 'IDs',
-		name: 'ids',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['ioc'],
-				operation: ['actionGetV1', 'indicatorDeleteV1', 'indicatorGetV1'],
-			},
-		},
-		default: '',
-		description: 'Comma-separated list of IDs',
-	},
+	createIdsField('ioc', ['actionGetV1', 'indicatorDeleteV1', 'indicatorGetV1']),
 	{
 		displayName: 'IOC Type',
 		name: 'type',
@@ -98,44 +78,15 @@ export const iocFields: INodeProperties[] = [
 		required: true,
 		description: 'Target Device ID',
 	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['ioc'],
-				operation: [
-					'getIndicatorsReport',
+	createBodyJsonField('ioc', ['getIndicatorsReport',
 					'indicatorAggregateV1',
 					'indicatorCreateV1',
 					'indicatorSdmfQueryV1',
-					'indicatorUpdateV1',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['ioc'],
-				operation: [
-					'indicatorAggregateV1',
+					'indicatorUpdateV1',]),
+	createFilterField('ioc', ['indicatorAggregateV1',
 					'indicatorCombinedV1',
 					'indicatorDeleteV1',
-					'indicatorSearchV1',
-				],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
+					'indicatorSearchV1',]),
 	{
 		displayName: 'From Parent',
 		name: 'fromParent',
@@ -193,67 +144,23 @@ export const iocFields: INodeProperties[] = [
 		default: '',
 		description: 'Comment explaining deletion',
 	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['ioc'],
-				operation: [
-					'actionQueryV1',
+	createLimitField('ioc', ['actionQueryV1',
 					'indicatorCombinedV1',
 					'indicatorGetDevicesRanOnV1',
 					'indicatorGetProcessesRanOnV1',
 					'indicatorSearchV1',
 					'iocTypeQueryV1',
 					'platformQueryV1',
-					'severityQueryV1',
-				],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['ioc'],
-				operation: [
-					'actionQueryV1',
+					'severityQueryV1',]),
+	createOffsetField('ioc', ['actionQueryV1',
 					'indicatorCombinedV1',
 					'indicatorGetDevicesRanOnV1',
 					'indicatorGetProcessesRanOnV1',
 					'indicatorSearchV1',
 					'iocTypeQueryV1',
 					'platformQueryV1',
-					'severityQueryV1',
-				],
-			},
-		},
-		default: '',
-		description: 'Starting index or offset token',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['ioc'],
-				operation: ['indicatorCombinedV1', 'indicatorSearchV1'],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+					'severityQueryV1',]),
+	createSortField('ioc', ['indicatorCombinedV1', 'indicatorSearchV1']),
 	{
 		displayName: 'After',
 		name: 'after',
