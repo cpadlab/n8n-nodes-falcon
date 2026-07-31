@@ -1,10 +1,8 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
-function getStringParam(context: IExecuteFunctions, index: number, paramName: string, fallback = ''): string {
-	const val = context.getNodeParameter(paramName, index, fallback);
-	return val !== undefined && val !== null ? String(val) : String(fallback);
-}
+import { getStringParam } from '../common';
 
 /**
  * Handles the 'getSensorUsageHourly' operation.
@@ -39,6 +37,6 @@ export async function executeSensorUsageApi(
 		case 'getSensorUsageHourly': return await handleGetSensorUsageHourly(this, index, falconClient);
 		case 'getSensorUsageWeekly': return await handleGetSensorUsageWeekly(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Sensor Usage API.`);
+			throw new NodeOperationError(c.getNode(), `Operation ${operation} is not supported for Sensor Usage API.`);
 	}
 }
