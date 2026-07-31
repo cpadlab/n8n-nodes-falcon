@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createIdsField, createOperationField, createStandardPaginationFields } from '../common';
+
 export const itAutomationOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['itAutomation'],
-			},
-		},
-		options: [
+	createOperationField('itAutomation', [
+
 			{ name: 'Cancel Task Execution', value: 'iTAutomationCancelTaskExecution', description: 'Cancel a task execution specified in the request', action: 'Cancel task execution' },
 			{ name: 'Combined Scheduled Tasks', value: 'iTAutomationCombinedScheduledTasks', description: 'Returns full details of scheduled tasks matching filter', action: 'Combined scheduled tasks' },
 			{ name: 'Create Policy', value: 'iTAutomationCreatePolicy', description: 'Creates a new policy of the specified type', action: 'Create policy' },
@@ -54,9 +47,8 @@ export const itAutomationOperations: INodeProperties[] = [
 			{ name: 'Update Task', value: 'iTAutomationUpdateTask', description: 'Update a task with details from given request', action: 'Update task' },
 			{ name: 'Update Task Group', value: 'iTAutomationUpdateTaskGroup', description: 'Update a task group for a given ID', action: 'Update task group' },
 			{ name: 'Update User Group', value: 'iTAutomationUpdateUserGroup', description: 'Update a user group for a given ID', action: 'Update user group' },
-		],
-		default: 'iTAutomationSearchTasks',
-	},
+		
+	], 'iTAutomationSearchTasks'),
 ];
 
 export const itAutomationFields: INodeProperties[] = [
@@ -82,15 +74,7 @@ export const itAutomationFields: INodeProperties[] = [
 		required: true,
 		description: 'Unique object or file ID',
 	},
-	{
-		displayName: 'IDs',
-		name: 'ids',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['itAutomation'],
-				operation: [
-					'iTAutomationDeletePolicy',
+	createIdsField('itAutomation', ['iTAutomationDeletePolicy',
 					'iTAutomationDeleteScheduledTasks',
 					'iTAutomationDeleteTask',
 					'iTAutomationDeleteTaskGroups',
@@ -101,14 +85,7 @@ export const itAutomationFields: INodeProperties[] = [
 					'iTAutomationGetTaskExecutionHostStatus',
 					'iTAutomationGetTaskGroups',
 					'iTAutomationGetTasks',
-					'iTAutomationGetUserGroup',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'Comma-separated list of IDs',
-	},
+					'iTAutomationGetUserGroup',]),
 	{
 		displayName: 'Platform',
 		name: 'platform',
@@ -128,15 +105,7 @@ export const itAutomationFields: INodeProperties[] = [
 		required: true,
 		description: 'OS Platform',
 	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['itAutomation'],
-				operation: [
-					'iTAutomationCancelTaskExecution',
+	createBodyJsonField('itAutomation', ['iTAutomationCancelTaskExecution',
 					'iTAutomationCreatePolicy',
 					'iTAutomationCreateScheduledTask',
 					'iTAutomationCreateTask',
@@ -152,23 +121,8 @@ export const itAutomationFields: INodeProperties[] = [
 					'iTAutomationUpdateScheduledTask',
 					'iTAutomationUpdateTask',
 					'iTAutomationUpdateTaskGroup',
-					'iTAutomationUpdateUserGroup',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['itAutomation'],
-				operation: [
-					'iTAutomationCombinedScheduledTasks',
+					'iTAutomationUpdateUserGroup',]),
+	...createStandardPaginationFields('itAutomation', ['iTAutomationCombinedScheduledTasks',
 					'iTAutomationGetAssociatedTasks',
 					'iTAutomationGetTaskExecutionHostStatus',
 					'iTAutomationGetTaskExecutionsByQuery',
@@ -178,99 +132,5 @@ export const itAutomationFields: INodeProperties[] = [
 					'iTAutomationSearchTaskExecutions',
 					'iTAutomationSearchTaskGroups',
 					'iTAutomationSearchTasks',
-					'iTAutomationSearchUserGroup',
-				],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['itAutomation'],
-				operation: [
-					'iTAutomationCombinedScheduledTasks',
-					'iTAutomationGetAssociatedTasks',
-					'iTAutomationGetExecutionResults',
-					'iTAutomationGetTaskExecutionHostStatus',
-					'iTAutomationGetTaskExecutionsByQuery',
-					'iTAutomationGetTaskGroupsByQuery',
-					'iTAutomationGetTasksByQuery',
-					'iTAutomationQueryPolicies',
-					'iTAutomationSearchScheduledTasks',
-					'iTAutomationSearchTaskExecutions',
-					'iTAutomationSearchTaskGroups',
-					'iTAutomationSearchTasks',
-					'iTAutomationSearchUserGroup',
-				],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['itAutomation'],
-				operation: [
-					'iTAutomationCombinedScheduledTasks',
-					'iTAutomationGetAssociatedTasks',
-					'iTAutomationGetExecutionResults',
-					'iTAutomationGetTaskExecutionHostStatus',
-					'iTAutomationGetTaskExecutionsByQuery',
-					'iTAutomationGetTaskGroupsByQuery',
-					'iTAutomationGetTasksByQuery',
-					'iTAutomationQueryPolicies',
-					'iTAutomationSearchScheduledTasks',
-					'iTAutomationSearchTaskExecutions',
-					'iTAutomationSearchTaskGroups',
-					'iTAutomationSearchTasks',
-					'iTAutomationSearchUserGroup',
-				],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['itAutomation'],
-				operation: [
-					'iTAutomationCombinedScheduledTasks',
-					'iTAutomationGetAssociatedTasks',
-					'iTAutomationGetExecutionResults',
-					'iTAutomationGetTaskExecutionHostStatus',
-					'iTAutomationGetTaskExecutionsByQuery',
-					'iTAutomationGetTaskGroupsByQuery',
-					'iTAutomationGetTasksByQuery',
-					'iTAutomationQueryPolicies',
-					'iTAutomationSearchScheduledTasks',
-					'iTAutomationSearchTaskExecutions',
-					'iTAutomationSearchTaskGroups',
-					'iTAutomationSearchTasks',
-					'iTAutomationSearchUserGroup',
-				],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+					'iTAutomationSearchUserGroup',]),
 ];
