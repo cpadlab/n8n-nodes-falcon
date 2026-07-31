@@ -1,26 +1,18 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createLimitField, createOffsetField, createOperationField } from '../common';
+
 export const threatgraphOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['threatgraph'],
-			},
-		},
-		options: [
+	createOperationField('threatgraph', [
+
 			{ name: 'Combined Edges Get', value: 'combinedEdgesGet', description: 'Retrieve edges for a given vertex ID', action: 'Combined edges get' },
 			{ name: 'Combined Ran On Get', value: 'combinedRanOnGet', description: 'Look up instances of indicators seen on devices', action: 'Combined ran on get' },
 			{ name: 'Combined Summary Get', value: 'combinedSummaryGet', description: 'Retrieve summary for a given vertex ID', action: 'Combined summary get' },
 			{ name: 'Entities Vertices Get', value: 'entitiesVerticesGet', description: 'Retrieve metadata for a given vertex ID (Legacy)', action: 'Entities vertices get' },
 			{ name: 'Entities Vertices Get V2', value: 'entitiesVerticesGetv2', description: 'Retrieve metadata for a given vertex ID V2', action: 'Entities vertices get V2' },
 			{ name: 'Queries Edgetypes Get', value: 'queriesEdgetypesGet', description: 'Show all available edge types', action: 'Queries edgetypes get' },
-		],
-		default: 'queriesEdgetypesGet',
-	},
+		
+	], 'queriesEdgetypesGet'),
 ];
 
 export const threatgraphFields: INodeProperties[] = [
@@ -159,34 +151,6 @@ export const threatgraphFields: INodeProperties[] = [
 		default: false,
 		description: 'Whether to include nanosecond precision timestamps',
 	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['threatgraph'],
-				operation: ['combinedEdgesGet', 'combinedRanOnGet'],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['threatgraph'],
-				operation: ['combinedEdgesGet', 'combinedRanOnGet'],
-			},
-		},
-		default: '',
-		description: 'Offset string for pagination',
-	},
+	createLimitField('threatgraph', ['combinedEdgesGet', 'combinedRanOnGet']),
+	createOffsetField('threatgraph', ['combinedEdgesGet', 'combinedRanOnGet']),
 ];
