@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createIdsField, createOperationField, createStandardPaginationFields } from '../common';
+
 export const workflowsOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['workflows'],
-			},
-		},
-		options: [
+	createOperationField('workflows', [
+
 			{ name: 'Deprovision', value: 'deprovision', description: 'Deprovisions a system definition provisioned on target CID', action: 'Deprovision' },
 			{ name: 'Execute', value: 'execute', description: 'Executes an on-demand Workflow', action: 'Execute' },
 			{ name: 'Execution Action', value: 'executionAction', description: 'Resume, retry, cancel, or stop workflow execution', action: 'Execution action' },
@@ -34,9 +27,8 @@ export const workflowsOperations: INodeProperties[] = [
 			{ name: 'Workflow Mock Execute', value: 'workflowMockExecute', description: 'Executes a workflow definition with mocks', action: 'Workflow mock execute' },
 			{ name: 'Workflow Triggers Combined', value: 'workflowTriggersCombined', description: 'Search for triggers by namespaced identifier', action: 'Workflow triggers combined' },
 			{ name: 'Workflow Update Human Input V1', value: 'workflowUpdateHumanInputV1', description: 'Provides an input in response to a human input action', action: 'Workflow update human input V1' },
-		],
-		default: 'workflowExecutionsCombined',
-	},
+		
+	], 'workflowExecutionsCombined'),
 ];
 
 export const workflowsFields: INodeProperties[] = [
@@ -54,20 +46,7 @@ export const workflowsFields: INodeProperties[] = [
 		required: true,
 		description: 'Definition or input ID',
 	},
-	{
-		displayName: 'IDs',
-		name: 'ids',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['workflows'],
-				operation: ['executionResults', 'workflowDefinitionsDelete', 'workflowGetHumanInputV1'],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'Comma-separated list of IDs',
-	},
+	createIdsField('workflows', ['executionResults', 'workflowDefinitionsDelete', 'workflowGetHumanInputV1']),
 	{
 		displayName: 'Action Name',
 		name: 'actionName',
@@ -82,15 +61,7 @@ export const workflowsFields: INodeProperties[] = [
 		required: true,
 		description: 'Action name (e.g. resume, cancel, enable, disable)',
 	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['workflows'],
-				operation: [
-					'deprovision',
+	createBodyJsonField('workflows', ['deprovision',
 					'execute',
 					'executionAction',
 					'promote',
@@ -100,95 +71,11 @@ export const workflowsFields: INodeProperties[] = [
 					'workflowExecuteInternal',
 					'workflowExecuteSingleNodeV1',
 					'workflowMockExecute',
-					'workflowUpdateHumanInputV1',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['workflows'],
-				operation: [
-					'v1ChildExecutionsQuery',
+					'workflowUpdateHumanInputV1',]),
+	...createStandardPaginationFields('workflows', ['v1ChildExecutionsQuery',
 					'workflowActivitiesCombined',
 					'workflowActivitiesContentCombined',
 					'workflowDefinitionsCombined',
 					'workflowExecutionsCombined',
-					'workflowTriggersCombined',
-				],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['workflows'],
-				operation: [
-					'v1ChildExecutionsQuery',
-					'workflowActivitiesCombined',
-					'workflowActivitiesContentCombined',
-					'workflowDefinitionsCombined',
-					'workflowExecutionsCombined',
-					'workflowTriggersCombined',
-				],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['workflows'],
-				operation: [
-					'v1ChildExecutionsQuery',
-					'workflowActivitiesCombined',
-					'workflowActivitiesContentCombined',
-					'workflowDefinitionsCombined',
-					'workflowExecutionsCombined',
-					'workflowTriggersCombined',
-				],
-			},
-		},
-		default: '',
-		description: 'Offset string for pagination',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['workflows'],
-				operation: [
-					'v1ChildExecutionsQuery',
-					'workflowActivitiesCombined',
-					'workflowActivitiesContentCombined',
-					'workflowDefinitionsCombined',
-					'workflowExecutionsCombined',
-				],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+					'workflowTriggersCombined',]),
 ];
