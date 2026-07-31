@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createFilterField, createLimitField, createOperationField } from '../common';
+
 export const containerImageComplianceOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['containerImageCompliance'],
-			},
-		},
-		options: [
+	createOperationField('containerImageCompliance', [
+
 			{ name: 'Aggregate Cluster Assessments', value: 'extAggregateClusterAssessments', description: 'Get the assessments for each cluster', action: 'Aggregate cluster assessments' },
 			{ name: 'Aggregate Failed Containers by Rules Path', value: 'extAggregateFailedContainersByRulesPath', description: 'Get the containers grouped into rules on which they failed', action: 'Aggregate failed containers by rules path' },
 			{ name: 'Aggregate Failed Containers Count by Severity', value: 'extAggregateFailedContainersCountBySeverity', description: 'Get the failed containers count grouped into severity levels', action: 'Aggregate failed containers count by severity' },
@@ -23,21 +16,12 @@ export const containerImageComplianceOperations: INodeProperties[] = [
 			{ name: 'Aggregate Image Assessments', value: 'extAggregateImageAssessments', description: 'Get the assessments for each image', action: 'Aggregate image assessments' },
 			{ name: 'Aggregate Rules Assessments', value: 'extAggregateRulesAssessments', description: 'Get the assessments for each rule', action: 'Aggregate rules assessments' },
 			{ name: 'Aggregate Rules by Status', value: 'extAggregateRulesByStatus', description: 'Get the rules grouped by their statuses', action: 'Aggregate rules by status' },
-		],
-		default: 'extAggregateClusterAssessments',
-	},
+		
+	], 'extAggregateClusterAssessments'),
 ];
 
 export const containerImageComplianceFields: INodeProperties[] = [
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['containerImageCompliance'],
-				operation: [
-					'extAggregateClusterAssessments',
+	createFilterField('containerImageCompliance', ['extAggregateClusterAssessments',
 					'extAggregateFailedContainersByRulesPath',
 					'extAggregateFailedContainersCountBySeverity',
 					'extAggregateFailedImagesByRulesPath',
@@ -47,24 +31,6 @@ export const containerImageComplianceFields: INodeProperties[] = [
 					'extAggregateFailedRulesCountBySeverity',
 					'extAggregateImageAssessments',
 					'extAggregateRulesAssessments',
-					'extAggregateRulesByStatus',
-				],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['containerImageCompliance'],
-				operation: ['extAggregateImageAssessments'],
-			},
-		},
-		default: '100',
-		description: 'Max number of results to return',
-	},
+					'extAggregateRulesByStatus',]),
+	createLimitField('containerImageCompliance', ['extAggregateImageAssessments']),
 ];
