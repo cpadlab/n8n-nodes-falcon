@@ -1,24 +1,16 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createLimitField, createOffsetField, createOperationField } from '../common';
+
 export const iocsOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['iocs'],
-			},
-		},
-		options: [
+	createOperationField('iocs', [
+
 			{ name: 'Devices Count', value: 'devicesCount', description: 'Number of hosts in your customer account that have observed a given custom IOC', action: 'Devices count' },
 			{ name: 'Devices Ran On', value: 'devicesRanOn', description: 'Find hosts that have observed a given custom IOC', action: 'Devices ran on' },
 			{ name: 'Entities Processes', value: 'entitiesProcesses', description: 'For the provided ProcessID retrieve the process details', action: 'Entities processes' },
 			{ name: 'Processes Ran On', value: 'processesRanOn', description: 'Search for processes associated with a custom IOC', action: 'Processes ran on' },
-		],
-		default: 'devicesCount',
-	},
+		
+	], 'devicesCount'),
 ];
 
 export const iocsFields: INodeProperties[] = [
@@ -78,30 +70,6 @@ export const iocsFields: INodeProperties[] = [
 		required: true,
 		description: 'Comma-separated list of Process IDs',
 	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['iocs'],
-				operation: ['devicesRanOn', 'processesRanOn'],
-			},
-		},
-		default: '100',
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['iocs'],
-				operation: ['devicesRanOn', 'processesRanOn'],
-			},
-		},
-		default: '',
-		description: 'Starting index or pagination offset',
-	},
+	createLimitField('iocs', ['devicesRanOn', 'processesRanOn']),
+	createOffsetField('iocs', ['devicesRanOn', 'processesRanOn']),
 ];
