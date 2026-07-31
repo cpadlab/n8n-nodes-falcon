@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createIdsField, createOperationField, createStandardPaginationFields } from '../common';
+
 export const realTimeResponseAdminOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['realTimeResponseAdmin'],
-			},
-		},
-		options: [
+	createOperationField('realTimeResponseAdmin', [
+
 			{ name: 'Batch Admin Cmd', value: 'batchAdminCmd', description: 'Batch executes RTR admin command across hosts', action: 'Batch admin cmd' },
 			{ name: 'RTR Check Admin Command Status', value: 'rTRCheckAdminCommandStatus', description: 'Get status of executed RTR admin command on host', action: 'RTR check admin command status' },
 			{ name: 'RTR Create Put Files', value: 'rTRCreatePutFiles', description: 'Upload a new put-file for RTR put command', action: 'RTR create put files' },
@@ -32,9 +25,8 @@ export const realTimeResponseAdminOperations: INodeProperties[] = [
 			{ name: 'RTR List Scripts', value: 'rTRListScripts', description: 'Get list of custom-script IDs available for runscript command', action: 'RTR list scripts' },
 			{ name: 'RTR Update Scripts', value: 'rTRUpdateScripts', description: 'Upload a new script to replace existing one', action: 'RTR update scripts' },
 			{ name: 'RTR Update Scripts V2', value: 'rTRUpdateScriptsV2', description: 'Upload a new script to replace existing one V2', action: 'RTR update scripts V2' },
-		],
-		default: 'rTRListScripts',
-	},
+		
+	], 'rTRListScripts'),
 ];
 
 export const realTimeResponseAdminFields: INodeProperties[] = [
@@ -58,26 +50,11 @@ export const realTimeResponseAdminFields: INodeProperties[] = [
 		required: true,
 		description: 'Target ID',
 	},
-	{
-		displayName: 'IDs',
-		name: 'ids',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['realTimeResponseAdmin'],
-				operation: [
-					'rTRGetFalconScripts',
+	createIdsField('realTimeResponseAdmin', ['rTRGetFalconScripts',
 					'rTRGetPutFiles',
 					'rTRGetPutFilesV2',
 					'rTRGetScripts',
-					'rTRGetScriptsV2',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'Comma-separated list of IDs',
-	},
+					'rTRGetScriptsV2',]),
 	{
 		displayName: 'Cloud Request ID',
 		name: 'cloudRequestId',
@@ -106,74 +83,6 @@ export const realTimeResponseAdminFields: INodeProperties[] = [
 		required: true,
 		description: 'Sequence ID',
 	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['realTimeResponseAdmin'],
-				operation: ['batchAdminCmd', 'rTRExecuteAdminCommand'],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['realTimeResponseAdmin'],
-				operation: ['rTRListFalconScripts', 'rTRListPutFiles', 'rTRListScripts'],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['realTimeResponseAdmin'],
-				operation: ['rTRListFalconScripts', 'rTRListPutFiles', 'rTRListScripts'],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['realTimeResponseAdmin'],
-				operation: ['rTRListFalconScripts', 'rTRListPutFiles', 'rTRListScripts'],
-			},
-		},
-		default: '',
-		description: 'Starting index for pagination',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['realTimeResponseAdmin'],
-				operation: ['rTRListFalconScripts', 'rTRListPutFiles', 'rTRListScripts'],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+	createBodyJsonField('realTimeResponseAdmin', ['batchAdminCmd', 'rTRExecuteAdminCommand']),
+	...createStandardPaginationFields('realTimeResponseAdmin', ['rTRListFalconScripts', 'rTRListPutFiles', 'rTRListScripts']),
 ];
