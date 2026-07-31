@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-falcon",
-	"version": "0.1.145",
+	"version": "0.1.146",
 	"description": "N8N community node for CrowdStrike Falcon API",
 	"license": "MIT",
 	"homepage": "https://github.com/cpadlab/n8n-nodes-falcon.git",
@@ -31,7 +31,7 @@
 	],
 	"n8n": {
 		"n8nNodesApiVersion": 1,
-		"strict": true,
+		"strict": false,
 		"credentials": [
 			"dist/credentials/CrowdStrikeFalconApi.credentials.js"
 		],
