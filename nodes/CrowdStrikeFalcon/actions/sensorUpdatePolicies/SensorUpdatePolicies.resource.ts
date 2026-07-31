@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createIdsField, createOperationField, createStandardPaginationFields } from '../common';
+
 export const sensorUpdatePoliciesOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['sensorUpdatePolicies'],
-			},
-		},
-		options: [
+	createOperationField('sensorUpdatePolicies', [
+
 			{ name: 'Create Sensor Update Policies', value: 'createSensorUpdatePolicies', description: 'Create Sensor Update Policies', action: 'Create sensor update policies' },
 			{ name: 'Create Sensor Update Policies V2', value: 'createSensorUpdatePoliciesV2', description: 'Create Sensor Update Policies with uninstall protection', action: 'Create sensor update policies V2' },
 			{ name: 'Delete Sensor Update Policies', value: 'deleteSensorUpdatePolicies', description: 'Delete Sensor Update Policies by IDs', action: 'Delete sensor update policies' },
@@ -30,9 +23,8 @@ export const sensorUpdatePoliciesOperations: INodeProperties[] = [
 			{ name: 'Set Sensor Update Policies Precedence', value: 'setSensorUpdatePoliciesPrecedence', description: 'Sets precedence of Sensor Update Policies', action: 'Set sensor update policies precedence' },
 			{ name: 'Update Sensor Update Policies', value: 'updateSensorUpdatePolicies', description: 'Update Sensor Update Policies', action: 'Update sensor update policies' },
 			{ name: 'Update Sensor Update Policies V2', value: 'updateSensorUpdatePoliciesV2', description: 'Update Sensor Update Policies with uninstall protection', action: 'Update sensor update policies V2' },
-		],
-		default: 'querySensorUpdatePolicies',
-	},
+		
+	], 'querySensorUpdatePolicies'),
 ];
 
 export const sensorUpdatePoliciesFields: INodeProperties[] = [
@@ -49,24 +41,9 @@ export const sensorUpdatePoliciesFields: INodeProperties[] = [
 		default: '',
 		description: 'Sensor update policy ID string',
 	},
-	{
-		displayName: 'IDs',
-		name: 'ids',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['sensorUpdatePolicies'],
-				operation: [
-					'deleteSensorUpdatePolicies',
+	createIdsField('sensorUpdatePolicies', ['deleteSensorUpdatePolicies',
 					'getSensorUpdatePolicies',
-					'getSensorUpdatePoliciesV2',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'Comma-separated list of policy IDs',
-	},
+					'getSensorUpdatePoliciesV2',]),
 	{
 		displayName: 'Action Name',
 		name: 'actionName',
@@ -123,115 +100,18 @@ export const sensorUpdatePoliciesFields: INodeProperties[] = [
 		required: true,
 		description: 'Distinct field string for kernel query',
 	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['sensorUpdatePolicies'],
-				operation: [
-					'createSensorUpdatePolicies',
+	createBodyJsonField('sensorUpdatePolicies', ['createSensorUpdatePolicies',
 					'createSensorUpdatePoliciesV2',
 					'performSensorUpdatePoliciesAction',
 					'revealUninstallToken',
 					'setSensorUpdatePoliciesPrecedence',
 					'updateSensorUpdatePolicies',
-					'updateSensorUpdatePoliciesV2',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['sensorUpdatePolicies'],
-				operation: [
-					'queryCombinedSensorUpdateKernels',
+					'updateSensorUpdatePoliciesV2',]),
+	...createStandardPaginationFields('sensorUpdatePolicies', ['queryCombinedSensorUpdateKernels',
 					'queryCombinedSensorUpdatePolicies',
 					'queryCombinedSensorUpdatePoliciesV2',
 					'queryCombinedSensorUpdatePolicyMembers',
 					'querySensorUpdateKernelsDistinct',
 					'querySensorUpdatePolicies',
-					'querySensorUpdatePolicyMembers',
-				],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['sensorUpdatePolicies'],
-				operation: [
-					'queryCombinedSensorUpdateKernels',
-					'queryCombinedSensorUpdatePolicies',
-					'queryCombinedSensorUpdatePoliciesV2',
-					'queryCombinedSensorUpdatePolicyMembers',
-					'querySensorUpdateKernelsDistinct',
-					'querySensorUpdatePolicies',
-					'querySensorUpdatePolicyMembers',
-				],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['sensorUpdatePolicies'],
-				operation: [
-					'queryCombinedSensorUpdateKernels',
-					'queryCombinedSensorUpdatePolicies',
-					'queryCombinedSensorUpdatePoliciesV2',
-					'queryCombinedSensorUpdatePolicyMembers',
-					'querySensorUpdateKernelsDistinct',
-					'querySensorUpdatePolicies',
-					'querySensorUpdatePolicyMembers',
-				],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['sensorUpdatePolicies'],
-				operation: [
-					'queryCombinedSensorUpdatePolicies',
-					'queryCombinedSensorUpdatePoliciesV2',
-					'queryCombinedSensorUpdatePolicyMembers',
-					'querySensorUpdatePolicies',
-					'querySensorUpdatePolicyMembers',
-				],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+					'querySensorUpdatePolicyMembers',]),
 ];
