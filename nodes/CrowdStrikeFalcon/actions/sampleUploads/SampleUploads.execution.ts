@@ -1,20 +1,8 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
-function parseJsonParam(context: IExecuteFunctions, index: number, paramName = 'bodyJson'): any {
-	const rawJson = context.getNodeParameter(paramName, index, '') as string;
-	if (!rawJson) return {};
-	try {
-		return typeof rawJson === 'string' ? JSON.parse(rawJson) : rawJson;
-	} catch (e) {
-		throw new Error(`Invalid JSON in ${paramName}: ${(e as Error).message}`);
-	}
-}
-
-function getStringParam(context: IExecuteFunctions, index: number, paramName: string, fallback = ''): string {
-	const val = context.getNodeParameter(paramName, index, fallback);
-	return val !== undefined && val !== null ? String(val) : String(fallback);
-}
+import { getStringParam, parseJsonParam } from '../common';
 
 /**
  * Handles the 'archiveDeleteV1' operation.
@@ -141,6 +129,6 @@ export async function executeSampleUploads(
 		case 'getSampleV3': return await handleGetSampleV3(this, index, falconClient);
 		case 'uploadSampleV3': return await handleUploadSampleV3(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Sample Uploads.`);
+			throw new NodeOperationError(c.getNode(), `Operation ${operation} is not supported for Sample Uploads.`);
 	}
 }
