@@ -26,243 +26,52 @@ describe('executeScanningOrchestrator', () => {
 		);
 	});
 
-		it("should execute 'createSchedules' operation with default parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'createSchedules';
-					return fallback !== undefined ? fallback : '';
-				}),
-			};
 
-			const result = await executeScanningOrchestrator.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
+	it.each([
+		'createSchedules',
+		'deleteSchedules',
+		'getCombinedSchedules',
+		'getSchedules',
+		'getServiceTypes',
+		'searchSchedules',
+		'triggerScanBySchedule',
+		'updateSchedules'
+	])("should execute '%s' operation with default parameters successfully", async (operation) => {
+		const mockContext: any = {
+			getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+				if (paramName === 'operation') return operation;
+				return fallback !== undefined ? fallback : '';
+			}),
+		};
 
-		it("should execute 'createSchedules' operation with non-empty parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'createSchedules';
-					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
-					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
-					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
-					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
-					if (typeof fallback === 'number') return fallback;
-					if (typeof fallback === 'boolean') return true;
-					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
-				}),
-			};
+		const result = await executeScanningOrchestrator.call(mockContext, 0, mockFalconClient);
+		expect(result).toEqual({ success: true });
+	});
 
-			const result = await executeScanningOrchestrator.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
+	it.each([
+		'createSchedules',
+		'deleteSchedules',
+		'getCombinedSchedules',
+		'getSchedules',
+		'getServiceTypes',
+		'searchSchedules',
+		'triggerScanBySchedule',
+		'updateSchedules'
+	])("should execute '%s' operation with non-empty parameters successfully", async (operation) => {
+		const mockContext: any = {
+			getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+				if (paramName === 'operation') return operation;
+				if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+				if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+				if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+				if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+				if (typeof fallback === 'number') return fallback;
+				if (typeof fallback === 'boolean') return true;
+				return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+			}),
+		};
 
-		it("should execute 'deleteSchedules' operation with default parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'deleteSchedules';
-					return fallback !== undefined ? fallback : '';
-				}),
-			};
-
-			const result = await executeScanningOrchestrator.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'deleteSchedules' operation with non-empty parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'deleteSchedules';
-					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
-					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
-					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
-					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
-					if (typeof fallback === 'number') return fallback;
-					if (typeof fallback === 'boolean') return true;
-					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
-				}),
-			};
-
-			const result = await executeScanningOrchestrator.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'getCombinedSchedules' operation with default parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'getCombinedSchedules';
-					return fallback !== undefined ? fallback : '';
-				}),
-			};
-
-			const result = await executeScanningOrchestrator.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'getCombinedSchedules' operation with non-empty parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'getCombinedSchedules';
-					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
-					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
-					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
-					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
-					if (typeof fallback === 'number') return fallback;
-					if (typeof fallback === 'boolean') return true;
-					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
-				}),
-			};
-
-			const result = await executeScanningOrchestrator.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'getSchedules' operation with default parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'getSchedules';
-					return fallback !== undefined ? fallback : '';
-				}),
-			};
-
-			const result = await executeScanningOrchestrator.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'getSchedules' operation with non-empty parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'getSchedules';
-					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
-					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
-					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
-					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
-					if (typeof fallback === 'number') return fallback;
-					if (typeof fallback === 'boolean') return true;
-					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
-				}),
-			};
-
-			const result = await executeScanningOrchestrator.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'getServiceTypes' operation with default parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'getServiceTypes';
-					return fallback !== undefined ? fallback : '';
-				}),
-			};
-
-			const result = await executeScanningOrchestrator.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'getServiceTypes' operation with non-empty parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'getServiceTypes';
-					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
-					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
-					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
-					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
-					if (typeof fallback === 'number') return fallback;
-					if (typeof fallback === 'boolean') return true;
-					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
-				}),
-			};
-
-			const result = await executeScanningOrchestrator.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'searchSchedules' operation with default parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'searchSchedules';
-					return fallback !== undefined ? fallback : '';
-				}),
-			};
-
-			const result = await executeScanningOrchestrator.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'searchSchedules' operation with non-empty parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'searchSchedules';
-					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
-					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
-					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
-					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
-					if (typeof fallback === 'number') return fallback;
-					if (typeof fallback === 'boolean') return true;
-					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
-				}),
-			};
-
-			const result = await executeScanningOrchestrator.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'triggerScanBySchedule' operation with default parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'triggerScanBySchedule';
-					return fallback !== undefined ? fallback : '';
-				}),
-			};
-
-			const result = await executeScanningOrchestrator.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'triggerScanBySchedule' operation with non-empty parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'triggerScanBySchedule';
-					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
-					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
-					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
-					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
-					if (typeof fallback === 'number') return fallback;
-					if (typeof fallback === 'boolean') return true;
-					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
-				}),
-			};
-
-			const result = await executeScanningOrchestrator.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'updateSchedules' operation with default parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'updateSchedules';
-					return fallback !== undefined ? fallback : '';
-				}),
-			};
-
-			const result = await executeScanningOrchestrator.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'updateSchedules' operation with non-empty parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'updateSchedules';
-					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
-					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
-					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
-					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
-					if (typeof fallback === 'number') return fallback;
-					if (typeof fallback === 'boolean') return true;
-					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
-				}),
-			};
-
-			const result = await executeScanningOrchestrator.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
+		const result = await executeScanningOrchestrator.call(mockContext, 0, mockFalconClient);
+		expect(result).toEqual({ success: true });
+	});
 });

@@ -26,123 +26,44 @@ describe('executeCloudSecurityDetections', () => {
 		);
 	});
 
-		it("should execute 'cspmEvaluationsCombinedIomByRule' operation with default parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'cspmEvaluationsCombinedIomByRule';
-					return fallback !== undefined ? fallback : '';
-				}),
-			};
 
-			const result = await executeCloudSecurityDetections.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
+	it.each([
+		'cspmEvaluationsCombinedIomByRule',
+		'cspmEvaluationsIomEntities',
+		'cspmEvaluationsIomEntitiesPost',
+		'cspmEvaluationsIomQueries'
+	])("should execute '%s' operation with default parameters successfully", async (operation) => {
+		const mockContext: any = {
+			getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+				if (paramName === 'operation') return operation;
+				return fallback !== undefined ? fallback : '';
+			}),
+		};
 
-		it("should execute 'cspmEvaluationsCombinedIomByRule' operation with non-empty parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'cspmEvaluationsCombinedIomByRule';
-					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
-					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
-					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
-					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
-					if (typeof fallback === 'number') return fallback;
-					if (typeof fallback === 'boolean') return true;
-					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
-				}),
-			};
+		const result = await executeCloudSecurityDetections.call(mockContext, 0, mockFalconClient);
+		expect(result).toEqual({ success: true });
+	});
 
-			const result = await executeCloudSecurityDetections.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
+	it.each([
+		'cspmEvaluationsCombinedIomByRule',
+		'cspmEvaluationsIomEntities',
+		'cspmEvaluationsIomEntitiesPost',
+		'cspmEvaluationsIomQueries'
+	])("should execute '%s' operation with non-empty parameters successfully", async (operation) => {
+		const mockContext: any = {
+			getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+				if (paramName === 'operation') return operation;
+				if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+				if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+				if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+				if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+				if (typeof fallback === 'number') return fallback;
+				if (typeof fallback === 'boolean') return true;
+				return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+			}),
+		};
 
-		it("should execute 'cspmEvaluationsIomEntities' operation with default parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'cspmEvaluationsIomEntities';
-					return fallback !== undefined ? fallback : '';
-				}),
-			};
-
-			const result = await executeCloudSecurityDetections.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'cspmEvaluationsIomEntities' operation with non-empty parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'cspmEvaluationsIomEntities';
-					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
-					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
-					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
-					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
-					if (typeof fallback === 'number') return fallback;
-					if (typeof fallback === 'boolean') return true;
-					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
-				}),
-			};
-
-			const result = await executeCloudSecurityDetections.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'cspmEvaluationsIomEntitiesPost' operation with default parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'cspmEvaluationsIomEntitiesPost';
-					return fallback !== undefined ? fallback : '';
-				}),
-			};
-
-			const result = await executeCloudSecurityDetections.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'cspmEvaluationsIomEntitiesPost' operation with non-empty parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'cspmEvaluationsIomEntitiesPost';
-					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
-					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
-					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
-					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
-					if (typeof fallback === 'number') return fallback;
-					if (typeof fallback === 'boolean') return true;
-					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
-				}),
-			};
-
-			const result = await executeCloudSecurityDetections.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'cspmEvaluationsIomQueries' operation with default parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'cspmEvaluationsIomQueries';
-					return fallback !== undefined ? fallback : '';
-				}),
-			};
-
-			const result = await executeCloudSecurityDetections.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'cspmEvaluationsIomQueries' operation with non-empty parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'cspmEvaluationsIomQueries';
-					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
-					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
-					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
-					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
-					if (typeof fallback === 'number') return fallback;
-					if (typeof fallback === 'boolean') return true;
-					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
-				}),
-			};
-
-			const result = await executeCloudSecurityDetections.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
+		const result = await executeCloudSecurityDetections.call(mockContext, 0, mockFalconClient);
+		expect(result).toEqual({ success: true });
+	});
 });

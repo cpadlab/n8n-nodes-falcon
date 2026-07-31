@@ -26,273 +26,54 @@ describe('executeAlerts', () => {
 		);
 	});
 
-		it("should execute 'queryV2' operation with default parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'queryV2';
-					return fallback !== undefined ? fallback : '';
-				}),
-			};
 
-			const result = await executeAlerts.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
+	it.each([
+		'queryV2',
+		'getV2',
+		'updateV3',
+		'postCombinedAlertsV1',
+		'getAggregateV2',
+		'getQueriesAlertsV1',
+		'patchEntitiesAlertsV2',
+		'postAggregatesAlertsV1',
+		'postEntitiesAlertsV1'
+	])("should execute '%s' operation with default parameters successfully", async (operation) => {
+		const mockContext: any = {
+			getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+				if (paramName === 'operation') return operation;
+				return fallback !== undefined ? fallback : '';
+			}),
+		};
 
-		it("should execute 'queryV2' operation with non-empty parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'queryV2';
-					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
-					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
-					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
-					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
-					if (typeof fallback === 'number') return fallback;
-					if (typeof fallback === 'boolean') return true;
-					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
-				}),
-			};
+		const result = await executeAlerts.call(mockContext, 0, mockFalconClient);
+		expect(result).toEqual({ success: true });
+	});
 
-			const result = await executeAlerts.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
+	it.each([
+		'queryV2',
+		'getV2',
+		'updateV3',
+		'postCombinedAlertsV1',
+		'getAggregateV2',
+		'getQueriesAlertsV1',
+		'patchEntitiesAlertsV2',
+		'postAggregatesAlertsV1',
+		'postEntitiesAlertsV1'
+	])("should execute '%s' operation with non-empty parameters successfully", async (operation) => {
+		const mockContext: any = {
+			getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+				if (paramName === 'operation') return operation;
+				if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+				if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+				if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+				if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+				if (typeof fallback === 'number') return fallback;
+				if (typeof fallback === 'boolean') return true;
+				return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+			}),
+		};
 
-		it("should execute 'getV2' operation with default parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'getV2';
-					return fallback !== undefined ? fallback : '';
-				}),
-			};
-
-			const result = await executeAlerts.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'getV2' operation with non-empty parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'getV2';
-					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
-					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
-					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
-					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
-					if (typeof fallback === 'number') return fallback;
-					if (typeof fallback === 'boolean') return true;
-					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
-				}),
-			};
-
-			const result = await executeAlerts.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'updateV3' operation with default parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'updateV3';
-					return fallback !== undefined ? fallback : '';
-				}),
-			};
-
-			const result = await executeAlerts.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'updateV3' operation with non-empty parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'updateV3';
-					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
-					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
-					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
-					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
-					if (typeof fallback === 'number') return fallback;
-					if (typeof fallback === 'boolean') return true;
-					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
-				}),
-			};
-
-			const result = await executeAlerts.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'postCombinedAlertsV1' operation with default parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'postCombinedAlertsV1';
-					return fallback !== undefined ? fallback : '';
-				}),
-			};
-
-			const result = await executeAlerts.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'postCombinedAlertsV1' operation with non-empty parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'postCombinedAlertsV1';
-					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
-					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
-					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
-					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
-					if (typeof fallback === 'number') return fallback;
-					if (typeof fallback === 'boolean') return true;
-					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
-				}),
-			};
-
-			const result = await executeAlerts.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'getAggregateV2' operation with default parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'getAggregateV2';
-					return fallback !== undefined ? fallback : '';
-				}),
-			};
-
-			const result = await executeAlerts.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'getAggregateV2' operation with non-empty parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'getAggregateV2';
-					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
-					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
-					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
-					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
-					if (typeof fallback === 'number') return fallback;
-					if (typeof fallback === 'boolean') return true;
-					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
-				}),
-			};
-
-			const result = await executeAlerts.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'getQueriesAlertsV1' operation with default parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'getQueriesAlertsV1';
-					return fallback !== undefined ? fallback : '';
-				}),
-			};
-
-			const result = await executeAlerts.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'getQueriesAlertsV1' operation with non-empty parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'getQueriesAlertsV1';
-					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
-					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
-					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
-					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
-					if (typeof fallback === 'number') return fallback;
-					if (typeof fallback === 'boolean') return true;
-					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
-				}),
-			};
-
-			const result = await executeAlerts.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'patchEntitiesAlertsV2' operation with default parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'patchEntitiesAlertsV2';
-					return fallback !== undefined ? fallback : '';
-				}),
-			};
-
-			const result = await executeAlerts.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'patchEntitiesAlertsV2' operation with non-empty parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'patchEntitiesAlertsV2';
-					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
-					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
-					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
-					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
-					if (typeof fallback === 'number') return fallback;
-					if (typeof fallback === 'boolean') return true;
-					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
-				}),
-			};
-
-			const result = await executeAlerts.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'postAggregatesAlertsV1' operation with default parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'postAggregatesAlertsV1';
-					return fallback !== undefined ? fallback : '';
-				}),
-			};
-
-			const result = await executeAlerts.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'postAggregatesAlertsV1' operation with non-empty parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'postAggregatesAlertsV1';
-					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
-					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
-					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
-					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
-					if (typeof fallback === 'number') return fallback;
-					if (typeof fallback === 'boolean') return true;
-					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
-				}),
-			};
-
-			const result = await executeAlerts.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'postEntitiesAlertsV1' operation with default parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'postEntitiesAlertsV1';
-					return fallback !== undefined ? fallback : '';
-				}),
-			};
-
-			const result = await executeAlerts.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'postEntitiesAlertsV1' operation with non-empty parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'postEntitiesAlertsV1';
-					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
-					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
-					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
-					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
-					if (typeof fallback === 'number') return fallback;
-					if (typeof fallback === 'boolean') return true;
-					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
-				}),
-			};
-
-			const result = await executeAlerts.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
+		const result = await executeAlerts.call(mockContext, 0, mockFalconClient);
+		expect(result).toEqual({ success: true });
+	});
 });

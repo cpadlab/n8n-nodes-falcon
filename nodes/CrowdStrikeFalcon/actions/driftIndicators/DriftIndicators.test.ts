@@ -26,153 +26,46 @@ describe('executeDriftIndicators', () => {
 		);
 	});
 
-		it("should execute 'getDriftIndicatorsValuesByDate' operation with default parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'getDriftIndicatorsValuesByDate';
-					return fallback !== undefined ? fallback : '';
-				}),
-			};
 
-			const result = await executeDriftIndicators.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
+	it.each([
+		'getDriftIndicatorsValuesByDate',
+		'readDriftIndicatorEntities',
+		'readDriftIndicatorsCount',
+		'searchAndReadDriftIndicatorEntities',
+		'searchDriftIndicators'
+	])("should execute '%s' operation with default parameters successfully", async (operation) => {
+		const mockContext: any = {
+			getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+				if (paramName === 'operation') return operation;
+				return fallback !== undefined ? fallback : '';
+			}),
+		};
 
-		it("should execute 'getDriftIndicatorsValuesByDate' operation with non-empty parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'getDriftIndicatorsValuesByDate';
-					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
-					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
-					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
-					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
-					if (typeof fallback === 'number') return fallback;
-					if (typeof fallback === 'boolean') return true;
-					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
-				}),
-			};
+		const result = await executeDriftIndicators.call(mockContext, 0, mockFalconClient);
+		expect(result).toEqual({ success: true });
+	});
 
-			const result = await executeDriftIndicators.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
+	it.each([
+		'getDriftIndicatorsValuesByDate',
+		'readDriftIndicatorEntities',
+		'readDriftIndicatorsCount',
+		'searchAndReadDriftIndicatorEntities',
+		'searchDriftIndicators'
+	])("should execute '%s' operation with non-empty parameters successfully", async (operation) => {
+		const mockContext: any = {
+			getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+				if (paramName === 'operation') return operation;
+				if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+				if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+				if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+				if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+				if (typeof fallback === 'number') return fallback;
+				if (typeof fallback === 'boolean') return true;
+				return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+			}),
+		};
 
-		it("should execute 'readDriftIndicatorEntities' operation with default parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'readDriftIndicatorEntities';
-					return fallback !== undefined ? fallback : '';
-				}),
-			};
-
-			const result = await executeDriftIndicators.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'readDriftIndicatorEntities' operation with non-empty parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'readDriftIndicatorEntities';
-					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
-					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
-					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
-					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
-					if (typeof fallback === 'number') return fallback;
-					if (typeof fallback === 'boolean') return true;
-					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
-				}),
-			};
-
-			const result = await executeDriftIndicators.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'readDriftIndicatorsCount' operation with default parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'readDriftIndicatorsCount';
-					return fallback !== undefined ? fallback : '';
-				}),
-			};
-
-			const result = await executeDriftIndicators.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'readDriftIndicatorsCount' operation with non-empty parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'readDriftIndicatorsCount';
-					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
-					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
-					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
-					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
-					if (typeof fallback === 'number') return fallback;
-					if (typeof fallback === 'boolean') return true;
-					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
-				}),
-			};
-
-			const result = await executeDriftIndicators.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'searchAndReadDriftIndicatorEntities' operation with default parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'searchAndReadDriftIndicatorEntities';
-					return fallback !== undefined ? fallback : '';
-				}),
-			};
-
-			const result = await executeDriftIndicators.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'searchAndReadDriftIndicatorEntities' operation with non-empty parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'searchAndReadDriftIndicatorEntities';
-					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
-					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
-					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
-					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
-					if (typeof fallback === 'number') return fallback;
-					if (typeof fallback === 'boolean') return true;
-					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
-				}),
-			};
-
-			const result = await executeDriftIndicators.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'searchDriftIndicators' operation with default parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'searchDriftIndicators';
-					return fallback !== undefined ? fallback : '';
-				}),
-			};
-
-			const result = await executeDriftIndicators.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'searchDriftIndicators' operation with non-empty parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'searchDriftIndicators';
-					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
-					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
-					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
-					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
-					if (typeof fallback === 'number') return fallback;
-					if (typeof fallback === 'boolean') return true;
-					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
-				}),
-			};
-
-			const result = await executeDriftIndicators.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
+		const result = await executeDriftIndicators.call(mockContext, 0, mockFalconClient);
+		expect(result).toEqual({ success: true });
+	});
 });

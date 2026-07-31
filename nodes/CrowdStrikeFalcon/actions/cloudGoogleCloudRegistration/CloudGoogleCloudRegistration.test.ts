@@ -26,243 +26,52 @@ describe('executeCloudGoogleCloudRegistration', () => {
 		);
 	});
 
-		it("should execute 'cloudRegistrationGcpCreateRegistration' operation with default parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'cloudRegistrationGcpCreateRegistration';
-					return fallback !== undefined ? fallback : '';
-				}),
-			};
 
-			const result = await executeCloudGoogleCloudRegistration.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
+	it.each([
+		'cloudRegistrationGcpCreateRegistration',
+		'cloudRegistrationGcpDeleteRegistration',
+		'cloudRegistrationGcpGetEntities',
+		'cloudRegistrationGcpGetRegistration',
+		'cloudRegistrationGcpPostTerraformScript',
+		'cloudRegistrationGcpPutRegistration',
+		'cloudRegistrationGcpTriggerHealthCheck',
+		'cloudRegistrationGcpUpdateRegistration'
+	])("should execute '%s' operation with default parameters successfully", async (operation) => {
+		const mockContext: any = {
+			getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+				if (paramName === 'operation') return operation;
+				return fallback !== undefined ? fallback : '';
+			}),
+		};
 
-		it("should execute 'cloudRegistrationGcpCreateRegistration' operation with non-empty parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'cloudRegistrationGcpCreateRegistration';
-					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
-					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
-					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
-					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
-					if (typeof fallback === 'number') return fallback;
-					if (typeof fallback === 'boolean') return true;
-					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
-				}),
-			};
+		const result = await executeCloudGoogleCloudRegistration.call(mockContext, 0, mockFalconClient);
+		expect(result).toEqual({ success: true });
+	});
 
-			const result = await executeCloudGoogleCloudRegistration.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
+	it.each([
+		'cloudRegistrationGcpCreateRegistration',
+		'cloudRegistrationGcpDeleteRegistration',
+		'cloudRegistrationGcpGetEntities',
+		'cloudRegistrationGcpGetRegistration',
+		'cloudRegistrationGcpPostTerraformScript',
+		'cloudRegistrationGcpPutRegistration',
+		'cloudRegistrationGcpTriggerHealthCheck',
+		'cloudRegistrationGcpUpdateRegistration'
+	])("should execute '%s' operation with non-empty parameters successfully", async (operation) => {
+		const mockContext: any = {
+			getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
+				if (paramName === 'operation') return operation;
+				if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
+				if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
+				if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
+				if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
+				if (typeof fallback === 'number') return fallback;
+				if (typeof fallback === 'boolean') return true;
+				return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
+			}),
+		};
 
-		it("should execute 'cloudRegistrationGcpDeleteRegistration' operation with default parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'cloudRegistrationGcpDeleteRegistration';
-					return fallback !== undefined ? fallback : '';
-				}),
-			};
-
-			const result = await executeCloudGoogleCloudRegistration.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'cloudRegistrationGcpDeleteRegistration' operation with non-empty parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'cloudRegistrationGcpDeleteRegistration';
-					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
-					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
-					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
-					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
-					if (typeof fallback === 'number') return fallback;
-					if (typeof fallback === 'boolean') return true;
-					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
-				}),
-			};
-
-			const result = await executeCloudGoogleCloudRegistration.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'cloudRegistrationGcpGetEntities' operation with default parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'cloudRegistrationGcpGetEntities';
-					return fallback !== undefined ? fallback : '';
-				}),
-			};
-
-			const result = await executeCloudGoogleCloudRegistration.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'cloudRegistrationGcpGetEntities' operation with non-empty parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'cloudRegistrationGcpGetEntities';
-					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
-					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
-					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
-					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
-					if (typeof fallback === 'number') return fallback;
-					if (typeof fallback === 'boolean') return true;
-					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
-				}),
-			};
-
-			const result = await executeCloudGoogleCloudRegistration.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'cloudRegistrationGcpGetRegistration' operation with default parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'cloudRegistrationGcpGetRegistration';
-					return fallback !== undefined ? fallback : '';
-				}),
-			};
-
-			const result = await executeCloudGoogleCloudRegistration.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'cloudRegistrationGcpGetRegistration' operation with non-empty parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'cloudRegistrationGcpGetRegistration';
-					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
-					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
-					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
-					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
-					if (typeof fallback === 'number') return fallback;
-					if (typeof fallback === 'boolean') return true;
-					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
-				}),
-			};
-
-			const result = await executeCloudGoogleCloudRegistration.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'cloudRegistrationGcpPostTerraformScript' operation with default parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'cloudRegistrationGcpPostTerraformScript';
-					return fallback !== undefined ? fallback : '';
-				}),
-			};
-
-			const result = await executeCloudGoogleCloudRegistration.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'cloudRegistrationGcpPostTerraformScript' operation with non-empty parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'cloudRegistrationGcpPostTerraformScript';
-					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
-					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
-					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
-					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
-					if (typeof fallback === 'number') return fallback;
-					if (typeof fallback === 'boolean') return true;
-					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
-				}),
-			};
-
-			const result = await executeCloudGoogleCloudRegistration.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'cloudRegistrationGcpPutRegistration' operation with default parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'cloudRegistrationGcpPutRegistration';
-					return fallback !== undefined ? fallback : '';
-				}),
-			};
-
-			const result = await executeCloudGoogleCloudRegistration.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'cloudRegistrationGcpPutRegistration' operation with non-empty parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'cloudRegistrationGcpPutRegistration';
-					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
-					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
-					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
-					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
-					if (typeof fallback === 'number') return fallback;
-					if (typeof fallback === 'boolean') return true;
-					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
-				}),
-			};
-
-			const result = await executeCloudGoogleCloudRegistration.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'cloudRegistrationGcpTriggerHealthCheck' operation with default parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'cloudRegistrationGcpTriggerHealthCheck';
-					return fallback !== undefined ? fallback : '';
-				}),
-			};
-
-			const result = await executeCloudGoogleCloudRegistration.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'cloudRegistrationGcpTriggerHealthCheck' operation with non-empty parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'cloudRegistrationGcpTriggerHealthCheck';
-					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
-					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
-					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
-					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
-					if (typeof fallback === 'number') return fallback;
-					if (typeof fallback === 'boolean') return true;
-					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
-				}),
-			};
-
-			const result = await executeCloudGoogleCloudRegistration.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'cloudRegistrationGcpUpdateRegistration' operation with default parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'cloudRegistrationGcpUpdateRegistration';
-					return fallback !== undefined ? fallback : '';
-				}),
-			};
-
-			const result = await executeCloudGoogleCloudRegistration.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
-
-		it("should execute 'cloudRegistrationGcpUpdateRegistration' operation with non-empty parameters successfully", async () => {
-			const mockContext: any = {
-				getNodeParameter: jest.fn((paramName: string, index: number, fallback?: any) => {
-					if (paramName === 'operation') return 'cloudRegistrationGcpUpdateRegistration';
-					if (['ids', 'id', 'idsString', 'user_ids', 'cids', 'uuids', 'device_ids', 'composite_ids', 'event_ids', 'tags'].includes(paramName)) return 'id1, id2';
-					if (['bodyJson', 'json', 'body', 'rawJson', 'payload', 'filter_builder', 'additionalFields', 'additionalFieldsJson', 'additional_fields', 'fields', 'options', 'config', 'params', 'metadata', 'updateFields'].includes(paramName)) return '{\"key\": \"value\"}';
-					if (['filter', 'query', 'sort', 'q', 'search'].includes(paramName)) return 'test_query';
-					if (['limit', 'offset', 'max_results'].includes(paramName)) return 10;
-					if (typeof fallback === 'number') return fallback;
-					if (typeof fallback === 'boolean') return true;
-					return fallback !== undefined && fallback !== '' ? fallback : 'param_value';
-				}),
-			};
-
-			const result = await executeCloudGoogleCloudRegistration.call(mockContext, 0, mockFalconClient);
-			expect(result).toEqual({ success: true });
-		});
+		const result = await executeCloudGoogleCloudRegistration.call(mockContext, 0, mockFalconClient);
+		expect(result).toEqual({ success: true });
+	});
 });
