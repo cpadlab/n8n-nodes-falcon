@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createFilterField, createLimitField, createOffsetField, createOperationField } from '../common';
+
 export const cloudAzureRegistrationOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['cloudAzureRegistration'],
-			},
-		},
-		options: [
+	createOperationField('cloudAzureRegistration', [
+
 			{ name: 'Create Registration', value: 'cloudRegistrationAzureCreateRegistration', description: 'Create an Azure registration for a tenant', action: 'Create Azure registration' },
 			{ name: 'Create Suppressions', value: 'cloudRegistrationAzureCreateSuppressions', description: 'Create new issue suppression rules', action: 'Create Azure suppressions' },
 			{ name: 'Delete Legacy Subscription', value: 'cloudRegistrationAzureDeleteLegacySubscription', description: 'Delete existing legacy Azure subscriptions', action: 'Delete Azure legacy subscription' },
@@ -29,9 +22,8 @@ export const cloudAzureRegistrationOperations: INodeProperties[] = [
 			{ name: 'Update Registration', value: 'cloudRegistrationAzureUpdateRegistration', description: 'Update an existing Azure registration for a tenant', action: 'Update Azure registration' },
 			{ name: 'Update Suppressions', value: 'cloudRegistrationAzureUpdateSuppressions', description: 'Update existing suppression rules', action: 'Update Azure suppressions' },
 			{ name: 'Validate Registration', value: 'cloudRegistrationAzureValidateRegistration', description: 'Validate Azure registration status', action: 'Validate Azure registration' },
-		],
-		default: 'cloudRegistrationAzureGetRegistration',
-	},
+		
+	], 'cloudRegistrationAzureGetRegistration'),
 ];
 
 export const cloudAzureRegistrationFields: INodeProperties[] = [
@@ -115,76 +107,18 @@ export const cloudAzureRegistrationFields: INodeProperties[] = [
 	/* -------------------------------------------------------------------------- */
 	/*                                Body JSON                                   */
 	/* -------------------------------------------------------------------------- */
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['cloudAzureRegistration'],
-				operation: [
-					'cloudRegistrationAzureCreateRegistration',
+	createBodyJsonField('cloudAzureRegistration', ['cloudRegistrationAzureCreateRegistration',
 					'cloudRegistrationAzureCreateSuppressions',
 					'cloudRegistrationAzureDeleteLegacySubscription',
 					'cloudRegistrationAzureDeleteSuppressions',
 					'cloudRegistrationAzureDownloadScript',
 					'cloudRegistrationAzureUpdateRegistration',
-					'cloudRegistrationAzureUpdateSuppressions',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON body payload for Azure registration operation',
-	},
+					'cloudRegistrationAzureUpdateSuppressions',]),
 
 	/* -------------------------------------------------------------------------- */
 	/*                            Pagination & Filters                            */
 	/* -------------------------------------------------------------------------- */
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['cloudAzureRegistration'],
-				operation: ['cloudRegistrationAzureGetIssueValuesByField', 'cloudRegistrationAzureGetIssues', 'cloudRegistrationAzureGetSuppressions'],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['cloudAzureRegistration'],
-				operation: ['cloudRegistrationAzureGetIssues', 'cloudRegistrationAzureGetScriptVersions', 'cloudRegistrationAzureGetSuppressions'],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['cloudAzureRegistration'],
-				operation: ['cloudRegistrationAzureGetIssues', 'cloudRegistrationAzureGetScriptVersions', 'cloudRegistrationAzureGetSuppressions'],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
+	createFilterField('cloudAzureRegistration', ['cloudRegistrationAzureGetIssueValuesByField', 'cloudRegistrationAzureGetIssues', 'cloudRegistrationAzureGetSuppressions']),
+	createLimitField('cloudAzureRegistration', ['cloudRegistrationAzureGetIssues', 'cloudRegistrationAzureGetScriptVersions', 'cloudRegistrationAzureGetSuppressions']),
+	createOffsetField('cloudAzureRegistration', ['cloudRegistrationAzureGetIssues', 'cloudRegistrationAzureGetScriptVersions', 'cloudRegistrationAzureGetSuppressions']),
 ];
