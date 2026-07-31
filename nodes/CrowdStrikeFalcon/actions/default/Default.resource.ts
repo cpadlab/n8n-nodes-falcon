@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createIdsField, createOperationField, createStandardPaginationFields } from '../common';
+
 export const defaultOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['default'],
-			},
-		},
-		options: [
+	createOperationField('default', [
+
 			{ name: 'Combined Query Installed Patches', value: 'combinedQueryInstalledPatches', description: 'Get installed patches information for hosts', action: 'Combined query installed patches' },
 			{ name: 'Delete Collections V1', value: 'deleteCollectionsV1', description: 'Cancel Collections', action: 'Delete collections v1' },
 			{ name: 'Delete Configs V1', value: 'deleteConfigsV1', description: 'Retires a custom configuration', action: 'Delete configs v1' },
@@ -41,21 +34,12 @@ export const defaultOperations: INodeProperties[] = [
 			{ name: 'V1 Status Get', value: 'v1StatusGet', description: 'Fetches host configs within provided host group', action: 'V1 status get' },
 			{ name: 'Validate Collection V1', value: 'validateCollectionV1', description: 'Validates a configuration collection', action: 'Validate collection v1' },
 			{ name: 'Validate Config V1', value: 'validateConfigV1', description: 'Validates a custom configuration', action: 'Validate config v1' },
-		],
-		default: 'getCollectionsV1',
-	},
+		
+	], 'getCollectionsV1'),
 ];
 
 export const defaultFields: INodeProperties[] = [
-	{
-		displayName: 'IDs',
-		name: 'ids',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['default'],
-				operation: [
-					'deleteCollectionsV1',
+	createIdsField('default', ['deleteCollectionsV1',
 					'deleteConfigsV1',
 					'getCollectionsV1',
 					'getCollectorsV1',
@@ -65,13 +49,7 @@ export const defaultFields: INodeProperties[] = [
 					'getCombinedTemplatesV1',
 					'getConfigsV1',
 					'getTemplatesV1',
-					'v1StatusGet',
-				],
-			},
-		},
-		default: '',
-		description: 'Comma-separated list of IDs',
-	},
+					'v1StatusGet',]),
 	{
 		displayName: 'Single ID',
 		name: 'idSingle',
@@ -86,15 +64,7 @@ export const defaultFields: INodeProperties[] = [
 		required: true,
 		description: 'Configuration ID to download',
 	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['default'],
-				operation: [
-					'postCollectionsV1',
+	createBodyJsonField('default', ['postCollectionsV1',
 					'postCollectorsV1',
 					'postConfigsV1',
 					'postDeployV1',
@@ -102,23 +72,8 @@ export const defaultFields: INodeProperties[] = [
 					'putConfigsV1',
 					'v1HostConfigsPost',
 					'validateCollectionV1',
-					'validateConfigV1',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['default'],
-				operation: [
-					'combinedQueryInstalledPatches',
+					'validateConfigV1',]),
+	...createStandardPaginationFields('default', ['combinedQueryInstalledPatches',
 					'getCollectionCountsByV1',
 					'getCombinedCollectionsV1',
 					'getCombinedCollectorsV1',
@@ -127,88 +82,5 @@ export const defaultFields: INodeProperties[] = [
 					'searchCollectionsV1',
 					'searchCollectorsV1',
 					'searchConfigsV1',
-					'searchTemplatesV1',
-				],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['default'],
-				operation: [
-					'combinedQueryInstalledPatches',
-					'getCollectionCountsByV1',
-					'getCombinedCollectionsV1',
-					'getCombinedCollectorsV1',
-					'getCombinedConfigsV1',
-					'getCombinedTemplatesV1',
-					'searchCollectionsV1',
-					'searchCollectorsV1',
-					'searchConfigsV1',
-					'searchTemplatesV1',
-				],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['default'],
-				operation: [
-					'getCollectionCountsByV1',
-					'getCombinedCollectionsV1',
-					'getCombinedCollectorsV1',
-					'getCombinedConfigsV1',
-					'getCombinedTemplatesV1',
-					'searchCollectionsV1',
-					'searchCollectorsV1',
-					'searchConfigsV1',
-					'searchTemplatesV1',
-				],
-			},
-		},
-		default: '',
-		description: 'Pagination token or offset',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['default'],
-				operation: [
-					'combinedQueryInstalledPatches',
-					'getCollectionCountsByV1',
-					'getCollectionsV1',
-					'getCollectorsV1',
-					'getCombinedCollectionsV1',
-					'getCombinedCollectorsV1',
-					'getCombinedConfigsV1',
-					'getCombinedTemplatesV1',
-					'searchCollectionsV1',
-					'searchCollectorsV1',
-					'searchConfigsV1',
-					'searchTemplatesV1',
-				],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+					'searchTemplatesV1',]),
 ];
