@@ -99,6 +99,6 @@ export async function executeCloudGoogleCloudRegistration(
 		case 'cloudRegistrationGcpTriggerHealthCheck': return await handleCloudRegistrationGcpTriggerHealthCheck(this, index, falconClient);
 		case 'cloudRegistrationGcpUpdateRegistration': return await handleCloudRegistrationGcpUpdateRegistration(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Cloud Google Cloud Registration.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Cloud Google Cloud Registration.`);
 	}
 }

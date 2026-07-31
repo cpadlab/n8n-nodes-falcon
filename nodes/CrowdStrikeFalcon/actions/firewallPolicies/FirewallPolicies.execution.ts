@@ -129,6 +129,6 @@ export async function executeFirewallPolicies(
 		case 'setFirewallPoliciesPrecedence': return await handleSetFirewallPoliciesPrecedence(this, index, falconClient);
 		case 'updateFirewallPolicies': return await handleUpdateFirewallPolicies(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Firewall Policies.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Firewall Policies.`);
 	}
 }

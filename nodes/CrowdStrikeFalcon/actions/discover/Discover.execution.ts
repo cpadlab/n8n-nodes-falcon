@@ -126,6 +126,6 @@ export async function executeDiscover(
 		case 'queryHosts': return await handleQueryHosts(this, index, falconClient);
 		case 'queryLogins': return await handleQueryLogins(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Discover.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Discover.`);
 	}
 }

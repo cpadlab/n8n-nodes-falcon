@@ -77,6 +77,6 @@ export async function executeQuarantine(
 		case 'updateQfByQuery': return await handleUpdateQfByQuery(this, index, falconClient);
 		case 'updateQuarantinedDetectsByIds': return await handleUpdateQuarantinedDetectsByIds(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Quarantine.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Quarantine.`);
 	}
 }

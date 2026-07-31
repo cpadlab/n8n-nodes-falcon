@@ -243,6 +243,6 @@ export async function executeWorkflows(
 		case 'workflowTriggersCombined': return await handleWorkflowTriggersCombined(this, index, falconClient);
 		case 'workflowUpdateHumanInputV1': return await handleWorkflowUpdateHumanInputV1(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Workflows.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Workflows.`);
 	}
 }

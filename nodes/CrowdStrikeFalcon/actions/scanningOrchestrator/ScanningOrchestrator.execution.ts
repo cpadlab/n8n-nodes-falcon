@@ -106,6 +106,6 @@ export async function executeScanningOrchestrator(
 		case 'triggerScanBySchedule': return await handleTriggerScanBySchedule(this, index, falconClient);
 		case 'updateSchedules': return await handleUpdateSchedules(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Scanning Orchestrator.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Scanning Orchestrator.`);
 	}
 }

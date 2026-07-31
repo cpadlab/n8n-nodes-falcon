@@ -333,6 +333,6 @@ export async function executeIntel(
 		case 'queryMitreAttacksForMalware': return await handleQueryMitreAttacksForMalware(this, index, falconClient);
 		case 'queryVulnerabilities': return await handleQueryVulnerabilities(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Intel.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Intel.`);
 	}
 }

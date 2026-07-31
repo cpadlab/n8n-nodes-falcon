@@ -138,6 +138,6 @@ export async function executeContentUpdatePolicies(
 		case 'setContentUpdatePoliciesPrecedence': return await handleSetContentUpdatePoliciesPrecedence(this, index, falconClient);
 		case 'updateContentUpdatePolicies': return await handleUpdateContentUpdatePolicies(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Content Update Policies.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Content Update Policies.`);
 	}
 }

@@ -79,6 +79,6 @@ export async function executeContainerDetections(
 		case 'readDetectionsCountByType': return await handleReadDetectionsCountByType(this, index, falconClient);
 		case 'searchDetections': return await handleSearchDetections(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Container Detections.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Container Detections.`);
 	}
 }

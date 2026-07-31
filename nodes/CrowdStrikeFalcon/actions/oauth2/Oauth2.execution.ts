@@ -40,6 +40,6 @@ export async function executeOauth2(
 		case 'oauth2AccessToken': return await handleOauth2AccessToken(this, index, falconClient);
 		case 'oauth2RevokeToken': return await handleOauth2RevokeToken(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for OAuth2.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for OAuth2.`);
 	}
 }

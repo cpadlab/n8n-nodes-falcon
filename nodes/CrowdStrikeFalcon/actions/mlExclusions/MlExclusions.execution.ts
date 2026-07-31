@@ -163,6 +163,6 @@ export async function executeMlExclusions(
 		case 'queryMLExclusionsV1': return await handleQueryMLExclusionsV1(this, index, falconClient);
 		case 'updateMLExclusionsV1': return await handleUpdateMLExclusionsV1(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for ML Exclusions.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for ML Exclusions.`);
 	}
 }

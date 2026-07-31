@@ -86,6 +86,6 @@ export async function executeIncidents(
 		case 'queryBehaviors': return await handleQueryBehaviors(this, index, falconClient);
 		case 'queryIncidents': return await handleQueryIncidents(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Incidents.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Incidents.`);
 	}
 }

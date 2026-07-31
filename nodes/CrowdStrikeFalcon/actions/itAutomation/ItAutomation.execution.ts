@@ -455,6 +455,6 @@ export async function executeItAutomation(
 		case 'iTAutomationUpdateTaskGroup': return await handleITAutomationUpdateTaskGroup(this, index, falconClient);
 		case 'iTAutomationUpdateUserGroup': return await handleITAutomationUpdateUserGroup(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for IT Automation.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for IT Automation.`);
 	}
 }

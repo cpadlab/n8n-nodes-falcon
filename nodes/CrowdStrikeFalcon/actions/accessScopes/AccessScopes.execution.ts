@@ -62,6 +62,6 @@ export async function executeAccessScopes(
 			return await handleListAccessScopesExternal(this, index, falconClient);
 
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Access Scopes.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Access Scopes.`);
 	}
 }

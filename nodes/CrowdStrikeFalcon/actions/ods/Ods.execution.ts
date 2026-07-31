@@ -182,6 +182,6 @@ export async function executeOds(
 		case 'queryScheduledScans': return await handleQueryScheduledScans(this, index, falconClient);
 		case 'scheduleScan': return await handleScheduleScan(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for ODS.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for ODS.`);
 	}
 }

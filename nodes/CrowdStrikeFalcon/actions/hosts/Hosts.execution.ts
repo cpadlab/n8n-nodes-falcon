@@ -181,6 +181,6 @@ export async function executeHosts(
 		case 'queryHiddenDevices': return await handleQueryHiddenDevices(this, index, falconClient);
 		case 'updateDeviceTags': return await handleUpdateDeviceTags(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Hosts.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Hosts.`);
 	}
 }

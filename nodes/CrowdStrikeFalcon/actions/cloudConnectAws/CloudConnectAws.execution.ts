@@ -110,6 +110,6 @@ export async function executeCloudConnectAws(
 		case 'updateAWSAccounts': return await handleUpdateAWSAccounts(this, index, falconClient);
 		case 'verifyAWSAccountAccess': return await handleVerifyAWSAccountAccess(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Cloud Connect AWS.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Cloud Connect AWS.`);
 	}
 }

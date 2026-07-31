@@ -50,6 +50,6 @@ export async function executeUnidentifiedContainers(
 		case 'countByDateRange': return await handleCountByDateRange(this, index, falconClient);
 		case 'search': return await handleSearch(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Unidentified Containers.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Unidentified Containers.`);
 	}
 }

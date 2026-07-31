@@ -134,6 +134,6 @@ export async function executeContainerVulnerabilities(
 		case 'readVulnerabilityCountByCVSSScore': return await handleReadVulnerabilityCountByCVSSScore(this, index, falconClient);
 		case 'readVulnerabilityCountBySeverity': return await handleReadVulnerabilityCountBySeverity(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Container Vulnerabilities.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Container Vulnerabilities.`);
 	}
 }

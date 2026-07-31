@@ -120,6 +120,6 @@ export async function executeImageAssessmentPolicies(
 		case 'updatePolicyGroups': return await handleUpdatePolicyGroups(this, index, falconClient);
 		case 'updatePolicyPrecedence': return await handleUpdatePolicyPrecedence(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Image Assessment Policies.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Image Assessment Policies.`);
 	}
 }

@@ -30,6 +30,6 @@ export async function executeServerlessVulnerabilities(
 	switch (operation) {
 		case 'getCombinedVulnerabilitiesSARIF': return await handleGetCombinedVulnerabilitiesSARIF(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Serverless Vulnerabilities.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Serverless Vulnerabilities.`);
 	}
 }

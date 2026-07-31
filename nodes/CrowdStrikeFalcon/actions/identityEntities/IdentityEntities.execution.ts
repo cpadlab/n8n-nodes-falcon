@@ -48,6 +48,6 @@ export async function executeIdentityEntities(
 		case 'getSensorDetails': return await handleGetSensorDetails(this, index, falconClient);
 		case 'querySensorsByFilter': return await handleQuerySensorsByFilter(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Identity Entities.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Identity Entities.`);
 	}
 }

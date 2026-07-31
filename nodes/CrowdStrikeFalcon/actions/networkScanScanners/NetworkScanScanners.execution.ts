@@ -63,6 +63,6 @@ export async function executeNetworkScanScanners(
 		case 'queryScanners': return await handleQueryScanners(this, index, falconClient);
 		case 'updateScanners': return await handleUpdateScanners(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Network Scan Scanners.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Network Scan Scanners.`);
 	}
 }

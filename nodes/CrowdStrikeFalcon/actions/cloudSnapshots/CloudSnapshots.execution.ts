@@ -76,6 +76,6 @@ export async function executeCloudSnapshots(
 		case 'readDeploymentsEntities': return await handleReadDeploymentsEntities(this, index, falconClient);
 		case 'register': return await handleRegister(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Cloud Snapshots.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Cloud Snapshots.`);
 	}
 }

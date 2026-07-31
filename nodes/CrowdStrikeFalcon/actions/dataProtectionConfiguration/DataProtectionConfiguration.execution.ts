@@ -490,6 +490,6 @@ export async function executeDataProtectionConfiguration(
 		case 'queriesSensitivityLabelGetV2': return await handleQueriesSensitivityLabelGetV2(this, index, falconClient);
 		case 'queriesWebLocationGetV2': return await handleQueriesWebLocationGetV2(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Data Protection Configuration.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Data Protection Configuration.`);
 	}
 }

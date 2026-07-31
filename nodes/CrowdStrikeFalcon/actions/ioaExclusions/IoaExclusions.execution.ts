@@ -196,6 +196,6 @@ export async function executeIoaExclusions(
 		case 'ssIoaExclusionsUpdateV2': return await handleSsIoaExclusionsUpdateV2(this, index, falconClient);
 		case 'updateIOAExclusionsV1': return await handleUpdateIOAExclusionsV1(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for IOA Exclusions.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for IOA Exclusions.`);
 	}
 }

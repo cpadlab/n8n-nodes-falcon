@@ -64,6 +64,6 @@ export async function executeIocs(
 		case 'entitiesProcesses': return await handleEntitiesProcesses(this, index, falconClient);
 		case 'processesRanOn': return await handleProcessesRanOn(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for IOCs.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for IOCs.`);
 	}
 }

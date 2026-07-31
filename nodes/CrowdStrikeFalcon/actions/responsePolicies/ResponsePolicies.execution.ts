@@ -126,6 +126,6 @@ export async function executeResponsePolicies(
 		case 'setRTResponsePoliciesPrecedence': return await handleSetRTResponsePoliciesPrecedence(this, index, falconClient);
 		case 'updateRTResponsePolicies': return await handleUpdateRTResponsePolicies(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Response Policies.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Response Policies.`);
 	}
 }

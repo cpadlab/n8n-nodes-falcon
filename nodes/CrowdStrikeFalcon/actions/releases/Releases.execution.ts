@@ -31,6 +31,6 @@ export async function executeReleases(
 	switch (operation) {
 		case 'combinedReleasesV1Mixin0': return await handleCombinedReleasesV1Mixin0(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Releases.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Releases.`);
 	}
 }

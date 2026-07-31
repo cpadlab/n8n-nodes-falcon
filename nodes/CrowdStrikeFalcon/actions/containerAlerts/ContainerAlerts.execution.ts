@@ -45,6 +45,6 @@ export async function executeContainerAlerts(
 		case 'readContainerAlertsCountBySeverity': return await handleReadContainerAlertsCountBySeverity(this, index, falconClient);
 		case 'searchAndReadContainerAlerts': return await handleSearchAndReadContainerAlerts(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Container Alerts.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Container Alerts.`);
 	}
 }

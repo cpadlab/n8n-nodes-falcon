@@ -55,6 +55,6 @@ export async function executeServerlessExports(
 		case 'queryExportJobsMixin0': return await handleQueryExportJobsMixin0(this, index, falconClient);
 		case 'readExportJobsMixin0': return await handleReadExportJobsMixin0(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Serverless Exports.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Serverless Exports.`);
 	}
 }

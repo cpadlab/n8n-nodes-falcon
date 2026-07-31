@@ -35,6 +35,6 @@ export async function executeConfigurationAssessment(
 		case 'getCombinedAssessmentsQuery': return await handleGetCombinedAssessmentsQuery(this, index, falconClient);
 		case 'getRuleDetails': return await handleGetRuleDetails(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Configuration Assessment.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Configuration Assessment.`);
 	}
 }

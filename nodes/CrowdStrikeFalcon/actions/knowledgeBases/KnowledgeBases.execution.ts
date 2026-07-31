@@ -85,6 +85,6 @@ export async function executeKnowledgeBases(
 		case 'entitiesKnowledgeBasesV1': return await handleEntitiesKnowledgeBasesV1(this, index, falconClient);
 		case 'queriesKnowledgeBasesV1': return await handleQueriesKnowledgeBasesV1(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Knowledge Bases.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Knowledge Bases.`);
 	}
 }

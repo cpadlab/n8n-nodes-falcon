@@ -152,7 +152,7 @@ export async function executeApiClients(
 		case 'resetAPIClientSecret':
 			return await handleResetAPIClientSecret(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for API Clients.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for API Clients.`);
 	}
 	
 }

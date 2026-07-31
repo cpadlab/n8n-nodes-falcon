@@ -141,6 +141,6 @@ export async function executeDeviceControlPolicies(
 		case 'updateDefaultDeviceControlPolicies': return await handleUpdateDefaultDeviceControlPolicies(this, index, falconClient);
 		case 'updateDeviceControlPolicies': return await handleUpdateDeviceControlPolicies(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Device Control Policies.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Device Control Policies.`);
 	}
 }

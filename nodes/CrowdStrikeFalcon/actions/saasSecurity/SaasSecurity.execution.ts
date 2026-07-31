@@ -243,6 +243,6 @@ export async function executeSaasSecurity(
 		case 'integrationBuilderResetV3': return await handleIntegrationBuilderResetV3(this, index, falconClient);
 		case 'integrationBuilderUploadV3': return await handleIntegrationBuilderUploadV3(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for SaaS Security.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for SaaS Security.`);
 	}
 }

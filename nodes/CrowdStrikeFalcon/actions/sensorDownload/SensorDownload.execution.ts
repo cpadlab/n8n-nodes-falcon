@@ -161,6 +161,6 @@ export async function executeSensorDownload(
 		case 'getSensorInstallersEntitiesV2': return await handleGetSensorInstallersEntitiesV2(this, index, falconClient);
 		case 'getSensorInstallersEntitiesV3': return await handleGetSensorInstallersEntitiesV3(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Sensor Download.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Sensor Download.`);
 	}
 }

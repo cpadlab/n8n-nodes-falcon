@@ -218,6 +218,6 @@ export async function executeCustomIoa(
 		case 'updateRulesV2': return await handleUpdateRulesV2(this, index, falconClient);
 		case 'validate': return await handleValidate(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Custom IOA.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Custom IOA.`);
 	}
 }

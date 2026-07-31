@@ -324,6 +324,6 @@ export async function executeDefault(
 		case 'validateCollectionV1': return await handleValidateCollectionV1(this, index, falconClient);
 		case 'validateConfigV1': return await handleValidateConfigV1(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Default.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Default.`);
 	}
 }

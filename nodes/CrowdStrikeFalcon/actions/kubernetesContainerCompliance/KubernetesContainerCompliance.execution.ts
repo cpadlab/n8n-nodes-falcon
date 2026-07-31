@@ -126,6 +126,6 @@ export async function executeKubernetesContainerCompliance(
 		case 'combinedNodesFindings': return await handleCombinedNodesFindings(this, index, falconClient);
 		case 'getRulesMetadataByID': return await handleGetRulesMetadataByID(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Kubernetes Container Compliance.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Kubernetes Container Compliance.`);
 	}
 }

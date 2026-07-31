@@ -698,6 +698,6 @@ export async function executeKubernetesProtection(
 		case 'updateAWSAccount': return await handleUpdateAWSAccount(this, index, falconClient);
 		case 'vulnerableContainerImageCount': return await handleVulnerableContainerImageCount(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Kubernetes Protection.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Kubernetes Protection.`);
 	}
 }

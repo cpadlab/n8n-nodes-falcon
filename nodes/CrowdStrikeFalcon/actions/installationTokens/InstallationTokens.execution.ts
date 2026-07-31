@@ -97,6 +97,6 @@ export async function executeInstallationTokens(
 		case 'tokensRead': return await handleTokensRead(this, index, falconClient);
 		case 'tokensUpdate': return await handleTokensUpdate(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Installation Tokens.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Installation Tokens.`);
 	}
 }

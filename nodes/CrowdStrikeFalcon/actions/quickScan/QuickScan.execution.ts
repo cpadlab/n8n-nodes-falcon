@@ -57,6 +57,6 @@ export async function executeQuickScan(
 		case 'querySubmissionsMixin0': return await handleQuerySubmissionsMixin0(this, index, falconClient);
 		case 'scanSamples': return await handleScanSamples(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Quick Scan.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Quick Scan.`);
 	}
 }

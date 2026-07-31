@@ -83,6 +83,6 @@ export async function executeNetworkScanTemplates(
 		case 'queryTemplates': return await handleQueryTemplates(this, index, falconClient);
 		case 'updateTemplates': return await handleUpdateTemplates(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Network Scan Templates.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Network Scan Templates.`);
 	}
 }

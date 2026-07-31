@@ -30,6 +30,6 @@ export async function executeRuntimeDetections(
 	switch (operation) {
 		case 'getRuntimeDetectionsCombinedV2': return await handleGetRuntimeDetectionsCombinedV2(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Runtime Detections.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Runtime Detections.`);
 	}
 }

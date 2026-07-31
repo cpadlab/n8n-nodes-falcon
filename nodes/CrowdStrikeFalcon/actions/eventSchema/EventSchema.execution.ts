@@ -52,6 +52,6 @@ export async function executeEventSchema(
 		case 'fdrschemaEntitiesEventGet': return await handleFdrschemaEntitiesEventGet(this, index, falconClient);
 		case 'fdrschemaQueriesEventGet': return await handleFdrschemaQueriesEventGet(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Event Schema.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Event Schema.`);
 	}
 }

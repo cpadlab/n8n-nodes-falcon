@@ -1,4 +1,4 @@
-import type { IExecuteFunctions } from 'n8n-workflow';
+import { NodeOperationError, type IExecuteFunctions } from 'n8n-workflow';
 
 /**
  * Safely extracts a string parameter from the n8n execution context.

@@ -342,6 +342,6 @@ export async function executeCaseManagement(
 		case 'queriesTemplateSnapshotsGetV1': return await handleQueriesTemplateSnapshotsGetV1(this, index, falconClient);
 		case 'queriesTemplatesGetV1': return await handleQueriesTemplatesGetV1(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Case Management.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Case Management.`);
 	}
 }

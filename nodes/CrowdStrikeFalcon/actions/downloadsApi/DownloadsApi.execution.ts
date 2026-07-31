@@ -60,6 +60,6 @@ export async function executeDownloadsApi(
 		case 'fetchFilesDownloadInfo': return await handleFetchFilesDownloadInfo(this, index, falconClient);
 		case 'fetchFilesDownloadInfoV2': return await handleFetchFilesDownloadInfoV2(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Downloads API.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Downloads API.`);
 	}
 }

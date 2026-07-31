@@ -90,6 +90,6 @@ export async function executeKnowledgeBaseFiles(
 		case 'entitiesKnowledgeBaseFilesV1': return await handleEntitiesKnowledgeBaseFilesV1(this, index, falconClient);
 		case 'queriesKnowledgeBaseFilesV1': return await handleQueriesKnowledgeBaseFilesV1(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Knowledge Base Files.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Knowledge Base Files.`);
 	}
 }

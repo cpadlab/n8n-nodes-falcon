@@ -40,6 +40,6 @@ export async function executeIntelligenceIndicatorGraph(
 		case 'lookupIndicators': return await handleLookupIndicators(this, index, falconClient);
 		case 'searchIndicators': return await handleSearchIndicators(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Intelligence Indicator Graph.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Intelligence Indicator Graph.`);
 	}
 }

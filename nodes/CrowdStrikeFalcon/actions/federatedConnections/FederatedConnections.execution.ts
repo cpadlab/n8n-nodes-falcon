@@ -46,6 +46,6 @@ export async function executeFederatedConnections(
 		case 'patchFederatedConnectionsConfig': return await handlePatchFederatedConnectionsConfig(this, index, falconClient);
 		case 'postFederatedConnectionsConfig': return await handlePostFederatedConnectionsConfig(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Federated Connections.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Federated Connections.`);
 	}
 }

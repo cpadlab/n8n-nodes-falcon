@@ -191,6 +191,6 @@ export async function executeCloudAzureRegistration(
 		case 'cloudRegistrationAzureUpdateSuppressions': return await handleCloudRegistrationAzureUpdateSuppressions(this, index, falconClient);
 		case 'cloudRegistrationAzureValidateRegistration': return await handleCloudRegistrationAzureValidateRegistration(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Cloud Azure Registration.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Cloud Azure Registration.`);
 	}
 }

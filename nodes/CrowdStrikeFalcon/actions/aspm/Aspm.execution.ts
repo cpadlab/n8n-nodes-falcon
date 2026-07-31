@@ -547,6 +547,6 @@ export async function executeAspm(
 		case 'upsertBusinessApplications': return await handleUpsertBusinessApplications(this, index, falconClient);
 		case 'upsertTags': return await handleUpsertTags(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for ASPM.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for ASPM.`);
 	}
 }

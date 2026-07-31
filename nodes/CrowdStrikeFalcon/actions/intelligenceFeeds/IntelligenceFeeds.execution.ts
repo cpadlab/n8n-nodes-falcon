@@ -48,6 +48,6 @@ export async function executeIntelligenceFeeds(
 		case 'listFeedTypes': return await handleListFeedTypes(this, index, falconClient);
 		case 'queryFeedArchives': return await handleQueryFeedArchives(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Intelligence Feeds.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Intelligence Feeds.`);
 	}
 }

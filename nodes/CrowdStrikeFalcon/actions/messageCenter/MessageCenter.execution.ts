@@ -111,6 +111,6 @@ export async function executeMessageCenter(
 		case 'queryActivityByCaseID': return await handleQueryActivityByCaseID(this, index, falconClient);
 		case 'queryCasesIdsByFilter': return await handleQueryCasesIdsByFilter(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Message Center.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Message Center.`);
 	}
 }

@@ -32,6 +32,6 @@ export async function executeDeliverySettings(
 		case 'getDeliverySettings': return await handleGetDeliverySettings(this, index, falconClient);
 		case 'postDeliverySettings': return await handlePostDeliverySettings(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Delivery Settings.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Delivery Settings.`);
 	}
 }

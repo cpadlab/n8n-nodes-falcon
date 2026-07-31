@@ -67,6 +67,6 @@ export async function executeIdentityProtection(
 		case 'apiPreemptProxyPostGraphql': return await handleApiPreemptProxyPostGraphql(this, index, falconClient);
 		case 'apiPreemptProxyPostPolicyRules': return await handleApiPreemptProxyPostPolicyRules(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Identity Protection.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Identity Protection.`);
 	}
 }

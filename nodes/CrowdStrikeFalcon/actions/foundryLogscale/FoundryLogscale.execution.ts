@@ -164,6 +164,6 @@ export async function executeFoundryLogscale(
 		case 'listViews': return await handleListViews(this, index, falconClient);
 		case 'populate': return await handlePopulate(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Foundry Logscale.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Foundry Logscale.`);
 	}
 }

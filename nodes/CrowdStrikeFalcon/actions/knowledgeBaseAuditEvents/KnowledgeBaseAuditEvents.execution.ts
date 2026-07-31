@@ -70,6 +70,6 @@ export async function executeKnowledgeBaseAuditEvents(
 		case 'entitiesKnowledgeBaseAuditEventsV1': return await handleEntitiesKnowledgeBaseAuditEventsV1(this, index, falconClient);
 		case 'queriesKnowledgeBaseAuditEventsV1': return await handleQueriesKnowledgeBaseAuditEventsV1(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Knowledge Base Audit Events.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Knowledge Base Audit Events.`);
 	}
 }

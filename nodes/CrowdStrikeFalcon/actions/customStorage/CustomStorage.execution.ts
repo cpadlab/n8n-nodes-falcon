@@ -193,6 +193,6 @@ export async function executeCustomStorage(
 		case 'search': return await handleSearch(this, index, falconClient);
 		case 'searchObjectsByVersion': return await handleSearchObjectsByVersion(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Custom Storage.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Custom Storage.`);
 	}
 }

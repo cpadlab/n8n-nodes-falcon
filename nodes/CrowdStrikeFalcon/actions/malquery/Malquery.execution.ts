@@ -99,6 +99,6 @@ export async function executeMalquery(
 		case 'postMalQueryFuzzySearchV1': return await handlePostMalQueryFuzzySearchV1(this, index, falconClient);
 		case 'postMalQueryHuntV1': return await handlePostMalQueryHuntV1(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Malquery.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Malquery.`);
 	}
 }

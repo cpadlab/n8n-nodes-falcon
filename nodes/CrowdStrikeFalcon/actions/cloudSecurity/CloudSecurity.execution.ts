@@ -93,6 +93,6 @@ export async function executeCloudSecurity(
 		case 'listCloudGroupsExternal': return await handleListCloudGroupsExternal(this, index, falconClient);
 		case 'updateCloudGroupExternal': return await handleUpdateCloudGroupExternal(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Cloud Security.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Cloud Security.`);
 	}
 }

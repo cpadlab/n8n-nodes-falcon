@@ -26,6 +26,6 @@ export async function executeMaintenanceToken(
 	switch (operation) {
 		case 'incrementUninstallToken': return await handleIncrementUninstallToken(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Maintenance Token.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Maintenance Token.`);
 	}
 }

@@ -103,6 +103,6 @@ export async function executeCloudAwsRegistration(
 		case 'cloudRegistrationAwsUpdateAccount': return await handleCloudRegistrationAwsUpdateAccount(this, index, falconClient);
 		case 'cloudRegistrationAwsValidateAccounts': return await handleCloudRegistrationAwsValidateAccounts(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Cloud AWS Registration.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Cloud AWS Registration.`);
 	}
 }

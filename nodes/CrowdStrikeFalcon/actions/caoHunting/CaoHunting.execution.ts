@@ -96,6 +96,6 @@ export async function executeCaoHunting(
 		case 'searchHuntingGuides': return await handleSearchHuntingGuides(this, index, falconClient);
 		case 'searchIntelligenceQueries': return await handleSearchIntelligenceQueries(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for CAO Hunting.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for CAO Hunting.`);
 	}
 }

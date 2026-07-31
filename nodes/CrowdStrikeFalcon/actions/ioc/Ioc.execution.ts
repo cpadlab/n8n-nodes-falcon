@@ -217,6 +217,6 @@ export async function executeIoc(
 		case 'platformQueryV1': return await handlePlatformQueryV1(this, index, falconClient);
 		case 'severityQueryV1': return await handleSeverityQueryV1(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for IOC.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for IOC.`);
 	}
 }

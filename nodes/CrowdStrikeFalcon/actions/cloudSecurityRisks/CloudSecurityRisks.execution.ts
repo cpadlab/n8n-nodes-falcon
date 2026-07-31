@@ -22,6 +22,6 @@ export async function executeCloudSecurityRisks(
 	switch (operation) {
 		case 'cloudSecurityTimelineRisksEnriched': return await handleCloudSecurityTimelineRisksEnriched(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Cloud Security Risks.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Cloud Security Risks.`);
 	}
 }

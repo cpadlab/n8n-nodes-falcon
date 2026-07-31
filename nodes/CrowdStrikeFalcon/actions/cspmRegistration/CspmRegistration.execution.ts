@@ -391,6 +391,6 @@ export async function executeCspmRegistration(
 		case 'updateCSPMScanSchedule': return await handleUpdateCSPMScanSchedule(this, index, falconClient);
 		case 'validateCSPMGCPServiceAccountExt': return await handleValidateCSPMGCPServiceAccountExt(this, index, falconClient);
 		default:
-			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for CSPM Registration.`);
+			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for CSPM Registration.`);
 	}
 }
