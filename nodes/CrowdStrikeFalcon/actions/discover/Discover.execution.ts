@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -125,6 +126,6 @@ export async function executeDiscover(
 		case 'queryHosts': return await handleQueryHosts(this, index, falconClient);
 		case 'queryLogins': return await handleQueryLogins(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Discover.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Discover.`);
 	}
 }

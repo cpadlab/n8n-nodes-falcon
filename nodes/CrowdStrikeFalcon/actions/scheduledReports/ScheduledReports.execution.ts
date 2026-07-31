@@ -49,6 +49,6 @@ export async function executeScheduledReports(
 		case 'query': return await handleQuery(this, index, falconClient);
 		case 'queryById': return await handleQueryById(this, index, falconClient);
 		default:
-			throw new NodeOperationError(c.getNode(), `Operation ${operation} is not supported for Scheduled Reports.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Scheduled Reports.`);
 	}
 }

@@ -65,6 +65,6 @@ export async function executeReleaseNotes(
 		case 'getEntityIDsByQueryPOSTV2': return await handleGetEntityIDsByQueryPOSTV2(this, index, falconClient);
 		case 'queryReleaseNotesV1': return await handleQueryReleaseNotesV1(this, index, falconClient);
 		default:
-			throw new NodeOperationError(c.getNode(), `Operation ${operation} is not supported for Release Notes.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Release Notes.`);
 	}
 }

@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -35,7 +36,7 @@ async function handleInvokePublishedAgentExternalV1(
 		try {
 			body = typeof rawJson === 'string' ? JSON.parse(rawJson) : rawJson;
 		} catch (e) {
-			throw new Error(`Invalid JSON in Body Payload: ${(e as Error).message}`);
+			throw new NodeOperationError(context.getNode(), `Invalid JSON in Body Payload: ${(e as Error).message}`);
 		}
 	}
 
@@ -60,7 +61,7 @@ export async function executeAgentInvocation(
 		case 'invokePublishedAgentExternalV1':
 			return await handleInvokePublishedAgentExternalV1(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Agent Invocation.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Agent Invocation.`);
 	}
 	
 }

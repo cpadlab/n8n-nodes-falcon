@@ -60,6 +60,6 @@ export async function executeReportExecutions(
 		case 'reportExecutionsQuery': return await handleReportExecutionsQuery(this, index, falconClient);
 		case 'reportExecutionsRetry': return await handleReportExecutionsRetry(this, index, falconClient);
 		default:
-			throw new NodeOperationError(c.getNode(), `Operation ${operation} is not supported for Report Executions.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Report Executions.`);
 	}
 }

@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -51,6 +52,6 @@ export async function executeEventSchema(
 		case 'fdrschemaEntitiesEventGet': return await handleFdrschemaEntitiesEventGet(this, index, falconClient);
 		case 'fdrschemaQueriesEventGet': return await handleFdrschemaQueriesEventGet(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Event Schema.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Event Schema.`);
 	}
 }

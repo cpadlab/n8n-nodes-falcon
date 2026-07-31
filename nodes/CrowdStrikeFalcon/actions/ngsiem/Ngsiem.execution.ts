@@ -608,6 +608,6 @@ export async function executeNgsiem(
 		case 'updateSavedQueryFromTemplate': return await handleUpdateSavedQueryFromTemplate(this, index, falconClient);
 		case 'uploadLookupV1': return await handleUploadLookupV1(this, index, falconClient);
 		default:
-			throw new NodeOperationError(c.getNode(), `Operation ${operation} is not supported for NGSIEM.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for NGSIEM.`);
 	}
 }

@@ -37,6 +37,6 @@ export async function executeNetworkScanGlobalConfigs(
 		case 'getGlobalConfigs': return await handleGetGlobalConfigs(this, index, falconClient);
 		case 'updateGlobalConfigs': return await handleUpdateGlobalConfigs(this, index, falconClient);
 		default:
-			throw new NodeOperationError(c.getNode(), `Operation ${operation} is not supported for Network Scan Global Configs.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Network Scan Global Configs.`);
 	}
 }

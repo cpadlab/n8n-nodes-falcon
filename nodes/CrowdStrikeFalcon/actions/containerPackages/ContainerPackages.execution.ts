@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -95,6 +96,6 @@ export async function executeContainerPackages(
 		case 'readPackagesCombinedV2': return await handleReadPackagesCombinedV2(this, index, falconClient);
 		case 'readPackagesCountByZeroDay': return await handleReadPackagesCountByZeroDay(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Container Packages.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Container Packages.`);
 	}
 }

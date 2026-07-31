@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -31,6 +32,6 @@ export async function executeCorrelationRulesAdmin(
 		case 'entitiesRulesOwnershipPutV1': return await handleEntitiesRulesOwnershipPutV1(this, index, falconClient);
 		case 'entitiesRulesOwnershipPutV2': return await handleEntitiesRulesOwnershipPutV2(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Correlation Rules Admin.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Correlation Rules Admin.`);
 	}
 }

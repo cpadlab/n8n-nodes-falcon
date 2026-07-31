@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -341,6 +342,6 @@ export async function executeCaseManagement(
 		case 'queriesTemplateSnapshotsGetV1': return await handleQueriesTemplateSnapshotsGetV1(this, index, falconClient);
 		case 'queriesTemplatesGetV1': return await handleQueriesTemplatesGetV1(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Case Management.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Case Management.`);
 	}
 }

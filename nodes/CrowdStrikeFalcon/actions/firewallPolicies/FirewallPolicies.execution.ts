@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -128,6 +129,6 @@ export async function executeFirewallPolicies(
 		case 'setFirewallPoliciesPrecedence': return await handleSetFirewallPoliciesPrecedence(this, index, falconClient);
 		case 'updateFirewallPolicies': return await handleUpdateFirewallPolicies(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Firewall Policies.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Firewall Policies.`);
 	}
 }

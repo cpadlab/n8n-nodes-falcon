@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -180,6 +181,6 @@ export async function executeHosts(
 		case 'queryHiddenDevices': return await handleQueryHiddenDevices(this, index, falconClient);
 		case 'updateDeviceTags': return await handleUpdateDeviceTags(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Hosts.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Hosts.`);
 	}
 }

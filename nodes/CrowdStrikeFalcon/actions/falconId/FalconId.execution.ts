@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -58,6 +59,6 @@ export async function executeFalconId(
 		case 'queryThirdPartyPasskeyRegistry': return await handleQueryThirdPartyPasskeyRegistry(this, index, falconClient);
 		case 'updateThirdPartyPasskeyRegistry': return await handleUpdateThirdPartyPasskeyRegistry(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Falcon ID.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Falcon ID.`);
 	}
 }

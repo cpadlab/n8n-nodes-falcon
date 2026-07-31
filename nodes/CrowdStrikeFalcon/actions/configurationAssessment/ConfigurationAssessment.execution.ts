@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -34,6 +35,6 @@ export async function executeConfigurationAssessment(
 		case 'getCombinedAssessmentsQuery': return await handleGetCombinedAssessmentsQuery(this, index, falconClient);
 		case 'getRuleDetails': return await handleGetRuleDetails(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Configuration Assessment.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Configuration Assessment.`);
 	}
 }

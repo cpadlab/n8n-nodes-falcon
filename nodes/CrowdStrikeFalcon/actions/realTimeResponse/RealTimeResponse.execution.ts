@@ -245,6 +245,6 @@ export async function executeRealTimeResponse(
 		case 'rTRListSessions': return await handleRTRListSessions(this, index, falconClient);
 		case 'rTRPulseSession': return await handleRTRPulseSession(this, index, falconClient);
 		default:
-			throw new NodeOperationError(c.getNode(), `Operation ${operation} is not supported for Real-Time Response.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Real-Time Response.`);
 	}
 }

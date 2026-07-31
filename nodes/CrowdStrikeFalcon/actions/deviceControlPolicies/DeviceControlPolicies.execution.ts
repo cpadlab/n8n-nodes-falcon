@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -140,6 +141,6 @@ export async function executeDeviceControlPolicies(
 		case 'updateDefaultDeviceControlPolicies': return await handleUpdateDefaultDeviceControlPolicies(this, index, falconClient);
 		case 'updateDeviceControlPolicies': return await handleUpdateDeviceControlPolicies(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Device Control Policies.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Device Control Policies.`);
 	}
 }

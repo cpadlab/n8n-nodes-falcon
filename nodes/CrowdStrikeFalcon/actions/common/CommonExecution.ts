@@ -26,7 +26,7 @@ export function parseJsonParam<T = any>(context: IExecuteFunctions, index: numbe
 	try {
 		return JSON.parse(String(val)) as T;
 	} catch (e) {
-		throw new Error(`Invalid JSON in parameter '${paramName}': ${(e as Error).message}`);
+		throw new NodeOperationError(context.getNode(), `Invalid JSON in parameter '${paramName}': ${(e as Error).message}`);
 	}
 }
 

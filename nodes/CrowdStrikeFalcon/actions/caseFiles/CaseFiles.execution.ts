@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -156,6 +157,6 @@ export async function executeCaseFiles(
 		case 'entitiesRetrieveRtrRecentFilePostV1': return await handleEntitiesRetrieveRtrRecentFilePostV1(this, index, falconClient);
 		case 'queriesFileDetailsGetV1': return await handleQueriesFileDetailsGetV1(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Case Files.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Case Files.`);
 	}
 }

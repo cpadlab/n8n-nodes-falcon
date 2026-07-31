@@ -32,6 +32,6 @@ export async function executeSpotlightSupportedEvaluation(
 	switch (operation) {
 		case 'combinedSupportedEvaluationExt': return await handleCombinedSupportedEvaluationExt(this, index, falconClient);
 		default:
-			throw new NodeOperationError(c.getNode(), `Operation ${operation} is not supported for Spotlight Supported Evaluation.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Spotlight Supported Evaluation.`);
 	}
 }

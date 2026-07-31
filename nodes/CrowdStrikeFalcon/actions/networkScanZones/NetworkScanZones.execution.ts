@@ -97,6 +97,6 @@ export async function executeNetworkScanZones(
 		case 'queryZones': return await handleQueryZones(this, index, falconClient);
 		case 'updateZones': return await handleUpdateZones(this, index, falconClient);
 		default:
-			throw new NodeOperationError(c.getNode(), `Operation ${operation} is not supported for Network Scan Zones.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Network Scan Zones.`);
 	}
 }

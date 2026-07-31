@@ -28,6 +28,6 @@ export async function executeNetworkScanScanRunReports(
 	switch (operation) {
 		case 'getScanRunReports': return await handleGetScanRunReports(this, index, falconClient);
 		default:
-			throw new NodeOperationError(c.getNode(), `Operation ${operation} is not supported for Network Scan Scan Run Reports.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Network Scan Scan Run Reports.`);
 	}
 }

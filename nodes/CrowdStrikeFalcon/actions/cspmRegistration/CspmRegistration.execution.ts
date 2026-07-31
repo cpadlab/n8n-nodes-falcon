@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -390,6 +391,6 @@ export async function executeCspmRegistration(
 		case 'updateCSPMScanSchedule': return await handleUpdateCSPMScanSchedule(this, index, falconClient);
 		case 'validateCSPMGCPServiceAccountExt': return await handleValidateCSPMGCPServiceAccountExt(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for CSPM Registration.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for CSPM Registration.`);
 	}
 }

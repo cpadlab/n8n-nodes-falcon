@@ -52,6 +52,6 @@ export async function executeSpotlightEvaluationLogic(
 		case 'getEvaluationLogic': return await handleGetEvaluationLogic(this, index, falconClient);
 		case 'queryEvaluationLogic': return await handleQueryEvaluationLogic(this, index, falconClient);
 		default:
-			throw new NodeOperationError(c.getNode(), `Operation ${operation} is not supported for Spotlight Evaluation Logic.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Spotlight Evaluation Logic.`);
 	}
 }

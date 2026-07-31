@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -92,6 +93,6 @@ export async function executeCloudSecurity(
 		case 'listCloudGroupsExternal': return await handleListCloudGroupsExternal(this, index, falconClient);
 		case 'updateCloudGroupExternal': return await handleUpdateCloudGroupExternal(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Cloud Security.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Cloud Security.`);
 	}
 }

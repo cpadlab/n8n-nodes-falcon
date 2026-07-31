@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -118,6 +119,6 @@ export async function executeHostGroup(
 		case 'queryHostGroups': return await handleQueryHostGroups(this, index, falconClient);
 		case 'updateHostGroups': return await handleUpdateHostGroups(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Host Group.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Host Group.`);
 	}
 }

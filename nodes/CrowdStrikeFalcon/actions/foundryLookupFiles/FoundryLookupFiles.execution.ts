@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -41,6 +42,6 @@ export async function executeFoundryLookupFiles(
 		case 'createFileV1': return await handleCreateFileV1(this, index, falconClient);
 		case 'updateFileV1': return await handleUpdateFileV1(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Foundry Lookup Files.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Foundry Lookup Files.`);
 	}
 }

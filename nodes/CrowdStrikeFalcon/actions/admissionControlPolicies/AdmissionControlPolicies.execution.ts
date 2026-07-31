@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -10,7 +11,7 @@ function parseBodyJson(context: IExecuteFunctions, index: number, paramName = 'b
 	try {
 		return typeof rawJson === 'string' ? JSON.parse(rawJson) : rawJson;
 	} catch (e) {
-		throw new Error(`Invalid JSON in ${paramName}: ${(e as Error).message}`);
+		throw new NodeOperationError(context.getNode(), `Invalid JSON in ${paramName}: ${(e as Error).message}`);
 	}
 }
 
@@ -307,7 +308,7 @@ export async function executeAdmissionControlPolicies(
 		case 'admissionControlRemoveRuleGroupCustomRule':
 			return await handleAdmissionControlRemoveRuleGroupCustomRule(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Admission Control Policies.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Admission Control Policies.`);
 	}
 	
 }

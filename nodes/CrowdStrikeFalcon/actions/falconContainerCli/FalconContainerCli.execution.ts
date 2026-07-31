@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -26,6 +27,6 @@ export async function executeFalconContainerCli(
 	switch (operation) {
 		case 'readImageVulnerabilities': return await handleReadImageVulnerabilities(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Falcon Container CLI.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Falcon Container CLI.`);
 	}
 }

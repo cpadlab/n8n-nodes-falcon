@@ -129,6 +129,6 @@ export async function executeSampleUploads(
 		case 'getSampleV3': return await handleGetSampleV3(this, index, falconClient);
 		case 'uploadSampleV3': return await handleUploadSampleV3(this, index, falconClient);
 		default:
-			throw new NodeOperationError(c.getNode(), `Operation ${operation} is not supported for Sample Uploads.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Sample Uploads.`);
 	}
 }

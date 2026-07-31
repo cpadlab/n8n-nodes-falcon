@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -78,6 +79,6 @@ export async function executeDriftIndicators(
 		case 'searchAndReadDriftIndicatorEntities': return await handleSearchAndReadDriftIndicatorEntities(this, index, falconClient);
 		case 'searchDriftIndicators': return await handleSearchDriftIndicators(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Drift Indicators.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Drift Indicators.`);
 	}
 }

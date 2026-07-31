@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -489,6 +490,6 @@ export async function executeDataProtectionConfiguration(
 		case 'queriesSensitivityLabelGetV2': return await handleQueriesSensitivityLabelGetV2(this, index, falconClient);
 		case 'queriesWebLocationGetV2': return await handleQueriesWebLocationGetV2(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Data Protection Configuration.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Data Protection Configuration.`);
 	}
 }

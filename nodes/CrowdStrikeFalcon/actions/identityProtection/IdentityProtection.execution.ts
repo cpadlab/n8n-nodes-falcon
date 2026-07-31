@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -66,6 +67,6 @@ export async function executeIdentityProtection(
 		case 'apiPreemptProxyPostGraphql': return await handleApiPreemptProxyPostGraphql(this, index, falconClient);
 		case 'apiPreemptProxyPostPolicyRules': return await handleApiPreemptProxyPostPolicyRules(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Identity Protection.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Identity Protection.`);
 	}
 }

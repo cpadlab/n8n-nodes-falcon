@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -82,6 +83,6 @@ export async function executeCloudOciRegistration(
 		case 'cloudSecurityRegistrationOciUpdateAccount': return await handleCloudSecurityRegistrationOciUpdateAccount(this, index, falconClient);
 		case 'cloudSecurityRegistrationOciValidateTenancy': return await handleCloudSecurityRegistrationOciValidateTenancy(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Cloud OCI Registration.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Cloud OCI Registration.`);
 	}
 }

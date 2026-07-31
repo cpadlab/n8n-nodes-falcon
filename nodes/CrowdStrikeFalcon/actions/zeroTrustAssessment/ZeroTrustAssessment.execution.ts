@@ -48,6 +48,6 @@ export async function executeZeroTrustAssessment(
 		case 'getAssessmentsByScoreV1': return await handleGetAssessmentsByScoreV1(this, index, falconClient);
 		case 'getAuditV1': return await handleGetAuditV1(this, index, falconClient);
 		default:
-			throw new NodeOperationError(c.getNode(), `Operation ${operation} is not supported for Zero Trust Assessment.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Zero Trust Assessment.`);
 	}
 }

@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -163,6 +164,6 @@ export async function executeFoundryLogscale(
 		case 'listViews': return await handleListViews(this, index, falconClient);
 		case 'populate': return await handlePopulate(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Foundry Logscale.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Foundry Logscale.`);
 	}
 }

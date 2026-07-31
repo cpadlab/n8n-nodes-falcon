@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -332,6 +333,6 @@ export async function executeIntel(
 		case 'queryMitreAttacksForMalware': return await handleQueryMitreAttacksForMalware(this, index, falconClient);
 		case 'queryVulnerabilities': return await handleQueryVulnerabilities(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Intel.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Intel.`);
 	}
 }

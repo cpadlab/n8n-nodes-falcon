@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -59,6 +60,6 @@ export async function executeCloudSecurityDetections(
 		case 'cspmEvaluationsIomEntitiesPost': return await handleCspmEvaluationsIomEntitiesPost(this, index, falconClient);
 		case 'cspmEvaluationsIomQueries': return await handleCspmEvaluationsIomQueries(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Cloud Security Detections.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Cloud Security Detections.`);
 	}
 }

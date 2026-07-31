@@ -76,6 +76,6 @@ export async function executeQuickScanPro(
 		case 'queryScanResults': return await handleQueryScanResults(this, index, falconClient);
 		case 'uploadFileQuickScanPro': return await handleUploadFileQuickScanPro(this, index, falconClient);
 		default:
-			throw new NodeOperationError(c.getNode(), `Operation ${operation} is not supported for Quick Scan Pro.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Quick Scan Pro.`);
 	}
 }

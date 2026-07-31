@@ -279,6 +279,6 @@ export async function executeRecon(
 		case 'updateNotificationsV1': return await handleUpdateNotificationsV1(this, index, falconClient);
 		case 'updateRulesV1': return await handleUpdateRulesV1(this, index, falconClient);
 		default:
-			throw new NodeOperationError(c.getNode(), `Operation ${operation} is not supported for Recon.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Recon.`);
 	}
 }

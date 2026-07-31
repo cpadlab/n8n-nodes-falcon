@@ -67,6 +67,6 @@ export async function executeSensorVisibilityExclusions(
 		case 'querySensorVisibilityExclusionsV1': return await handleQuerySensorVisibilityExclusionsV1(this, index, falconClient);
 		case 'updateSensorVisibilityExclusionsV1': return await handleUpdateSensorVisibilityExclusionsV1(this, index, falconClient);
 		default:
-			throw new NodeOperationError(c.getNode(), `Operation ${operation} is not supported for Sensor Visibility Exclusions.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Sensor Visibility Exclusions.`);
 	}
 }

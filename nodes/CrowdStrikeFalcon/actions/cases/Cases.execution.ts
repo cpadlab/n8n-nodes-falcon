@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -76,7 +77,7 @@ async function handleEntitiesCasesPutV2(
 			const parsed = typeof additionalFieldsJson === 'string' ? JSON.parse(additionalFieldsJson) : additionalFieldsJson;
 			body = { ...body, ...parsed };
 		} catch (e) {
-			throw new Error(`Invalid JSON in Additional Fields: ${(e as Error).message}`);
+			throw new NodeOperationError(context.getNode(), `Invalid JSON in Additional Fields: ${(e as Error).message}`);
 		}
 	}
 
@@ -111,7 +112,7 @@ async function handleEntitiesCasesPatchV2(
 			const parsed = typeof additionalFieldsJson === 'string' ? JSON.parse(additionalFieldsJson) : additionalFieldsJson;
 			body = { ...body, ...parsed };
 		} catch (e) {
-			throw new Error(`Invalid JSON in Additional Fields: ${(e as Error).message}`);
+			throw new NodeOperationError(context.getNode(), `Invalid JSON in Additional Fields: ${(e as Error).message}`);
 		}
 	}
 
@@ -251,7 +252,7 @@ export async function executeCases(
 		case 'entitiesMergePostV1':
 			return await handleEntitiesMergePostV1(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Cases.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Cases.`);
 	}
 	
 }

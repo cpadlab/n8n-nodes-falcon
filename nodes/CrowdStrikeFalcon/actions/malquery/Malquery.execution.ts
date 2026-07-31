@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -98,6 +99,6 @@ export async function executeMalquery(
 		case 'postMalQueryFuzzySearchV1': return await handlePostMalQueryFuzzySearchV1(this, index, falconClient);
 		case 'postMalQueryHuntV1': return await handlePostMalQueryHuntV1(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Malquery.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Malquery.`);
 	}
 }

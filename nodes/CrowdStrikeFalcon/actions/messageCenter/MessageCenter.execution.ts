@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -110,6 +111,6 @@ export async function executeMessageCenter(
 		case 'queryActivityByCaseID': return await handleQueryActivityByCaseID(this, index, falconClient);
 		case 'queryCasesIdsByFilter': return await handleQueryCasesIdsByFilter(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Message Center.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Message Center.`);
 	}
 }

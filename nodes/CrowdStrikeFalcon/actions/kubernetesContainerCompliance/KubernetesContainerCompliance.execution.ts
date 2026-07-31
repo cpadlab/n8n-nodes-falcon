@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -125,6 +126,6 @@ export async function executeKubernetesContainerCompliance(
 		case 'combinedNodesFindings': return await handleCombinedNodesFindings(this, index, falconClient);
 		case 'getRulesMetadataByID': return await handleGetRulesMetadataByID(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Kubernetes Container Compliance.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Kubernetes Container Compliance.`);
 	}
 }

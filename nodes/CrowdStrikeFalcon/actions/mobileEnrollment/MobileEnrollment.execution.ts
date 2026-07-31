@@ -39,6 +39,6 @@ export async function executeMobileEnrollment(
 		case 'requestDeviceEnrollmentV3': return await handleRequestDeviceEnrollmentV3(this, index, falconClient);
 		case 'requestDeviceEnrollmentV4': return await handleRequestDeviceEnrollmentV4(this, index, falconClient);
 		default:
-			throw new NodeOperationError(c.getNode(), `Operation ${operation} is not supported for Mobile Enrollment.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Mobile Enrollment.`);
 	}
 }

@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -31,6 +32,6 @@ export async function executeDeliverySettings(
 		case 'getDeliverySettings': return await handleGetDeliverySettings(this, index, falconClient);
 		case 'postDeliverySettings': return await handlePostDeliverySettings(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Delivery Settings.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Delivery Settings.`);
 	}
 }

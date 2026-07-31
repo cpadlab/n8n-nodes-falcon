@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -78,6 +79,6 @@ export async function executeContainerDetections(
 		case 'readDetectionsCountByType': return await handleReadDetectionsCountByType(this, index, falconClient);
 		case 'searchDetections': return await handleSearchDetections(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Container Detections.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Container Detections.`);
 	}
 }

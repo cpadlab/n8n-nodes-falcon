@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -122,6 +123,6 @@ export async function executeHostMigration(
 		case 'migrationAggregatesV1': return await handleMigrationAggregatesV1(this, index, falconClient);
 		case 'migrationsActionsV1': return await handleMigrationsActionsV1(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Host Migration.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Host Migration.`);
 	}
 }

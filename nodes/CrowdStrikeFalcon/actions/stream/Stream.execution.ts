@@ -27,6 +27,6 @@ export async function executeStream(
 	switch (operation) {
 		case 'streamInvocationResponseV1': return await handleStreamInvocationResponseV1(this, index, falconClient);
 		default:
-			throw new NodeOperationError(c.getNode(), `Operation ${operation} is not supported for Stream.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Stream.`);
 	}
 }

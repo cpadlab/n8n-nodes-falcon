@@ -31,6 +31,6 @@ export async function executeRealTimeResponseAudit(
 	switch (operation) {
 		case 'rTRAuditSessions': return await handleRTRAuditSessions(this, index, falconClient);
 		default:
-			throw new NodeOperationError(c.getNode(), `Operation ${operation} is not supported for Real-Time Response Audit.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Real-Time Response Audit.`);
 	}
 }

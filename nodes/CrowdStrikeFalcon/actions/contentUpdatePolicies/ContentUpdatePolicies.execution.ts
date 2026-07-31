@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -137,6 +138,6 @@ export async function executeContentUpdatePolicies(
 		case 'setContentUpdatePoliciesPrecedence': return await handleSetContentUpdatePoliciesPrecedence(this, index, falconClient);
 		case 'updateContentUpdatePolicies': return await handleUpdateContentUpdatePolicies(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Content Update Policies.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Content Update Policies.`);
 	}
 }

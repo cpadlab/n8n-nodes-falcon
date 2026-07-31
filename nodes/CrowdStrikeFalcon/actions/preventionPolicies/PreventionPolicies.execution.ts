@@ -126,6 +126,6 @@ export async function executePreventionPolicies(
 		case 'setPreventionPoliciesPrecedence': return await handleSetPreventionPoliciesPrecedence(this, index, falconClient);
 		case 'updatePreventionPolicies': return await handleUpdatePreventionPolicies(this, index, falconClient);
 		default:
-			throw new NodeOperationError(c.getNode(), `Operation ${operation} is not supported for Prevention Policies.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Prevention Policies.`);
 	}
 }

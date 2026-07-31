@@ -62,6 +62,6 @@ export async function executeSpotlightVulnerabilities(
 		case 'getVulnerabilities': return await handleGetVulnerabilities(this, index, falconClient);
 		case 'queryVulnerabilities': return await handleQueryVulnerabilities(this, index, falconClient);
 		default:
-			throw new NodeOperationError(c.getNode(), `Operation ${operation} is not supported for Spotlight Vulnerabilities.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Spotlight Vulnerabilities.`);
 	}
 }

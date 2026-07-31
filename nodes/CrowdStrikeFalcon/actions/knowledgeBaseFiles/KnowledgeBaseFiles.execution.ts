@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -89,6 +90,6 @@ export async function executeKnowledgeBaseFiles(
 		case 'entitiesKnowledgeBaseFilesV1': return await handleEntitiesKnowledgeBaseFilesV1(this, index, falconClient);
 		case 'queriesKnowledgeBaseFilesV1': return await handleQueriesKnowledgeBaseFilesV1(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Knowledge Base Files.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Knowledge Base Files.`);
 	}
 }

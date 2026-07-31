@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -122,6 +123,6 @@ export async function executeContainerImageCompliance(
 		case 'extAggregateRulesAssessments': return await handleExtAggregateRulesAssessments(this, index, falconClient);
 		case 'extAggregateRulesByStatus': return await handleExtAggregateRulesByStatus(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Container Image Compliance.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Container Image Compliance.`);
 	}
 }

@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -208,6 +209,6 @@ export async function executeCorrelationRules(
 		case 'queriesRulesGetV2': return await handleQueriesRulesGetV2(this, index, falconClient);
 		case 'queriesTemplatesGetV1Mixin0': return await handleQueriesTemplatesGetV1Mixin0(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Correlation Rules.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Correlation Rules.`);
 	}
 }

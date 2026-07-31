@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -80,6 +81,6 @@ export async function executeCertificateBasedExclusions(
 		case 'cbExclusionsUpdateV1': return await handleCbExclusionsUpdateV1(this, index, falconClient);
 		case 'certificatesGetV1': return await handleCertificatesGetV1(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Certificate Based Exclusions.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Certificate Based Exclusions.`);
 	}
 }

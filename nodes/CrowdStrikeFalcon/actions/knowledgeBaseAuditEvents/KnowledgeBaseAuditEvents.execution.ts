@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -69,6 +70,6 @@ export async function executeKnowledgeBaseAuditEvents(
 		case 'entitiesKnowledgeBaseAuditEventsV1': return await handleEntitiesKnowledgeBaseAuditEventsV1(this, index, falconClient);
 		case 'queriesKnowledgeBaseAuditEventsV1': return await handleQueriesKnowledgeBaseAuditEventsV1(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Knowledge Base Audit Events.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Knowledge Base Audit Events.`);
 	}
 }

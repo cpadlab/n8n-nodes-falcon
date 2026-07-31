@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -35,6 +36,6 @@ export async function executeDeviceContent(
 		case 'entitiesStatesV1': return await handleEntitiesStatesV1(this, index, falconClient);
 		case 'queriesStatesV1': return await handleQueriesStatesV1(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Device Content.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Device Content.`);
 	}
 }

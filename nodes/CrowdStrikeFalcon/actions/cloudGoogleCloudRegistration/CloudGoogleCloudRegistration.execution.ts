@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -98,6 +99,6 @@ export async function executeCloudGoogleCloudRegistration(
 		case 'cloudRegistrationGcpTriggerHealthCheck': return await handleCloudRegistrationGcpTriggerHealthCheck(this, index, falconClient);
 		case 'cloudRegistrationGcpUpdateRegistration': return await handleCloudRegistrationGcpUpdateRegistration(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Cloud Google Cloud Registration.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Cloud Google Cloud Registration.`);
 	}
 }

@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -73,6 +74,6 @@ export async function executeCloudSecurityAssets(
 		case 'cloudSecurityAssetsEntitiesPost': return await handleCloudSecurityAssetsEntitiesPost(this, index, falconClient);
 		case 'cloudSecurityAssetsQueries': return await handleCloudSecurityAssetsQueries(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Cloud Security Assets.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Cloud Security Assets.`);
 	}
 }

@@ -313,6 +313,6 @@ export async function executeMssp(
 		case 'updateCIDGroups': return await handleUpdateCIDGroups(this, index, falconClient);
 		case 'updateUserGroups': return await handleUpdateUserGroups(this, index, falconClient);
 		default:
-			throw new NodeOperationError(c.getNode(), `Operation ${operation} is not supported for MSSP.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for MSSP.`);
 	}
 }

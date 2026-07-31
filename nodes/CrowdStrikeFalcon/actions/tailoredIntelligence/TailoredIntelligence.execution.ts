@@ -78,6 +78,6 @@ export async function executeTailoredIntelligence(
 		case 'queryEvents': return await handleQueryEvents(this, index, falconClient);
 		case 'queryRules': return await handleQueryRules(this, index, falconClient);
 		default:
-			throw new NodeOperationError(c.getNode(), `Operation ${operation} is not supported for Tailored Intelligence.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Tailored Intelligence.`);
 	}
 }

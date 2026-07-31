@@ -95,6 +95,6 @@ export async function executeThreatgraph(
 		case 'entitiesVerticesGetv2': return await handleEntitiesVerticesGetv2(this, index, falconClient);
 		case 'queriesEdgetypesGet': return await handleQueriesEdgetypesGet(this, index, falconClient);
 		default:
-			throw new NodeOperationError(c.getNode(), `Operation ${operation} is not supported for Threatgraph.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Threatgraph.`);
 	}
 }

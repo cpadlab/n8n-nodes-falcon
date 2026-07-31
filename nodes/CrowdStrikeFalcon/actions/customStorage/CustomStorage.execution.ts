@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -192,6 +193,6 @@ export async function executeCustomStorage(
 		case 'search': return await handleSearch(this, index, falconClient);
 		case 'searchObjectsByVersion': return await handleSearchObjectsByVersion(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Custom Storage.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Custom Storage.`);
 	}
 }

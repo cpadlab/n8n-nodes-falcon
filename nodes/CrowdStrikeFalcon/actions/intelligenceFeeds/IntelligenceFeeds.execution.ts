@@ -1,3 +1,4 @@
+import { NodeOperationError } from 'n8n-workflow';
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
@@ -47,6 +48,6 @@ export async function executeIntelligenceFeeds(
 		case 'listFeedTypes': return await handleListFeedTypes(this, index, falconClient);
 		case 'queryFeedArchives': return await handleQueryFeedArchives(this, index, falconClient);
 		default:
-			throw new Error(`Operation ${operation} is not supported for Intelligence Feeds.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Intelligence Feeds.`);
 	}
 }

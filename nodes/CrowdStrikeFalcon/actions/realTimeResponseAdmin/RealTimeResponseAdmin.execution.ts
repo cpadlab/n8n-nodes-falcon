@@ -218,6 +218,6 @@ export async function executeRealTimeResponseAdmin(
 		case 'rTRUpdateScripts': return await handleRTRUpdateScripts(this, index, falconClient);
 		case 'rTRUpdateScriptsV2': return await handleRTRUpdateScriptsV2(this, index, falconClient);
 		default:
-			throw new NodeOperationError(c.getNode(), `Operation ${operation} is not supported for Real-Time Response Admin.`);
+			throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported for Real-Time Response Admin.`);
 	}
 }
