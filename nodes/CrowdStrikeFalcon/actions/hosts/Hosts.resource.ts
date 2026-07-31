@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createIdsField, createOperationField, createStandardPaginationFields } from '../common';
+
 export const hostsOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['hosts'],
-			},
-		},
-		options: [
+	createOperationField('hosts', [
+
 			{ name: 'Combined Devices by Filter', value: 'combinedDevicesByFilter', description: 'Search for hosts returning full device records', action: 'Combined devices by filter' },
 			{ name: 'Combined Hidden Devices by Filter', value: 'combinedHiddenDevicesByFilter', description: 'Search for hidden hosts returning full device records', action: 'Combined hidden devices by filter' },
 			{ name: 'Devices Actions Delete V1', value: 'devicesActionsDeleteV1', description: 'Permanently delete hosts from the system', action: 'Devices actions delete v1' },
@@ -27,26 +20,12 @@ export const hostsOperations: INodeProperties[] = [
 			{ name: 'Query Get Network Address History V1', value: 'queryGetNetworkAddressHistoryV1', description: 'Retrieve history of IP and MAC addresses of devices', action: 'Query get network address history v1' },
 			{ name: 'Query Hidden Devices', value: 'queryHiddenDevices', description: 'Retrieve hidden hosts matching filter criteria', action: 'Query hidden devices' },
 			{ name: 'Update Device Tags', value: 'updateDeviceTags', description: 'Append or remove Falcon Grouping Tags on hosts', action: 'Update device tags' },
-		],
-		default: 'queryDevicesByFilter',
-	},
+		
+	], 'queryDevicesByFilter'),
 ];
 
 export const hostsFields: INodeProperties[] = [
-	{
-		displayName: 'IDs',
-		name: 'ids',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['hosts'],
-				operation: ['entitiesPerformAction', 'getDeviceDetailsV2', 'getOnlineStateV1'],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'Comma-separated list of host or group IDs',
-	},
+	createIdsField('hosts', ['entitiesPerformAction', 'getDeviceDetailsV2', 'getOnlineStateV1']),
 	{
 		displayName: 'Action Name',
 		name: 'actionNameEntities',
@@ -92,108 +71,17 @@ export const hostsFields: INodeProperties[] = [
 		default: false,
 		description: 'Whether to disable hostname checking',
 	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['hosts'],
-				operation: [
-					'devicesActionsDeleteV1',
+	createBodyJsonField('hosts', ['devicesActionsDeleteV1',
 					'entitiesPerformAction',
 					'performActionV2',
 					'postDeviceDetailsV2',
 					'queryDeviceLoginHistory',
 					'queryDeviceLoginHistoryV2',
 					'queryGetNetworkAddressHistoryV1',
-					'updateDeviceTags',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['hosts'],
-				operation: [
-					'combinedDevicesByFilter',
+					'updateDeviceTags',]),
+	...createStandardPaginationFields('hosts', ['combinedDevicesByFilter',
 					'combinedHiddenDevicesByFilter',
 					'queryDevicesByFilter',
 					'queryDevicesByFilterScroll',
-					'queryHiddenDevices',
-				],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 5000,
-		},
-		displayOptions: {
-			show: {
-				resource: ['hosts'],
-				operation: [
-					'combinedDevicesByFilter',
-					'combinedHiddenDevicesByFilter',
-					'queryDeviceLoginHistoryV2',
-					'queryDevicesByFilter',
-					'queryDevicesByFilterScroll',
-					'queryHiddenDevices',
-				],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['hosts'],
-				operation: [
-					'combinedDevicesByFilter',
-					'combinedHiddenDevicesByFilter',
-					'queryDevicesByFilter',
-					'queryDevicesByFilterScroll',
-					'queryHiddenDevices',
-				],
-			},
-		},
-		default: '',
-		description: 'Starting index or scroll offset token',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['hosts'],
-				operation: [
-					'combinedDevicesByFilter',
-					'combinedHiddenDevicesByFilter',
-					'queryDevicesByFilter',
-					'queryDevicesByFilterScroll',
-					'queryHiddenDevices',
-				],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+					'queryHiddenDevices',]),
 ];
