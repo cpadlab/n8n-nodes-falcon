@@ -1,36 +1,15 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createOperationField } from '../common';
+
 export const maintenanceTokenOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['maintenanceToken'],
-			},
-		},
-		options: [
+	createOperationField('maintenanceToken', [
+
 			{ name: 'Increment Uninstall Token', value: 'incrementUninstallToken', description: 'Increments a bulk maintenance token', action: 'Increment uninstall token' },
-		],
-		default: 'incrementUninstallToken',
-	},
+		
+	], 'incrementUninstallToken'),
 ];
 
 export const maintenanceTokenFields: INodeProperties[] = [
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['maintenanceToken'],
-				operation: ['incrementUninstallToken'],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
+	createBodyJsonField('maintenanceToken', ['incrementUninstallToken']),
 ];
