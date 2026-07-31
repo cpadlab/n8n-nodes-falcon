@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createFilterField, createIdsField, createLimitField, createOffsetField, createOperationField, createSortField } from '../common';
+
 export const customIoaOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['customIoa'],
-			},
-		},
-		options: [
+	createOperationField('customIoa', [
+
 			{ name: 'Create Rule', value: 'createRule', description: 'Create a rule within a rule group', action: 'Create rule' },
 			{ name: 'Create Rule Group', value: 'createRuleGroupMixin0', description: 'Create a rule group for a platform', action: 'Create rule group' },
 			{ name: 'Delete Rule Groups', value: 'deleteRuleGroupsMixin0', description: 'Delete rule groups by ID', action: 'Delete rule groups' },
@@ -32,9 +25,8 @@ export const customIoaOperations: INodeProperties[] = [
 			{ name: 'Update Rules', value: 'updateRules', description: 'Update rules within a rule group', action: 'Update rules' },
 			{ name: 'Update Rules V2', value: 'updateRulesV2', description: 'Update subset of rules within a rule group V2', action: 'Update rules v2' },
 			{ name: 'Validate', value: 'validate', description: 'Validates field values and test string matches', action: 'Validate' },
-		],
-		default: 'queryRuleGroupsFull',
-	},
+		
+	], 'queryRuleGroupsFull'),
 ];
 
 export const customIoaFields: INodeProperties[] = [
@@ -52,27 +44,13 @@ export const customIoaFields: INodeProperties[] = [
 		required: true,
 		description: 'Rule Group ID containing the rules to delete',
 	},
-	{
-		displayName: 'IDs',
-		name: 'ids',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['customIoa'],
-				operation: [
-					'deleteRuleGroupsMixin0',
+	createIdsField('customIoa', ['deleteRuleGroupsMixin0',
 					'deleteRules',
 					'getPatterns',
 					'getPlatformsMixin0',
 					'getRuleGroupsMixin0',
 					'getRuleTypes',
-					'getRulesMixin0',
-				],
-			},
-		},
-		default: '',
-		description: 'Comma-separated list of IDs',
-	},
+					'getRulesMixin0',]),
 	{
 		displayName: 'Comment',
 		name: 'comment',
@@ -86,41 +64,14 @@ export const customIoaFields: INodeProperties[] = [
 		default: '',
 		description: 'Reason or comment for deletion',
 	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['customIoa'],
-				operation: [
-					'createRule',
+	createBodyJsonField('customIoa', ['createRule',
 					'createRuleGroupMixin0',
 					'getRulesGet',
 					'updateRuleGroupMixin0',
 					'updateRules',
 					'updateRulesV2',
-					'validate',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['customIoa'],
-				operation: ['queryRuleGroupsFull', 'queryRuleGroupsMixin0', 'queryRulesMixin0'],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
+					'validate',]),
+	createFilterField('customIoa', ['queryRuleGroupsFull', 'queryRuleGroupsMixin0', 'queryRulesMixin0']),
 	{
 		displayName: 'Search Query (q)',
 		name: 'q',
@@ -134,47 +85,7 @@ export const customIoaFields: INodeProperties[] = [
 		default: '',
 		description: 'Search string',
 	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['customIoa'],
-				operation: ['queryPatterns', 'queryPlatformsMixin0', 'queryRuleGroupsFull', 'queryRuleGroupsMixin0', 'queryRuleTypes', 'queryRulesMixin0'],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['customIoa'],
-				operation: ['queryPatterns', 'queryPlatformsMixin0', 'queryRuleGroupsFull', 'queryRuleGroupsMixin0', 'queryRuleTypes', 'queryRulesMixin0'],
-			},
-		},
-		default: '',
-		description: 'Pagination token or offset string',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['customIoa'],
-				operation: ['queryRuleGroupsFull', 'queryRuleGroupsMixin0', 'queryRulesMixin0'],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+	createLimitField('customIoa', ['queryPatterns', 'queryPlatformsMixin0', 'queryRuleGroupsFull', 'queryRuleGroupsMixin0', 'queryRuleTypes', 'queryRulesMixin0']),
+	createOffsetField('customIoa', ['queryPatterns', 'queryPlatformsMixin0', 'queryRuleGroupsFull', 'queryRuleGroupsMixin0', 'queryRuleTypes', 'queryRulesMixin0']),
+	createSortField('customIoa', ['queryRuleGroupsFull', 'queryRuleGroupsMixin0', 'queryRulesMixin0']),
 ];
