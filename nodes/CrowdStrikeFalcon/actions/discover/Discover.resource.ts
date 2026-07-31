@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createIdsField, createOperationField, createStandardPaginationFields } from '../common';
+
 export const discoverOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['discover'],
-			},
-		},
-		options: [
+	createOperationField('discover', [
+
 			{ name: 'Combined Applications', value: 'combinedApplications', description: 'Search for applications in your environment with filter and paging', action: 'Combined applications' },
 			{ name: 'Combined Hosts', value: 'combinedHosts', description: 'Search for assets in your environment with filter and paging', action: 'Combined hosts' },
 			{ name: 'Get Accounts', value: 'getAccounts', description: 'Get details on accounts by providing IDs', action: 'Get accounts' },
@@ -22,104 +15,16 @@ export const discoverOperations: INodeProperties[] = [
 			{ name: 'Query Applications', value: 'queryApplications', description: 'Search for applications returning matching IDs', action: 'Query applications' },
 			{ name: 'Query Hosts', value: 'queryHosts', description: 'Search for assets returning matching IDs', action: 'Query hosts' },
 			{ name: 'Query Logins', value: 'queryLogins', description: 'Search for logins returning matching IDs', action: 'Query logins' },
-		],
-		default: 'combinedHosts',
-	},
+		
+	], 'combinedHosts'),
 ];
 
 export const discoverFields: INodeProperties[] = [
-	{
-		displayName: 'IDs',
-		name: 'ids',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['discover'],
-				operation: ['getAccounts', 'getApplications', 'getHosts', 'getLogins'],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'Comma-separated list of IDs',
-	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['discover'],
-				operation: [
-					'combinedApplications',
+	createIdsField('discover', ['getAccounts', 'getApplications', 'getHosts', 'getLogins']),
+	...createStandardPaginationFields('discover', ['combinedApplications',
 					'combinedHosts',
 					'queryAccounts',
 					'queryApplications',
 					'queryHosts',
-					'queryLogins',
-				],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['discover'],
-				operation: [
-					'combinedApplications',
-					'combinedHosts',
-					'queryAccounts',
-					'queryApplications',
-					'queryHosts',
-					'queryLogins',
-				],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['discover'],
-				operation: ['queryAccounts', 'queryApplications', 'queryHosts', 'queryLogins'],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['discover'],
-				operation: [
-					'combinedApplications',
-					'combinedHosts',
-					'queryAccounts',
-					'queryApplications',
-					'queryHosts',
-					'queryLogins',
-				],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+					'queryLogins',]),
 ];
