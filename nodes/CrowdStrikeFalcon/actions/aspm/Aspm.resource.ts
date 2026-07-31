@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createLimitField, createOffsetField, createOperationField } from '../common';
+
 export const aspmOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['aspm'],
-			},
-		},
-		options: [
+	createOperationField('aspm', [
+
 			{ name: 'Create Executor Node', value: 'createExecutorNode', description: 'Create a new relay node', action: 'Create executor node' },
 			{ name: 'Create Integration', value: 'createIntegration', description: 'Create a new integration', action: 'Create integration' },
 			{ name: 'Create Integration Task', value: 'createIntegrationTask', description: 'Create new integration task', action: 'Create integration task' },
@@ -64,9 +57,8 @@ export const aspmOperations: INodeProperties[] = [
 			{ name: 'Update Integration Task', value: 'updateIntegrationTask', description: 'Update an existing integration task by ID', action: 'Update integration task' },
 			{ name: 'Upsert Business Applications', value: 'upsertBusinessApplications', description: 'Create or update business applications', action: 'Upsert business applications' },
 			{ name: 'Upsert Tags', value: 'upsertTags', description: 'Create new or update existing tag', action: 'Upsert tags' },
-		],
-		default: 'getIntegrations',
-	},
+		
+	], 'getIntegrations'),
 ];
 
 export const aspmFields: INodeProperties[] = [
@@ -168,15 +160,7 @@ export const aspmFields: INodeProperties[] = [
 	/* -------------------------------------------------------------------------- */
 	/*                              General Body JSON                             */
 	/* -------------------------------------------------------------------------- */
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['aspm'],
-				operation: [
-					'createExecutorNode',
+	createBodyJsonField('aspm', ['createExecutorNode',
 					'createIntegration',
 					'createIntegrationTask',
 					'deleteTags',
@@ -194,69 +178,27 @@ export const aspmFields: INodeProperties[] = [
 					'updateIntegration',
 					'updateIntegrationTask',
 					'upsertBusinessApplications',
-					'upsertTags',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON object payload for the request body',
-	},
+					'upsertTags',]),
 
 	/* -------------------------------------------------------------------------- */
 	/*                             Pagination & Filters                           */
 	/* -------------------------------------------------------------------------- */
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['aspm'],
-				operation: [
-					'getExecutorNodes',
+	createLimitField('aspm', ['getExecutorNodes',
 					'getIntegrationTasks',
 					'getIntegrationTasksAdmin',
 					'getIntegrationTasksV2',
 					'getServiceArtifacts',
 					'getTags',
 					'serviceNowGetDeployments',
-					'serviceNowGetServices',
-				],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['aspm'],
-				operation: [
-					'getExecutorNodes',
+					'serviceNowGetServices',]),
+	createOffsetField('aspm', ['getExecutorNodes',
 					'getIntegrationTasks',
 					'getIntegrationTasksAdmin',
 					'getIntegrationTasksV2',
 					'getServiceArtifacts',
 					'getTags',
 					'serviceNowGetDeployments',
-					'serviceNowGetServices',
-				],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
+					'serviceNowGetServices',]),
 	{
 		displayName: 'Category',
 		name: 'category',
