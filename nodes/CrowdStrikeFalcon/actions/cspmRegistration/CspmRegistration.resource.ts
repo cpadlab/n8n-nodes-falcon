@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createIdsField, createOperationField, createStandardPaginationFields } from '../common';
+
 export const cspmRegistrationOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['cspmRegistration'],
-			},
-		},
-		options: [
+	createOperationField('cspmRegistration', [
+
 			{ name: 'Azure Download Certificate', value: 'azureDownloadCertificate', description: 'Returns base64 encoded certificate for service principal', action: 'Azure download certificate' },
 			{ name: 'Azure Refresh Certificate', value: 'azureRefreshCertificate', description: 'Refresh certificate for service principal', action: 'Azure refresh certificate' },
 			{ name: 'Connect CSPM GCP Account', value: 'connectCSPMGCPAccount', description: 'Connect GCP account with existing service account', action: 'Connect CSPM GCP account' },
@@ -50,9 +43,8 @@ export const cspmRegistrationOperations: INodeProperties[] = [
 			{ name: 'Update CSPM Policy Settings', value: 'updateCSPMPolicySettings', description: 'Updates policy setting (severity/disable)', action: 'Update CSPM policy settings' },
 			{ name: 'Update CSPM Scan Schedule', value: 'updateCSPMScanSchedule', description: 'Updates scan schedule configuration', action: 'Update CSPM scan schedule' },
 			{ name: 'Validate CSPM GCP Service Account Ext', value: 'validateCSPMGCPServiceAccountExt', description: 'Validates credentials for GCP service account', action: 'Validate CSPM GCP service account ext' },
-		],
-		default: 'getConfigurationDetectionIDsV2',
-	},
+		
+	], 'getConfigurationDetectionIDsV2'),
 ];
 
 export const cspmRegistrationFields: INodeProperties[] = [
@@ -69,28 +61,14 @@ export const cspmRegistrationFields: INodeProperties[] = [
 		default: '',
 		description: 'Comma-separated list of Azure Tenant IDs',
 	},
-	{
-		displayName: 'IDs',
-		name: 'ids',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['cspmRegistration'],
-				operation: [
-					'deleteCSPMAwsAccount',
+	createIdsField('cspmRegistration', ['deleteCSPMAwsAccount',
 					'deleteCSPMGCPAccount',
 					'getCSPMAwsAccount',
 					'getCSPMAwsConsoleSetupURLs',
 					'getCSPMAzureAccount',
 					'getCSPMGCPAccount',
 					'getCSPMGCPUserScriptsAttachment',
-					'getConfigurationDetectionEntities',
-				],
-			},
-		},
-		default: '',
-		description: 'Comma-separated list of account IDs',
-	},
+					'getConfigurationDetectionEntities',]),
 	{
 		displayName: 'Policy IDs',
 		name: 'policyIds',
@@ -174,15 +152,7 @@ export const cspmRegistrationFields: INodeProperties[] = [
 		required: true,
 		description: 'Event ID for cloud event IDs',
 	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['cspmRegistration'],
-				operation: [
-					'connectCSPMGCPAccount',
+	createBodyJsonField('cspmRegistration', ['connectCSPMGCPAccount',
 					'createCSPMAwsAccount',
 					'createCSPMAzureAccount',
 					'createCSPMAzureManagementGroup',
@@ -194,85 +164,6 @@ export const cspmRegistrationFields: INodeProperties[] = [
 					'updateCSPMGCPServiceAccountsExt',
 					'updateCSPMPolicySettings',
 					'updateCSPMScanSchedule',
-					'validateCSPMGCPServiceAccountExt',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['cspmRegistration'],
-				operation: ['getConfigurationDetectionIDsV2'],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['cspmRegistration'],
-				operation: [
-					'getBehaviorDetections',
-					'getCSPMAwsAccount',
-					'getCSPMAzureAccount',
-					'getCSPMAzureManagementGroup',
-					'getCSPMGCPAccount',
-					'getConfigurationDetectionIDsV2',
-					'getConfigurationDetections',
-				],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['cspmRegistration'],
-				operation: [
-					'getCSPMAwsAccount',
-					'getCSPMAzureAccount',
-					'getCSPMAzureManagementGroup',
-					'getCSPMGCPAccount',
-					'getConfigurationDetectionIDsV2',
-				],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['cspmRegistration'],
-				operation: ['getCSPMGCPAccount', 'getConfigurationDetectionIDsV2'],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+					'validateCSPMGCPServiceAccountExt',]),
+	...createStandardPaginationFields('cspmRegistration', ['getConfigurationDetectionIDsV2']),
 ];
