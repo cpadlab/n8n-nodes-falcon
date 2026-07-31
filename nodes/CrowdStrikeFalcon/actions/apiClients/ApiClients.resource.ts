@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createLimitField, createOffsetField, createOperationField, createSortField } from '../common';
+
 export const apiClientsOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['apiClients'],
-			},
-		},
-		options: [
+	createOperationField('apiClients', [
+
 			{
 				name: 'Get All API Client IDs',
 				value: 'getAllAPIClientIdsForCustomer',
@@ -54,61 +47,17 @@ export const apiClientsOperations: INodeProperties[] = [
 				description: 'Reset existing API Client secret by IDs',
 				action: 'Reset API client secret',
 			},
-		],
-		default: 'getAllAPIClientIdsForCustomer',
-	},
+		
+	], 'getAllAPIClientIdsForCustomer'),
 ];
 
 export const apiClientsFields: INodeProperties[] = [
 	/* -------------------------------------------------------------------------- */
 	/*                       getAllAPIClientIdsForCustomer                        */
 	/* -------------------------------------------------------------------------- */
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['apiClients'],
-				operation: ['getAllAPIClientIdsForCustomer'],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['apiClients'],
-				operation: ['getAllAPIClientIdsForCustomer'],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['apiClients'],
-				operation: ['getAllAPIClientIdsForCustomer'],
-			},
-		},
-		default: '',
-		description: 'Sort criteria for returned API Client IDs',
-	},
+	createLimitField('apiClients', ['getAllAPIClientIdsForCustomer']),
+	createOffsetField('apiClients', ['getAllAPIClientIdsForCustomer']),
+	createSortField('apiClients', ['getAllAPIClientIdsForCustomer']),
 
 	/* -------------------------------------------------------------------------- */
 	/*                   getAPIClients / deleteAPIClients                         */
@@ -167,18 +116,5 @@ export const apiClientsFields: INodeProperties[] = [
 	/* -------------------------------------------------------------------------- */
 	/*                 createAPIClient / updateAPIClient Payload                   */
 	/* -------------------------------------------------------------------------- */
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['apiClients'],
-				operation: ['createAPIClient', 'updateAPIClient'],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON object payload for API Client creation or update',
-	},
+	createBodyJsonField('apiClients', ['createAPIClient', 'updateAPIClient']),
 ];
