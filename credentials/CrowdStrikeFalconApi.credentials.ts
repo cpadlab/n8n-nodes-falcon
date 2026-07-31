@@ -3,7 +3,10 @@ import type { ICredentialTestRequest, ICredentialType, INodeProperties, Icon } f
 export class CrowdStrikeFalconApi implements ICredentialType {
 	name = 'crowdStrikeFalconApi';
 	displayName = 'CrowdStrike Falcon API';
-	icon: Icon = 'file:falcon.svg';
+	icon: Icon = {
+		light: 'file:falcon.light.svg',
+		dark: 'file:falcon.dark.svg',
+	};
 	documentationUrl = 'https://developer.crowdstrike.com/sdks/typescript/';
 	test: ICredentialTestRequest = {
 		request: {

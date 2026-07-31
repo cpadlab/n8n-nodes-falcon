@@ -296,7 +296,10 @@ export class CrowdStrikeFalcon implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'CrowdStrike Falcon',
 		name: 'crowdStrikeFalcon',
-		icon: 'file:falcon.svg',
+		icon: {
+			light: 'file:falcon.light.svg',
+			dark: 'file:falcon.dark.svg',
+		},
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
