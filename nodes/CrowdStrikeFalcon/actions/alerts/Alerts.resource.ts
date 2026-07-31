@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createOperationField, createStandardPaginationFields } from '../common';
+
 export const alertsOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['alerts'],
-			},
-		},
-		options: [
+	createOperationField('alerts', [
+
 			{
 				name: 'Query Alerts (V2)',
 				value: 'queryV2',
@@ -66,74 +59,15 @@ export const alertsOperations: INodeProperties[] = [
 				description: 'Retrieves all Alerts given their IDs (V1 deprecated)',
 				action: 'Get alert entities v1',
 			},
-		],
-		default: 'queryV2',
-	},
+		
+	], 'queryV2'),
 ];
 
 export const alertsFields: INodeProperties[] = [
 	/* -------------------------------------------------------------------------- */
 	/*                                  queryV2                                   */
 	/* -------------------------------------------------------------------------- */
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['alerts'],
-				operation: ['queryV2', 'getQueriesAlertsV1'],
-			},
-		},
-		default: '',
-		description: 'FQL filter string (e.g., status:"new")',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['alerts'],
-				operation: ['queryV2', 'getQueriesAlertsV1'],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['alerts'],
-				operation: ['queryV2', 'getQueriesAlertsV1'],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['alerts'],
-				operation: ['queryV2', 'getQueriesAlertsV1'],
-			},
-		},
-		default: '',
-		description: 'Sort criteria (e.g., created_timestamp.desc)',
-	},
+	...createStandardPaginationFields('alerts', ['queryV2', 'getQueriesAlertsV1']),
 	{
 		displayName: 'Search Query (Q)',
 		name: 'q',
@@ -182,25 +116,10 @@ export const alertsFields: INodeProperties[] = [
 	/* -------------------------------------------------------------------------- */
 	/*                        updateV3 & Body Payload Fields                      */
 	/* -------------------------------------------------------------------------- */
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['alerts'],
-				operation: [
-					'updateV3',
+	createBodyJsonField('alerts', ['updateV3',
 					'postCombinedAlertsV1',
 					'getAggregateV2',
 					'patchEntitiesAlertsV2',
 					'postAggregatesAlertsV1',
-					'postEntitiesAlertsV1',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON object or array payload for the request body',
-	},
+					'postEntitiesAlertsV1',]),
 ];
