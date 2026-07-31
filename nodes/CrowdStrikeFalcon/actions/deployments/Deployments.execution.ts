@@ -1,15 +1,7 @@
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
-function parseArrayParam(context: IExecuteFunctions, index: number, paramName = 'ids'): string[] {
-	const str = (context.getNodeParameter(paramName, index, '') as string) || '';
-	return str.split(',').map((id) => id.trim()).filter(Boolean);
-}
-
-function getStringParam(context: IExecuteFunctions, index: number, paramName: string, fallback = ''): string {
-	const val = context.getNodeParameter(paramName, index, fallback);
-	return val !== undefined && val !== null ? String(val) : String(fallback);
-}
+import { getStringParam, parseArrayParam } from '../common';
 
 /**
  * Handles the 'getDeploymentsExternalV1' operation.

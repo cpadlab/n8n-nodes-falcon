@@ -1,21 +1,13 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createIdsField, createOperationField } from '../common';
+
 export const deploymentsOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['deployments'],
-			},
-		},
-		options: [
+	createOperationField('deployments', [
+
 			{ name: 'Get Deployments External V1', value: 'getDeploymentsExternalV1', description: 'Get deployment resources by IDs', action: 'Get deployments external v1' },
-		],
-		default: 'getDeploymentsExternalV1',
-	},
+		
+	], 'getDeploymentsExternalV1'),
 ];
 
 export const deploymentsFields: INodeProperties[] = [
@@ -34,20 +26,7 @@ export const deploymentsFields: INodeProperties[] = [
 		required: true,
 		description: 'Authorization header string',
 	},
-	{
-		displayName: 'IDs',
-		name: 'ids',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['deployments'],
-				operation: ['getDeploymentsExternalV1'],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'Comma-separated list of deployment IDs',
-	},
+	createIdsField('deployments', ['getDeploymentsExternalV1']),
 	{
 		displayName: 'CS Username',
 		name: 'xCSUSERNAME',
