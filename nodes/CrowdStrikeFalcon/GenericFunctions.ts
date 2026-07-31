@@ -23,7 +23,7 @@ export async function getFalconClient(context: IExecuteFunctions): Promise<Falco
 	}
 
 	return new FalconClient({
-		fetchApi: globalThis.fetch,
+		fetchApi: fetch,
 		cloud,
 		clientId,
 		clientSecret,

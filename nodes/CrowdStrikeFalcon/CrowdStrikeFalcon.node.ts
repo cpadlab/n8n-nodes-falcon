@@ -299,6 +299,7 @@ export class CrowdStrikeFalcon implements INodeType {
 		icon: 'file:falcon.svg',
 		group: ['transform'],
 		version: 1,
+		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
 		description: 'Interact with CrowdStrike Falcon API',
 		defaults: {
 			name: 'CrowdStrike Falcon',
@@ -607,6 +608,7 @@ export class CrowdStrikeFalcon implements INodeType {
 			...zeroTrustAssessmentOperations,
 			...zeroTrustAssessmentFields,
 		],
+		usableAsTool: true,
 	};
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
