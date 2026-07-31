@@ -127,19 +127,8 @@ export function createIdsField(resource: string, operations: string[], displayNa
 }
 export const getIdsField = createIdsField;
 
-/**
- * Generates an ID field for specified resource and operations
- */
 export function createIdField(resource: string, operations: string[], displayName = 'ID', name = 'id', description = 'Resource ID'): INodeProperties {
-	return {
-		displayName,
-		name,
-		type: 'string',
-		default: '',
-		required: true,
-		description,
-		displayOptions: makeDisplayOptions(resource, operations),
-	};
+	return createIdsField(resource, operations, displayName, name, description);
 }
 export const getIdField = createIdField;
 

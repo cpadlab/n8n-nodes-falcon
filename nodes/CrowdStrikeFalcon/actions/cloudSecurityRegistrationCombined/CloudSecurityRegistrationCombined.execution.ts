@@ -22,9 +22,9 @@ export async function executeCloudSecurityRegistrationCombined(
 ): Promise<any> {
 	const operation = this.getNodeParameter('operation', index) as string;
 
-	switch (operation) {
-		case 'cloudRegistrationCrossProviderGetAccountAggregates': return await handleCloudRegistrationCrossProviderGetAccountAggregates(this, index, falconClient);
-		default:
-			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Cloud Security Registration Combined.`);
+	if (operation === 'cloudRegistrationCrossProviderGetAccountAggregates') {
+		return await handleCloudRegistrationCrossProviderGetAccountAggregates(this, index, falconClient);
+	}
+	throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported.`); as any)), `Operation ${operation} is not supported for Cloud Security Registration Combined.`);
 	}
 }

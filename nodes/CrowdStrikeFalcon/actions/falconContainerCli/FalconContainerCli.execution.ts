@@ -24,9 +24,9 @@ export async function executeFalconContainerCli(
 ): Promise<any> {
 	const operation = this.getNodeParameter('operation', index) as string;
 
-	switch (operation) {
-		case 'readImageVulnerabilities': return await handleReadImageVulnerabilities(this, index, falconClient);
-		default:
-			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Falcon Container CLI.`);
+	if (operation === 'readImageVulnerabilities') {
+		return await handleReadImageVulnerabilities(this, index, falconClient);
+	}
+	throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported.`); as any)), `Operation ${operation} is not supported for Falcon Container CLI.`);
 	}
 }

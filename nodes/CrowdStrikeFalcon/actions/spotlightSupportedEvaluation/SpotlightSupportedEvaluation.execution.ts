@@ -29,9 +29,9 @@ export async function executeSpotlightSupportedEvaluation(
 ): Promise<any> {
 	const operation = this.getNodeParameter('operation', index) as string;
 
-	switch (operation) {
-		case 'combinedSupportedEvaluationExt': return await handleCombinedSupportedEvaluationExt(this, index, falconClient);
-		default:
-			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Spotlight Supported Evaluation.`);
+	if (operation === 'combinedSupportedEvaluationExt') {
+		return await handleCombinedSupportedEvaluationExt(this, index, falconClient);
+	}
+	throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported.`); as any)), `Operation ${operation} is not supported for Spotlight Supported Evaluation.`);
 	}
 }

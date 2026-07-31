@@ -23,9 +23,9 @@ export async function executeInstallationTokensSettings(
 ): Promise<any> {
 	const operation = this.getNodeParameter('operation', index) as string;
 
-	switch (operation) {
-		case 'customerSettingsUpdate': return await handleCustomerSettingsUpdate(this, index, falconClient);
-		default:
-			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Installation Tokens Settings.`);
+	if (operation === 'customerSettingsUpdate') {
+		return await handleCustomerSettingsUpdate(this, index, falconClient);
+	}
+	throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported.`); as any)), `Operation ${operation} is not supported for Installation Tokens Settings.`);
 	}
 }

@@ -27,9 +27,9 @@ export async function executeServerlessVulnerabilities(
 ): Promise<any> {
 	const operation = this.getNodeParameter('operation', index) as string;
 
-	switch (operation) {
-		case 'getCombinedVulnerabilitiesSARIF': return await handleGetCombinedVulnerabilitiesSARIF(this, index, falconClient);
-		default:
-			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Serverless Vulnerabilities.`);
+	if (operation === 'getCombinedVulnerabilitiesSARIF') {
+		return await handleGetCombinedVulnerabilitiesSARIF(this, index, falconClient);
+	}
+	throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported.`); as any)), `Operation ${operation} is not supported for Serverless Vulnerabilities.`);
 	}
 }

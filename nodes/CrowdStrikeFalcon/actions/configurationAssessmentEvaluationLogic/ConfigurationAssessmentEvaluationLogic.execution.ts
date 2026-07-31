@@ -20,9 +20,9 @@ export async function executeConfigurationAssessmentEvaluationLogic(
 ): Promise<any> {
 	const operation = this.getNodeParameter('operation', index) as string;
 
-	switch (operation) {
-		case 'getEvaluationLogicMixin0': return await handleGetEvaluationLogicMixin0(this, index, falconClient);
-		default:
-			throw new NodeOperationError((typeof this?.getNode === 'function' ? this.getNode() : (this as any)?.getNode ? (this as any).getNode() : ({} as any)), `Operation ${operation} is not supported for Configuration Assessment Evaluation Logic.`);
+	if (operation === 'getEvaluationLogicMixin0') {
+		return await handleGetEvaluationLogicMixin0(this, index, falconClient);
+	}
+	throw new NodeOperationError(this.getNode(), `Operation ${operation} is not supported.`); as any)), `Operation ${operation} is not supported for Configuration Assessment Evaluation Logic.`);
 	}
 }
