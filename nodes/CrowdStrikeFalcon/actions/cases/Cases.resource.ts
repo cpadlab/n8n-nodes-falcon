@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createOperationField, createStandardPaginationFields } from '../common';
+
 export const casesOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['cases'],
-			},
-		},
-		options: [
+	createOperationField('cases', [
+
 			{
 				name: 'Get Cases Query',
 				value: 'queriesCasesGetV1',
@@ -66,74 +59,15 @@ export const casesOperations: INodeProperties[] = [
 				description: 'Merges a source case into a destination case',
 				action: 'Merge cases',
 			},
-		],
-		default: 'queriesCasesGetV1',
-	},
+		
+	], 'queriesCasesGetV1'),
 ];
 
 export const casesFields: INodeProperties[] = [
 	/* -------------------------------------------------------------------------- */
 	/*                               queriesCasesGetV1                            */
 	/* -------------------------------------------------------------------------- */
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['cases'],
-				operation: ['queriesCasesGetV1'],
-			},
-		},
-		default: '',
-		description: 'FQL filter string (e.g., status:"closed")',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['cases'],
-				operation: ['queriesCasesGetV1'],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['cases'],
-				operation: ['queriesCasesGetV1'],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['cases'],
-				operation: ['queriesCasesGetV1'],
-			},
-		},
-		default: '',
-		description: 'Sort criteria (e.g., created_time.desc)',
-	},
+	...createStandardPaginationFields('cases', ['queriesCasesGetV1']),
 	{
 		displayName: 'Search Query (Q)',
 		name: 'q',
