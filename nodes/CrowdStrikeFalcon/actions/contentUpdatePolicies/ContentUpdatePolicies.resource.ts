@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createOperationField, createStandardPaginationFields } from '../common';
+
 export const contentUpdatePoliciesOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['contentUpdatePolicies'],
-			},
-		},
-		options: [
+	createOperationField('contentUpdatePolicies', [
+
 			{ name: 'Create Policies', value: 'createContentUpdatePolicies', description: 'Create Content Update Policies', action: 'Create content update policies' },
 			{ name: 'Delete Policies', value: 'deleteContentUpdatePolicies', description: 'Delete Content Update Policies by IDs', action: 'Delete content update policies' },
 			{ name: 'Get Policies by IDs', value: 'getContentUpdatePolicies', description: 'Retrieve Content Update Policies by IDs', action: 'Get content update policies' },
@@ -23,9 +16,8 @@ export const contentUpdatePoliciesOperations: INodeProperties[] = [
 			{ name: 'Query Pinnable Content Versions', value: 'queryPinnableContentVersions', description: 'Search for content versions available for pinning', action: 'Query pinnable content versions' },
 			{ name: 'Set Policies Precedence', value: 'setContentUpdatePoliciesPrecedence', description: 'Sets precedence of Content Update Policies', action: 'Set content update policies precedence' },
 			{ name: 'Update Policies', value: 'updateContentUpdatePolicies', description: 'Update Content Update Policies', action: 'Update content update policies' },
-		],
-		default: 'queryCombinedContentUpdatePolicies',
-	},
+		
+	], 'queryCombinedContentUpdatePolicies'),
 ];
 
 export const contentUpdatePoliciesFields: INodeProperties[] = [
@@ -101,103 +93,12 @@ export const contentUpdatePoliciesFields: INodeProperties[] = [
 		required: true,
 		description: 'Category for pinnable content versions',
 	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['contentUpdatePolicies'],
-				operation: [
-					'createContentUpdatePolicies',
+	createBodyJsonField('contentUpdatePolicies', ['createContentUpdatePolicies',
 					'performContentUpdatePoliciesAction',
 					'setContentUpdatePoliciesPrecedence',
-					'updateContentUpdatePolicies',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['contentUpdatePolicies'],
-				operation: [
-					'queryCombinedContentUpdatePolicies',
+					'updateContentUpdatePolicies',]),
+	...createStandardPaginationFields('contentUpdatePolicies', ['queryCombinedContentUpdatePolicies',
 					'queryCombinedContentUpdatePolicyMembers',
 					'queryContentUpdatePolicies',
-					'queryContentUpdatePolicyMembers',
-				],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['contentUpdatePolicies'],
-				operation: [
-					'queryCombinedContentUpdatePolicies',
-					'queryCombinedContentUpdatePolicyMembers',
-					'queryContentUpdatePolicies',
-					'queryContentUpdatePolicyMembers',
-				],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['contentUpdatePolicies'],
-				operation: [
-					'queryCombinedContentUpdatePolicies',
-					'queryCombinedContentUpdatePolicyMembers',
-					'queryContentUpdatePolicies',
-					'queryContentUpdatePolicyMembers',
-				],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['contentUpdatePolicies'],
-				operation: [
-					'queryCombinedContentUpdatePolicies',
-					'queryCombinedContentUpdatePolicyMembers',
-					'queryContentUpdatePolicies',
-					'queryContentUpdatePolicyMembers',
-					'queryPinnableContentVersions',
-				],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+					'queryContentUpdatePolicyMembers',]),
 ];
