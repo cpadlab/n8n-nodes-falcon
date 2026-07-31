@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createIdsField, createOperationField, createStandardPaginationFields } from '../common';
+
 export const falconxSandboxOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['falconxSandbox'],
-			},
-		},
-		options: [
+	createOperationField('falconxSandbox', [
+
 			{ name: 'Delete Report', value: 'deleteReport', description: 'Delete report based on report ID', action: 'Delete report' },
 			{ name: 'Delete Sample V2', value: 'deleteSampleV2', description: 'Removes a sample including file, meta and submissions', action: 'Delete sample v2' },
 			{ name: 'Get Artifacts', value: 'getArtifacts', description: 'Download IOC packs, PCAP files, memory dumps, and artifacts', action: 'Get artifacts' },
@@ -27,9 +20,8 @@ export const falconxSandboxOperations: INodeProperties[] = [
 			{ name: 'Query Submissions', value: 'querySubmissions', description: 'Find submission IDs by FQL filter and paging', action: 'Query submissions' },
 			{ name: 'Submit', value: 'submit', description: 'Submit an uploaded file or URL for sandbox analysis', action: 'Submit' },
 			{ name: 'Upload Sample V2', value: 'uploadSampleV2', description: 'Upload a file for sandbox analysis', action: 'Upload sample v2' },
-		],
-		default: 'queryReports',
-	},
+		
+	], 'queryReports'),
 ];
 
 export const falconxSandboxFields: INodeProperties[] = [
@@ -55,20 +47,7 @@ export const falconxSandboxFields: INodeProperties[] = [
 		required: true,
 		description: 'Unique identifier or SHA256 string',
 	},
-	{
-		displayName: 'IDs',
-		name: 'ids',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['falconxSandbox'],
-				operation: ['getReports', 'getSubmissions', 'getSummaryReports'],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'Comma-separated list of IDs',
-	},
+	createIdsField('falconxSandbox', ['getReports', 'getSubmissions', 'getSummaryReports']),
 	{
 		displayName: 'Name',
 		name: 'name',
@@ -95,20 +74,7 @@ export const falconxSandboxFields: INodeProperties[] = [
 		default: false,
 		description: 'Whether the sample file is password protected',
 	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['falconxSandbox'],
-				operation: ['querySampleV1', 'submit'],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
+	createBodyJsonField('falconxSandbox', ['querySampleV1', 'submit']),
 	{
 		displayName: 'AID',
 		name: 'aid',
@@ -162,60 +128,5 @@ export const falconxSandboxFields: INodeProperties[] = [
 		default: false,
 		description: 'Whether the sample is confidential',
 	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['falconxSandbox'],
-				operation: ['queryReports', 'querySubmissions'],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['falconxSandbox'],
-				operation: ['queryReports', 'querySubmissions'],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['falconxSandbox'],
-				operation: ['queryReports', 'querySubmissions'],
-			},
-		},
-		default: '',
-		description: 'Starting index or pagination token',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['falconxSandbox'],
-				operation: ['queryReports', 'querySubmissions'],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+	...createStandardPaginationFields('falconxSandbox', ['queryReports', 'querySubmissions']),
 ];
