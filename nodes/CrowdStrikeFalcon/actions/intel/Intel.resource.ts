@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createIdsField, createOperationField, createStandardPaginationFields } from '../common';
+
 export const intelOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['intel'],
-			},
-		},
-		options: [
+	createOperationField('intel', [
+
 			{ name: 'CAO Incidents Aggregates V1', value: 'caoIncidentsAggregatesV1', description: 'Perform statistical aggregations over incident data', action: 'Cao incidents aggregates v1' },
 			{ name: 'CAO Incidents Entities V1', value: 'caoIncidentsEntitiesV1', description: 'Retrieve full details for adversary incidents by IDs', action: 'Cao incidents entities v1' },
 			{ name: 'CAO Incidents Queries V1', value: 'caoIncidentsQueriesV1', description: 'Search for adversary incidents using FQL criteria', action: 'Cao incidents queries v1' },
@@ -39,9 +32,8 @@ export const intelOperations: INodeProperties[] = [
 			{ name: 'Query MITRE Attacks', value: 'queryMitreAttacks', description: 'Gets MITRE tactics and techniques for given actor', action: 'Query mitre attacks' },
 			{ name: 'Query MITRE Attacks for Malware', value: 'queryMitreAttacksForMalware', description: 'Gets MITRE tactics and techniques for given malware', action: 'Query mitre attacks for malware' },
 			{ name: 'Query Vulnerabilities', value: 'queryVulnerabilities', description: 'Get vulnerability IDs matching FQL filters', action: 'Query vulnerabilities' },
-		],
-		default: 'queryIntelActorIds',
-	},
+		
+	], 'queryIntelActorIds'),
 ];
 
 export const intelFields: INodeProperties[] = [
@@ -58,27 +50,12 @@ export const intelFields: INodeProperties[] = [
 		default: '',
 		description: 'Unique ID string or numeric ID',
 	},
-	{
-		displayName: 'IDs',
-		name: 'ids',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['intel'],
-				operation: [
-					'getIntelActorEntities',
+	createIdsField('intel', ['getIntelActorEntities',
 					'getIntelReportEntities',
 					'getIntelRuleEntities',
 					'getMalwareEntities',
 					'queryMitreAttacks',
-					'queryMitreAttacksForMalware',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'Comma-separated list of IDs',
-	},
+					'queryMitreAttacksForMalware',]),
 	{
 		displayName: 'Actor ID',
 		name: 'actorId',
@@ -121,26 +98,11 @@ export const intelFields: INodeProperties[] = [
 		required: true,
 		description: 'Export format string',
 	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['intel'],
-				operation: [
-					'caoIncidentsAggregatesV1',
+	createBodyJsonField('intel', ['caoIncidentsAggregatesV1',
 					'caoIncidentsEntitiesV1',
 					'getIntelIndicatorEntities',
 					'getVulnerabilities',
-					'postMitreAttacks',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
+					'postMitreAttacks',]),
 	{
 		displayName: 'Search Query (q)',
 		name: 'q',
@@ -165,15 +127,7 @@ export const intelFields: INodeProperties[] = [
 		default: '',
 		description: 'Search string query',
 	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['intel'],
-				operation: [
-					'caoIncidentsQueriesV1',
+	...createStandardPaginationFields('intel', ['caoIncidentsQueriesV1',
 					'queryIntelActorEntities',
 					'queryIntelActorIds',
 					'queryIntelIndicatorEntities',
@@ -182,90 +136,5 @@ export const intelFields: INodeProperties[] = [
 					'queryIntelReportIds',
 					'queryMalware',
 					'queryMalwareEntities',
-					'queryVulnerabilities',
-				],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 5000,
-		},
-		displayOptions: {
-			show: {
-				resource: ['intel'],
-				operation: [
-					'caoIncidentsQueriesV1',
-					'queryIntelActorEntities',
-					'queryIntelActorIds',
-					'queryIntelIndicatorEntities',
-					'queryIntelIndicatorIds',
-					'queryIntelReportEntities',
-					'queryIntelReportIds',
-					'queryIntelRuleIds',
-					'queryMalware',
-					'queryMalwareEntities',
-					'queryVulnerabilities',
-				],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['intel'],
-				operation: [
-					'caoIncidentsQueriesV1',
-					'queryIntelActorEntities',
-					'queryIntelActorIds',
-					'queryIntelIndicatorEntities',
-					'queryIntelIndicatorIds',
-					'queryIntelReportEntities',
-					'queryIntelReportIds',
-					'queryIntelRuleIds',
-					'queryMalware',
-					'queryMalwareEntities',
-					'queryVulnerabilities',
-				],
-			},
-		},
-		default: '',
-		description: 'Starting index or pagination token',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['intel'],
-				operation: [
-					'caoIncidentsQueriesV1',
-					'queryIntelActorEntities',
-					'queryIntelActorIds',
-					'queryIntelIndicatorEntities',
-					'queryIntelIndicatorIds',
-					'queryIntelReportEntities',
-					'queryIntelReportIds',
-					'queryIntelRuleIds',
-					'queryMalware',
-					'queryMalwareEntities',
-					'queryVulnerabilities',
-				],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+					'queryVulnerabilities',]),
 ];
