@@ -1,23 +1,15 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createOperationField } from '../common';
+
 export const intelligenceFeedsOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['intelligenceFeeds'],
-			},
-		},
-		options: [
+	createOperationField('intelligenceFeeds', [
+
 			{ name: 'Download Feed Archive', value: 'downloadFeedArchive', description: 'Downloads the content as a zip archive for a given feed item ID', action: 'Download feed archive' },
 			{ name: 'List Feed Types', value: 'listFeedTypes', description: 'Lists the accessible feed types for a given customer', action: 'List feed types' },
 			{ name: 'Query Feed Archives', value: 'queryFeedArchives', description: 'Queries the accessible feed types for a customer and returns feed item IDs', action: 'Query feed archives' },
-		],
-		default: 'listFeedTypes',
-	},
+		
+	], 'listFeedTypes'),
 ];
 
 export const intelligenceFeedsFields: INodeProperties[] = [
