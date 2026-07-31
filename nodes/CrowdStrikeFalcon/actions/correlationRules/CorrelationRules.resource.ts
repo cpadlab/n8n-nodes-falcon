@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createIdsField, createOperationField, createStandardPaginationFields } from '../common';
+
 export const correlationRulesOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['correlationRules'],
-			},
-		},
-		options: [
+	createOperationField('correlationRules', [
+
 			{ name: 'Aggregates Rule Versions Post V1', value: 'aggregatesRuleVersionsPostV1', description: 'Get rules aggregates via json', action: 'Aggregates rule versions post v1' },
 			{ name: 'Combined Rules Get V1', value: 'combinedRulesGetV1', description: 'Find all rules matching query and filter', action: 'Combined rules get v1' },
 			{ name: 'Combined Rules Get V2', value: 'combinedRulesGetV2', description: 'Find all rules matching query and filter V2', action: 'Combined rules get v2' },
@@ -30,32 +23,17 @@ export const correlationRulesOperations: INodeProperties[] = [
 			{ name: 'Queries Rules Get V1', value: 'queriesRulesGetV1', description: 'Find all rule IDs matching query and filter', action: 'Queries rules get v1' },
 			{ name: 'Queries Rules Get V2', value: 'queriesRulesGetV2', description: 'Find all rule version IDs matching query and filter', action: 'Queries rules get v2' },
 			{ name: 'Queries Templates Get V1', value: 'queriesTemplatesGetV1Mixin0', description: 'Search rule template IDs matching filter', action: 'Queries templates get v1' },
-		],
-		default: 'combinedRulesGetV1',
-	},
+		
+	], 'combinedRulesGetV1'),
 ];
 
 export const correlationRulesFields: INodeProperties[] = [
-	{
-		displayName: 'IDs',
-		name: 'ids',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['correlationRules'],
-				operation: [
-					'aggregatesRuleVersionsPostV1',
+	createIdsField('correlationRules', ['aggregatesRuleVersionsPostV1',
 					'entitiesRuleVersionsDeleteV1',
 					'entitiesRulesDeleteV1',
 					'entitiesRulesGetV1',
 					'entitiesRulesGetV2',
-					'entitiesTemplatesGetV1Mixin0',
-				],
-			},
-		},
-		default: '',
-		description: 'Comma-separated list of IDs',
-	},
+					'entitiesTemplatesGetV1Mixin0',]),
 	{
 		displayName: 'Rule IDs',
 		name: 'ruleIds',
@@ -83,109 +61,16 @@ export const correlationRulesFields: INodeProperties[] = [
 		default: '',
 		description: 'Free text search query',
 	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['correlationRules'],
-				operation: [
-					'aggregatesRuleVersionsPostV1',
+	createBodyJsonField('correlationRules', ['aggregatesRuleVersionsPostV1',
 					'entitiesRuleVersionsExportPostV1',
 					'entitiesRuleVersionsPublishPatchV1',
 					'entitiesRulesPatchV1',
 					'entitiesRulesPostV1',
-					'entitiesTemplatesRulesPostV1',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['correlationRules'],
-				operation: [
-					'aggregatesRuleVersionsPostV1',
+					'entitiesTemplatesRulesPostV1',]),
+	...createStandardPaginationFields('correlationRules', ['aggregatesRuleVersionsPostV1',
 					'combinedRulesGetV1',
 					'combinedRulesGetV2',
 					'queriesRulesGetV1',
 					'queriesRulesGetV2',
-					'queriesTemplatesGetV1Mixin0',
-				],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['correlationRules'],
-				operation: [
-					'combinedRulesGetV1',
-					'combinedRulesGetV2',
-					'queriesRulesGetV1',
-					'queriesRulesGetV2',
-					'queriesTemplatesGetV1Mixin0',
-				],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['correlationRules'],
-				operation: [
-					'combinedRulesGetV1',
-					'combinedRulesGetV2',
-					'queriesRulesGetV1',
-					'queriesRulesGetV2',
-					'queriesTemplatesGetV1Mixin0',
-				],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['correlationRules'],
-				operation: [
-					'combinedRulesGetV1',
-					'combinedRulesGetV2',
-					'queriesRulesGetV1',
-					'queriesRulesGetV2',
-					'queriesTemplatesGetV1Mixin0',
-				],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+					'queriesTemplatesGetV1Mixin0',]),
 ];
