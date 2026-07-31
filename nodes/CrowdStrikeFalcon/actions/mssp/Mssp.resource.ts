@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createIdsField, createOperationField, createStandardPaginationFields } from '../common';
+
 export const msspOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['mssp'],
-			},
-		},
-		options: [
+	createOperationField('mssp', [
+
 			{ name: 'Add CID Group Members', value: 'addCIDGroupMembers', description: 'Add new CID group member', action: 'Add CID group members' },
 			{ name: 'Add Role', value: 'addRole', description: 'Create link between user group and CID group with roles', action: 'Add role' },
 			{ name: 'Add User Group Members', value: 'addUserGroupMembers', description: 'Add new user group member', action: 'Add user group members' },
@@ -42,21 +35,12 @@ export const msspOperations: INodeProperties[] = [
 			{ name: 'Query User Groups', value: 'queryUserGroups', description: 'Query user groups', action: 'Query user groups' },
 			{ name: 'Update CID Groups', value: 'updateCIDGroups', description: 'Update existing CID groups', action: 'Update CID groups' },
 			{ name: 'Update User Groups', value: 'updateUserGroups', description: 'Update existing user group(s)', action: 'Update user groups' },
-		],
-		default: 'queryCIDGroups',
-	},
+		
+	], 'queryCIDGroups'),
 ];
 
 export const msspFields: INodeProperties[] = [
-	{
-		displayName: 'IDs',
-		name: 'ids',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['mssp'],
-				operation: [
-					'deleteCIDGroups',
+	createIdsField('mssp', ['deleteCIDGroups',
 					'deleteUserGroups',
 					'getCIDGroupById',
 					'getCIDGroupByIdV2',
@@ -67,14 +51,7 @@ export const msspFields: INodeProperties[] = [
 					'getUserGroupMembersByID',
 					'getUserGroupMembersByIDV2',
 					'getUserGroupsByID',
-					'getUserGroupsByIDV2',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'Comma-separated list of IDs',
-	},
+					'getUserGroupsByIDV2',]),
 	{
 		displayName: 'CID',
 		name: 'cid',
@@ -155,15 +132,7 @@ export const msspFields: INodeProperties[] = [
 		default: '',
 		description: 'Role ID filter',
 	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['mssp'],
-				operation: [
-					'addCIDGroupMembers',
+	createBodyJsonField('mssp', ['addCIDGroupMembers',
 					'addRole',
 					'addUserGroupMembers',
 					'createCIDGroups',
@@ -174,92 +143,6 @@ export const msspFields: INodeProperties[] = [
 					'deletedRoles',
 					'getChildrenV2',
 					'updateCIDGroups',
-					'updateUserGroups',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['mssp'],
-				operation: ['queryChildren'],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['mssp'],
-				operation: [
-					'queryCIDGroupMembers',
-					'queryCIDGroups',
-					'queryChildren',
-					'queryRoles',
-					'queryUserGroupMembers',
-					'queryUserGroups',
-				],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['mssp'],
-				operation: [
-					'queryCIDGroupMembers',
-					'queryCIDGroups',
-					'queryChildren',
-					'queryRoles',
-					'queryUserGroupMembers',
-					'queryUserGroups',
-				],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['mssp'],
-				operation: [
-					'queryCIDGroupMembers',
-					'queryCIDGroups',
-					'queryChildren',
-					'queryRoles',
-					'queryUserGroupMembers',
-					'queryUserGroups',
-				],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+					'updateUserGroups',]),
+	...createStandardPaginationFields('mssp', ['queryChildren']),
 ];
