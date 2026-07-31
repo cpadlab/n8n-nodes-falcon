@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createOperationField, createStandardPaginationFields } from '../common';
+
 export const preventionPoliciesOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['preventionPolicies'],
-			},
-		},
-		options: [
+	createOperationField('preventionPolicies', [
+
 			{ name: 'Create Prevention Policies', value: 'createPreventionPolicies', description: 'Create Prevention Policies by specifying details about policy to create', action: 'Create prevention policies' },
 			{ name: 'Delete Prevention Policies', value: 'deletePreventionPolicies', description: 'Delete a set of Prevention Policies by specifying their IDs', action: 'Delete prevention policies' },
 			{ name: 'Get Prevention Policies', value: 'getPreventionPolicies', description: 'Retrieve a set of Prevention Policies by specifying their IDs', action: 'Get prevention policies' },
@@ -22,9 +15,8 @@ export const preventionPoliciesOperations: INodeProperties[] = [
 			{ name: 'Query Prevention Policy Members', value: 'queryPreventionPolicyMembers', description: 'Search for members of a Prevention Policy returning Agent IDs', action: 'Query prevention policy members' },
 			{ name: 'Set Prevention Policies Precedence', value: 'setPreventionPoliciesPrecedence', description: 'Sets precedence of Prevention Policies based on order of IDs', action: 'Set prevention policies precedence' },
 			{ name: 'Update Prevention Policies', value: 'updatePreventionPolicies', description: 'Update Prevention Policies by specifying ID and details to update', action: 'Update prevention policies' },
-		],
-		default: 'queryPreventionPolicies',
-	},
+		
+	], 'queryPreventionPolicies'),
 ];
 
 export const preventionPoliciesFields: INodeProperties[] = [
@@ -77,102 +69,12 @@ export const preventionPoliciesFields: INodeProperties[] = [
 		required: true,
 		description: 'Action to perform on policy',
 	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['preventionPolicies'],
-				operation: [
-					'createPreventionPolicies',
+	createBodyJsonField('preventionPolicies', ['createPreventionPolicies',
 					'performPreventionPoliciesAction',
 					'setPreventionPoliciesPrecedence',
-					'updatePreventionPolicies',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['preventionPolicies'],
-				operation: [
-					'queryCombinedPreventionPolicies',
+					'updatePreventionPolicies',]),
+	...createStandardPaginationFields('preventionPolicies', ['queryCombinedPreventionPolicies',
 					'queryCombinedPreventionPolicyMembers',
 					'queryPreventionPolicies',
-					'queryPreventionPolicyMembers',
-				],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['preventionPolicies'],
-				operation: [
-					'queryCombinedPreventionPolicies',
-					'queryCombinedPreventionPolicyMembers',
-					'queryPreventionPolicies',
-					'queryPreventionPolicyMembers',
-				],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['preventionPolicies'],
-				operation: [
-					'queryCombinedPreventionPolicies',
-					'queryCombinedPreventionPolicyMembers',
-					'queryPreventionPolicies',
-					'queryPreventionPolicyMembers',
-				],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['preventionPolicies'],
-				operation: [
-					'queryCombinedPreventionPolicies',
-					'queryCombinedPreventionPolicyMembers',
-					'queryPreventionPolicies',
-					'queryPreventionPolicyMembers',
-				],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+					'queryPreventionPolicyMembers',]),
 ];
