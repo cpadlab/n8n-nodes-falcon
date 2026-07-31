@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createOperationField, createStandardPaginationFields } from '../common';
+
 export const cloudPoliciesOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['cloudPolicies'],
-			},
-		},
-		options: [
+	createOperationField('cloudPolicies', [
+
 			{ name: 'Clone Compliance Framework', value: 'cloneComplianceFramework', description: 'Clone an existing compliance framework', action: 'Clone compliance framework' },
 			{ name: 'Create Compliance Control', value: 'createComplianceControl', description: 'Create a new custom compliance control', action: 'Create compliance control' },
 			{ name: 'Create Compliance Framework', value: 'createComplianceFramework', description: 'Create a new custom compliance framework', action: 'Create compliance framework' },
@@ -42,9 +35,8 @@ export const cloudPoliciesOperations: INodeProperties[] = [
 			{ name: 'Update Rule', value: 'updateRule', description: 'Update a rule', action: 'Update rule' },
 			{ name: 'Update Rule Override', value: 'updateRuleOverride', description: 'Update a rule override', action: 'Update rule override' },
 			{ name: 'Update Suppression Rule', value: 'updateSuppressionRule', description: 'Update a suppression rule', action: 'Update suppression rule' },
-		],
-		default: 'queryRule',
-	},
+		
+	], 'queryRule'),
 ];
 
 export const cloudPoliciesFields: INodeProperties[] = [
@@ -158,15 +150,7 @@ export const cloudPoliciesFields: INodeProperties[] = [
 	/* -------------------------------------------------------------------------- */
 	/*                                Body JSON                                   */
 	/* -------------------------------------------------------------------------- */
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['cloudPolicies'],
-				operation: [
-					'createComplianceControl',
+	createBodyJsonField('cloudPolicies', ['createComplianceControl',
 					'createComplianceFramework',
 					'createRuleMixin0',
 					'createRuleOverride',
@@ -178,75 +162,10 @@ export const cloudPoliciesFields: INodeProperties[] = [
 					'updateComplianceFramework',
 					'updateRule',
 					'updateRuleOverride',
-					'updateSuppressionRule',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON body payload for cloud policy operation',
-	},
+					'updateSuppressionRule',]),
 
 	/* -------------------------------------------------------------------------- */
 	/*                            Pagination & Filters                            */
 	/* -------------------------------------------------------------------------- */
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['cloudPolicies'],
-				operation: ['queryComplianceControls', 'queryComplianceFrameworks', 'queryRule', 'querySuppressionRules'],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['cloudPolicies'],
-				operation: ['queryComplianceControls', 'queryComplianceFrameworks', 'queryRule', 'querySuppressionRules'],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['cloudPolicies'],
-				operation: ['queryComplianceControls', 'queryComplianceFrameworks', 'queryRule', 'querySuppressionRules'],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['cloudPolicies'],
-				operation: ['queryComplianceControls', 'queryComplianceFrameworks', 'queryRule', 'querySuppressionRules'],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+	...createStandardPaginationFields('cloudPolicies', ['queryComplianceControls', 'queryComplianceFrameworks', 'queryRule', 'querySuppressionRules']),
 ];
