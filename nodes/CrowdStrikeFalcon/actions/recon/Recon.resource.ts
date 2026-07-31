@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createFilterField, createIdsField, createLimitField, createOffsetField, createOperationField, createSortField } from '../common';
+
 export const reconOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['recon'],
-			},
-		},
-		options: [
+	createOperationField('recon', [
+
 			{ name: 'Aggregate Notifications Exposed Data Records V1', value: 'aggregateNotificationsExposedDataRecordsV1', description: 'Get notification exposed data record aggregates', action: 'Aggregate notifications exposed data records V1' },
 			{ name: 'Aggregate Notifications V1', value: 'aggregateNotificationsV1', description: 'Get notification aggregates', action: 'Aggregate notifications V1' },
 			{ name: 'Create Actions V1', value: 'createActionsV1', description: 'Create actions for a monitoring rule', action: 'Create actions V1' },
@@ -38,9 +31,8 @@ export const reconOperations: INodeProperties[] = [
 			{ name: 'Update Action V1', value: 'updateActionV1', description: 'Update an action for a monitoring rule', action: 'Update action V1' },
 			{ name: 'Update Notifications V1', value: 'updateNotificationsV1', description: 'Update notification status or assignee', action: 'Update notifications V1' },
 			{ name: 'Update Rules V1', value: 'updateRulesV1', description: 'Update monitoring rules', action: 'Update rules V1' },
-		],
-		default: 'queryRulesV1',
-	},
+		
+	], 'queryRulesV1'),
 ];
 
 export const reconFields: INodeProperties[] = [
@@ -58,15 +50,7 @@ export const reconFields: INodeProperties[] = [
 		required: true,
 		description: 'Target ID',
 	},
-	{
-		displayName: 'IDs',
-		name: 'ids',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['recon'],
-				operation: [
-					'deleteExportJobsV1',
+	createIdsField('recon', ['deleteExportJobsV1',
 					'deleteNotificationsV1',
 					'deleteRulesV1',
 					'getActionsV1',
@@ -76,23 +60,8 @@ export const reconFields: INodeProperties[] = [
 					'getNotificationsExposedDataRecordsV1',
 					'getNotificationsTranslatedV1',
 					'getNotificationsV1',
-					'getRulesV1',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'Comma-separated list of IDs',
-	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['recon'],
-				operation: [
-					'aggregateNotificationsExposedDataRecordsV1',
+					'getRulesV1',]),
+	createBodyJsonField('recon', ['aggregateNotificationsExposedDataRecordsV1',
 					'aggregateNotificationsV1',
 					'createActionsV1',
 					'createExportJobsV1',
@@ -100,32 +69,11 @@ export const reconFields: INodeProperties[] = [
 					'previewRuleV1',
 					'updateActionV1',
 					'updateNotificationsV1',
-					'updateRulesV1',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['recon'],
-				operation: [
-					'queryActionsV1',
+					'updateRulesV1',]),
+	createFilterField('recon', ['queryActionsV1',
 					'queryNotificationsExposedDataRecordsV1',
 					'queryNotificationsV1',
-					'queryRulesV1',
-				],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
+					'queryRulesV1',]),
 	{
 		displayName: 'Query',
 		name: 'q',
@@ -144,65 +92,16 @@ export const reconFields: INodeProperties[] = [
 		default: '',
 		description: 'Search query string',
 	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['recon'],
-				operation: [
-					'queryActionsV1',
+	createLimitField('recon', ['queryActionsV1',
 					'queryNotificationsExposedDataRecordsV1',
 					'queryNotificationsV1',
-					'queryRulesV1',
-				],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['recon'],
-				operation: [
-					'queryActionsV1',
+					'queryRulesV1',]),
+	createOffsetField('recon', ['queryActionsV1',
 					'queryNotificationsExposedDataRecordsV1',
 					'queryNotificationsV1',
-					'queryRulesV1',
-				],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['recon'],
-				operation: [
-					'queryActionsV1',
+					'queryRulesV1',]),
+	createSortField('recon', ['queryActionsV1',
 					'queryNotificationsExposedDataRecordsV1',
 					'queryNotificationsV1',
-					'queryRulesV1',
-				],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+					'queryRulesV1',]),
 ];
