@@ -1,38 +1,17 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createFilterField, createLimitField, createOffsetField, createOperationField, createSortField } from '../common';
+
 export const spotlightSupportedEvaluationOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['spotlightSupportedEvaluation'],
-			},
-		},
-		options: [
+	createOperationField('spotlightSupportedEvaluation', [
+
 			{ name: 'Combined Supported Evaluation Ext', value: 'combinedSupportedEvaluationExt', description: 'Performs combined query for retrieving RiskSupportedEvaluation entities', action: 'Combined supported evaluation ext' },
-		],
-		default: 'combinedSupportedEvaluationExt',
-	},
+		
+	], 'combinedSupportedEvaluationExt'),
 ];
 
 export const spotlightSupportedEvaluationFields: INodeProperties[] = [
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['spotlightSupportedEvaluation'],
-				operation: ['combinedSupportedEvaluationExt'],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'FQL filter string',
-	},
+	createFilterField('spotlightSupportedEvaluation', ['combinedSupportedEvaluationExt']),
 	{
 		displayName: 'After',
 		name: 'after',
@@ -46,49 +25,9 @@ export const spotlightSupportedEvaluationFields: INodeProperties[] = [
 		default: '',
 		description: 'Paging cursor string',
 	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['spotlightSupportedEvaluation'],
-				operation: ['combinedSupportedEvaluationExt'],
-			},
-		},
-		default: '',
-		description: 'Offset string for pagination',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['spotlightSupportedEvaluation'],
-				operation: ['combinedSupportedEvaluationExt'],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['spotlightSupportedEvaluation'],
-				operation: ['combinedSupportedEvaluationExt'],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+	createOffsetField('spotlightSupportedEvaluation', ['combinedSupportedEvaluationExt']),
+	createLimitField('spotlightSupportedEvaluation', ['combinedSupportedEvaluationExt']),
+	createSortField('spotlightSupportedEvaluation', ['combinedSupportedEvaluationExt']),
 	{
 		displayName: 'Risk Provider',
 		name: 'riskProvider',
