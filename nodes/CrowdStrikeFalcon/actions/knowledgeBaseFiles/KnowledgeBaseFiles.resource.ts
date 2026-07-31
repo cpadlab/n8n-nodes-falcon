@@ -1,26 +1,18 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createFilterField, createLimitField, createOffsetField, createOperationField } from '../common';
+
 export const knowledgeBaseFilesOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['knowledgeBaseFiles'],
-			},
-		},
-		options: [
+	createOperationField('knowledgeBaseFiles', [
+
 			{ name: 'Entities Knowledge Base Files Create V1', value: 'entitiesKnowledgeBaseFilesCreateV1', description: 'Upload a file to a knowledge base', action: 'Entities knowledge base files create V1' },
 			{ name: 'Entities Knowledge Base Files Delete V1', value: 'entitiesKnowledgeBaseFilesDeleteV1', description: 'Delete document from knowledge base', action: 'Entities knowledge base files delete V1' },
 			{ name: 'Entities Knowledge Base Files Download V1', value: 'entitiesKnowledgeBaseFilesDownloadV1', description: 'Download knowledge base file entities for provided ID', action: 'Entities knowledge base files download V1' },
 			{ name: 'Entities Knowledge Base Files Update V1', value: 'entitiesKnowledgeBaseFilesUpdateV1', description: 'Update an existing file in a knowledge base', action: 'Entities knowledge base files update V1' },
 			{ name: 'Entities Knowledge Base Files V1', value: 'entitiesKnowledgeBaseFilesV1', description: 'Retrieve knowledge base file entities for provided IDs', action: 'Entities knowledge base files V1' },
 			{ name: 'Queries Knowledge Base Files V1', value: 'queriesKnowledgeBaseFilesV1', description: 'Query knowledge base files based on provided filters', action: 'Queries knowledge base files V1' },
-		],
-		default: 'queriesKnowledgeBaseFilesV1',
-	},
+		
+	], 'queriesKnowledgeBaseFilesV1'),
 ];
 
 export const knowledgeBaseFilesFields: INodeProperties[] = [
@@ -102,50 +94,7 @@ export const knowledgeBaseFilesFields: INodeProperties[] = [
 		default: false,
 		description: 'Whether to include deleted files',
 	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['knowledgeBaseFiles'],
-				operation: ['queriesKnowledgeBaseFilesV1'],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['knowledgeBaseFiles'],
-				operation: ['queriesKnowledgeBaseFilesV1'],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['knowledgeBaseFiles'],
-				operation: ['queriesKnowledgeBaseFilesV1'],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
+	createFilterField('knowledgeBaseFiles', ['queriesKnowledgeBaseFilesV1']),
+	createLimitField('knowledgeBaseFiles', ['queriesKnowledgeBaseFilesV1']),
+	createOffsetField('knowledgeBaseFiles', ['queriesKnowledgeBaseFilesV1']),
 ];
