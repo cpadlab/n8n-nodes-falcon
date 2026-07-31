@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createFilterField, createLimitField, createOperationField } from '../common';
+
 export const customStorageOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['customStorage'],
-			},
-		},
-		options: [
+	createOperationField('customStorage', [
+
 			{ name: 'Delete Object', value: 'delete', description: 'Delete specified object', action: 'Delete object' },
 			{ name: 'Delete Versioned Object', value: 'deleteVersionedObject', description: 'Delete specified versioned object', action: 'Delete versioned object' },
 			{ name: 'Describe Collection', value: 'describeCollection', description: 'Fetch metadata about an existing collection', action: 'Describe collection' },
@@ -28,9 +21,8 @@ export const customStorageOperations: INodeProperties[] = [
 			{ name: 'Get Object Metadata', value: 'metadata', description: 'Get metadata for specified object', action: 'Get object metadata' },
 			{ name: 'Search Objects', value: 'search', description: 'Search for objects matching filter criteria', action: 'Search objects' },
 			{ name: 'Search Objects by Version', value: 'searchObjectsByVersion', description: 'Search for versioned objects matching filter criteria', action: 'Search objects by version' },
-		],
-		default: 'listCollections',
-	},
+		
+	], 'listCollections'),
 ];
 
 export const customStorageFields: INodeProperties[] = [
@@ -132,35 +124,6 @@ export const customStorageFields: INodeProperties[] = [
 		required: true,
 		description: 'Comma-separated list of collection names',
 	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['customStorage'],
-				operation: ['search', 'searchObjectsByVersion'],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['customStorage'],
-				operation: ['list', 'listCollections', 'listObjectsByVersion', 'listSchemas', 'search', 'searchObjectsByVersion'],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
+	createFilterField('customStorage', ['search', 'searchObjectsByVersion']),
+	createLimitField('customStorage', ['list', 'listCollections', 'listObjectsByVersion', 'listSchemas', 'search', 'searchObjectsByVersion']),
 ];

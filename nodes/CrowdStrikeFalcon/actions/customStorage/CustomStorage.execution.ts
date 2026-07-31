@@ -1,10 +1,7 @@
 import type { FalconClient } from 'crowdstrike-falcon';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
-function parseArrayParam(context: IExecuteFunctions, index: number, paramName = 'names'): string[] {
-	const str = context.getNodeParameter(paramName, index, '') as string;
-	return str.split(',').map((name) => name.trim()).filter(Boolean);
-}
+import { parseArrayParam } from '../common';
 
 /**
  * Handles the 'delete' operation.
