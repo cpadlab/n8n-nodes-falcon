@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createOperationField, createStandardPaginationFields } from '../common';
+
 export const admissionControlPoliciesOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['admissionControlPolicies'],
-			},
-		},
-		options: [
+	createOperationField('admissionControlPolicies', [
+
 			{
 				name: 'Query Policies',
 				value: 'admissionControlQueryPolicies',
@@ -102,74 +95,15 @@ export const admissionControlPoliciesOperations: INodeProperties[] = [
 				description: 'Delete custom Rego rules from all rule groups',
 				action: 'Remove rule group custom rule',
 			},
-		],
-		default: 'admissionControlQueryPolicies',
-	},
+		
+	], 'admissionControlQueryPolicies'),
 ];
 
 export const admissionControlPoliciesFields: INodeProperties[] = [
 	/* -------------------------------------------------------------------------- */
 	/*                        admissionControlQueryPolicies                       */
 	/* -------------------------------------------------------------------------- */
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['admissionControlPolicies'],
-				operation: ['admissionControlQueryPolicies'],
-			},
-		},
-		default: '',
-		description: 'FQL filter string to refine results',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['admissionControlPolicies'],
-				operation: ['admissionControlQueryPolicies'],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['admissionControlPolicies'],
-				operation: ['admissionControlQueryPolicies'],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['admissionControlPolicies'],
-				operation: ['admissionControlQueryPolicies'],
-			},
-		},
-		default: '',
-		description: 'Sort criteria for returned policy IDs',
-	},
+	...createStandardPaginationFields('admissionControlPolicies', ['admissionControlQueryPolicies']),
 
 	/* -------------------------------------------------------------------------- */
 	/*             admissionControlGetPolicies / DeletePolicies                   */
@@ -211,29 +145,14 @@ export const admissionControlPoliciesFields: INodeProperties[] = [
 		required: true,
 		description: 'ID of the policy to target',
 	},
-	{
-		displayName: 'Policy Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['admissionControlPolicies'],
-				operation: [
-					'admissionControlCreatePolicy',
+	createBodyJsonField('admissionControlPolicies', ['admissionControlCreatePolicy',
 					'admissionControlUpdatePolicy',
 					'admissionControlAddHostGroups',
 					'admissionControlAddRuleGroupCustomRule',
 					'admissionControlCreateRuleGroups',
 					'admissionControlReplaceRuleGroupSelectors',
 					'admissionControlSetRuleGroupPrecedence',
-					'admissionControlUpdateRuleGroups',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON object payload for the request body',
-	},
+					'admissionControlUpdateRuleGroups',]),
 
 	/* -------------------------------------------------------------------------- */
 	/*                     admissionControlDeleteRuleGroups                       */
