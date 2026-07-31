@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createLimitField, createOffsetField, createOperationField } from '../common';
+
 export const cloudAwsRegistrationOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['cloudAwsRegistration'],
-			},
-		},
-		options: [
+	createOperationField('cloudAwsRegistration', [
+
 			{ name: 'Create Account Registration', value: 'cloudRegistrationAwsCreateAccount', description: 'Creates a new account in our system for a customer', action: 'Create AWS account registration' },
 			{ name: 'Delete Account Registration', value: 'cloudRegistrationAwsDeleteAccount', description: 'Deletes an existing AWS account or organization in our system', action: 'Delete AWS account registration' },
 			{ name: 'Get Account Registrations', value: 'cloudRegistrationAwsGetAccounts', description: 'Retrieve existing AWS accounts by account IDs or organization IDs', action: 'Get AWS account registrations' },
@@ -19,9 +12,8 @@ export const cloudAwsRegistrationOperations: INodeProperties[] = [
 			{ name: 'Trigger Health Check', value: 'cloudRegistrationAwsTriggerHealthCheck', description: 'Trigger health check scan for AWS accounts', action: 'Trigger AWS health check' },
 			{ name: 'Update Account Registration', value: 'cloudRegistrationAwsUpdateAccount', description: 'Patches an existing account in our system for a customer', action: 'Update AWS account registration' },
 			{ name: 'Validate Accounts', value: 'cloudRegistrationAwsValidateAccounts', description: 'Validates AWS account registration status', action: 'Validate AWS accounts' },
-		],
-		default: 'cloudRegistrationAwsQueryAccounts',
-	},
+		
+	], 'cloudRegistrationAwsQueryAccounts'),
 ];
 
 export const cloudAwsRegistrationFields: INodeProperties[] = [
@@ -101,20 +93,7 @@ export const cloudAwsRegistrationFields: INodeProperties[] = [
 	/* -------------------------------------------------------------------------- */
 	/*                                Body JSON                                   */
 	/* -------------------------------------------------------------------------- */
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['cloudAwsRegistration'],
-				operation: ['cloudRegistrationAwsCreateAccount', 'cloudRegistrationAwsUpdateAccount'],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON body payload for AWS registration',
-	},
+	createBodyJsonField('cloudAwsRegistration', ['cloudRegistrationAwsCreateAccount', 'cloudRegistrationAwsUpdateAccount']),
 
 	/* -------------------------------------------------------------------------- */
 	/*                            Query Parameters                                */
@@ -147,37 +126,6 @@ export const cloudAwsRegistrationFields: INodeProperties[] = [
 		required: true,
 		description: 'Comma-separated list of features',
 	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['cloudAwsRegistration'],
-				operation: ['cloudRegistrationAwsQueryAccounts'],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['cloudAwsRegistration'],
-				operation: ['cloudRegistrationAwsQueryAccounts'],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
+	createLimitField('cloudAwsRegistration', ['cloudRegistrationAwsQueryAccounts']),
+	createOffsetField('cloudAwsRegistration', ['cloudRegistrationAwsQueryAccounts']),
 ];
