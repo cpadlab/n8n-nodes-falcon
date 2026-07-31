@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createIdsField, createOperationField, createStandardPaginationFields } from '../common';
+
 export const kubernetesProtectionOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['kubernetesProtection'],
-			},
-		},
-		options: [
+	createOperationField('kubernetesProtection', [
+
 			{ name: 'Cluster Combined', value: 'clusterCombined', description: 'Retrieve kubernetes clusters identified by filter criteria', action: 'Cluster combined' },
 			{ name: 'Cluster Count', value: 'clusterCount', description: 'Retrieve cluster counts', action: 'Cluster count' },
 			{ name: 'Cluster Enrichment', value: 'clusterEnrichment', description: 'Retrieve cluster enrichment data', action: 'Cluster enrichment' },
@@ -76,9 +69,8 @@ export const kubernetesProtectionOperations: INodeProperties[] = [
 			{ name: 'Trigger Scan', value: 'triggerScan', description: 'Triggers dry run or full scan of kubernetes footprint', action: 'Trigger scan' },
 			{ name: 'Update AWS Account', value: 'updateAWSAccount', description: 'Updates AWS account per query parameters', action: 'Update AWS account' },
 			{ name: 'Vulnerable Container Image Count', value: 'vulnerableContainerImageCount', description: 'Retrieve count of vulnerable images running on containers', action: 'Vulnerable container image count' },
-		],
-		default: 'getClusters',
-	},
+		
+	], 'getClusters'),
 ];
 
 export const kubernetesProtectionFields: INodeProperties[] = [
@@ -123,15 +115,7 @@ export const kubernetesProtectionFields: INodeProperties[] = [
 		required: true,
 		description: 'Name of the cluster',
 	},
-	{
-		displayName: 'IDs',
-		name: 'ids',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['kubernetesProtection'],
-				operation: [
-					'clusterEnrichment',
+	createIdsField('kubernetesProtection', ['clusterEnrichment',
 					'containerEnrichment',
 					'deleteAWSAccountsMixin0',
 					'deleteAzureSubscription',
@@ -144,13 +128,7 @@ export const kubernetesProtectionFields: INodeProperties[] = [
 					'listAzureAccounts',
 					'nodeEnrichment',
 					'podEnrichment',
-					'updateAWSAccount',
-				],
-			},
-		},
-		default: '',
-		description: 'Comma-separated list of IDs',
-	},
+					'updateAWSAccount',]),
 	{
 		displayName: 'Scan Type',
 		name: 'scanType',
@@ -183,34 +161,11 @@ export const kubernetesProtectionFields: INodeProperties[] = [
 		default: '',
 		description: 'AWS Region',
 	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['kubernetesProtection'],
-				operation: [
-					'createAWSAccount',
+	createBodyJsonField('kubernetesProtection', ['createAWSAccount',
 					'createAzureSubscription',
 					'postAggregatesPods',
-					'postSearchKubernetesIOMEntities',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request body payload',
-	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['kubernetesProtection'],
-				operation: [
-					'clusterCombined',
+					'postSearchKubernetesIOMEntities',]),
+	...createStandardPaginationFields('kubernetesProtection', ['clusterCombined',
 					'clusterCount',
 					'clustersByKubernetesVersionCount',
 					'clustersByStatusCount',
@@ -243,105 +198,5 @@ export const kubernetesProtectionFields: INodeProperties[] = [
 					'readClusterCombinedV2',
 					'readNamespaceCount',
 					'runningContainerImages',
-					'vulnerableContainerImageCount',
-				],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['kubernetesProtection'],
-				operation: [
-					'clusterCombined',
-					'containerCombined',
-					'containerCountByRegistry',
-					'deploymentCombined',
-					'findContainersByContainerRunTimeVersion',
-					'getAWSAccountsMixin0',
-					'getAzureTenantConfig',
-					'getAzureTenantIDs',
-					'getClusters',
-					'getCombinedCloudClusters',
-					'kubernetesIomEntitiesCombined',
-					'listAzureAccounts',
-					'nodeCombined',
-					'podCombined',
-					'postSearchKubernetesIOMEntities',
-					'queryKubernetesIoms',
-					'readClusterCombinedV2',
-					'runningContainerImages',
-				],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['kubernetesProtection'],
-				operation: [
-					'clusterCombined',
-					'containerCombined',
-					'deploymentCombined',
-					'findContainersByContainerRunTimeVersion',
-					'getAWSAccountsMixin0',
-					'getAzureTenantConfig',
-					'getAzureTenantIDs',
-					'getClusters',
-					'getCombinedCloudClusters',
-					'kubernetesIomEntitiesCombined',
-					'listAzureAccounts',
-					'nodeCombined',
-					'podCombined',
-					'queryKubernetesIoms',
-					'readClusterCombinedV2',
-					'runningContainerImages',
-				],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['kubernetesProtection'],
-				operation: [
-					'clusterCombined',
-					'containerCombined',
-					'deploymentCombined',
-					'findContainersByContainerRunTimeVersion',
-					'kubernetesIomEntitiesCombined',
-					'nodeCombined',
-					'podCombined',
-					'postSearchKubernetesIOMEntities',
-					'queryKubernetesIoms',
-					'readClusterCombinedV2',
-					'runningContainerImages',
-				],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+					'vulnerableContainerImageCount',]),
 ];
