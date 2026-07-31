@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createFilterField, createLimitField, createOffsetField, createOperationField } from '../common';
+
 export const kubernetesContainerComplianceOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['kubernetesContainerCompliance'],
-			},
-		},
-		options: [
+	createOperationField('kubernetesContainerCompliance', [
+
 			{ name: 'Aggregate Assessments Grouped by Clusters V2', value: 'aggregateAssessmentsGroupedByClustersV2', description: 'Returns cluster details along with aggregated assessment results organized by cluster', action: 'Aggregate assessments grouped by clusters V2' },
 			{ name: 'Aggregate Assessments Grouped by Rules V2', value: 'aggregateAssessmentsGroupedByRulesV2', description: 'Returns rule details along with aggregated assessment results organized by compliance rule', action: 'Aggregate assessments grouped by rules V2' },
 			{ name: 'Aggregate Compliance by Asset Type', value: 'aggregateComplianceByAssetType', description: 'Provides aggregated compliance assessment metrics organized by asset type', action: 'Aggregate compliance by asset type' },
@@ -22,9 +15,8 @@ export const kubernetesContainerComplianceOperations: INodeProperties[] = [
 			{ name: 'Combined Images Findings', value: 'combinedImagesFindings', description: 'Returns detailed compliance assessment results for container images', action: 'Combined images findings' },
 			{ name: 'Combined Nodes Findings', value: 'combinedNodesFindings', description: 'Returns detailed compliance assessment results for kubernetes nodes', action: 'Combined nodes findings' },
 			{ name: 'Get Rules Metadata by ID', value: 'getRulesMetadataByID', description: 'Retrieve detailed compliance rule information by specifying rule identifiers', action: 'Get rules metadata by ID' },
-		],
-		default: 'combinedImagesFindings',
-	},
+		
+	], 'combinedImagesFindings'),
 ];
 
 export const kubernetesContainerComplianceFields: INodeProperties[] = [
@@ -42,15 +34,7 @@ export const kubernetesContainerComplianceFields: INodeProperties[] = [
 		required: true,
 		description: 'Comma-separated list of compliance rule IDs',
 	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['kubernetesContainerCompliance'],
-				operation: [
-					'aggregateAssessmentsGroupedByClustersV2',
+	createFilterField('kubernetesContainerCompliance', ['aggregateAssessmentsGroupedByClustersV2',
 					'aggregateAssessmentsGroupedByRulesV2',
 					'aggregateComplianceByAssetType',
 					'aggregateComplianceByClusterType',
@@ -58,13 +42,7 @@ export const kubernetesContainerComplianceFields: INodeProperties[] = [
 					'aggregateFailedRulesByClustersV3',
 					'aggregateTopFailedImages',
 					'combinedImagesFindings',
-					'combinedNodesFindings',
-				],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
+					'combinedNodesFindings',]),
 	{
 		displayName: 'After',
 		name: 'after',
@@ -78,47 +56,12 @@ export const kubernetesContainerComplianceFields: INodeProperties[] = [
 		default: '',
 		description: 'Pagination token for next page',
 	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['kubernetesContainerCompliance'],
-				operation: [
-					'aggregateAssessmentsGroupedByClustersV2',
+	createLimitField('kubernetesContainerCompliance', ['aggregateAssessmentsGroupedByClustersV2',
 					'aggregateAssessmentsGroupedByRulesV2',
 					'aggregateFailedRulesByClustersV3',
 					'aggregateTopFailedImages',
 					'combinedImagesFindings',
-					'combinedNodesFindings',
-				],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['kubernetesContainerCompliance'],
-				operation: [
-					'aggregateAssessmentsGroupedByClustersV2',
-					'aggregateAssessmentsGroupedByRulesV2',
-				],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
+					'combinedNodesFindings',]),
+	createOffsetField('kubernetesContainerCompliance', ['aggregateAssessmentsGroupedByClustersV2',
+					'aggregateAssessmentsGroupedByRulesV2',]),
 ];
