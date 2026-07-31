@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createIdsField, createOperationField, createStandardPaginationFields } from '../common';
+
 export const filevantageOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['filevantage'],
-			},
-		},
-		options: [
+	createOperationField('filevantage', [
+
 			{ name: 'Create Policies', value: 'createPolicies', description: 'Creates a new policy of the specified type', action: 'Create policies' },
 			{ name: 'Create Rule Groups', value: 'createRuleGroups', description: 'Creates a new rule group of the specified type', action: 'Create rule groups' },
 			{ name: 'Create Rules', value: 'createRules', description: 'Creates a new rule configuration within the specified rule group', action: 'Create rules' },
@@ -43,9 +36,8 @@ export const filevantageOperations: INodeProperties[] = [
 			{ name: 'Update Rule Groups', value: 'updateRuleGroups', description: 'Updates name and description of rule group', action: 'Update rule groups' },
 			{ name: 'Update Rules', value: 'updateRules', description: 'Updates rule configuration within specified rule group', action: 'Update rules' },
 			{ name: 'Update Scheduled Exclusions', value: 'updateScheduledExclusions', description: 'Updates scheduled exclusion configuration', action: 'Update scheduled exclusions' },
-		],
-		default: 'queryChanges',
-	},
+		
+	], 'queryChanges'),
 ];
 
 export const filevantageFields: INodeProperties[] = [
@@ -63,15 +55,7 @@ export const filevantageFields: INodeProperties[] = [
 		required: true,
 		description: 'Unique change or content ID',
 	},
-	{
-		displayName: 'IDs',
-		name: 'ids',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['filevantage'],
-				operation: [
-					'deletePolicies',
+	createIdsField('filevantage', ['deletePolicies',
 					'deleteRuleGroups',
 					'deleteRules',
 					'deleteScheduledExclusions',
@@ -84,14 +68,7 @@ export const filevantageFields: INodeProperties[] = [
 					'updatePolicyHostGroups',
 					'updatePolicyPrecedence',
 					'updatePolicyRuleGroups',
-					'updateRuleGroupPrecedence',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'Comma-separated list of IDs',
-	},
+					'updateRuleGroupPrecedence',]),
 	{
 		displayName: 'Rule Group ID',
 		name: 'ruleGroupId',
@@ -154,15 +131,7 @@ export const filevantageFields: INodeProperties[] = [
 		required: true,
 		description: 'Action name (e.g. add, remove)',
 	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['filevantage'],
-				operation: [
-					'createPolicies',
+	createBodyJsonField('filevantage', ['createPolicies',
 					'createRuleGroups',
 					'createRules',
 					'createScheduledExclusions',
@@ -171,83 +140,6 @@ export const filevantageFields: INodeProperties[] = [
 					'updatePolicies',
 					'updateRuleGroups',
 					'updateRules',
-					'updateScheduledExclusions',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['filevantage'],
-				operation: ['highVolumeQueryChanges', 'queryActionsMixin0', 'queryChanges'],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['filevantage'],
-				operation: [
-					'highVolumeQueryChanges',
-					'queryActionsMixin0',
-					'queryChanges',
-					'queryPolicies',
-					'queryRuleGroups',
-				],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['filevantage'],
-				operation: ['queryActionsMixin0', 'queryChanges', 'queryPolicies', 'queryRuleGroups'],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['filevantage'],
-				operation: [
-					'highVolumeQueryChanges',
-					'queryActionsMixin0',
-					'queryChanges',
-					'queryPolicies',
-					'queryRuleGroups',
-				],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+					'updateScheduledExclusions',]),
+	...createStandardPaginationFields('filevantage', ['highVolumeQueryChanges', 'queryActionsMixin0', 'queryChanges']),
 ];
