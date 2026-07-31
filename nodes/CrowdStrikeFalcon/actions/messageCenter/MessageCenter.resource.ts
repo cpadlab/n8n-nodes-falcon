@@ -1,17 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+import { createBodyJsonField, createOperationField, createStandardPaginationFields } from '../common';
+
 export const messageCenterOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['messageCenter'],
-			},
-		},
-		options: [
+	createOperationField('messageCenter', [
+
 			{ name: 'Aggregate Cases', value: 'aggregateCases', description: 'Retrieve aggregate case values', action: 'Aggregate cases' },
 			{ name: 'Case Add Activity', value: 'caseAddActivity', description: 'Add activity comment to a case', action: 'Case add activity' },
 			{ name: 'Case Add Attachment', value: 'caseAddAttachment', description: 'Upload attachment to a case', action: 'Case add attachment' },
@@ -21,9 +14,8 @@ export const messageCenterOperations: INodeProperties[] = [
 			{ name: 'Get Case Entities By IDs', value: 'getCaseEntitiesByIDs', description: 'Retrieve message center cases', action: 'Get case entities by IDs' },
 			{ name: 'Query Activity By Case ID', value: 'queryActivityByCaseID', description: 'Retrieve activity IDs for a case', action: 'Query activity by case ID' },
 			{ name: 'Query Cases IDs By Filter', value: 'queryCasesIdsByFilter', description: 'Retrieve case IDs matching filter', action: 'Query cases IDs by filter' },
-		],
-		default: 'queryCasesIdsByFilter',
-	},
+		
+	], 'queryCasesIdsByFilter'),
 ];
 
 export const messageCenterFields: INodeProperties[] = [
@@ -69,83 +61,10 @@ export const messageCenterFields: INodeProperties[] = [
 		required: true,
 		description: 'User UUID string',
 	},
-	{
-		displayName: 'Body (JSON)',
-		name: 'bodyJson',
-		type: 'json',
-		displayOptions: {
-			show: {
-				resource: ['messageCenter'],
-				operation: [
-					'aggregateCases',
+	createBodyJsonField('messageCenter', ['aggregateCases',
 					'caseAddActivity',
 					'createCaseV2',
 					'getCaseActivityByIds',
-					'getCaseEntitiesByIDs',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'JSON request payload',
-	},
-	{
-		displayName: 'Filter',
-		name: 'filter',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['messageCenter'],
-				operation: ['queryActivityByCaseID', 'queryCasesIdsByFilter'],
-			},
-		},
-		default: '',
-		description: 'FQL filter string',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-			maxValue: 500,
-		},
-		displayOptions: {
-			show: {
-				resource: ['messageCenter'],
-				operation: ['queryActivityByCaseID', 'queryCasesIdsByFilter'],
-			},
-		},
-		default: 100,
-		description: 'Max number of results to return',
-	},
-	{
-		displayName: 'Offset',
-		name: 'offset',
-		type: 'number',
-		typeOptions: {
-			minValue: 0,
-		},
-		displayOptions: {
-			show: {
-				resource: ['messageCenter'],
-				operation: ['queryActivityByCaseID', 'queryCasesIdsByFilter'],
-			},
-		},
-		default: 0,
-		description: 'Starting index for pagination',
-	},
-	{
-		displayName: 'Sort',
-		name: 'sort',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['messageCenter'],
-				operation: ['queryActivityByCaseID', 'queryCasesIdsByFilter'],
-			},
-		},
-		default: '',
-		description: 'Sort criteria',
-	},
+					'getCaseEntitiesByIDs',]),
+	...createStandardPaginationFields('messageCenter', ['queryActivityByCaseID', 'queryCasesIdsByFilter']),
 ];
